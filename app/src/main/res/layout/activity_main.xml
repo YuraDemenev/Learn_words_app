@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!--Надпись учить слова-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="10sp"
+        android:text="Учить слова" />
+
+    <!--Карточка с выбрать категории, учить слова ...-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        app:cardCornerRadius="16dp">
+
+        <!--Layout в карточке-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingEnd="10sp"
+            android:paddingBottom="5sp">
+
+            <!--Выбрать категории + иконка-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp">
+
+                <!--Иконка выбрать категории-->
+                <ImageView
+                    android:id="@+id/mainIconChooseCategory"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:contentDescription="Choose category icon in main menu"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/choose_category_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/mainTextContainerChooseCategory"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--Layout чтобы хранить 2 текста разного размера-->
+                <LinearLayout
+                    android:id="@+id/mainTextContainerChooseCategory"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mainIconChooseCategory"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <!--Текст выбрать категорию-->
+                    <TextView
+                        android:id="@+id/mainChooseCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7sp"
+                        android:text="Выбрать категории"
+                        android:textSize="22sp" />
+
+                    <!--Текст для показа сколько выбранно категорий-->
+                    <TextView
+                        android:id="@+id/mainSmallTextChoosedCategories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7sp"
+                        android:text="Выбранно категорий: "
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--учить новые слова + иконка-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_marginBottom="10sp">
+
+                <!--Иконка учить новые слова-->
+                <ImageView
+                    android:id="@+id/mainIconLearnNewWords"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:contentDescription="Edit icon in main menu"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/learn_new_words_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--Layout чтобы хранить 2 текста разного размера-->
+                <LinearLayout
+                    android:id="@+id/mainTextContainerLearnNewWords"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mainIconLearnNewWords"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <!--Текст учить новые слова-->
+                    <TextView
+                        android:id="@+id/mainLearnNewWords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7sp"
+                        android:text="Учить новые слова"
+                        android:textSize="22sp" />
+
+                    <!--Текст выученно сегодня-->
+                    <TextView
+                        android:id="@+id/mainSmallTextTodayLearned"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7sp"
+                        android:text="Выученно сегодня: "
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--повторить слова + иконка-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60sp">
+
+                <!--Иконка повторить слова-->
+                <ImageView
+                    android:id="@+id/mainIconRepeatWords"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:contentDescription="Edit icon in main menu"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/repeat_words_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--Layout чтобы хранить 2 текста разного размера-->
+                <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mainIconRepeatWords"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <!--Текст повторить слова-->
+                    <TextView
+                        android:id="@+id/mainRepeatWords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7sp"
+                        android:text="Повторить слова"
+                        android:textSize="22sp" />
+
+                    <!--Текст слов для повтора-->
+                    <TextView
+                        android:id="@+id/mainSmallTextRepeatWords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7sp"
+                        android:text="Слова для повтора: "
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <!--======================================================================================-->
+
+    <!--    Надпись дополнителное повторение-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginEnd="10sp"
+        android:text="Дополнительное повторение" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        app:cardCornerRadius="16dp">
+
+        <!--Layout в карточке-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingEnd="10sp"
+            android:paddingBottom="5sp">
+
+            <!--повторить все слова + иконка-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--Иконка повторить все слова-->
+                <ImageView
+                    android:id="@+id/mainIconRepeatAllWords"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:contentDescription="Repeat all words icon in main menu"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/repeat_all_words"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--Layout чтобы хранить 2 текста разного размера-->
+                <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mainIconRepeatAllWords"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <!--Текст повторить все слова-->
+                    <TextView
+                        android:id="@+id/mainRepeatAllWords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7sp"
+                        android:drawableLeft="@id/mainIconRepeatAllWords"
+                        android:gravity="center_vertical"
+                        android:text="Повторить все слова"
+                        android:textSize="22sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <!--    Надпись статистика-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginEnd="10sp"
+        android:text="Статистика" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        app:cardCornerRadius="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Горизонтальный контейнер для дней недели -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- Элемент дня недели в круге -->
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/circle_background"
+                    android:gravity="center"
+                    android:text="ПН"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <!-- Повторите для других дней недели -->
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/circle_background"
+                    android:gravity="center"
+                    android:text="ВТ"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <!-- Добавьте остальные дни недели так же -->
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/circle_background"
+                    android:gravity="center"
+                    android:text="СР"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
