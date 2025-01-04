@@ -1,0 +1,325 @@
+across;через (через дорогу)
+to act;действовать
+actually;на самом деле
+adventure;приключение
+ago;назад
+to agree;согласиться
+air;воздух
+alone;в одиночку
+already;уже
+also;также
+amazing;потрясающе
+anyone;кто либо
+anything;что угодно
+anywhere;где угодно
+to appear;появляться
+to arrive;прибыть
+art;искусство
+as;как
+as ... as;как (Быстрый как заяц,большой как медведь)
+at the moment;в данный момент
+fall (UK autumn);осень
+away;прочь
+backpack (UK rucksack);рюкзак
+bank;банк
+beetle;жук
+to begin;начать
+to believe;верить
+bit;немного
+bored;скучно
+to borrow;брать в долг
+to break;сломать
+broken;сломанный
+to brush;чистить
+to burn;сжечь
+butterfly;бабочка
+by myself;сам по себе
+by yourself;самостоятельно
+calendar;календарь
+camel;верблюд
+to camp;в лагерь
+card;карта
+castle;замок
+cave;пещера
+century;век
+to chat;поболтать
+cheap;дёшево
+to collect;собирать
+college;колледж
+to comb;расчесывать
+conversation;разговор
+corner;угол
+to could;мог (о возможности)
+creature;существо
+to cut;резать
+dark;темный
+date;дата (как и время)
+to decide;решать
+deep;глубокий
+desert;пустыня
+to design;для дизайна
+design;дизайн
+dictionary;словарь
+dinosaur;динозавр
+to disappear;исчезнуть
+during;во время
+each;каждый
+eagle;орёл
+early;рано
+Earth;Земля
+east;восток
+else;иначе
+empty;пустой
+to end;до конца
+engine;двигатель
+enormous;огромный
+enough;достаточно
+to enter;участвовать (в конкурсе,в соревнованиях)
+environment;окружающая среда
+ever;когда-либо
+everywhere;везде
+excellent;отлично
+excited;взволнован
+exit;выйти
+expensive;дорогой
+to explain;объяснить
+to explore;исследовать
+extinct;вымерший
+to fall;падать
+fast;быстро
+February;Февраль
+to feel;чувствовать
+to fetch;принести
+a few;несколько
+file;файл
+to find out;чтобы узнать
+to finish;закончить
+fire;огонь
+fire station;пожарная станция
+flag;флаг
+fog;туман
+foggy;туманный
+to follow;следовать
+to forget;забыть
+friendly;дружелюбный
+frightening;пугающий
+front;передний
+full;полный
+fur;мех
+furry;пушистый
+future;будущее
+geography;география
+to get to;чтобы добраться до
+glue;клей
+to glue;склеивать
+go away;уйти
+to go out;выходить
+group;группа
+guess;догадаться
+to guess;угадать
+half;половина
+to happen;произойти
+hard;трудно
+to hate;ненавидеть
+heavy;тяжелый
+high;высокий
+hill;холм
+history;история
+hole;дыра
+to hope;надеяться
+horrible;ужасно
+hour;час
+how long;как долго
+to hurry;торопиться
+husband;муж
+if you want;если хочешь
+important;важно
+to improve;улучшить
+in a minute;через минуту
+insect;насекомое
+instead;вместо этого
+interested;заинтересован
+interesting;интересно
+to invent;изобретать
+January;Январь
+to join;вступить (в клуб)
+just;просто
+to keep;держать
+kilometer (UK kilometre);километр
+kind;добрый
+language;язык
+large;большой
+late;поздно
+later;позже
+lazy;ленивый
+to leave;оставить
+left;слева (в направлении)
+to let;позволить
+to lie;лежать
+to lift;поднять
+to give somebody a lift/right;подвезти кого-либо
+a little;немного
+London;Лондон
+to look after;заботиться о
+to look like;выглядеть как
+lovely;прекрасный
+low;низкий
+lucky;повезло
+to make sure;чтобы убедиться
+married;женат
+math (UK maths);математика
+to may;может
+to meet;встретиться
+metal;металл
+midday;полдень
+middle;середина
+midnight;полночь
+to might;к возможно
+million;миллион
+to mind;на ум
+minute;минута
+missing;отсутствует
+to mix;смешивать
+money;деньги
+month;месяц
+much;много
+museum;музей
+nest;гнездо
+a piece of news;новость
+next;следующий
+no problem;нет проблем
+noisy;шумный
+no one;никто
+north;север
+November;Ноябрь
+nowhere;нигде
+ocean;океан
+October;октябрь
+octopus;осьминог
+of course;конечно
+once;однажды
+other;другой
+over;над
+past;прошедшее
+perhaps;возможно
+planet;планета
+pleased;доволен
+pond;пруд
+poor;бедный
+popular;популярный
+to post;разместить
+post office;почта
+postcard;открытка
+to prefer;предпочесть
+to prepare;подготовить
+problem;проблема
+project;проект
+to pull;тянуть
+to push;толкать
+quarter;четверть
+quite;совсем
+to race;участвовать в гонке
+ready;готов
+to remember;помнить
+to repeat;повторять
+restaurant;ресторан
+rich;богатый
+right;направо (в смысле направления)
+same;то же самое
+to save;чтобы сохранить
+science;наука
+scissors;ножницы
+search;поиск
+to searh;искать
+secret;секрет
+to sell;продать
+September;Сентябрь
+several;несколько
+shampoon;шампунь
+to should;должен
+since;так как
+to ski;кататься на лыжах
+skyscraper;небоскреб
+to sledge;кататься на санях
+to smell;чувствовать запах
+so;так что
+soft;мягкий
+somewhere;где-то
+soon;скоро
+sound;звук
+to sound;звучать
+south;юг
+space;пробел
+to speak;говорить
+special;специальный
+to spend;тратить
+spring;весна
+still;еще
+stone;камень
+storm;шторм
+straight on;прямо
+strange;странный
+stream;поток
+to study;изучать
+subject;подлежащее
+such;такой
+suddenly;вдруг
+summer;лето
+sure;конечно
+surname;фамилия
+surprise;удивить
+swan;лебедь
+to swing;качаться
+take;занимает (например, это займет 20 минут)
+to taste;по вкусу
+to thank;поблагодарить
+theater (UK theatre);театр
+thousand;тысяча
+through;через
+tidy;аккуратный
+to tidy;убирать
+time;время
+timetable;расписание
+toe;палец на ноге
+together;вместе
+tomorrow;завтра
+tonight;сегодня вечером
+tortoise;черепаха
+to touch;трогать
+to turn;повернуть
+to turn off;выключить
+to turn on;включить
+twice;дважды
+tire (UK tyre);шина
+unfriendly;недружелюбный
+unhappy;несчастный
+university;университет
+unkind;недобрый
+untidy;неопрятный
+until;пока,до (До рассвета)
+unusual;необычный
+to use;использовать
+usually;обычно
+view;просмотр
+to visit;посетить
+warm;теплый
+west;запад
+while;в то время как,пока
+to whisper;шептать
+to whistle;свистеть
+wife;жена
+wild;дикий
+to will;хотеть
+to win;победить
+wing;крыло
+winter;зима
+to wish;желать
+wish;желание
+without;без
+wonderful;замечательно
+wood;дерево
+wool;шерсть
+worried;обеспокоен
+yet;пока
+you’re welcome;добро пожаловать
+zero;ноль

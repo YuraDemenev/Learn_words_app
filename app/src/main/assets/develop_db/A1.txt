@@ -1,0 +1,430 @@
+about;о
+to add;добавить
+again;снова
+alien;чужой
+alphabet;алфавит
+angry;сердитый
+animal;животное
+to answer;ответить
+answer;ответ
+to ask;спросить
+bat (sports equipment);бита (спортивный инвентарь)
+to be;быть
+bear;нести
+between;между
+big;большой
+bird;птица
+birthday;день рождения
+board;доска
+board game;настольная игра
+bookshop;книжный магазин
+to bounce;подпрыгивать
+boy;мальчик
+brother;брат
+but;но
+bye;пока
+can;может
+cat;кот
+child/children;ребенок/дети
+to choose;выбирать
+class/classroom;класс
+to clean;чистить
+to close;закрыть
+to color (UK to colour);раскрашивать
+correct;правильно
+cow;корова
+crayon;карандаш
+crocodile;крокодил
+dad;папа
+day;день
+dirty;грязный
+to do;делать
+dog;собака
+don’t worry;не волнуйся
+double;двойной
+to draw;рисовать
+to drink;пить
+to drive;водить
+elephant;слон
+end;конец
+evening;вечер
+example;пример
+family;семья
+fantastic;фантастический
+father;отец
+to find;найти
+to fly;летать
+foot/feet;ступня/ступни
+for;для
+friend;друг
+frog;лягушка
+from;из
+fun;весело
+funny;смешно
+to get;получить
+giraffe;жираф
+girl;девушка
+to go;идти
+go to bed;ложиться спать
+go to sleep;идти спать
+goat;коза
+good;хорошо
+goodbye;до свидания
+great;здорово
+happy;счастливый
+to have;иметь
+he;он
+hello/hi;привет
+her;её
+here;здесь
+hippo;бегемот
+his;его
+horse;лошадь
+how;как
+how many;сколько
+how old;сколько лет
+in front of;перед
+it;это
+jellyfish;медуза
+to jump;прыгать
+keyboard;клавиатура
+kid;малыш
+to know;знать
+to learn;учиться
+lesson;урок
+letter;буква (как в алфавите)
+like;нравится
+to like;нравиться
+line;строка
+to listen;слушать
+to live;жить
+lizard;ящерица
+long;длинный
+tp look;смотреть
+to look at;смотреть на
+a lot/a lot of;много/много
+lots/lots of;много/много
+to love;любить
+to make;сделать
+man;человек
+men;мужчины
+many;много
+me;меня
+me too;я тоже
+mine;мой
+monkey;обезьяна
+morning;утро
+mother;мать
+mouse/mice;мышь/мыши
+mouse (computer);мышь (компьютерная)
+mum;мама
+my;мой
+name;имя
+new;новый
+nice;хорошо
+night;ночь
+no;нет
+now;сейчас
+number;число
+old;старый
+one;один
+open;открыто
+to open;открыть
+our;наш
+page;страница
+paint;краска
+to paint;красить
+painting;картина
+paper;бумага
+park;парковать
+part;часть
+pen;ручка
+pencil;карандаш
+person;лицо
+people;люди
+pet;домашнее животное
+to phone;на телефон
+to pick up;забрать
+please;пожалуйста
+to point;указывать
+polar bear;белый медведь
+poster;постер
+to put;положить
+question;вопрос
+to read;читать
+really;действительно
+right;справа
+right (correct);правильно
+robot;робот
+ruler;правитель
+sad;грустно
+sand;песок
+to say;сказать
+scary;страшно
+school;школа
+to see;видеть,увидеть
+see you;увидимся
+sentence;предложение
+she;она
+sheep;овца
+shell;оболочка
+store (UK shop);магазин
+short;короткий
+to show;показать
+to sing;петь
+sister;сестра
+to sit;сидеть
+to sleep;спать
+small;маленький
+to smile;улыбаться
+snake;змея
+some;некоторые
+sorry;извините
+to spell;произносить по буквам
+spider;паук
+to stand;стоять
+to start;начать
+to stop;остановить
+street;улица
+sun;солнце
+candy(UK sweet);конфета
+to swim;плавать
+tail;хвост
+to talk;говорить
+teddy (bear);плюшевый мишка
+to tell;рассказать
+thank you;спасибо
+thanks;спасибо
+that;что
+their/theirs/them;их
+then;тогда
+there;там
+these;эти
+they;они
+thing;вещь
+this;это
+those;те
+tiger;тигр
+to prep;подготовить
+today;сегодня
+too;слишком
+to try;попробовать
+try;пытаться
+TV/television;ТВ/телевидение
+ugly;уродливый
+very;очень
+to want;хотеть
+to wave;махать рукой
+we;мы
+to wear;носить
+what;что
+where;где
+which;который
+who;кто
+whose;чей
+with;с
+woman;женщина
+women;женщины
+word;слово
+would like;хотел бы
+wow;ух ты
+to write;писать
+year;год
+yes;да
+you;вы
+young;молодой
+your/yours;ваш
+zebra;зебра
+zoo;зоопарк
+after;после
+age;возраст
+all;все
+all right;хорошо
+always;всегда
+another;другой
+any;любой
+app;приложение
+around;вокруг
+aunt;тётя
+bad;плохо
+because;потому что
+best;лучший
+bottom;нижний
+to bring;принести
+to build;строить
+to buy;купить
+café;кафе
+to call;позвонить
+center (UK centre);центр
+city;город
+city/town center (UK city/town centre);центр города
+clever;умный
+cloud;облако
+come on;давай
+to cook;готовить
+to cry;плакать
+to dance;танцевать
+daughter;дочь
+different;разный
+difficult;сложно
+dolphin;дельфин
+down;вниз
+to dream;мечтать
+to dress up;наряжаться
+easy;легко
+ebook;электронная книга
+every;каждый
+excuse me;извините
+to fall;падать
+famous;знаменитый
+to feed;кормить
+movie (UK to film);кино
+movie star (UK film star);кинозвезда
+first;первый
+to fish;ловить рыбу
+to fix;исправить
+floor (ground, 1st);пол,этаж
+Friday;Пятница
+funfair;парк развлечений
+to get dressed;одеться
+to get off;выйти
+to get on;попасть на
+to get undressed;раздеться
+to get up;вставать
+to go shopping;ходить по магазинам
+grass;трава
+grown-up;взрослый
+have (got);имею
+to help;чтобы помочь
+homework;домашнее задание
+to hop;прыгать
+hot;горячий
+how much;сколько,как много
+how often;как часто
+hundred;сто
+idea;идея
+inside;внутри
+into;в
+to invite;пригласить
+island;остров
+jungle n;джунгли н
+lake;озеро
+laptop;ноутбук
+last;последний
+to laugh;смеяться
+laugh;смех
+leaf/leaves;лист/листья
+lion;лев
+little;немного
+to lose;потерять
+loud;громко
+loudly;громко
+market;рынок
+to mean;иметь в виду
+mistake;ошибка
+Monday;Понедельник
+moon;луна
+more;больше
+mountain;гора
+to move;двигаться
+to must;должен
+naughty;непослушный
+near;около
+to need;нуждаться
+never;никогда
+noise;шум
+o’clock;часы (сейчас 12 часов)
+often;часто
+only;только
+out;из
+out of;из
+panda;панда
+parent;родитель
+parrot;попугай
+penguin;пингвин
+place;место
+to plant;сажать
+pretty;довольно
+to put on;надеть
+quick;быстро
+quickly;быстро
+quiet;тихо
+quietly;тихо
+rabbit;кролик
+to rain;идти дождь
+rain;дождь
+rainbow;радуга
+river;река
+road;дорога
+rock;рок
+round;круглый
+Saturday;Суббота
+to score;забивать
+second;второй
+to send;отправить
+to shall;должен
+shape;форма
+shark;акула
+to shop;делать покупки
+shopping;шоппинг
+shopping center (UK shopping centre);торговый центр
+to skate;кататься на коньках
+to skip;пропустить
+sky;небо
+slow;медленно
+slowly;медленно
+snail;улитка
+snow;снег
+to snow;идти снег
+son;сын
+square;квадрат
+straight;прямо
+strong;сильный
+Sunday;Воскресенье
+sunny;солнечный
+supermarket;супермаркет
+surprised;удивлён
+to take;взять
+to take off (get undressed);снимать одежду (раздеваться)
+tall;высокий
+to teach;учить
+terrible;ужасно
+to text;в текст
+than;чем
+to think;думать
+third;третий
+Thursday;Четверг
+top;вершина
+town/city center(UK town/city centre);центр города
+to travel;путешествовать
+treasure;сокровище
+Tuesday;Вторник
+uncle;дядя
+up;вверх
+vegetable;овощ
+to video;к видео
+village;деревня
+to wait;ждать
+to wake (up);просыпаться (вставать)
+to wash;мыть
+to water;к воде
+waterfall;водопад
+wave;помахать
+weak;слабый
+weather;погода
+website;веб сайт
+Wednesday;Среда
+week;неделя
+weekend;выходные
+wet;мокрый
+when;когда
+why;почему
+wind;ветер
+windy;ветреный
+to work;работать
+world;мир
+worse;хуже
+worst;худший
+to would;чтобы бы
+wrong;неправильно
+yesterday;вчера

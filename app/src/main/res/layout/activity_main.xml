@@ -12,17 +12,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginEnd="10sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:text="Учить слова" />
 
     <!--Карточка с выбрать категории, учить слова ...-->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10sp"
-        android:layout_marginEnd="10sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:cardCornerRadius="16dp">
 
         <!--Layout в карточке-->
@@ -71,7 +71,7 @@
                         android:id="@+id/mainChooseCategory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="7sp"
+                        android:layout_marginStart="7dp"
                         android:gravity="center_vertical"
                         android:text="Выбрать категории"
                         android:textSize="22sp" />
@@ -81,7 +81,7 @@
                         android:id="@+id/mainSmallTextChoosedCategories"
                         android:layout_width="match_parent"
                         android:layout_height="22sp"
-                        android:layout_marginStart="7sp"
+                        android:layout_marginStart="7dp"
                         android:gravity="center_vertical"
                         android:text="Выбранно категорий: "
                         android:textSize="16sp" />
@@ -123,7 +123,7 @@
                         android:id="@+id/mainLearnNewWords"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="7sp"
+                        android:layout_marginStart="7dp"
                         android:gravity="center_vertical"
                         android:text="Учить новые слова"
                         android:textSize="22sp" />
@@ -133,7 +133,7 @@
                         android:id="@+id/mainSmallTextTodayLearned"
                         android:layout_width="match_parent"
                         android:layout_height="22sp"
-                        android:layout_marginStart="7sp"
+                        android:layout_marginStart="7dp"
                         android:gravity="center_vertical"
                         android:text="Выученно сегодня: "
                         android:textSize="16sp" />
@@ -173,7 +173,7 @@
                         android:id="@+id/mainRepeatWords"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="7sp"
+                        android:layout_marginStart="7dp"
                         android:gravity="center_vertical"
                         android:text="Повторить слова"
                         android:textSize="22sp" />
@@ -183,7 +183,7 @@
                         android:id="@+id/mainSmallTextRepeatWords"
                         android:layout_width="match_parent"
                         android:layout_height="22sp"
-                        android:layout_marginStart="7sp"
+                        android:layout_marginStart="7dp"
                         android:gravity="center_vertical"
                         android:text="Слова для повтора: "
                         android:textSize="16sp" />
@@ -237,27 +237,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!--Layout чтобы хранить 2 текста разного размера-->
-                <LinearLayout
-                    android:layout_width="0sp"
+                <TextView
+                    android:id="@+id/mainRepeatAllWords"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
                     android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="Повторить все слова"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="@id/mainIconRepeatAllWords"
                     app:layout_constraintStart_toEndOf="@id/mainIconRepeatAllWords"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="@id/mainIconRepeatAllWords" />
 
-                    <!--Текст повторить все слова-->
-                    <TextView
-                        android:id="@+id/mainRepeatAllWords"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="7sp"
-                        android:gravity="center|start"
-                        android:text="Повторить все слова"
-                        android:textSize="22sp" />
-                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
@@ -284,6 +275,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
             <!-- Горизонтальный контейнер для дней недели -->
@@ -291,76 +284,100 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
 
                 <!-- Элемент дня недели в круге -->
                 <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="10sp"
                     android:background="@drawable/circle_background"
                     android:gravity="center"
                     android:text="ПН"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
                 <!-- Повторите для других дней недели -->
                 <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="10sp"
                     android:background="@drawable/circle_background"
                     android:gravity="center"
                     android:text="ВТ"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
                 <!-- Добавьте остальные дни недели так же -->
                 <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="10sp"
                     android:background="@drawable/circle_background"
                     android:gravity="center"
                     android:text="СР"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
                 <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="10sp"
                     android:background="@drawable/circle_background"
                     android:gravity="center"
                     android:text="ЧТ"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
                 <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="10sp"
                     android:background="@drawable/circle_background"
                     android:gravity="center"
                     android:text="ПТ"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
                 <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="10sp"
                     android:background="@drawable/circle_background"
                     android:gravity="center"
                     android:text="СБ"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
                 <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="10sp"
                     android:background="@drawable/circle_background"
                     android:gravity="center"
                     android:text="ВС"
@@ -371,32 +388,112 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="80sp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="130sp"
-                    android:layout_height="60sp"
+                    android:layout_width="160sp"
+                    android:layout_height="90sp"
+                    app:cardCornerRadius="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Вы учите слова:"
-                            android:textSize="22sp" />
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="Вы учите слова 365 дней"
+                        android:textSize="22sp" />
+
                 </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160sp"
+                    android:layout_height="90sp"
+                    app:cardCornerRadius="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="Ваш рекорд 365 дней подряд"
+                        android:textSize="22sp" />
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Сегодня выученно / слов"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardCornerRadius="16dp">
+
+        <!--Layout в карточке-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp">
+
+
+            <TextView
+                android:id="@+id/upDataBase"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:text="Up DB"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/downDataBase"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:text="Down DB"
+                android:textSize="22sp" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

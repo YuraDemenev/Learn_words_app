@@ -1,0 +1,1944 @@
+ability;способность
+able;способен
+about;около (около 500 студентов)
+above;выше
+absent;отсутствует
+absolutely;абсолютно (Фильм был абсолютно ужасен)
+accent;акцент (У нее прекрасный французский акцент)
+to accept;принять
+acceptable;приемлемо
+access;доступ (доступ для инвалидов, доступ в Интернет, легкий доступ к центру города)
+to accompany;сопровождать
+according to;в соответствии с
+account;счет
+accountant;бухгалтер
+accurate;точный
+to achieve;достичь,добиваться
+achievement;достижение
+to act;играть (играть в пьесе, перестать вести себя как ребенок)
+act;действие (во втором действии)
+action;действие
+active;активный
+activity;деятельность
+actually;на самом деле (но на самом деле она очень милая)
+advertisement;реклама
+addition;дополнение (в дополнение)
+to admire;восхищаться
+admission;допуск
+to admission;к приему,к поступлению (плата/стоимость/цена допуска)
+to admit;признать
+adult;взрослый
+advance;заранее (бронировать заранее)
+advanced;продвинутый
+advantage;преимущество
+advert;объявление
+tp advertise;рекламировать
+advertisement;реклама
+advice;совет
+to advise;советовать
+aeroplane;самолет
+to affect;влиять
+to afford;позволить себе
+afraid;боюсь
+afternoon;после полудня
+afterwards;после
+against;против
+aged;в возрасте
+agency;агентство (туристическое агентство)
+ages;целую вечность (Автобусу потребовалась целая вечность, чтобы прибыть)
+ahead;вперед
+aim;цель
+to aim;прицеливаться
+air force;военно воздушные силы
+alarm;тревога
+album;альбом
+alike;похожий
+alive;живой
+all right/alright;все в порядке
+to allow;разрешить
+almost;почти
+along;вдоль
+aloud;вслух
+although;хотя
+altogether;в целом
+amazed;поражен
+ambition;амбиция
+among;среди
+amount;количество
+amusing;забавный
+ancient;древний
+anniversary;годовщина
+to announce;объявить
+to annoy;раздражать
+annual;ежегодный
+answerphone;автоответчик
+ant;муравей
+anxious;встревоженный
+anybody;кто-либо
+anymore;больше
+anyway;в любом случае
+apart;врозь
+apart from;кроме, помимо
+apartment building;многоквартирный дом
+to apologise;извиниться
+apology;извинение
+app;приложение (загрузите приложение на свой телефон)
+appearance;появление
+application;заявление (заявление о приеме на работу, бланк заявления)
+to apply;применять
+to approach;подходить
+to approve;одобрить
+approximately;приблизительно
+architecture;архитектура
+area;область
+to argue;спорить
+argument;аргумент
+to arrange;устроить
+arrangement;расположение
+to arrest;арестовать
+article;артикль
+ashamed;стыдно
+asleep;спит
+as long as;до тех пор, пока
+to assist;чтобы помочь
+as well (as);а также (как)
+at all;вообще
+at first;сначала
+at last;наконец
+at least;по крайней мере
+atmosphere;атмосфера
+at once;сразу
+at present;в настоящее время
+to attach;прикрепить
+attack;атака
+to attack;атаковать
+to attempt;попытаться
+to attend;присутствовать
+attention;внимание
+at the same time;в то же время
+attitude;отношение
+to attract;привлекать
+attraction;притяжение
+attractive;привлекательный
+audience;аудитория
+author;автор
+available;доступен
+average;средний
+to avoid;избегать
+awake;проснуться
+awesome;потрясающе
+awful;ужасно
+to babysit;нянчиться
+background;фон
+background;фон (опыт в продажах)
+backwards;в обратном порядке
+badly;плохо
+baker;пекарь
+bald;лысый
+ballet;балет
+balloon;воздушный шар
+band;группа
+bank account;банковский счет
+banking;банковское дело
+bar;бар
+basic;базовый
+basket;корзина
+to bath;купаться
+bathtub;ванна
+battery;батарея
+battle;битва
+bay;залив
+to beat;бить
+beautiful;красивый
+beauty;красота
+because of;из-за
+to become;стать
+bee;пчела
+beef;говядина
+before;перед
+beginner;начинающий
+beginning;начало
+to behave;вести себя
+behaviour;поведение
+behind;позади
+to belong;принадлежать
+below;ниже
+beneath;под
+benefit;выгода
+to benefit;чтобы принести пользу
+be over;закончено (Игра окончена – вы опоздали!)
+beside;рядом
+besides;кроме того
+bestseller;бестселлер
+better;лучше
+beyond;за пределами
+bill;счет (счет за электричество)
+biography;биография
+biology;биология
+birth;рождение
+to bite;кусать
+blackboard;доска
+to blame;винить
+blank;пустой (чистый лист бумаги)
+block;блок (Пройдемся вокруг блока, многоквартирный дом)
+blog;блог
+blogger;блоггер
+to blow;дуть
+bold;жирный
+bomb;бомба
+to bomb;бомбить
+to book;забронировать
+booking;бронирование (У меня бронирование на 19 число.)
+booking office;касса
+bookstore (UK bookshop);книжный магазин
+boot;ботинок (пара ботинок)
+boring;скучно
+born;родился
+both;оба
+to bother;беспокоить (Извините за беспокойство. Не беспокойтесь!)
+boyfriend;парень
+brake;тормоз
+to brake;тормозить
+branch;ветвь
+brand new;совершенно новый
+brave;храбрый
+to break down;сломаться (Машина сломалась.)
+to break in;взломать (Кто-то взломал и украл компьютер.)
+to break up;распадаться (Поп-группа распалась.)
+to breathe;дышать
+breeze;бриз
+bride;невеста
+brief;краткий
+bright;яркий
+brilliant;гениально
+to bring up;воспитывать (Она выросла в Лондоне.)
+broad;широкий
+bug;жук (Он нашел жука в своей постели.)
+building;здание
+bulb;лампочка (лампочка, бык)
+bunch;букет (букет цветов, отличная компания друзей)
+burning;горящий
+to bury;хоронить
+busy;занят
+buyer;покупатель
+by accident;случайно
+by hand;вручную
+by mistake;по ошибке
+by name;по имени
+cabinet;кабинет
+cable;кабель
+café/cafe;кафе/кафе
+cage;клетка
+calculator;калькулятор
+calf;теленок
+call;звонок
+to call for;зайти за тобой (Я зайду за тобой в 7.)
+to call in;зайти (Она зашла, чтобы увидеться с подругой.)
+calm;спокойный
+camp;лагерь
+camping/campsite;кемпинг
+to cancel;отменить
+capital;столица (столица, столица Италии)
+card;карта (кредитная карта, карточная игра)
+cardboard;картон
+care;заботиться (заботиться о ком-то)
+to care;заботиться (заботиться (о/для/кого-то))
+to something;к чему-то
+careful;осторожный
+carefully;осторожно
+careless;небрежный
+parking lot (UK car park);парковка
+to carry;нести
+to carry on;продолжать идти (Он продолжал идти, несмотря на дождь.)
+to carry out;выполнять (Она выполнила план согласно инструкции.)
+case;дело,случай,ситуация (Хотите, чтобы я вел ваше дело? В этом случае я сделаю исключение.)
+cash;наличные
+cashpoint;кассовый пункт
+casual;повседневный (повседневная одежда)
+cathedral;собор
+cattle;скот
+CD player;CD-плеер
+to celebrate;праздновать
+celebration;празднование
+celebrity;знаменитость
+cell phone;сотовый телефон
+cent;цент
+centimeter (UK centimetre);сантиметр
+central;центральный
+ceremony;церемония
+certain;определенный
+certainly;конечно
+certificate;сертификат
+challenge;вызов
+to challenge;бросить вызов
+challenging;сложный
+chance;шанс
+change;изменить
+chapter;глава
+character;персонаж
+charge;зарядка
+to charge;заряжать
+charity;благотворительность (Она работает в благотворительной организации.)
+charming;очаровательный
+chat;чат
+to chat;общаться в чате (общаться в чате онлайн)
+chatroom;чат
+talk show (UK chat show);ток-шоу
+to cheat;обманывать
+to check;проверить
+to check in;зарегистрироваться (Они зарегистрировались в отеле.)
+check in;регистрация (Ваши ключи на стойке регистрации.)
+to check out;выписаться (Он выписался из отеля в конце своего пребывания.)
+checkout;оформить заказ
+cheek;щека
+cheerful;весёлый
+cheers;ура
+chemistry;химия
+cheque;чек
+child;ребенок
+childhood;детство
+chip;чипсы (Я люблю рыбу с чипсами.)
+choice;выбор
+circle;круг
+to clap;хлопать
+class;класс (первый класс, второй класс)
+classical;классический (классическая музыка)
+classmate;одноклассник
+to clear;очистить
+clear;ясно
+clearly;ясно
+click;щелкнуть
+to click;нажать
+cliff;обрыв
+climate;климат
+clinic;клиника
+close;закрыть
+closed;закрыто
+cloudy;облачно
+club;клуб (вступить в клуб)
+coast;побережье
+cod;треска
+coin;монета
+collection;коллекция
+colourful;красочный
+to come;приехать
+comedy;комедия
+to come on;пошли (Пойдем, а то мы опоздаем на автобус.)
+comfort;утешать
+comfortable;удобный
+comma;запятая
+comment;комментарий (Пожалуйста, оставляйте комментарии ниже.)
+common;общий (общая фамилия, иметь что-то общее)
+to communicate;общаться
+communication;коммуникация
+to compare;для сравнения
+to compete;конкурировать
+to complain;жаловаться
+complaint;жалоба
+complete;полный
+to complete;для завершения
+completely;полностью
+complicated;сложный,осложнённый
+composition;состав
+to concentrate;концентрироваться
+conclusion;заключение
+condition;состояние (в хорошем состоянии)
+confident;уверен
+to confirm;подтвердить
+confused;смущенный
+confusing;запутанный
+congratulations;поздравления
+to connect;для подключения
+connection;соединение
+to consider;рассмотреть
+to consist;состоять
+consonant;согласная
+contact;контакт
+to contact;связаться
+to contain;содержать
+contents;содержание
+continent;континент
+to continue;продолжить
+control;управлять (пультом дистанционного управления)
+to control;контролировать (Контролируйте своей собакой!)
+convenient;удобный
+to convince;убедить
+cooking;готовить
+cool;круто
+to cool;охлаждать
+copy;копия
+to copy;копировать
+correction;исправление
+cost;стоимость
+to cost;стоить
+costume;костюм (я забыл свой купальный костюм, национальный костюм, костюм на Хэллоуин)
+cosy;уютный
+could;мог
+to count;рассчитывать
+countryside;сельская местность
+couple;пара
+courage;смелость
+course;курс (курс английского языка)
+court;суд,корт (суд, теннисный корт)
+cousin;кузен
+cover;покрыть
+to cover;покрывать
+crash;авария
+to crash;разбиться
+crazy;сумасшедший
+to create;создать
+creative;творческий
+credit;кредит
+credit card;кредитная карта
+crew;экипаж (бортпроводники)
+crime;преступление
+criminal;преступник
+crop;обрезать
+cross;крест
+to cross;пересечь
+pedestrian crossing;пешеходный переход
+to cross out;вычеркнуть (Зачеркнуть и написать снова.)
+crowd;толпа
+crowded;переполненный
+cruel;жестокий
+cruise;круиз
+cultural;культурный
+culture;культура
+cure;лекарство
+to cure;вылечить
+curious;любопытный
+curiously;с любопытством (Почему? - спросила она его с любопытством.)
+curriculum;учебная программа
+custom;обычай
+customer;клиент
+customs;таможня (я работаю таможенником.)
+cute;милый
+to cut up;разрезать (Она разрезала торт на маленькие кусочки.)
+CV;резюме на работа
+daily;ежедневно
+to damage;наносить ущерб
+damaged;поврежден
+data;данные
+to date;на сегодняшний день
+date;дата (сегодняшняя дата)
+deaf;глухой
+to deal;иметь дело
+to deal with something/somebody;иметь дело с чем-то/кем-то
+dear;дорогой (слишком дорогой, чтобы купить, дорогой сэр, о, дорогой!)
+death;смерть
+decision;решение
+to declare;объявить
+to decorate;украшать
+decrease;снижение,уменьшение
+to decrease;уменьшить
+defeat;победа
+to defeat;победить
+defence;защита
+to defend;защищать
+definitely;определенно
+degree;степень (степень по математике)
+to delay;задерживать
+to delete;удалить
+delighted;в восторге
+to deliver;доставить
+delivery;доставка
+demand;требование
+to demand;требовать
+to depart;отходить
+department store;универмаг
+to depend;зависеть (от/от) (Это зависит от того, что вы хотите сделать.)
+deposit (pay a deposit);внести депозит (внести депозит)
+depressed;подавленный
+depth;глубина (глубина воды)
+to describe;описывать
+description;описание
+to deserve;заслужить
+despite;несмотря на
+to destroy;уничтожить
+detail;деталь
+to develop;развивать
+development;развитие
+diagram;диаграмма
+to dial;набрать
+to die;умереть
+difference;разница
+difficulty;сложность
+to dig;копать
+digital;цифровой
+digital camera;цифровая камера
+direct;прямой
+to direct;направлять
+directly;напрямую
+dirt;грязь
+disabled;отключен
+disadvantage;недостаток
+to disagree;не соглашаться
+to disappoint;разочаровывать
+disappointed;разочарован
+disappointing;разочаровывающий
+disappointment;разочарование
+disc/disk;диск/диск (жёсткий диск)
+disco;дискотека
+discount;скидка
+to discover;обнаружить
+discovery;открытие
+to discuss;обсудить
+discussion;обсуждение
+disease;болезнь
+disgusting;отвратительно
+disk;диск
+to dislike;не любить
+display;дисплей
+to display;отображать
+distance;расстояние
+district;район
+to disturb;беспокоить
+to dive;нырять
+to divide;делить
+DJ;Диджей
+doctor;доктор
+documentary;документальный
+donkey;осел
+dot;точка (символ '.') (Вы посещали CambridgeESOL точка org? (.org))
+to doubt;сомневаться
+doubt;сомневаться
+download;загрузка
+to download;скачать
+dozen;дюжина
+to drag;перетащить (Просто перетащите файл в корзину.)
+drama;драма
+to draw;рисовать (рисовать кого-либо или что-либо, задергивать шторы, приближать)
+to dress;одеваться
+dressed;одетый
+driving licence;водительские права
+to drop;падать
+drop;ронять
+drugstore (UK chemist);аптека
+dry;сухой
+to dry;сушить
+due to;из-за,благодаря
+dull;скучный
+dust;пыль
+trash can (UK dustbin);мусорный бак
+dusty;пыльный
+duty;обязанность
+DVD player;DVD плеер
+to earn;заработать
+earth;земля
+eastern;восточный
+easily;легко
+easygoing;легкий на подъем
+economics;экономика
+edge;край
+education;образование
+effect;эффект
+efficient;эффективный
+effort;усилие
+either;либо
+elder;старейшина
+elderly;пожилой
+election;выборы
+electrical;электрический
+electricity;электричество
+electronic;электронный
+elementary;элементарный (элементарный уровень)
+to email;на электронную почту
+embarrassed;смущенный
+embarrassing;неловко,смущенный
+to encourage;поощрять
+ending;окончание
+to end up;в конечном итоге
+enemy;враг
+energy;энергия (Командные виды спорта отнимают много времени и энергии. В нашем доме мы стараемся экономить энергию.)
+engaged;помолвлен (быть помолвленным с кем-либо.)
+engineering;инжиниринг
+to enjoy;наслаждаться
+enjoyable;приятный
+to enquire;спрашивать
+enquiry;запрос
+to enter;войти
+to entertain;развлекать
+entertainment;развлечение
+entry;запись
+environmental;экологический
+equal;равный
+equipment;оборудование
+eraser (UK rubber);ластик
+to escape;бежать
+especially;особенно
+essay;эссе
+essential;существенный
+even;даже
+event;событие
+even though;хотя
+ever;когда-либо (Это была самая сильная боль, которую я когда-либо испытывал)
+everybody/everyone;все
+everything;всё
+exact;точный
+exactly;именно
+examination/exam;экзамен/экзамен
+examiner;экзаменатор
+except;кроме
+exchange;обмен (в обмен на)
+to exchange;обменять
+excitement;волнение
+exciting;захватывающий
+excuse;извинение
+to excuse;чтобы извинить
+to exercise;тренироваться
+exhausted;изнуренный
+exhibition;выставка
+to exist;существовать
+to expect;ожидать
+expedition;экспедиция
+experience;опыт
+experienced;испытал
+experiment;экспериментировать
+expert;эксперт
+explanation;объяснение
+to explode;взорваться
+explorer;исследователь
+extra;дополнительный
+extraordinary;необычайный
+extremely;чрезвычайно
+extreme sport;экстремальный вид спорта
+face;лицо
+face-to-face;лицом к лицу
+facilities;удобства
+fact;факт
+to fail;потерпеть неудачу
+fairly;довольно
+to fall;падать (Он упал и повредил ногу.)
+false;неправда
+familiar (with);знакомый (с)
+to fancy;мечтать
+fare;стоимость проезда (стоимость обратного билета составляет 26 фунтов стерлингов.)
+farming;фермерство
+fashionable;модный
+to fasten;закрепить
+fast food;фастфуд
+fault;вина
+favour;благоволить
+favourite;любимый
+to fax;отправить по факсу
+fear;бояться
+fee;плата
+feeling;чувство
+to feel like;чувствовать что (желать что-то сделать)
+female;женский род
+few;несколько
+fiction;вымысел
+field;поле
+to fight;бороться
+fight;драка,битва
+figure;фигура
+file;файл (Нажмите здесь, чтобы открыть файл.)
+to fill in;заполнить (Вам необходимо заполнить форму.)
+to fill up;заправлять (Он заправил машину бензином.)
+final;финал
+finally;наконец
+financial;финансовый
+to find out;узнать, обнаружить
+firework;фейерверк
+firm;фирма
+first name;имя
+fit (keep fit);быть в форме (поддерживать форму)
+to fit;подойти (Эти туфли не подходят.)
+to float;плавать
+flood;наводнение
+to flood;затопить
+to flow;течь
+flute;флейта
+to focus on something/somebody;сосредоточить внимание на чем-либо/ком-либо
+folder;папка
+folk;народный
+following;следующий
+fond;любить (быть увлеченным чем-либо/кем-либо)
+fool;дурак
+footballer;футболист
+forbidden;запрещено
+forecast;прогноз
+foreigner;иностранец
+forest;лес
+forever;навсегда
+to forgive;прощать
+former;бывший
+fortnight;две недели
+fortunately;к счастью
+forward;вперед
+fountain;фонтан
+frame;рамка
+free;бесплатно
+to freeze;заморозить
+freezing;замораживание
+French fries (UK chips);Картофель фри
+frequent;частый
+frequently;часто
+friendship;дружба
+to frighten;пугать
+frightened;испугался
+frozen;замороженный
+to fry;жарить
+full stop;полная остановка
+fully;полностью
+funny;забавный
+further;далее
+furthest;самый дальний
+to gain;приобретать (приобретать опыт)
+gallery;галерея
+gap;пробел
+gas (UK petrol);газ
+gas station (UK petrol station);заправочная станция
+general;общее
+generally;обычно (я обычно прихожу домой около 7.00.)
+generation;поколение
+generous;щедрый
+gentle;нежный
+to get along (with);ладить (с) (Как ты ладишь с Гарри?)
+to get back;вернуться
+to get down;спускаться
+to get fit;чтобы быть в форме
+to get in;попасть внутрь
+to get off;выходить (Мы выходим на следующей остановке.)
+to get on;попасть на
+to get on (with);ладить (с) (Ты хорошо ладишь с Сэмом?)
+to get rid of;избавиться от
+to get up;вставать
+giant;гигантский
+gift;подарок
+girlfriend;подруга
+to give;дать
+to give back;вернуть
+to give in;сдаваться,поддаваться
+to give out;выдать (Выдайте мне эти бумаги, пожалуйста?)
+to give up;сдаться,бросить (Дэвид бросил играть в теннис?)
+to give way;уступить дорогу
+glad;рад
+to glance;взглянуть
+global warming;глобальное потепление
+to go;идти
+to go for;идти на (Он пошел на работу.)
+good;хорошо,хороший
+good afternoon;добрый день
+good evening;добрый вечер
+good looking;красивый
+good morning;доброе утро
+good night;спокойной ночи
+goods;товары
+to go off;погаснуть
+to go on;продолжаться
+to go out;выходить на улицу
+gorgeous;великолепный
+government;правительство
+to go (with/together);сочетаться (с/вместе) (Твой галстук не подходит к твоей рубашке.)
+to grab;схватить
+grade;оценка
+graduation;выпускной
+gram;грам
+grammar;грамматика
+grandchild;внук
+grand;великий
+granddaughter;внучка
+grandfather/grandparent;дедушка
+grandma/grandmother;бабушка
+grandpa;дедушка
+grandson;внук
+granny;бабушка
+grant;грант
+graphics;графика
+grateful;благодарный
+to greet;приветствовать
+greeting;приветствие
+grocery store;продуктовый магазин
+groom;жених
+ground;земля
+to grow;расти
+to grow up;расти
+guest house;гостевой дом
+to guide;направлять
+guilty;виновен
+guitarist;гитарист
+gum;жвачка (жевательная резинка)
+gun;пистолет
+guy;парень
+habit;привычка
+haircut;стрижка
+hairdryer;фен
+half-price;половинная цена
+to hand;в руки
+hand-held;ручной
+to hand in;сдать (Пожалуйста, сдайте лист ответов, когда закончите.)
+to handle;обращаться
+to hand out;раздать (Раздай книги, пожалуйста, Том.)
+handsome;красивый
+handwriting;почерк
+to hang;вешать (вешать картину)
+to hang out;тусоваться
+to hang up;повесить трубку
+happily;счастливо
+happiness;счастье
+hardly;едва
+hardware;аппаратное обеспечение
+have got to;надо было
+have to;придется
+head;голова
+headline;заголовок
+headphones;наушники
+headteacher;директор школы
+healthy;здоровый
+heat;нагревать
+heel;каблук (Я не могу ходить на высоких каблуках.)
+height;высота
+help;помочь
+herb;трава
+hero;герой
+herself;сама
+hidden;скрытый
+to hide;скрыть
+to hike;ходить в поход
+himself;сам
+hip hop;хип-хоп
+hire;прокат
+to hire;нанимать
+historic/historical;исторический
+to hit;ударить
+hit;хит
+to hitchhike;путешествовать автостопом
+to hold;держать
+to hold up;держаться, удерживать
+homepage;домашняя страница
+honest;честный
+honestly;честно говоря
+honeymoon;медовый месяц
+hope;надеяться
+hopeful;обнадеживающий
+hopefully;надеюсь
+hopeless;безнадежный
+horror;ужас
+hostel;общежитие
+however;однако
+hug;обнять
+to hug;обнимать
+huge;огромный
+human;человек
+humid;влажный
+hunger;голод
+to hunt;охотиться
+hurry;торопиться
+to hurt;причинять боль
+hut;хижина
+icy;ледяной
+ID card;Удостоверение личности
+identification;идентификация
+identify (Babies can identify their mothers.);идентифицировать
+identity card (ID);удостоверение личности
+to ignore;игнорировать
+imagination;воображение
+to imagine;представить
+immediately;немедленно
+importance;важность
+impossible;невозможно
+impressed (by/with);под впечатлением
+improvement;улучшение
+in advance;заранее
+in case;в случае
+inch;дюйм
+to include;включить
+including;включая
+incorrect;неправильно
+to increase;увеличить
+incredible;невероятно
+incredibly (The team played incredibly well.);невероятно
+indeed;действительно
+independent;независимый
+individual;индивидуальный
+indoor/indoors;в помещении
+industry;промышленность
+in fact;на самом деле
+to influence;влиять
+influence;влияние
+to inform;информировать
+ingredient (I always use fresh ingredients);ингредиент
+in half;пополам
+in ink;чернилами
+initial (His initials are J.B.H.);инициал
+to injure;ранить
+ink;чернила
+in love;влюблён
+in pencil;карандашом
+in order;в порядке
+in order to;для того, чтобы
+inquiry;запрос
+to insist;настаивать
+to inspire (She inspired him to become an actor.);вдохновлять
+to install;установить
+instance (for instance);пример
+instead (of) (There were no lemons so I got oranges instead., Can you come on Monday instead of Tuesday?);вместо
+instrument (musical instrument);инструмент (музыкальный инструмент)
+intelligent;умный
+to intend (to intend to do something);намереваться
+to interest;интересовать
+interest;интерес
+intermediate;промежуточный
+international;международный
+to interrupt;прерывать
+interval (an interval in a play);интервал
+interview;интервью
+to interview;брать интервью
+in the end;в конце концов
+in time;вовремя
+to introduce;представить (я хочу представить вам нашего нового сотрудника)
+introduction;введение
+in two;в двух словах
+invention;изобретение
+to involve;вовлекать
+to iron;гладить
+ironing;глажка
+issue;вопрос
+IT (Information Technology);ИТ (Информационные технологии)
+item;элемент
+itself;сам по себе
+jail (UK prison);тюрьма
+jam (strawberry jam, traffic jam);джем
+jar;банка
+jazz;джаз
+jealous;ревновать
+jet (to go by jet (plane));реактивный самолет
+jewelry (UK jewellery);ювелирные изделия
+to jog;бегать трусцой
+to join (The rivers join there., to join the army, to join (in) a game);присоединиться
+to joke;шутить
+joke;шутка
+to judge;судить
+jungle;джунгли
+kangaroo;кенгуру
+keen (He's keen on cycling., to be keen to do something);увлеченный
+keeper;хранитель
+to keep in (She kept the children in as it was so cold.);держать в
+to keep on (He kept on talking.);продолжать
+keep up (Keep up the good work!);Продолжайте в том же духе
+key (key to a lock, key to success);ключ
+kid (We’re taking the kids camping.);малыш
+to kill;убить
+kilogram (UK kilogramme);килограмм
+kiss;поцелуй
+to kiss;целовать
+kitten;котенок
+to knit;вязать
+to knock;стучать
+to knock down (He was knocked down by a car.);сбить
+knowledge;знание
+lack;отсутствие
+lady;леди
+land;земля
+landscape;пейзаж
+lately;в последнее время
+latest;последний
+law;закон
+to lay (lay the table);накрывать
+to lead (to lead someone by the hand, Where does this road lead?);вести
+leader;лидер
+leaf;лист
+least (the least amount, at least);наименее
+lecture;лекция
+left-hand;левосторонний
+leisure;досуг
+to lend;одолжить
+length;длина
+less;меньше
+to let (Let her do it., Let me think., Let’s go out tonight.);позволить
+level;уровень
+library;библиотека
+licence (a driving/marriage/TV licence);права
+lie;ложь
+to lie;лгать
+to lie down;лечь
+life;жизнь
+to lift (Please help me to lift this table.);поднять
+to light;зажигать
+lighter (a cigarette lighter);зажигалка
+lightning;молния
+likely;вероятно,скорее всего
+limit;предел
+to limit;ограничивать
+limited (a limited choice);ограниченный
+line (a line on a page, a clothes line, a railway line);линия
+link (a link to a website);ссылка
+lip;губа
+liquid;жидкость
+list;список
+literature;литература
+liter (UK litre);литр
+litter;мусорить
+live (live music/sport);жить
+lively;живой
+load;загружать
+loan;кредит
+local;местный
+to locate (The station is located in the city center);найти
+location;местоположение
+to look;смотреть
+locker;шкафчик
+logo;логотип
+lonely;одинокий
+to look after (I’m looking after my sister’s house while she’s on holiday?);присматривать за домом
+to look at;смотреть на
+to look for;искать
+to look forward to (I’m looking forward to the party!);с нетерпением ждать
+to look like (She looks like her sister.);быть похожей
+to look out (Look out!);выглядывать
+to look up (Look up the meaning of the word in your dictionary.);посмотреть
+loose;потерять
+lost;потерял
+lots/a lot;много
+lottery;лотерея
+love;любить
+luckily;к счастью
+lunchtime;обеденное время
+luxury;роскошь
+mad;безумный
+to made of/from/out of (Her shirt is made of cotton.);сделанный из
+magic;магия
+magnificent;великолепный
+mail;почта
+to mail;отправить по почте
+main;основной
+make;сделать
+male;мужской
+mall (shopping mall);торговый центр
+to manage (to manage a business, to manage to do something (succeed in));управлять
+mark;отметить
+market (to buy something from a market);рынок
+marriage;брак
+to marry;жениться
+marvellous;чудесный
+match (a box of matches, a tennis match);матч
+to match (This tie matches your shirt.);сочетаться
+mate;приятель
+matter (Is anything the matter?);дело
+to matter (It doesn't matter.);иметь значение
+maximum;максимум
+may;может
+maybe;может быть
+to mean (What do you mean?, What does it mean?);иметь в виду
+meaning;значение
+meanwhile;между тем
+to measure;измерять
+medium;средний
+membership;членство
+memory (to have a good/poor memory, happy memories, computer memory);память
+to mend;чинить
+to mention;упомянуть
+mess;беспорядок
+messy;грязный
+method (modern methods of teaching);метод
+meter(UK metre);метр
+microwave (a microwave oven);микроволновка
+middle-aged;среднего возраста
+might;может
+mild;мягкий
+mile;миля
+millimeter (UK millimetre);миллиметр
+mind (His mind was on other things.);ум, разум
+to mind (Would you mind if I called tomorrow?, Mind your head!, Who's minding the baby for you?, Make your mind up, quickly!);думать, задумываться
+minimum;минимум
+minus;минус
+miserable;несчастный
+to miss;скучать
+mix;смешивать
+mobile (phone);мобильный телефон
+model (It's cheap because it's last year's model., She’s a fashion model.);модель
+modern;современный
+moment;момент
+monster;монстр
+monument;памятник
+mood;Настроение
+mosquito;комар
+most;большинство
+mostly;в основном
+motorcycle;мотоцикл
+mouse;мышь
+movie theater (UK cinema);кинотеатр
+MP3 player;MP3 плеер
+much;много
+mushroom;гриб
+musical;музыкальный
+must;должен
+multiply;умножить
+myself;я сам
+mystery;тайна
+to name;назвать
+narrow;узкий
+nasty;отвратительный
+national;национальный
+natural;натуральный
+nature (nature studies);природа
+navy blue;темно-синий
+nearby;рядом
+nearly;почти
+neat;аккуратный
+necessary;необходимо
+negative;отрицательная
+neighbourhood;соседство
+neither (She’s not tall, and neither am I., Neither child was hurt., They gave us two keys and neither worked.);ни
+nephew;племянник
+nervous (a nervous person, to feel nervous);нервный
+network;сеть
+next to;рядом с
+niece;племянница
+nightclub;ночной клуб
+nightlife;ночная жизнь
+nightmare;кошмар
+nobody;никто
+none;нет
+noon;полдень
+no one;никто
+normal;нормальный
+normally;обычно,как правило
+northeast;северо-восток
+northern;северный
+northwest;северо-запад
+note (to write a note, a ten-pound note);записка
+to note (Please note.);отметить
+notebook;блокнот
+notepaper;почтовая бумага
+nothing;ничего
+notice (to read a notice, until further notice);уведомление
+to notice (Did you notice anything wrong?);заметить
+noticeboard;доска объявлений
+novel;роман
+nowadays;в настоящее время
+number (numbers 5 to 7, a large number of cars, What’s your (phone) number?);номер
+object;объект
+obvious;очевидно
+obviously;очевидно
+occasion;случай
+occasionally;иногда
+offer;предложение
+to offer;предложить
+officer;офицер
+oh dear!;о боже!
+olive;оливковый
+once (once a year. I once saw him dancing.);однажды
+on fire;в огне
+online (to book/buy something online, an online printer);онлайн
+on purpose;нарочно
+on request;по запросу
+on sale;в продаже
+opening hours;часы работы
+opera;опера
+to operate;работать
+opinion;мнение
+opportunity;возможность
+opposite;напротив
+option;вариант
+orchestra;оркестр
+order (in order to (conj), to put something in order);порядок
+to order (to order a meal);заказывать
+ordinary;обычный
+organisation;организация
+to organise;организовать
+original;оригинал
+otherwise;в противном случае
+ought;должен,необходимо
+ours;наш
+ourselves;мы сами
+outdoor/outdoors;на открытом воздухе
+out of date;устаревший
+out of order;не по порядку
+outside;снаружи
+over (I’m going over the road., over 40 people (more than), to be over (finished), Several birds were flying over the roof of the school.);над
+to owe;быть должен
+own (my own pen, on my own);собственный
+to own (to own a car);владеть
+to pack (to pack a case);упаковывать
+packet;пакет
+pair;пара
+palace;дворец
+pale (pale blue pan);бледный
+pants (UK trousers);брюки
+paper (a sheet of paper, a newspaper);бумага
+paragraph;абзац
+parcel;посылка
+park (a public park);парк
+to park (to park a car);парковать
+parking;парковка
+part (a part of something);часть
+partly;частично
+particular (I love this CD - in particular the last song.);в частности
+partner;партнер
+part-time;неполный рабочий день
+party (a birthday party, a political party);вечеринка
+pass (Several cars passed., to pass the sugar, to pass an examination);пройти
+to pass;пройти
+to pass on (Pass on the message.);передать
+password;пароль
+past (the past few weeks, in the past, It’s half past one.);прошлое
+patient (to be patient, a hospital patient);пациент
+to pause;сделать паузу
+pavement;тротуар
+pay;оплата
+to pay;платить
+PC (personal computer);ПК (персональный компьютер)
+peace;мир
+peaceful;мирный
+peak;пик
+pedestrian;пешеход
+to peel;чистить
+pence;пенс
+pencil case;пенал
+penfriend;друг по переписке
+penny;пенни
+pepper (to pass the pepper, red peppers);перец
+percent;процент
+perfect;совершенный
+perfectly;отлично
+to perform;выполнять
+performance;исполнение
+performer;исполнитель
+period;точка
+permanent;постоянный
+permission;разрешение
+to permit (Dogs are not permitted here.);разрешить
+permitted;разрешено
+personal;личное
+personally;лично
+to persuade;убедить
+photocopy;фотокопия
+photograph;фотограф
+to photograph;фотографировать
+photography;фотография
+phrase;фраза
+physics;физика
+to pick;выбирать
+to pick up (I picked up a pencil., I’ll pick up my sister from the station.);забрать
+piece (a piece of cheese, to break into small pieces, a piece of furniture/advice);кусок
+pile;куча
+pin;прикалывать
+to pin;прикрепить
+pitch (football pitch);поле
+pity (It’s a pity you couldn’t come to the party, it was great.);Жаль
+place (a safe place, I’ve lost my place in the book., third place in a race, London is a big place.);место
+plain (It’s plain to me., a plain T-shirt);простая
+plan (a street plan, a plan to do something);план
+to plan;планировать
+to play (children playing, to play football, to play the guitar, to play a DVD, to play the part of someone);играть
+playground;детская площадка
+pleasant;приятный
+please (Come in, please.);пожалуйста
+to please (to please someone);радовать (угождать кому-либо)
+pleasure;удовольствие
+plenty;много
+plug (a plug for the bath, an electrical plug);вилка, штекер, пробка
+plus;плюс
+pocket money;карманные деньги
+podcast;подкаст
+poem;стихотворение
+poetry;поэзия
+to point (to point at something);указывать
+police;полиция
+polite;вежливый
+political;политический
+politics;политика
+pollution;загрязнение
+pool (a swimming pool);бассейн
+poor (She is very poor, the poor man);бедный
+pop (pop song/music/star/group);поп
+population;население
+port;порт
+position;позиция
+positive;положительный
+possibility;возможность
+possible/possibly;возможно
+to post (to post a letter);размещать
+post (to send it by post);почта
+to postpone;отложить
+pot;горшок
+pound;фунт
+to pour;наливать
+powder;порошок
+power;сила
+powerful;мощный
+practise(UK practice);практика
+to pray;молиться
+prayer;молитва
+to predict;предсказывать
+pregnant;беременна
+preparation;подготовка
+prepared;подготовленный
+prescription (medicine on a prescription);рецепт
+present (to be present, at the present time, That will be all for the present. I got some lovely birthday presents.);настоящее время
+to present (She presents the late-night news.);представлять
+presentation;презентация
+presenter (a sports presenter);ведущий
+to press (to press a button, to press a suit);нажимать
+to prevent;чтобы предотвратить
+previous;предыдущий
+previously;ранее
+price;цена
+primary school;начальная школа
+prince;принц
+princess;принцесса
+principal;основной
+to print (to print a document);печатать
+printer;принтер
+prison;тюрьма
+prisoner;заключенный
+private;частный
+probably;вероятно
+to produce;производить
+product;продукт
+production (film/music production, She wants to work in television production.);продакшн
+progress;прогресс
+prohibited;запрещено
+project (school/work project);проект
+promise;обещать
+to promise (to promise to do something, to keep a promise);обещать
+to promote;продвигать
+to pronounce (to pronounce a word correctly);произносить
+pronunciation;произношение
+proper;собственно
+properly (as in working properly) (My computer isn’t working properly);правильно
+to protect;защищать
+proud;гордый
+to prove;доказать
+to provide;обеспечить
+public (public opinion, to make something public, to be open to the public);публичный
+to publish;публиковать
+pump (petrol/bike pump);насос
+to punish;наказать
+pupil;ученик
+puppy;щенок
+pure;чистый
+purpose (He did it on purpose., The purpose of this meeting is to…);цель
+push;толкать
+to put away (He put the book away.);убрать
+to put down (She put her name down for the trip.);записать
+to put off (The meeting was put off until the following week.);откладывать
+to put on (He put on a suit., Can you put on the light?, He didn’t want to put on weight.);надеть
+to put out (The fire was quickly put out.);тушить
+to put through (Can you put me through to the manager, please?);соединить
+to put up (The company had to put up its prices.);повышать цены
+pyjamas;пижама
+qualified;квалифицированный
+quality;качество
+quantity;количество
+question (to ask a question, the question being discussed);вопрос
+questionnaire;анкета
+queue;очередь
+to quit;бросить
+quite (Are you quite sure?, quite old);довольно
+to race (to win a race, to race against fast runners, to race home quickly);мчаться
+racket (tennis racket radio);ракетка
+rail (to go by rail railway);железная дорога
+rainforest;тропический лес
+to raise (to raise your arm, to raise prices);поднять
+range;диапазон
+rap (rap artist);рэп
+rare;редкий
+rarely;редко
+rather (She’s rather tall for her age., I’d rather go to the cinema than the theatre.,rather than go out?);скорее, довольно
+raw (raw meat);сырой
+to reach;достичь
+to react (He reacted quickly to the news.);реагировать
+reader;читатель
+reading;чтение
+real;реальный
+to realise (He realised it was true.);осознать
+realistic;реалистичный
+reality;реальность
+reason;причина
+reasonable;разумный
+reasonably;разумно
+to rebuild;перестроить
+receipt;квитанция
+to receive;получить
+recent;недавний
+to recognise;распознавать
+to recommend (to recommend someone/something);рекомендовать
+record (to keep a record, to break a record);рекорд
+to record (to record a song);записывать
+recording;запись
+to recover (to recover from an illness);выздоравливать,восстанавливаться
+to recycle (I don’t recycle as much as I should.);перерабатывать
+recycled;переработанный
+recycling;переработка
+to reduce;уменьшить
+refund;возврат
+to refuse;отказаться
+regarding;относительно
+regards;привет
+region;регион
+to register (He registered with a new doctor.);зарегистрироваться
+registration;регистрация
+regret;сожаление
+to regret;сожалеть
+regular;обычный
+regularly;регулярно
+relationship;отношение
+relative (a relative came to stay);родственник
+to relax;расслабиться
+relaxation;релаксация
+relaxed;расслабленный
+reliable;надежный
+relieved;облегчение
+religion;религия
+to rely (on);полагаться (на)
+to remain;оставаться
+to remind;напомнить
+to remove;удалить
+to rent;сдавать в аренду
+to replace;заменить
+reply;ответ
+to reply;ответить
+report;отчет
+to report;сообщать
+request;просьба
+to request;просить
+to require;требовать
+rescue;спасение
+to rescue;спасти
+research;исследование
+to research;исследовать
+to reserve (She was a reserve for the team., to reserve a seat);резервировать
+resort;прибегать
+respect;уважание
+to respect;уважать
+responsible;ответственный
+to rest (a rest from work, the rest of them, The doctor told her to rest.);отдохнуть
+result;результат
+to retire;уйти на пенсию
+return (a return ticket);возврат,вернуться
+to return (to return home);возвращаться
+review;обзор
+to revise;пересматривать
+revision;пересмотр
+reward;наградить
+right (the right time, the right person for the job, my right foot, Everything will be all right.);правильно
+right-hand;правая рука
+to ring (stand in a ring, a wedding ring, Give me a ring tomorrow. (call), Suddenly the bell rang.);звонить
+to ring back;перезвонить
+to ring up;звонить
+to rise (The sun rises in the east., Prices are rising.);расти
+to rob;грабить
+rock (rock (music), a hard piece of rock);рок
+rocket (They sent a rocket into space.);ракета
+role;роль
+roll (a roll of film, a bread roll);рулон
+romance;романс
+romantic;романтический
+room (the sitting room, There’s lots of room in here.);комната
+rope;веревка
+rose;роза
+rough (a rough road, a rough idea, rough work);грубый
+round (a round object, the wrong way round, to sit round a table);круглый
+routine;рутина
+row (a row of seats);ряд
+rude;грубый
+ruin;разрушить
+rule;правило
+to rule (the rules of grammar, to rule a country);править
+ruler (draw a line using a ruler);линейка
+to run (to run in a race, to run a business);бежать
+runner;бегун
+to run out (He ran out of time and didn’t finish.);выбежать
+safe (to be safe from harm);безопасный
+safely;безопасно
+sale;продажа
+salesman/saleswoman;продавец/продавщица
+same (at the same time);то же самое, тот же
+satisfactory;удовлетворительно
+satisfied;удовлетворён
+to save (to save someone, to save money, to save time);сохранять, спасать
+to say (to say something to someone, I really can’t say.);сказать
+scared;испугался
+scene;сцена
+scenery;пейзаж
+schoolchild;школьник
+science fiction;научная фантастика
+scientific;научный
+score (The score was 3-0);счет
+to score (to score a goal);забивать гол
+scream;крик
+to scream;кричать
+sculpture;скульптура
+to search;искать
+seaside;побережье
+seat belt;ремень безопасности
+second (She came second and won silver., This is the second time you’ve been late., sixty seconds in a minute);вторая
+secondary (secondary school);средний
+second-hand;из вторых рук
+section;раздел
+security;безопасность
+to see (to see something (with the eyes), to see the joke (understand), to see someone about a problem);видеть
+to seem;казаться
+to select;выбрать
+selfie (take a selfie);селфи
+selfish;эгоистичный
+self-service;самообслуживание
+sense;смысл
+sensible;разумный
+sentence (words in a sentence);предложение
+separate;отдельный
+series (a TV series);сериал
+serious (a serious person, a serious illness);серьёзный
+seriously;серьёзно
+to serve (to serve in a shop);обслуживать
+server (a file server);сервер
+service (a bus service, customer service);обслуживание
+session (in a school);сессия
+to set off (She set off early for work.);отправляться
+to set out (They set out on the long journey.);отправляться в путь
+to set up (Her mother helped her to set up in business.);основать
+to sew;шить
+shade (to sit in the shade);тень
+shadow;тень
+to shake;трясти
+shall;должен
+shame;позор,стыд
+to share;поделиться
+sharp (a sharp knife, a sharp corner, a sharp picture);острый
+to shave;брить
+sheet (sheets on a bed, a sheet of paper, information sheet);лист
+to shine;светить
+shiny;блестящий
+shock (to suffer from shock);шок
+shocked;шокирован
+shocking;шокирующий
+to shoot (to shoot at the goal);стрелять
+shop;магазин
+shopping (Let’s go shopping tomorow);Покупки
+shore;берег
+shortly;вскоре
+shorts (a pair of shorts);шорты
+should;должен
+shout;кричать
+to shout;кричать
+show (a film show);шоу, показ, выставка
+to show (Show it to me., The picture shows a village., It shows that they care.);показать
+to show up (He showed up at the party);появиться
+shower (a shower of rain, to have a shower);душ
+to shut;закрыть,закрываться
+shy;застенчивый
+side;сторона
+sight (Her sight is better with glasses., in sight, out of sight);зрение
+sign (a road sign., no sign of life., signs of winter);знак
+to sign (to sign a document.);подписывать
+signal;сигнал
+to signal;сигнализировать
+signature;подпись
+to sign up (sign up for an online course);зарегистрироваться
+silence;тишина
+silent;молчаливый
+silly;глупый,дурацкий
+similar;похожий
+simple;простой
+sincerely (Yours sincerely sing);искренне
+singing;петь
+single (a single ticket to Manchester, to be single (unmarried), a single room);один
+sink (a kitchen sink);раковина
+to sink (The ship began to sink.);тонуть
+sir (Yes, sir!);сэр
+to sit down;сесть
+site;сайт
+situated;расположен
+situation;ситуация
+to skateboard;кататься на скейтборде
+skill;умение
+to sleep (I usually go to sleep at 11pm.);спать
+slightly;слегка
+slim;тонкий
+to slip (to slip on the ice slow);скользить
+smart (a smart idea);умный
+smartphone;смартфон
+smoke;дым
+to smoke;курить
+smoking;курение
+smooth (a smooth surface, a smooth ride in the new car (comfortable));гладкий
+to snowboard;кататься на сноуборде
+soap opera;мыльная опера
+sociable;общительный
+social;социальный
+social media;социальные сети
+society;общество
+soft (a soft material, a soft drink);мягкий
+software;программное обеспечение
+solution;решение
+solve;решить
+somebody/someone;кто-то
+somehow;как-то
+something (Be into something., He’s really into sports);что-то
+sometimes;иногда
+soon (I’ll come soon., as soon as I can);скоро
+sort (the same sort);сортировать
+so so;так себе
+soul;душа
+sound (the sound of music);звук
+to sound (It sounds like/as if…);звучать
+soundtrack (The film’s soundtrack has music by Adele.);саундтрек
+sour (a sour taste);кислый
+southeast;юго-восток
+southern;южный
+southwest;юго-запад
+souvenir;сувенир
+space (a parking space, write in the spaces, not enough space, outer space);пространство
+spare (spare cash, spare time, to spare the time);запасные
+sparkling (Sparkling water, please.);газированный, игристое, искрящиеся
+speaker;говорящий
+specially;специально
+species;вид
+spectacular;захватывающий
+speech;речь
+spelling;правописание
+to spend (to spend money/time);тратить
+spice;специя
+spicy;пряный
+to spill;пролить
+spite (in spite of);несмотря на
+to split up (She’s just split up with her boyfriend.);расстаться
+to spoil;портить
+spy;шпионить
+square (a square room, a market square);площадь
+stage (to perform on a stage);сцена
+stall (market stall);прилавок
+stamp (a postage stamp);марка
+to stand;стоять
+star (stars in the sky, a film star);звезда
+start (a good start);начать
+to start (to start a race);начинать
+station (a bus/fire/radio station);станция
+statue;статуя
+stay (a two-night stay);остаться (на две ночи)
+to stay (to stay to dinner, to stay with friends, to stay looking young);оставаться
+to stay behind (She stayed behind after the lesson to);остаться
+speak to the teacher;поговорите с учителем
+to steal;украсть
+steep;крутой
+step (two steps forward, to climb the steps);шаг
+to step forward/back/out;идти вперед/назад/выйти
+to step over/in/on/out of (something);перешагивать через/в/на/из
+stick;палка
+to stick (to stick two things together);все еще, по-прежнему
+sticky;липкий
+still;негазированная
+to stir;размешивать
+stomach ache;боли в животе
+stone (a large stone, a stone bridge);камень
+stop (a bus stop);остановка
+to stop (The car stopped., It’s stopped raining., The rain stopped me from going out.);останавливаться
+store (a department store);магазин
+straight (to go straight on, a straight road);прямо
+stranger;незнакомец
+stress (He didn’t want the stress of a new job.);стресс
+stressed;ударение
+stressful;стрессовый
+strict;строгий
+strike (to go on strike);забастовка
+to strike (to strike something);ударить
+studio (TV/artist’s/recording studio studies);студия
+study;исследование, изучение
+to study (to study physics, to study the map, Social Studies);изучать
+stuff;вещи
+stupid;глупый
+style;стиль
+stylish;стильный
+subject (the subject of a discussion, the subject of a sentence, a school subject);тема, предмет
+to subtract;вычитать
+subway (UK underground);метро
+to succeed;добиться успеха
+success;успех
+successful;успешный
+sudden;внезапно
+to suffer;страдать
+to suggest;предложить
+suggestion;предложение
+to suit (to wear a suit, The colour red suits you., Which time suits you?);подходить
+suitable;подходит
+sum (Huge sum of money.);сумма
+to sunbathe;загорать
+sunrise;восход
+sunset;закат
+sunshine;солнце
+superhero;супергерой
+supper;ужин
+to supply (Fran supplied the sandwiches for the party.);поставлять, снабжать, обеспечивать
+support (She gave me a lot of support during my exams.);поддержка
+to support (to support a weight, to support a team);поддерживать
+supporter;сторонник
+to suppose (I suppose it’s true., You aren’t supposed to drive fast., It’s supposed to be a good film.);предполагать
+sure (I’m sure you’re right., to make sure);конечно
+to surf;заниматься серфингом
+to surprise;удивить
+suprising;удивительно
+to surround (The cottage is surrounded by beautiful countryside.);окружать
+sweet (sweet food, a sweet face, a sweet smell, to eat a sweet);сладкий
+swimmer;пловец
+bathing suit (UK swimming costume);купальный костюм
+switch (light switch);выключатель
+to switch (to switch on a machine);переключать
+system;система
+table-cloth;скатерть
+to take (to take someone’s hand, to take a photo, to take a long time, to take a holiday);брать, взять, принимать
+to take away (Take 15 away from 78.);отнять
+to take care of (take care of someone.);заботиться
+to take off (Do you want to take off your coat?, The plane takes off at 6.);взлетать, снимать
+to take part (in) (Everybody took part in the meeting.);принять участие
+to take place (The meeting took place at six.);состояться
+to take up (He decided to take up a new hobby.);заняться
+talent;талант
+talented;талантливый
+talk;говорить
+tap (a cold-water tap);кран
+taste (to have good taste);вкус
+to taste (to taste food, It tastes good.);пробовать на вкус
+tax;налог
+teaching;обучение
+tear (Tears ran down her cheeks.);слеза
+to tear (to tear a piece of paper);рвать
+technique;техника
+technology;технология
+teenager;подросток
+to telephone;позвонить по телефону
+television (TV);телевидение
+to tell (to tell a story, to tell someone something, to tell someone to do something, You can’t always tell.);рассказать
+temperature (to have a temperature, air temperature);температура
+temporary;временный
+tense;время
+term;термин
+terribly;ужасно
+terrific;потрясающе
+terrified;в ужасе
+test;тест
+to test;для проверки
+textbook;учебник
+text message;текстовое сообщение
+themselves;сами по себе
+therefore;поэтому
+thick;толстый
+thief;вор
+to think (to think about something, I think he’s left., What did you think of the film?, I think I’ll go., I’m thinking of going.);думать
+though;хотя
+thought (to have thoughts about something, to be deep in thought);думал
+thriller;триллер
+to throw away (He threw away the old TV.);выбросить
+thunder;гром
+thunderstorm;гроза
+tick;тик
+to tick;ставить галочку
+to tidy up (Please tidy up when you’ve finished.);убраться
+tie (a shirt and tie);галстук
+to tie (to tie with string);завязывать
+tight (tight shoes);тесный
+tights (a pair of tights);колготки
+till (to wait till the end, till he comes);до
+time (What time is it?, It took a long time., the last time, Is it time yet?);время
+tin (a tin of peas, made of tin);олово, банка
+tiny;крошечный
+tip (the tip of the pencil, a tip for the waitress);чаевые
+tip (advice);совет
+tiring;утомительно
+tissue;ткань
+title;название
+toast (toast for breakfast);тост
+tongue;язык
+too;тоже, очень
+tooth/teeth;зуб/зубы
+top (top of the class, at the top of his voice);топ
+topic;тема
+torch;факел
+total;общий
+totally;полностью
+tourism;туризм
+tourist information centre;туристический информационный центр
+tournament;турнир
+toward;к
+town;город
+track (a race track);трек
+traditional;традиционный
+traffic light;светофор
+train (to travel by train);поезд
+to train (to train in a skill);тренировать
+trainer (a pair of trainers, a personal trainer);тренер
+training;обучение, тренировка
+to transfer;передавать
+to translate;переводить
+transport;транспортировать
+trash can (UK rubbish bin);мусорный бак
+trend;тенденция
+trick;трюк
+trip (a weekend trip);поездка
+trouble;неприятности
+trunk (UK boot);trunk
+trumpet;трубить
+to trust (to trust someone);доверять
+truth;правда
+to try (to try to do something, to try (out) something);пробовать
+to try on (to try on shoes);примерять
+tube (a tube of toothpaste);тюбик
+turn (It’s my turn);очередь
+to turn (to turn your head, to turn the page, The wheels began to turn.);повернуть
+to turn down (Could you turn down the music?);убавить звук
+turning (the first turning on the left);поворот
+to turn into (The water had turned into ice.);превращаться в
+to turn off (She turned off the engine.);выключить
+to turn on (Can you turn on the TV?);включить
+to turn up (Turn up the radio – I can hardly hear it.);сделать громче
+twin;близнец
+type (a type of person);тип
+to type (to type a letter);напечатать
+typical;типичный
+typically;обычно
+tyre;шина
+unable;неспособный
+unbelievable;невероятно
+uncomfortable;неудобно
+under (under the bed, under £10.00);под
+underground (underground trains, to travel by underground);подземка
+to underline;подчеркивать
+underneath;под
+to understand;понимать
+to undress;раздеться
+unemployment;безработица
+unexpected;неожиданный
+unfair;несправедливо
+unfit;непригодный
+unforgettable;незабываемый
+unfortunately;к сожалению
+unhealthy;нездоровый
+union;союз
+unit;единица
+unknown;неизвестно
+unimportant;неважно
+uninterested;незаинтересованный
+uninteresting;неинтересно
+universe;вселенная
+unless;если только
+unlikely;маловероятно
+unlucky;неудачливый
+unnecessary;ненужный
+to unpack;распаковывать
+unpleasant;неприятный
+unwell;нездоров
+update;обновление
+to update;обновить
+upload;загрузка
+to upload;загрузить
+upper;верхний
+upset;расстроить
+up to (up to six people);до
+up to date;до настоящего времени
+urgent/urgently;срочно
+us;нас
+use (It’s for the use of teachers only., Is this any use to you?);использование
+to use (Can you use a computer?);использовать
+to used to (I used to cycle a lot when I was younger., I’m not used to getting up early.);привык
+useful;полезный
+user;пользователь
+usual;обычный
+valley;долина
+valuable;ценный
+value;значение
+van;ван
+vanilla;ваниль
+variety;разнообразие
+various;различный
+version (new/original version);версия
+vet;ветеринар
+via;через
+video clip;видеоклип
+video game;видеоигра
+view (a beautiful view);вид
+virus (a computer virus);вирус
+visit;посетить
+vocabulary;словарный запас
+voice;голос
+volume;громкость
+vote;голосование
+to vote;голосовать
+vowel;гласная
+wait;ждать
+to wake;разбудить
+to wake up;просыпаться
+walking;ходить
+war;война
+wardrobe;гардероб
+to warn;предупредить
+warning;предупреждение
+to wash up;мыть
+washing machine;стиральная машина
+washing-up (to do the washing-up);мытье посуды
+to waste;тратить впустую
+watch (My watch keeps good time.);часы
+to watch (I watched TV last night.);смотреть
+wave (waves at sea);волна
+to wave (to wave goodbye);помахать рукой
+way (Is this the way?, the wrong way, a long way, to stand in the way, That’s the way to do it.);путь
+weak (to feel weak, a weak excuse);слабый
+to wear (to wear a dress);носить
+to wear out (You’ll wear out those shoes.);изнашиваться
+weather forecast;прогноз погоды
+web;веб
+webcam;веб-камера
+web page;веб-страница
+wedding;свадьба
+weekday;будний день
+weekly (a weekly magazine, to phone home twice weekly);еженедельно
+to weigh;взвешивать
+weight;вес
+welcome (a warm welcome);добро пожаловать
+to welcome (Welcome to London!);приветствовать
+well done!;молодец!
+well-dressed;хорошо одетый
+well-known;известный
+well made;хорошо сделанный
+western;западный
+wet (wet clothes, wet weather);мокрый
+whale;кит
+whatever;что угодно
+wheelchair;инвалидная коляска
+whenever;когда бы то ни было
+wherever;где бы то ни было
+whether;ли
+while, whilst;в то время как, пока
+while (He stayed for a short while);в то время как
+whole;целый
+why;почему
+wide (a wide road);широкий
+wildlife;дикая природа
+will;будет
+willing;готов
+wind (A strong wind was blowing.);ветер
+windscreen;лобовое стекло
+windsurfing;виндсерфинг
+wing (a bird’s wing, the wing of an aeroplane);крыло
+wise;мудрый
+wish (Best wishes);Желаю
+to wish (Wish me luck., I wish you were here.);желать
+within;в пределах
+to wonder (I wonder what he said.);задаваться вопросом
+wood (to be made of wood, in a large wood wooden);дерево
+word (words in a sentence, He didn’t say a word.);слово
+work (school work, hard work, to be out of work);работа
+to work (to work for a living);работать
+worker;работник
+working;работает
+workout (I like a good workout at the gym.);тренировка
+to work out (I work out at the gym every day.);заниматься спортом
+worry;беспокойство
+to worry;беспокоиться
+worth;стоит
+would;бы
+to wrap (to wrap (up) a parcel);заворачивать
+to write down (write down an address);записывать
+writer;писатель
+writing;написание
+written;письменно
+yard;двор
+yeah;да
+yesterday;вчера
+yoga;йога
+you know;вы знаете
+yourself;себя
+youth;юность
+zero;ноль
+zone;зона

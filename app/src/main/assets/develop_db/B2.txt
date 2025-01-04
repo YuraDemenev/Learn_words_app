@@ -1,0 +1,571 @@
+to abandon;отказаться
+absolute;абсолютный
+academic;академический
+to account;на счет
+to accuse;обвинять
+to acknowledge;признать
+to acquire;приобретать
+actual;фактический
+to adapt;адаптироваться
+additional;дополнительный
+to address;обратиться
+administration;администрация
+to adopt;принять
+advance;продвигаться
+affair;дело
+agency;агентство
+agenda;повестка дня
+aggressive;агрессивный
+aid;помощь
+aircraft;самолет
+to alarm;тревожить
+to alter;изменить
+to amount;к сумме
+anger;гнев
+angle;угол
+apparent;очевидный
+apparently;по-видимому
+appeal;призыв
+approach;подход
+appropriate;соответствующий
+approval;одобрение
+to arise;возникнуть
+armed;вооружён
+arms;руки
+artificial;искусственный
+artistic;художественный
+aspect;вид
+to assess;оценить
+assessment;оценка
+to associate;ассоциировать
+associated;ассоциированный
+association;ассоциация
+to assume;предполагать
+attempt;попытка
+to back;обратно
+bacteria;бактерии
+to bar;бар
+barrier;барьер
+basically;в основном
+to battle;в бой
+to bear (deal with);иметь дело
+beat;бить
+to beg;умолять
+being;быть
+bent;согнутый
+bet;ставка
+to bill;выставлять счет
+blame;винить
+bond;связь
+to border;на границу
+breast;грудь
+broadcast;транслировать
+budget;бюджет
+bullet;пуля
+bunch;куча
+burn;сжечь
+bush;куст
+but prep.;но приготовл.
+to calculate;для расчета
+cancer;рак
+capable;способен
+capacity;емкость
+capture;захватить
+cast;бросить
+catch;поймать
+cell;клетка
+to chain;приковывать цепью
+to chair;председательствовать
+chairman;председатель
+characteristic;характеристика
+to chart;в диаграмму
+chief;начальник
+circumstance;обстоятельство
+to cite;цитировать
+citizen;гражданин
+civil;гражданский
+classic;классический
+closely;тесно
+collapse;рухнуть
+combination;сочетание
+command;команда
+commission;комиссия
+commitment;обязательство
+committee;комитет
+commonly;обычно
+complex;сложный
+component;компонент
+concentration;концентрация
+concept;понятие, концепция
+concern;беспокоиться
+concerned;обеспокоенный
+conduct;вести
+confidence;уверенность
+conflict;конфликт
+conscious;сознательный
+conservative;консервативный
+consideration;рассмотрение
+consistent;последовательный
+constant;константа
+constantly;постоянно
+to construct;построить
+construction;конструкция
+contemporary;современный
+to contribute;внести свой вклад
+contribution;вклад
+to convert;преобразовать
+convinced;убежден
+core;ядро
+corporate;корпоративный
+council;совет
+county;графство
+creation;создание
+to credit;кредитовать
+crisis;кризис
+criterion;критерий
+critic;критик
+critical;критический
+criticism;критика
+to criticize;критиковать
+crucial;решающий
+current;текущий
+curve;кривая
+curved;изогнутый
+debate;дискуссия
+debt;долг
+decent;приличный
+decline;отклонить
+decoration;украшение
+deeply;глубоко
+deliberate;преднамеренный
+deliberately;намеренно
+delight;восторг
+to demonstrate;продемонстрировать
+to deny;отрицать
+depressing;удручающий
+depth;глубина
+to desert;дезертировать
+desire;желание
+desperate;отчаянный
+to detail;к деталям
+detailed;подробный
+to detect;обнаружить
+disc;диск
+discipline;дисциплина
+to discount;дисконтировать
+dishonest;нечестный
+to dismiss;уволить
+to distribute;распространять
+distribution;распределение
+divide;делить
+division;деление
+to document;документировать
+domestic;отечественный
+to dominate;доминировать
+downwards;вниз
+draft;черновик
+to drag;тащить
+dramatic;драматический
+to edit;редактировать
+edition;издание
+to elect;избирать
+elsewhere;в другом месте
+to emerge;появляться
+emotional;эмоциональный
+emphasis;ударение
+to emphasize;подчеркнуть
+to enable;чтобы включить
+encounter;встреча
+to engage;заниматься
+to enhance;для улучшения
+to ensure;чтобы гарантировать
+enthusiasm;энтузиазм
+enthusiastic;восторженный
+entire;весь
+entirely;полностью
+to establish;установить
+estate;поместье
+estimate;оценить
+ethical;этичный
+to evaluate;оценить
+even;даже
+evil;зло
+examination;экзамен
+executive;исполнительный
+existence;существование
+expectation;ожидание
+expense;расход
+exploration;исследование
+to expose;выставлять напоказ
+to extend;продлить
+extent;степень
+external;внешний
+extreme;крайний
+facility;средство
+failure;неудача
+faith;вера
+to favour;в пользу
+feather;перо
+feed;кормить
+feedback;обратная связь
+fellow;парень
+to figure;чтобы понять
+to file;в файл
+finance;финансы
+finding;нахождение
+firm;фирма
+fix;исправить
+flame;пламя
+flash;вспышка
+flexible;гибкий
+fold;складывать
+folding;складывание
+fortune;удача
+to found;найти
+to free;освободить
+freedom;свобода
+frequency;частота
+to fuel;для топлива
+to function;функционировать
+fund;фонд
+fundamental;фундаментальный
+funding;финансирование
+furthermore;более того
+gain;получить
+gang;банда
+to generate;генерировать
+genre;жанр
+to govern;управлять
+to grab;схватить
+to grade;оценивать
+gradually;постепенно
+grant;предоставить
+guarantee;гарантировать
+harm;вредить
+harmful;вредный
+hearing;слушание
+heaven;небеса
+hell;черт возьми
+to hesitate;колебаться
+hire;нанять
+hold;держать
+hollow;полый
+holy;святой
+honour;честь
+to host;принимать гостей
+to house;в дом
+household;домохозяйство
+housing;жилье
+humorous;юмористический
+humour;юмор
+hunt;охотиться
+hunting;охота
+ideal;идеальный
+to illustrate;проиллюстрировать
+illustration;иллюстрация
+impatient;нетерпеливый
+to imply;подразумевать
+to impose;навязывать
+to impress;произвести впечатление
+impressed;впечатлен
+incident;инцидент
+income;доход
+increasingly;все больше и больше
+industrial;промышленный
+infection;инфекция
+initial;начальная
+initially;изначально
+initiative;инициатива
+inner;внутренний
+insight;понимание
+to inspire;вдохновлять
+instance;пример
+institute;институт
+institution;учреждение
+insurance;страхование
+intended;намеревался
+intense;интенсивный
+internal;внутренний
+to interpret;интерпретировать
+investigation;расследование
+investment;инвестиции
+to issue;выдавать
+joy;радость
+judgement;суждение
+junior;младший
+justice;справедливость
+to justify;чтобы оправдать
+labour;труд
+largely;в значительной степени
+launch;запустить
+leadership;лидерство
+to lean;наклоняться
+to level;выравнивать
+limited;ограниченный
+to line;в линию
+logical;логический
+long-term;долгосрочный
+lord;господин
+to lower;понизить
+lung;легкое
+to maintain;поддерживать
+majority;большинство
+to map;нанести на карту
+mass;масса
+massive;огромный
+master;мастер
+matching;соответствие
+means;означает
+measurement;измерение
+to melt;таять
+military;военный
+mineral;минерал
+minister;министр
+minor;второстепенный
+minority;меньшинство
+mission;миссия
+to mistake;ошибаться
+mixed;смешанный
+to model;моделировать
+to modify;изменить
+monitor;монитор
+moral;моральный
+motor;мотор
+to mount;монтировать
+multiple;множественное
+to multiply;умножать
+mysterious;таинственный
+to narrow;сузить
+nerve;нерв
+nevertheless;тем не менее
+notion;понятие
+numerous;многочисленные
+to obey;подчиняться
+to object;возражать
+objective;цель
+obligation;обязательство
+observation;наблюдение
+to observe;наблюдать
+to obtain;чтобы получить
+offence;оскорбление
+to offend;оскорблять
+offensive;оскорбительный
+official;официальный
+opening;открытие
+opponent;противник
+to oppose;противостоять
+opposed;противопоставлен
+opposition;оппозиция
+organ;орган
+origin;происхождение
+outcome;результат
+outer;внешний
+outline;описать
+overall;в целом
+pace;темп
+to package;упаковывать
+panel;панель
+parliament;парламент
+participant;участник
+passage;отрывок
+pension;пенсия
+permit;разрешить
+perspective;перспектива
+phase;фаза
+phenomenon;явление
+philosophy;философия
+pick;выбрать
+to picture;к картинке
+plain;просто
+to plot;строить сюжет
+pointed;указал
+popularity;популярность
+to pose;позировать
+to position;в позицию
+to possess;обладать
+potential;потенциал
+to power;к власти
+praise;хвалить
+presence;присутствие
+to preserve;сохранить
+to price;к цене
+prime;основной
+principle;принцип
+print;печатать
+priority;приоритет
+privacy;конфиденциальность
+procedure;процедура
+to process;обрабатывать
+produce;производить
+to progress;прогрессировать
+to project;проектировать
+proof;доказательство
+proposal;предложение
+to propose;предложить
+prospect;перспектива, проспект
+protection;защита
+psychologist;психолог
+psychology;психология
+publication;публикация
+purchase;купить
+to pursue;преследовать
+to range;в диапазоне
+rank;ранг
+rapid;быстрый
+rapidly;быстро
+to rate;оценить
+raw;сырой
+reach;достичь
+to recall;вспомнить
+to recover;восстанавливаться
+reduction;сокращение
+regard;относиться
+regional;региональный
+register;регистр
+regulation;регулирование
+relatively;относительно
+relevant;релевантный
+relief;облегчение
+to rely;полагаться
+remark;замечание
+representative;представитель
+reputation;репутация
+requirement;требование
+resident;резидент
+to resist;сопротивляться
+to resolve;решать
+to retain;сохранить
+to reveal;раскрыть
+revolution;революция
+rhythm;ритм
+to rid;чтобы избавить
+root;корень
+to rub;тереть
+rubber;резина
+rural;сельский
+rush;спешить
+to sample;для образца
+satellite;спутник
+to satisfy;удовлетворить
+saving;экономия
+scale;масштаб
+to schedule;запланировать
+scheme;схема
+to screen;для просмотра
+to seat;усаживаться
+sector;сектор
+secure;обеспечить
+to seek;искать
+selection;выбор
+self;сам
+senior;старший
+to sense;чувствовать
+sensitive;чувствительный
+to sentence;выносить приговор
+sequence;последовательность
+session;сессия
+to settle;урегулировать
+severe;суровый
+shade;тень
+shallow;поверхностный
+to shape;формировать
+shelter;укрыть
+to shift;смещаться
+to ship;для отправки
+shock;шок
+shooting;стрельба
+shot;выстрелил
+significant;значительный
+significantly;значительно
+sincere;искренний
+slave;раб
+slide;слайд
+slight;небольшой
+to slip;скользить
+slope;наклон
+solar;солнечный
+somewhat;несколько
+specialist;специалист
+to speed;к скорости
+spiritual;духовный
+split;разделить
+sponsor;спонсировать
+to spot;обнаружить
+spread;распространяться
+stable;стабильный
+to stage;на сцену
+stand;стоять
+to stare;смотреть
+status;статус
+steady;устойчивый
+steel;сталь
+to step;шагнуть
+stiff;жёсткий
+stock;запас
+stretch;растягивать
+strike;забастовка
+to structure;структурировать
+struggle;бороться
+to stuff;набивать
+to submit;представить
+sum;сумма
+surgery;хирургия
+to surround;окружать
+surrounding;окружающий
+to survey;обследовать
+suspect;подозревать
+to swear;клясться
+to sweep;подметать
+sympathy;сочувствие
+tale;сказка
+tank;танк
+to target;нацеливаться
+tear;рвать
+to term;к сроку
+therapy;терапия
+threat;угроза
+to threaten;угрожать
+thus;таким образом
+to time;ко времени
+to title;к названию
+tone;тон
+tough;жесткий
+to track;отслеживать
+transfer;переводить
+to transform;преобразовать
+transition;переход
+trial;испытание
+to trip;споткнуться
+tropical;тропический
+to trouble;доставлять неприятности
+truly;действительно
+trust;доверять
+ultimately;в конечном итоге
+unconscious;бессознательный
+unique;уникальный
+upwards;вверх
+urban;городской
+to urge;призывать
+to value;ценить
+to vary;варьироваться
+vast;огромный
+venue;место проведения
+victory;победа
+violence;насилие
+virtual;виртуальный
+vision;видение
+visual;визуальный
+vital;жизненно важный
+vitamin;витамин
+weakness;слабость
+wealth;богатство
+wealthy;богатый
+whereas;тогда как
+whisper;шепот
+whom;кого
+widely;широко
+wire;провод
+witness;свидетель
+wound;ранить
+to wrap;обернуть
+zone;зона
