@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Words::class], version = 1)
+@Database(entities = [Words::class, Levels::class], version = 2)
 //abstract class Используется для определения общих характеристик и поведения, которые
 // разделяют классы-наследники.
 abstract class MainDB : RoomDatabase() {
@@ -13,14 +13,14 @@ abstract class MainDB : RoomDatabase() {
     // классе-наследнике. Она задает "контракт", который обязаны выполнить все наследники.
     abstract fun getDao(): WordsDAO
 
-    // companion object -  способ определять статические члены класса
+    // companion object - способ определять статические члены класса
     companion object {
         fun getDB(context: Context): MainDB {
             return Room.databaseBuilder(
                 context.applicationContext,
                 MainDB::class.java,
                 "words.DB"
-            ).build()
+            ).fallbackToDestructiveMigration().build()
         }
     }
 }
