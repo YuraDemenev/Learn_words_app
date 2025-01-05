@@ -257,7 +257,6 @@ cashpoint;кассовый пункт
 casual;повседневный (повседневная одежда)
 cathedral;собор
 cattle;скот
-CD player;CD-плеер
 to celebrate;праздновать
 celebration;празднование
 celebrity;знаменитость
@@ -1768,7 +1767,7 @@ trend;тенденция
 trick;трюк
 trip (a weekend trip);поездка
 trouble;неприятности
-trunk (UK boot);trunk
+trunk (UK boot);сундук, багажник, ствол (дерева)
 trumpet;трубить
 to trust (to trust someone);доверять
 truth;правда

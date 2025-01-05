@@ -12,7 +12,7 @@ class MainPagePresenter(
         model.upDB(c, db)
     }
 
-    override fun clickOnDownDB() {
-        TODO("Not yet implemented")
+    override fun clickOnDownDB(db: MainDB) {
+        model.downDB(db)
     }
 }

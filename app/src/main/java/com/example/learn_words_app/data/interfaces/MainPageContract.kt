@@ -14,7 +14,7 @@ interface MainPageContract {
     //Не знает ничего о View и UI.
     interface Model {
         fun upDB(c: Context, db: MainDB)
-        fun downDB()
+        fun downDB(db: MainDB)
     }
 
     //Посредник между View и Model.
@@ -22,7 +22,7 @@ interface MainPageContract {
     //Возвращает обработанные данные в View.
     interface Presenter {
         fun clickOnUpDB(c: Context, db: MainDB)
-        fun clickOnDownDB()
+        fun clickOnDownDB(db: MainDB)
     }
 
 

@@ -10,9 +10,6 @@ import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
 import com.example.learn_words_app.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), MainPageContract.View {
     private lateinit var binding: ActivityMainBinding
@@ -36,13 +33,6 @@ class MainActivity : AppCompatActivity(), MainPageContract.View {
         //Listener нажатия на текст UpDB
         binding.upDataBase.setOnClickListener { presenter.clickOnUpDB(this, db) }
         //Listener нажатия на текст Down DB
-        binding.downDataBase.setOnClickListener {
-            // Вызываем асинхронную функцию
-            CoroutineScope(Dispatchers.IO).launch {
-                db.getDao().deleteDataFromWordsTable()
-                db.getDao().deleteDataFromLevelsTable()
-                db.getDao().deletePrimaryKeys()
-            }
-        }
+        binding.downDataBase.setOnClickListener { presenter.clickOnDownDB(db) }
     }
 }

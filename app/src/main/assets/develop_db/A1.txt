@@ -278,7 +278,7 @@ excuse me;извините
 to fall;падать
 famous;знаменитый
 to feed;кормить
-movie (UK to film);кино
+movie (UK film);кино
 movie star (UK film star);кинозвезда
 first;первый
 to fish;ловить рыбу

@@ -60,58 +60,86 @@ class MainPageModel : MainPageContract.Model {
                     val deferredList = strings.map { line ->
                         //Объявляем переменную word
                         lateinit var word: Words
-                        
-                        val wordsInString = line.split(";")
+
+                        //Делим строку по ';'
+                        val wordsInString = line.split(";").toMutableList()
                         if (wordsInString.size > 2) {
                             Log.e("Two ';'", word.englishWord)
                         } else {
+                            //Проверка, что в русском переводе русские буквы
+                            wordsInString[1].forEach { symbol ->
+                                val number = symbol.code
+                                if (number < 127 && ((number in 65..90) || (number in 97..122)) && wordsInString[0] != "dot") {
+                                    val errWord = wordsInString[1]
+                                    Log.e(
+                                        "russian word has an english letters",
+                                        "word: $errWord file: $fileName"
+                                    )
+                                }
+                            }
+
                             //GetValue кидает исключение если ключа нет
                             val levelId = levelsMap.getValue(fileName)
+                            //Для проверки имеет ли слово британский вариант
+                            var check = false
+                            var britishVariable = ""
+
+                            //Проверяем содержит ли слово UK
+                            check = wordsInString[0].contains("UK", ignoreCase = true)
+                            if (check) {
+                                //Получаем британский вариант слова
+                                var index = wordsInString[0].indexOf("UK")
+                                index += 3
+                                while (wordsInString[0][index] != ')') {
+                                    britishVariable += wordsInString[0][index]
+                                    index++
+                                }
+
+                                //Меняем английское слово
+                                index = wordsInString[0].indexOf("UK")
+                                index -= 2
+                                if (wordsInString[0][index] != ' ') {
+                                    index++
+                                }
+                                var string = wordsInString[0]
+                                string = string.substring(0, index)
+                                wordsInString[0] = string
+                                println()
+                            }
+
+                            //Создаем слово
                             word = Words(
                                 null,
                                 wordsInString[0],
                                 wordsInString[1],
                                 0,
-                                false,
-                                "",
+                                check,
+                                britishVariable,
                                 levelId
                             )
                         }
-
+                        //Upsert request to DB
                         async(Dispatchers.IO) {
-                            val copyWord = word.copy()
-                            db.getDao().insertWord(copyWord)
+//                            val copyWord = word.copy()
+                            db.getDao().insertWord(word)
                         }
                     }
                     deferredList.awaitAll()
                 }
 
-                // Проходим всем строкам
-//                strings.forEach { line ->
-//                    //Разделяем строку по ";"
-//                    val wordsInString = line.split(";")
-//                    if (wordsInString.size > 2) {
-//                        Log.e("Two ';'", word.englishWord)
-//                    } else {
-//                        //GetValue кидает исключение если ключа нет
-//                        val levelId = levelsMap.getValue(fileName)
-//                        word =
-//                            Words(null, wordsInString[0], wordsInString[1], 0, false, "", levelId)
-//                    }
-//                    // Вызываем асинхронную функцию
-//                    CoroutineScope(Dispatchers.IO).launch {
-//                        db.getDao().insertWord(word)
-//                    }
-//                }
             } catch (ex: Exception) {
-                Log.e("Text read", ex.cause.toString())
+                Log.e("Read from assets files in develop_bd", ex.cause.toString())
             }
 
         }
         Log.i("Created database", "Created database")
     }
 
-    override fun downDB() {
-        TODO("Not yet implemented")
+    override fun downDB(db: MainDB) {
+        CoroutineScope(Dispatchers.IO).launch {
+            db.getDao().deleteDataFromWordsTable()
+            db.getDao().deleteDataFromLevelsTable()
+            db.getDao().deletePrimaryKeys()
+        }
     }
 }

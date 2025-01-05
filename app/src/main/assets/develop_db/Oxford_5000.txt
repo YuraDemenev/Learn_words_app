@@ -790,7 +790,6 @@ to boast;хвастаться
 bonus;бонус
 boom;бум
 boundary;граница
-bow1;bow1
 breach;нарушать
 breakdown;разбивка
 breakthrough;прорыв
@@ -913,7 +912,6 @@ to contemplate;созерцать
 contempt;презрение
 to contend;утверждать
 contender;претендент
-content2;content2
 contention;спор
 continually;постоянно
 contractor;подрядчик
