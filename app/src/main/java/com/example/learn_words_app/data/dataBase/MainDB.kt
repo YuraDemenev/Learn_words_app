@@ -1,4 +1,4 @@
-package com.example.learn_words_app.dataBase
+package com.example.learn_words_app.data.dataBase
 
 import android.content.Context
 import androidx.room.Database

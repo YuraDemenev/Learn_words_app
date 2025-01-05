@@ -1,4 +1,4 @@
-package com.example.learn_words_app.dataBase
+package com.example.learn_words_app.data.dataBase
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

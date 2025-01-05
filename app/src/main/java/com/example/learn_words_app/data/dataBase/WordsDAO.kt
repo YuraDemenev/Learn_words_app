@@ -1,4 +1,4 @@
-package com.example.learn_words_app.dataBase
+package com.example.learn_words_app.data.dataBase
 
 import androidx.room.Dao
 import androidx.room.Query
