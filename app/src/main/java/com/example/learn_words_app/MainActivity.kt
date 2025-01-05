@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), MainPageContract.View {
 
         //Only for DEV
         //Listener нажатия на текст UpDB
-        binding.upDataBase.setOnClickListener({ presenter.clickOnUpDB(this, db) })
+        binding.upDataBase.setOnClickListener { presenter.clickOnUpDB(this, db) }
         //Listener нажатия на текст Down DB
         binding.downDataBase.setOnClickListener {
             // Вызываем асинхронную функцию
