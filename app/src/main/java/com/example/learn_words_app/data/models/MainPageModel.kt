@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.learn_words_app.data.dataBase.Levels
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
+import com.example.learn_words_app.data.dataBase.WordsLevels
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -125,7 +126,15 @@ class MainPageModel : MainPageContract.Model {
                         }
                         //Upsert request to DB
                         async(Dispatchers.IO) {
-                            db.getDao().insertWord(word)
+                            //Добавляем новое слово в таблицу word
+                            val idLong = db.getDao().insertWord(word)
+                            val id = idLong.toInt()
+                            //Получаем id levels
+                            val levelId = levelsMap.getValue(fileName)
+                            //Добавляем id в таблицу WordsLevels
+                            val wordLevels = WordsLevels(id, levelId)
+                            db.getDao().insertWordsLevel(wordLevels)
+
                         }
                     }
                     deferredList.awaitAll()
@@ -145,5 +154,6 @@ class MainPageModel : MainPageContract.Model {
             db.getDao().deleteDataFromLevelsTable()
             db.getDao().deletePrimaryKeys()
         }
+        Log.i("Dropped database", "Dropped database")
     }
 }

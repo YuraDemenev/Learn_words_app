@@ -21,6 +21,7 @@ import androidx.room.PrimaryKey
     ]
 )
 data class Words(
+    @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     @ColumnInfo(name = "english_word")
@@ -33,4 +34,6 @@ data class Words(
     val britishVariable: String,
     @ColumnInfo(name = "level_id")
     val levelId: Int,
-)
+
+
+    )

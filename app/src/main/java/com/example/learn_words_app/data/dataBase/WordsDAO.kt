@@ -10,11 +10,15 @@ interface WordsDAO {
     //Upsert объединение insert и update
     //Добавляем слово
     @Upsert
-    suspend fun insertWord(word: Words)
+    suspend fun insertWord(word: Words): Long
 
     //Добавляем уровень английского
     @Upsert
     suspend fun insertLevel(level: Levels)
+
+    //Добавляем значения в junction table
+    @Upsert
+    suspend fun insertWordsLevel(wordsLevel: WordsLevels)
 
     //Удаляем таблицу words
     @Query("DELETE FROM words")

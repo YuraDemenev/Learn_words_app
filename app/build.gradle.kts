@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.learn_words_app"
-        minSdk = 26
+        minSdk = 27
         //noinspection EditedTargetSdkVersion
         targetSdk = 35
         versionCode = 1
