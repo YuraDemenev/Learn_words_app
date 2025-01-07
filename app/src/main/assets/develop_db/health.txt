@@ -1,0 +1,110 @@
+cold;холодный
+cough;кашель
+cry;плакать
+dentist;стоматолог
+doctor;доктор
+earache;боль в ухе
+fall;падать
+fine;отлично
+headache;головная боль
+hospital;больница
+ill;больной
+matter;дело
+nurse;медсестра
+sick;больной
+stomach-ache;боли в животе
+temperature;температура
+tired;устал
+toothache;зубная боль
+bandage;перевязывать
+chemist;химик
+cut;вырезать
+fall over;упасть
+medicine;медицина
+x-ray;рентген
+accident;авария
+danger;опасность
+head problem;проблема с головой
+ache;болеть
+dangerous;опасный
+recover;восстановить
+ambulance;скорая помощь
+dead;мертв
+health;здоровье
+rest;отдых
+to rest;отдохнуть
+ankle;лодыжка
+to hear;услышать
+run;бежать
+appointment;назначение
+die;умереть
+heart;сердце
+shoulder;плечо
+arm;рука
+diet;диета
+heel;каблук
+aspirin;аспирин
+skin;кожа
+baby;детка
+ear;ухо
+hurt;ранить
+soap;мыло
+sore;больно
+throat;горло
+to bleed;истекать кровью
+emergency;чрезвычайная ситуация
+illness;болезнь
+stomach;желудок
+blood;кровь
+exercise;упражнение
+injure;ранить
+body;тело
+eye;глаз
+keep fit;поддерживать себя в форме
+stress;ударение
+bone;кость
+face;лицо
+knee;колено
+swim;плавать
+brain;мозг
+leg;нога
+tablet;таблетка
+break;ломать
+feel;чувствовать
+better;лучше
+lie down;ложиться
+take exercise;делать упражнения
+breath;дыхание
+fever;лихорадка
+breathe;дышать
+finger;палец
+nose;нос
+thumb;большой палец
+check;проверить
+fit;подходит
+flu;грипп
+operate;оперировать
+toes;пальцы ног
+chin;подбородок
+foot;фут
+operation;операция
+tooth;зуб
+clean;чистить
+get better/worse;становится лучше/хуже
+pain;боль
+go jogging;бегать трусцой
+painful;болезненный
+toothbrush;зубная щетка
+comb;расчесывать
+gym;спортзал
+patient;пациент
+walk;ходить
+to cough;кашлять
+gymnastics;гимнастика
+pharmacy;аптека
+well;ну
+hair;волосы
+pill;таблетка
+damage;повредить
+hand;рука
+prescription;рецепт

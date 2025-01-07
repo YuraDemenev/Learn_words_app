@@ -1,0 +1,174 @@
+apartment (UK flat);квартира
+armchair;кресло
+bath;ванна
+bathroom;ванная комната
+bed;кровать
+bedroom;спальня
+bookcase;книжный шкаф
+box;коробка
+camera;камера
+chair;стул
+clock;часы
+computer;компьютер
+cupboard;шкаф
+desk;стол
+dining room;столовая
+doll;кукла
+door;дверь
+flower;цветок
+garden;сад
+hall;зал
+home;домой
+house;дом
+kitchen;кухня
+lamp;лампа
+living room;гостиная
+mat;мат
+mirror;зеркало
+phone;телефон
+picture;картинка
+radio;радио
+room;комната
+rug;ковер
+sleep;спать
+sofa;диван
+table;таблица
+television/TV;телевидение/ТВ
+toy;игрушка
+tree;дерево
+wall;стена
+watch;смотреть
+window;окно
+address;адрес
+balcony;балкон
+basement;подвал
+blanket;одеяло, покрывало, плед
+downstairs;внизу
+dream;мечтать
+elevator (UK lift);лифт (лифт Великобритании)
+floor (ground,1st);этаж
+internet;интернет
+message;сообщение
+roof;крыша
+seat;сидеть
+shower;душ
+toothbrush;зубная щетка
+toothpaste;зубная паста
+towel;полотенце
+upstairs;наверху
+wash;мыть
+brush;чистить
+comb;расчесывать
+cooker;плита
+cushion;подушка
+diary;дневник
+entrance;вход
+envelope;конверт
+fridge;холодильник
+gate;ворота
+key;ключ
+letter (as in mail);письмо
+oven;печь
+screen;экран
+shampoo;шампунь
+shelf;полка
+soap;мыло
+stamp;штамп
+step;шаг
+swing;качаться
+telephone;телефон
+accommodation;размещение
+heating;отопление
+rent;арендовать
+air conditioning;кондиционирование воздуха
+alarm (fire/car);тревога
+alarm clock;будильник
+antique;античный
+basin;таз
+bathtub;ванна
+bell;колокольчик
+bin;корзина, мусорное ведро
+blind;слепой
+block;блокировать
+notice board;доска объявлений
+bookshelf;книжная полка
+bowl;миска
+bucket;ведро
+bulb;лампочка
+candle;свеча
+carpet;ковёр
+ceiling;потолок
+cellar;подвал, погреб
+central heating;центральное отопление
+channel (with TV);канал
+chest of drawers;комод
+cottage;коттедж
+curtain;занавес
+desk digital;настольный цифровой
+dish;блюдо
+dishwasher;посудомоечная машина
+drawer;ящик
+dustbin;мусорный ящик
+duvet;пододеяльник, пуховое одеяло
+electric;электрический
+fan;вентилятор
+flat;плоский
+flatmate;сосед по квартире
+floor;пол
+freezer;морозильник
+frying pan;сковорода
+furniture;мебель
+garage;гараж
+gas;газ
+grill;гриль
+ground (floor);земля
+handle;обрабатывать
+to heat;нагревать
+heater;обогреватель
+hi-fi;привет-фай
+housewife;домохозяйка
+housework;работа по дому
+iron;железо
+jug;кувшин
+kettle;чайник
+ladder;лестница
+laptop (computer);ноутбук (компьютер)
+lift;поднять
+light;свет
+(clothes) line;
+living-room;гостиная
+lock;запереть
+microwave;микроволновка
+mug;кружка
+neighbour;сосед
+oil;масло
+pan;кастрюля
+path;путь
+pillow;подушка
+pipe;труба
+plant;растение
+plug;подключать
+plug in;подключить
+property;свойство
+refrigerator;холодильник
+remote control;пульт дистанционного управления
+repair;ремонтировать
+roommate;сосед по комнате
+rubbish;мусор
+safe;безопасный
+sheet;лист
+sink;тонуть
+sitting room;гостиная
+stairs;лестница
+to stay;остаться
+surround;окружать
+switch;переключить
+tap;тапнуть
+television;телевидение
+toilet;туалет
+tower;башня
+TV (screen/set);Телевизор
+vase;ваза
+video;видео
+washing;мытьё
+machine;машина

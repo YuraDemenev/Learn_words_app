@@ -521,7 +521,6 @@ dust;пыль
 trash can (UK dustbin);мусорный бак
 dusty;пыльный
 duty;обязанность
-DVD player;DVD плеер
 to earn;заработать
 earth;земля
 eastern;восточный
@@ -1058,7 +1057,6 @@ mostly;в основном
 motorcycle;мотоцикл
 mouse;мышь
 movie theater (UK cinema);кинотеатр
-MP3 player;MP3 плеер
 much;много
 mushroom;гриб
 musical;музыкальный

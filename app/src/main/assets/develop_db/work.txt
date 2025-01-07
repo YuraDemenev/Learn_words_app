@@ -1,0 +1,161 @@
+teacher;учитель
+circus;цирк
+clown;клоун
+cook;готовить
+dentist;стоматолог
+doctor;доктор
+driver;водитель
+farmer;фермер
+movie (UK film);фильм
+star;звезда
+hospital;больница
+nurse;медсестра
+pirate;пират
+pop star;поп-звезда
+work;работать
+actor;актер
+airport;аэропорт
+ambulance;скорая помощь
+artist;художник
+astronaut;астронавт
+business;бизнес
+businessman;бизнесмен
+businesswoman;бизнесвумен
+designer;дизайнер
+engineer;инженер
+factory;фабрика
+fire truck (UK fire engine);пожарная машина
+fire fighter;пожарный
+job;работа
+journalist;журналист
+manager;менеджер
+mechanic;механик
+meeting;встреча
+news;новости
+newspaper;газета
+office;офис
+photographer;фотограф
+pilot;пилот
+police officer;полицейский
+police station;полицейский участок
+queen;королева
+rocket;ракета
+singer;певец
+taxi;такси
+waiter;официант
+actress;актриса
+application;приложение
+apply;применить
+architect;архитектор
+army;армия
+assistant;помощник
+athlete;спортсмен
+babysitter;няня
+banker;банкир
+barber;парикмахер
+boss;босс
+break;ломать
+butcher;мясник
+cameraman;оператор
+candidate;кандидат
+canteen;столовая
+captain;капитан
+career;карьера
+chef;шеф-повар
+chemist;химик
+cleaner;чище
+colleague;коллега
+company;компания
+computer;компьютер
+conference;конференция
+contract;контракт
+crew;Экипаж
+customs officer;таможенник
+CV;Резюме
+dancer;танцор
+department;отдел
+desk;стол
+detective;детектив
+diary;дневник
+diploma;диплом
+director;директор
+diver;дайвер
+doctor earn;доктор зарабатывает
+email;электронная почта
+to employ;нанимать на работу
+employee;сотрудник
+employer;работодатель
+employment;занятость
+explorer;исследователь
+farm;ферма
+film star;кинозвезда
+football player/footballer;футболист/футболист
+full time;полный рабочий день
+goalkeeper;вратарь
+guard;охранять
+guest;гость
+guide;направлять
+hairdresser;парикмахер
+housewife;домохозяйка
+housework;работа по дому
+instructions;инструкции
+instructor;инструктор
+judge;судить
+king;король
+laboratory;лаборатория
+lawyer;юрист
+lecturer;лектор
+letter;буква
+librarian;библиотекарь
+message;сообщение
+model;модель
+musician;музыкант
+novelist;романист
+occupation;занятие
+officer;офицер
+out of work;без работы
+owner;владелец
+painter;художник
+part time;неполный рабочий день
+poet;поэт
+policeman;полицейский
+policewoman;Полицейская
+politician;политик
+porter;носильщик
+postman;почтальон
+president;президент
+profession;профессия
+professional;профессиональный
+professor;профессор
+programmer;программист
+publisher;издатель
+qualification;квалификация
+quit;бросить
+receptionist;Секретарь
+reporter;репортер
+retire;уйти на пенсию
+retirement;выход на пенсию
+sailor;моряк
+salary;зарплата
+sales assistant;продавец-консультант
+salesman;продавец
+saleswoman;продавщица
+scientist;учёный
+secretary;секретарь
+security guard;охранник
+shop assistant;продавец-консультант
+shopper;покупатель
+soldier;солдат
+staff;персонал
+student;студент
+taxi driver;таксист
+tennis player;теннисист
+tour guide;гид
+trade;торговля
+travel agent;турагент
+unemployed;безработный
+uniform;униформа
+volunteer;доброволец
+wage;заработная плата
+waiter/waitress;официант/официантка
+worker;работник

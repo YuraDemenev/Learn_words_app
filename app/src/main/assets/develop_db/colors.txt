@@ -1,0 +1,19 @@
+black;черный
+blue;синий
+brown;коричневый
+color (UK colour);цвет
+gray (UK grey);серый
+green;зелёный
+orange;оранжевый
+pink;розовый
+purple;фиолетовый
+red;красный
+white;белый
+yellow;желтый
+gold;золото
+silver;серебряный
+spot;пятно
+spotted;заметил
+stripe;полоса
+striped;полосатый
+golden;золотой

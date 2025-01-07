@@ -10,6 +10,9 @@ import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
 import com.example.learn_words_app.databinding.ActivityMainBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), MainPageContract.View {
     private lateinit var binding: ActivityMainBinding
@@ -19,6 +22,9 @@ class MainActivity : AppCompatActivity(), MainPageContract.View {
         //Получаем/создаем БД
         val db = MainDB.getDB(this)
         val presenter = MainPagePresenter(MainPageModel(), this)
+        //Создаем Scope для запуска корутин
+        val myScope = CoroutineScope(Dispatchers.IO)
+        val context = this
 
         //Auto generated
         enableEdgeToEdge()
@@ -31,7 +37,9 @@ class MainActivity : AppCompatActivity(), MainPageContract.View {
 
         //Only for DEV
         //Listener нажатия на текст UpDB
-        binding.upDataBase.setOnClickListener { presenter.clickOnUpDB(this, db) }
+        binding.upDataBase.setOnClickListener {
+            myScope.launch { presenter.clickOnUpDB(context, db) }
+        }
         //Listener нажатия на текст Down DB
         binding.downDataBase.setOnClickListener { presenter.clickOnDownDB(db) }
     }

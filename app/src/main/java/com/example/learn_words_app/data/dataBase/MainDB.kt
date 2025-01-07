@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Words::class, Levels::class], version = 4)
+@Database(entities = [Words::class, Levels::class], version = 5)
 //abstract class Используется для определения общих характеристик и поведения, которые
 // разделяют классы-наследники.
 abstract class MainDB : RoomDatabase() {

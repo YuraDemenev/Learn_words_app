@@ -1940,5 +1940,5 @@ worship;поклоняться
 worthwhile;стоящий
 worthy;достойный
 to yell;кричать
-yield;yield
+yield;урожай, выход, доходность
 youngster;юнец

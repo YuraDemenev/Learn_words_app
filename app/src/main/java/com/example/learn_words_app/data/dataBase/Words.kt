@@ -29,8 +29,6 @@ data class Words(
     val russianTranslation: String,
     @ColumnInfo(name = "transcription_id")
     val transcriptionId: Int,
-    @ColumnInfo(name = "has_british_variable")
-    val hasBritishVariable: Boolean,
     @ColumnInfo(name = "british_variable")
     val britishVariable: String,
     @ColumnInfo(name = "level_id")

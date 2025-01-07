@@ -1,0 +1,92 @@
+bag;сумка
+baseball cap;бейсболка
+boots;сапоги
+clothes;одежда
+dress;одевать
+glasses;очки
+handbag;сумочка
+hat;шляпа
+jacket;куртка
+jeans;джинсы
+shirt;рубашка
+shoe;башмак
+shorts;шорты
+skirt;юбка
+sock;носок
+trousers;брюки
+T-shirt;Футболка
+wear;носить
+coat;пальто
+helmet;шлем
+scarf;шарф
+sweater;свитер
+swimsuit;купальник
+belt;пояс
+bracelet;браслет
+costume;костюм
+crown;корона
+glove;перчатка
+necklace;ожерелье
+pajamas (UK pyjamas);пижама
+pocket;карман
+ring;звонить
+spot;место, пятно
+spotted;заметил
+stripe;полоса
+striped;полосатый
+sunglasses;солнцезащитные очки
+trainers;тренеры
+umbrella;зонтик
+uniform;униформа
+backpack;рюкзак
+blouse;блузка
+boot;загружать
+button;кнопка
+cap;крышка
+chain;цепь
+collar;воротник
+cotton;хлопок
+earring;серьга
+fashion;мода
+fasten;закрепить
+to fit;чтобы соответствовать
+to fold;складывать
+get dressed;одеться
+handkerchief;носовой платок
+jumper;джемпер
+kit;комплект
+knit;вязать
+label;метка
+laundry;стирка
+leather;кожа
+make-up;макияж
+to match;соответствовать
+material;материал
+old-fashioned;старомодный
+pants;штаны
+pattern;шаблон
+perfume;духи
+plastic;пластик
+pullover;пуловер
+purse;кошелек
+put on;надеть
+raincoat;плащ
+silk;шёлк
+size;размер
+sleeve;рукав
+socks;носки
+suit;костюм
+sweatshirt;толстовка
+swimming costume;купальный костюм
+take off;взлетать
+tie tights;завязывать колготки
+tracksuit;спортивный костюм
+sandal;сандал
+try on;примерить
+underpants;трусы
+underwear;нижнее белье
+undress;раздеваться
+wallet;бумажник
+watch;смотреть
+wear (out);изнашивать
+wool;шерсть

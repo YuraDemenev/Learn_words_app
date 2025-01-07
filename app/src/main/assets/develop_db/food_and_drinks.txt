@@ -1,0 +1,167 @@
+apple;яблоко
+juice;сок
+bottle;бутылка
+biscuit;печенье
+drink;пить
+banana;банан
+bean;фасоль
+bread;хлеб
+breakfast;завтрак
+burger;бургер
+cake;торт
+candy (UK sweet);конфета
+carrot;морковь
+chicken;курица
+fries (UK chips);картофель фри
+chocolate;шоколад
+coconut;кокос
+dinner;ужин
+egg;яйцо
+fish;рыба
+food;еда
+fruit;фрукт
+grape;виноград
+ice cream;мороженое
+kiwi;киви
+lemon;лимон
+lemonade;лимонад
+lime;лайм
+lunch;обед
+mango;манго
+meat;мясо
+meatballs;фрикадельки
+milk;молоко
+onion;лук
+orange;оранжевый
+pea;горох
+pear;груша
+pie;пирог
+pineapple;ананас
+potato;картофель
+rice;рис
+sausage;колбаса
+tomato;помидор
+water;вода
+watermelon;арбуз
+bowl;миска
+cheese;сыр
+coffee;кофе
+cup;чашка
+glass;стекло
+hungry;голодный
+milkshake;молочный коктейль
+noodles;лапша
+pancake;блин
+pasta;паста
+picnic;пикник
+plate;тарелка
+salad;салат
+sandwich;сэндвич
+sauce;соус
+soup;суп
+tea;чай
+thirsty;жаждущий
+vegetable;овощ
+butter;масло
+cereal;хлопья
+chopsticks;палочки для еды
+cookie (UK biscuit);печенье
+flour;мука
+fork;вилка
+honey;мед
+jam;джем
+knife;нож
+meal;еда
+olives;оливки
+pepper;перец
+piece;кусок
+pizza;пицца
+salt;соль
+smell;пахнуть
+snack;закуска
+spoon;ложка
+strawberry;клубника
+sugar;сахар
+taste;вкус
+yoghurt;йогурт
+ingredients;ингредиенты
+to bake;испечь
+corn;кукуруза
+to roast;жарить
+roast;жаркое, жареный
+cream;крем
+jug;кувшин
+roll;катиться
+barbecue;барбекю
+to barbecue;готовить на гриле
+cucumber;огурец
+kitchen;кухня
+salmon;лосось
+curry;карри
+bitter;горький
+cut;вырезать
+lamb;ягненок
+to boil;кипятить
+delicious;вкусно
+boiled;вареный
+dessert;десерт
+saucepan;кастрюля
+diet;диета
+lettuce;салат, салат-латук
+saucer;блюдце
+box;коробка
+dish;блюдо
+main course;основное блюдо
+slice;ломтик
+duck;утка
+soft drink;безалкогольный напиток
+to eat;есть
+melon;дыня
+broccoli;брокколи
+menu;меню
+sour;кислый
+flavour;вкус
+spinach;шпинат
+mineral water;минеральная вода
+mushroom oil;грибное масло
+steak;стейк
+cabbage;капуста
+omelette;омлет
+café / cafe;кафе / кафе
+French fries;Картофель фри
+cafeteria;кафетерий
+fresh;свежий
+sweet;сладкий
+fridge;холодильник
+pan;кастрюля, сковорода
+takeaway;вынос
+can (of beans);банка
+fried;жареный
+tasty;вкусный
+canteen;столовая
+peach;персик
+fry;жарить
+peanut;арахис
+toast;тост
+frying pan;сковорода
+chef;шеф-повар
+garlic;чеснок
+tuna;тунец
+turkey;индейка
+chilli;чили
+chips;чипсы
+to grill;жарить на гриле
+grill;гриль
+piece of cake;кусок пирога
+vegetarian;вегетарианский
+grilled;жареный
+waiter;официант
+herbs;травы
+waitress;официантка
+wash up;мыть
+cola;кола
+hot potato;горячая картошка
+recipe;рецепт
+cooker;плита
+ice;лед
+refreshments;угощения

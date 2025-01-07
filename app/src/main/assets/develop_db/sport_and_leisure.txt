@@ -1,0 +1,225 @@
+badminton;бадминтон
+ball;мяч
+baseball;бейсбол
+basketball;баскетбол
+bat (as sports equipment);бита
+beach;пляж
+bike;велосипед
+boat;лодка
+book;книга
+bounce;подпрыгивать
+camera;камера
+doll;кукла
+draw;рисовать
+drawing;рисование
+drive;водить
+enjoy;наслаждаться
+favorite (UK favourite);любимый
+fishing;рыбалка
+fly;летать
+soccer (UK football);футбол
+game;игра
+guitar;гитара
+hobby;хобби
+hockey;хоккей
+jump;прыгать
+kick;пнуть
+kite;кайт
+listen;слушать
+music;музыка
+photo;фото
+piano;пианино
+picture;картинка
+play;игра, пъеса
+radio;радио
+read;читать
+ride;ехать
+run;бег, пробежка
+sing;петь
+skateboard;скейтборд
+skateboarding;кататься на скейтборде
+song;песня
+sport;спорт
+story;история
+swim;плавать
+table tennis;настольный теннис
+take a photo/picture;сфотографировать/сделать снимок
+television/TV;телевидение/ТВ
+tennis;теннис
+tennis racket;теннисная ракетка
+throw;бросок
+toy;игрушка
+walk;прогулка
+watch;часы
+band (music);группа
+cinema;кино
+comic;комический
+comic book;комикс
+dance;танцевать
+email;электронная почта
+fish;рыба
+go shopping;пойти за покупками
+goal;цель
+holiday;праздник
+to hop;прыгать
+ice skates;коньки
+ice skating;катание на коньках
+movie (UK film);фильм
+net;нетто
+party;вечеринка
+player;игрок
+pool;бассейн
+practice;практика
+practise;практика
+present;настоящее время
+roller skates;роликовые коньки
+roller skating;катание на роликах
+sail;парус
+score;оценка
+skate;кататься на коньках
+skip;пропустить
+swimming pool;бассейн
+text;текст
+towel;полотенце
+video;видео
+cartoon;мультфильм
+channel;канал
+chess;шахматы
+collect;собирать
+concert;концерт
+diary;дневник
+drum;барабанить
+festival;фестиваль
+flashlight (UK torch);фонарик (британский фонарик)
+golf;гольф
+hotel;отель
+instrument;инструмент
+invitation;приглашение
+join (a club);присоединиться
+magazine;журнал
+match (football);матч
+meet;встретиться
+member;член
+online;онлайн
+pop music;поп-музыка
+prize;приз
+program (UK programme);программа
+puzzle;головоломка
+pyramid;пирамида
+quiz;викторина
+race;раса
+rock music;рок-музыка
+ski;лыжи
+sledge;сани
+snowball;снежный ком
+snowboard;сноуборд
+snowboarding;сноубординг
+snowman;снеговик
+stage (theatre);сцена
+suitcase;чемодан
+swing;качаться
+team;команда
+tent;палатка
+tune;настраивать
+umbrella;зонтик
+violin;скрипка
+volleyball;волейбол
+winner;победитель
+athlete;спортсмен
+extreme sports;экстремальные виды спорта
+pitch;шаг
+squash;раздавить
+athletics;легкая атлетика
+bat;летучая мышь
+bathing suit;купальный костюм
+bicycle;велосипед
+boxing;бокс
+to catch;поймать
+champion;чемпион
+championship;чемпионат
+changing room;раздевалка
+to climb;подняться
+climbing;восхождение
+club;клуб
+coach;тренер
+compete;соревноваться
+competition;конкуренция
+competitor;конкурент
+contest;соревнование
+court;суд
+cricket;крикет
+cycling;езда на велосипеде
+cyclist;велосипедист
+dancing;танцы
+diving;нырять
+enter (a competition);принять участие, участвовать
+(sports) facilities;
+fitness;фитнес
+soccer player (UK football player);футболист
+goalkeeper;вратарь
+gym;спортзал
+gymnastics;гимнастика
+helmet;шлем
+high jump;прыжок в высоту
+to hit;ударить
+horse-riding;верховая езда
+ice hockey;хоккей на льду
+instructor;инструктор
+jogging;бег трусцой
+join in;присоединиться
+to kick;пинать
+kit;комплект
+league;лига
+locker (room);шкафчик
+long jump;прыжок в длину
+luck;удача
+match;сопоставить
+motor-racing;автогонки
+to play;играть
+point(s);точка
+to practise;практиковать
+race track;гоночная трасса
+racing;гонка
+racket;рэкет
+reserve;резерв
+rest;отдых
+to rest;отдохнуть
+to ride;ездить
+rider;всадник
+riding;езда
+rugby;регби
+to run;бежать
+running;бежит
+to sail;плыть, идти под парусами
+sailing;парусный спорт
+sea;море
+season;сезон
+shoot(ing);стрелять
+shorts;шорты
+skating;катание на коньках
+skiing;катание на лыжах
+soccer;футбол
+sports centre;спортивный центр
+stadium;стадион
+surf;серфинг
+surfboard;доска для серфинга
+surfboarding;сёрфинг
+surfing;серфинг
+swimming;плавание
+costume;костюм
+swimsuit;купальник
+take part;принять участие
+tennis player;теннисист
+to throw;бросать
+ticket;билет
+tired;устал
+track;отслеживать
+tracksuit;спортивный костюм
+trainer;тренер
+train;поезд
+to walk;ходить
+to watch;смотреть
+water skiing;водные лыжи
+win;выиграть
+workout;тренировка
+yoga;йога

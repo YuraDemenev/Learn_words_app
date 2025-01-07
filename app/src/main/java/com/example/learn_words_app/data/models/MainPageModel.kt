@@ -14,11 +14,9 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
-    override fun upDB(c: Context, db: MainDB) {
+    override suspend fun upDB(c: Context, db: MainDB) {
         //Получаем названия всех файлов в папке
         val files = c.assets.list("develop_db") ?: arrayOf()
-//        //Объявляем переменную word
-//        lateinit var word: Words
 
         //HashMap для работы с Levels, чтобы id уровня было по порядку
         val levelsMap = ConcurrentHashMap<String, Int>()
@@ -40,7 +38,7 @@ class MainPageModel : MainPageContract.Model {
                 }
             }
             deferredList.awaitAll()
-        }
+        }.join()
 
         //Проходимся по всем файлам
         files.forEach { fileName ->
@@ -55,8 +53,16 @@ class MainPageModel : MainPageContract.Model {
                 // Разделяем файл по строкам
                 val strings = myOutput.split("\r\n")
 
+                //Для того чтобы отловить exception в корутине
+//                val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+//                    Log.e(
+//                        "try to handle word and add in db",
+//                        "in file:$fileName exception: $exception"
+//                    )
+//                }
+
                 //Запускаем корутину в которой проходим по строкам и добавляем их в БД
-                myScope.launch {
+                myScope.launch() {
                     val deferredList = strings.map { line ->
                         //Объявляем переменную word
                         lateinit var word: Words
@@ -113,19 +119,17 @@ class MainPageModel : MainPageContract.Model {
                                 wordsInString[0],
                                 wordsInString[1],
                                 0,
-                                check,
                                 britishVariable,
                                 levelId
                             )
                         }
                         //Upsert request to DB
                         async(Dispatchers.IO) {
-//                            val copyWord = word.copy()
                             db.getDao().insertWord(word)
                         }
                     }
                     deferredList.awaitAll()
-                }
+                }.join()
 
             } catch (ex: Exception) {
                 Log.e("Read from assets files in develop_bd", ex.cause.toString())
