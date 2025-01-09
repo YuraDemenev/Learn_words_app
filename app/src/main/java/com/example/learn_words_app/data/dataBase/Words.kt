@@ -32,7 +32,7 @@ data class Words(
     val transcriptionId: Int,
     @ColumnInfo(name = "british_variable")
     val britishVariable: String,
-    @ColumnInfo(name = "level_id")
+    @ColumnInfo(name = "level_id", index = true)
     val levelId: Int,
 
 

@@ -8,6 +8,10 @@ class MainPagePresenter(
     private val model: MainPageContract.Model,
     private var mainView: MainPageContract.View
 ) : MainPageContract.Presenter {
+    override suspend fun checkUserData(c: Context, db: MainDB) {
+        model.checkUserData(c, db)
+    }
+
     override suspend fun clickOnUpDB(c: Context, db: MainDB) {
         model.upDB(c, db)
     }

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 6,
-    "identityHash": "7094f3a4119d12bc8f94d281e95cd270",
+    "identityHash": "17b29751ef6ccbc8dd36c178b6f68af7",
     "entities": [
       {
         "tableName": "words",
@@ -94,7 +94,7 @@
       },
       {
         "tableName": "words_levels",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`word_id` INTEGER NOT NULL, `level_id` INTEGER NOT NULL, PRIMARY KEY(`word_id`, `level_id`), FOREIGN KEY(`level_id`) REFERENCES `levels`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`word_id`) REFERENCES `words`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`word_id` INTEGER NOT NULL, `level_id` INTEGER NOT NULL, `stage` INTEGER NOT NULL, PRIMARY KEY(`word_id`, `level_id`), FOREIGN KEY(`level_id`) REFERENCES `levels`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`word_id`) REFERENCES `words`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "wordId",
@@ -105,6 +105,12 @@
           {
             "fieldPath": "levelId",
             "columnName": "level_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stage",
+            "columnName": "stage",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -146,7 +152,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7094f3a4119d12bc8f94d281e95cd270')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '17b29751ef6ccbc8dd36c178b6f68af7')"
     ]
   }
 }

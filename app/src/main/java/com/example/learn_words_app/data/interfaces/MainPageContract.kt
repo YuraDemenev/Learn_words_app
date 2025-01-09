@@ -13,6 +13,7 @@ interface MainPageContract {
     //Выполняет бизнес-логику, например, получает данные из базы данных, сетевого API или других источников.
     //Не знает ничего о View и UI.
     interface Model {
+        suspend fun checkUserData(c: Context, db: MainDB)
         suspend fun upDB(c: Context, db: MainDB)
         fun downDB(db: MainDB)
     }
@@ -21,6 +22,7 @@ interface MainPageContract {
     //Получает действия пользователя из View и запрашивает данные у Model.
     //Возвращает обработанные данные в View.
     interface Presenter {
+        suspend fun checkUserData(c: Context, db: MainDB)
         suspend fun clickOnUpDB(c: Context, db: MainDB)
         fun clickOnDownDB(db: MainDB)
     }

@@ -15,6 +15,10 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
+    override suspend fun checkUserData(c: Context, db: MainDB) {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun upDB(c: Context, db: MainDB) {
         //Получаем названия всех файлов в папке
         val files = c.assets.list("develop_db") ?: arrayOf()
@@ -131,8 +135,8 @@ class MainPageModel : MainPageContract.Model {
                             val id = idLong.toInt()
                             //Получаем id levels
                             val levelId = levelsMap.getValue(fileName)
-                            //Добавляем id в таблицу WordsLevels
-                            val wordLevels = WordsLevels(id, levelId)
+                            //Добавляем wordsLevels в таблицу wordsLevels
+                            val wordLevels = WordsLevels(id, levelId, 0)
                             db.getDao().insertWordsLevel(wordLevels)
 
                         }

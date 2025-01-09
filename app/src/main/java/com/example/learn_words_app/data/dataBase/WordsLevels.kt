@@ -35,6 +35,8 @@ import androidx.room.ForeignKey
 data class WordsLevels(
     @ColumnInfo(name = "word_id")
     val wordId: Int,
-    @ColumnInfo(name = "level_id")
-    val levelId: Int
+    @ColumnInfo(name = "level_id", index = true)
+    val levelId: Int,
+    @ColumnInfo(name = "stage")
+    val stage: Int
 )
