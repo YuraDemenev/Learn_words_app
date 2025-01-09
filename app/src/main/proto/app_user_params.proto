@@ -15,6 +15,6 @@ message  UserProto{
   int32 countFullLearnedWords = 4;
   int32 countLearningWords = 5;
   int32 countKnewWords = 6;
-  repeated LevelsProto levels = 7;
+  repeated LevelsProto listOfLevels = 7;
   bool checkBritishVariables = 8;
 }

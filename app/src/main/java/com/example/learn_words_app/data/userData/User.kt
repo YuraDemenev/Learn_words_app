@@ -12,11 +12,3 @@ class User(
     var listOfLevels: MutableList<Levels> = mutableListOf(),
     var checkBritishVariables: Boolean = false
 )
-//userId_: String,
-//curRepeatDays_: Int,
-//maxRepeatDays_: Int,
-//countFullLearnedWords_: Int,
-//countLearningWords_: Int,
-//countKnewWords_: Int,
-//listOfLevels_: MutableList<Levels>,
-//checkBritishVariables_: Boolean

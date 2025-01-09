@@ -2,21 +2,88 @@ package com.example.learn_words_app.data.models
 
 import android.content.Context
 import android.util.Log
+import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.dataBase.Levels
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.dataBase.WordsLevels
 import com.example.learn_words_app.data.interfaces.MainPageContract
+import com.example.learn_words_app.data.proto.convertLevelsProtoToLevels
+import com.example.learn_words_app.data.proto.userParamsDataStore
+import com.example.learn_words_app.data.userData.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
-    override suspend fun checkUserData(c: Context, db: MainDB) {
-        TODO("Not yet implemented")
+    override suspend fun checkUserData(context: Context, db: MainDB) {
+        //Получаем данные из хранилища Proto DataStore
+        val userFlow: Flow<User> = context.userParamsDataStore.data.map { userProto ->
+            User(
+                userProto.userId,
+                userProto.curRepeatDays,
+                userProto.maxRepeatDays,
+                userProto.countFullLearnedWords,
+                userProto.countLearningWords,
+                userProto.countKnewWords,
+                userProto.listOfLevelsList.map { levelsProto ->
+                    convertLevelsProtoToLevels(levelsProto)
+                }.toMutableList(),
+                userProto.checkBritishVariables
+            )
+        }
+
+        //Проверяем есть ли пользователь в хранилище или нет
+        val checkUser = userFlow.first()
+        //Если пользователя нет
+        if (checkUser.userId.contains("")) {
+            //Получаем список id и name из таблицы tables
+            val baseLevels = db.getDao().getBaseLevels("A1.txt", "A2.txt", "B1.txt")
+            //Создаем список для LevelsProto
+            val listOfLevelsBuilders = mutableListOf<LevelsProto>()
+
+            //Проходим по list Levels и заполняем List LevelsProto
+            baseLevels.forEach { level ->
+                if (level.id != null) {
+                    listOfLevelsBuilders.add(
+                        LevelsProto.newBuilder().setId(level.id).setName(level.name).build()
+                    )
+                } else {
+                    Log.e("Check user data. get levels from db", "level id is null")
+                    return
+                }
+            }
+
+            try {
+                //Обновляем данные в Proto DataStore
+                context.userParamsDataStore.updateData { userPorto ->
+                    userPorto.toBuilder().clearListOfLevels()
+                        .setUserId("test")
+                        .setCurRepeatDays(0)
+                        .setMaxRepeatDays(0)
+                        .setCountFullLearnedWords(0)
+                        .setCountLearningWords(0)
+                        .setCountKnewWords(0)
+                        .addAllListOfLevels(listOfLevelsBuilders)
+                        .setCheckBritishVariables(false)
+                        .build()
+                }
+            } catch (e: Exception) {
+                Log.e(
+                    "Check user data. Update Proto DataStore",
+                    "can`t update, err: $e"
+                )
+                return
+            }
+
+        }
+        Log.i("Check user data", "Success checked user data")
     }
 
     override suspend fun upDB(c: Context, db: MainDB) {
