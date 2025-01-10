@@ -61,6 +61,8 @@ dependencies {
     //Для FLow
     // Lifecycles only (without ViewModel or LiveData)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    //Для работы с Fragment
+    implementation(libs.androidx.fragment.ktx)
 
     //Для сохранения данных
     implementation(libs.androidx.datastore)
@@ -73,6 +75,7 @@ dependencies {
     implementation(libs.protobuf.java.util)
     implementation(libs.protobuf.kotlin)
     implementation(libs.grpc.kotlin.stub)
+
 
     //Base
     implementation(libs.androidx.core.ktx)

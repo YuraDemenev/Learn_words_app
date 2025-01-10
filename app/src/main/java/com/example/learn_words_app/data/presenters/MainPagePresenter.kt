@@ -12,11 +12,20 @@ class MainPagePresenter(
         model.checkUserData(context, db)
     }
 
+    //For Dev
     override suspend fun clickOnUpDB(c: Context, db: MainDB) {
         model.upDB(c, db)
     }
 
+    //For Dev
     override fun clickOnDownDB(db: MainDB) {
         model.downDB(db)
     }
+
+    //For Dev
+    override suspend fun clearUserData(context: Context) {
+        model.clearUserData(context)
+    }
+
+
 }

@@ -86,6 +86,31 @@ class MainPageModel : MainPageContract.Model {
         Log.i("Check user data", "Success checked user data")
     }
 
+    override suspend fun clearUserData(context: Context) {
+        try {
+            //Обновляем данные в Proto DataStore
+            context.userParamsDataStore.updateData { userPorto ->
+                userPorto.toBuilder().clearListOfLevels()
+                    .setUserId("")
+                    .setCurRepeatDays(0)
+                    .setMaxRepeatDays(0)
+                    .setCountFullLearnedWords(0)
+                    .setCountLearningWords(0)
+                    .setCountKnewWords(0)
+                    .clearListOfLevels()
+                    .setCheckBritishVariables(false)
+                    .build()
+            }
+        } catch (e: Exception) {
+            Log.e(
+                "Clear user data",
+                "can`t clear, err: $e"
+            )
+            return
+        }
+        Log.i("Cleared user data", "Success cleared user data")
+    }
+
     override suspend fun upDB(c: Context, db: MainDB) {
         //Получаем названия всех файлов в папке
         val files = c.assets.list("develop_db") ?: arrayOf()
@@ -134,7 +159,7 @@ class MainPageModel : MainPageContract.Model {
 //                }
 
                 //Запускаем корутину в которой проходим по строкам и добавляем их в БД
-                myScope.launch() {
+                myScope.launch {
                     val deferredList = strings.map { line ->
                         //Объявляем переменную word
                         lateinit var word: Words
@@ -159,11 +184,10 @@ class MainPageModel : MainPageContract.Model {
                             //GetValue кидает исключение если ключа нет
                             val levelId = levelsMap.getValue(fileName)
                             //Для проверки имеет ли слово британский вариант
-                            var check = false
                             var britishVariable = ""
 
                             //Проверяем содержит ли слово UK
-                            check = wordsInString[0].contains("UK", ignoreCase = true)
+                            val check = wordsInString[0].contains("UK", ignoreCase = true)
                             if (check) {
                                 //Получаем британский вариант слова
                                 var index = wordsInString[0].indexOf("UK")

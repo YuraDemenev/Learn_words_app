@@ -491,6 +491,15 @@
                 android:text="Down DB"
                 android:textSize="22sp" />
 
+            <TextView
+                android:id="@+id/clearUserData"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:text="Clear user data"
+                android:textSize="22sp" />
+
 
         </LinearLayout>
 

@@ -14,8 +14,15 @@ interface MainPageContract {
     //Не знает ничего о View и UI.
     interface Model {
         suspend fun checkUserData(context: Context, db: MainDB)
+
+        //For Dev
         suspend fun upDB(c: Context, db: MainDB)
+
+        //For Dev
         fun downDB(db: MainDB)
+
+        //For Dev
+        suspend fun clearUserData(context: Context)
     }
 
     //Посредник между View и Model.
@@ -23,8 +30,15 @@ interface MainPageContract {
     //Возвращает обработанные данные в View.
     interface Presenter {
         suspend fun checkUserData(context: Context, db: MainDB)
+
+        //For Dev
         suspend fun clickOnUpDB(c: Context, db: MainDB)
+
+        //For Dev
         fun clickOnDownDB(db: MainDB)
+
+        //For Dev
+        suspend fun clearUserData(context: Context)
     }
 
 

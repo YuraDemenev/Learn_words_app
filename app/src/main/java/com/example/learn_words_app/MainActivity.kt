@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(), MainPageContract.View {
         binding = ActivityMainBinding.inflate(layoutInflater)
         //Получаем/создаем БД
         val db = MainDB.getDB(this)
+        //Создаем presenter для MVP архитектуры
         val presenter = MainPagePresenter(MainPageModel(), this)
         //Создаем Scope для запуска корутин
         val myScope = CoroutineScope(Dispatchers.IO)
@@ -46,5 +47,8 @@ class MainActivity : AppCompatActivity(), MainPageContract.View {
         }
         //Listener нажатия на текст Down DB
         binding.downDataBase.setOnClickListener { presenter.clickOnDownDB(db) }
+
+        //Listener нажатия на текст Clear user data
+        binding.clearUserData.setOnClickListener { myScope.launch { presenter.clearUserData(context) } }
     }
 }
