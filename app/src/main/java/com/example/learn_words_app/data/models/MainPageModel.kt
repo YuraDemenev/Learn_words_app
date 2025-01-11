@@ -115,22 +115,25 @@ class MainPageModel : MainPageContract.Model {
         //Получаем названия всех файлов в папке
         val files = c.assets.list("develop_db") ?: arrayOf()
 
+        var mapIndex = 1
         //HashMap для работы с Levels, чтобы id уровня было по порядку
         val levelsMap = ConcurrentHashMap<String, Int>()
-        files.forEachIndexed { index, fileName ->
-            levelsMap[fileName] = index + 1
+        files.forEach { fileName ->
+            val splitNames = fileName.split(".")
+            levelsMap[splitNames[0]] = mapIndex
+            mapIndex++
         }
+        levelsMap["your_words"] = mapIndex
+
 
         //Создаем Scope для запуска корутин
         val myScope = CoroutineScope(Dispatchers.IO)
 
         //Запускаем асинхронное заполнение таблицы Levels
         myScope.launch {
-            val deferredList = files.map { fileName ->
+            val deferredList = levelsMap.map { mapValue ->
                 async(Dispatchers.IO) {
-                    //Получаем из Map id по названию файла
-                    val id = levelsMap.getValue(fileName)
-                    val level = Levels(id, fileName)
+                    val level = Levels(mapValue.value, mapValue.key)
                     db.getDao().insertLevel(level)
                 }
             }
@@ -163,6 +166,7 @@ class MainPageModel : MainPageContract.Model {
                     val deferredList = strings.map { line ->
                         //Объявляем переменную word
                         lateinit var word: Words
+                        val nameInMap = fileName.split(".")[0]
 
                         //Делим строку по ';'
                         val wordsInString = line.split(";").toMutableList()
@@ -182,7 +186,7 @@ class MainPageModel : MainPageContract.Model {
                             }
 
                             //GetValue кидает исключение если ключа нет
-                            val levelId = levelsMap.getValue(fileName)
+                            val levelId = levelsMap.getValue(nameInMap)
                             //Для проверки имеет ли слово британский вариант
                             var britishVariable = ""
 
@@ -225,7 +229,7 @@ class MainPageModel : MainPageContract.Model {
                             val idLong = db.getDao().insertWord(word)
                             val id = idLong.toInt()
                             //Получаем id levels
-                            val levelId = levelsMap.getValue(fileName)
+                            val levelId = levelsMap.getValue(nameInMap)
                             //Добавляем wordsLevels в таблицу wordsLevels
                             val wordLevels = WordsLevels(id, levelId, 0)
                             db.getDao().insertWordsLevel(wordLevels)
