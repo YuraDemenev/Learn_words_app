@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.interfaces
 
 import android.content.Context
+import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.dataBase.MainDB
 
 interface MainPageContract {
@@ -13,6 +14,8 @@ interface MainPageContract {
     //Выполняет бизнес-логику, например, получает данные из базы данных, сетевого API или других источников.
     //Не знает ничего о View и UI.
     interface Model {
+        suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
+
         suspend fun checkUserData(context: Context, db: MainDB)
 
         //For Dev
@@ -29,6 +32,8 @@ interface MainPageContract {
     //Получает действия пользователя из View и запрашивает данные у Model.
     //Возвращает обработанные данные в View.
     interface Presenter {
+        suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
+
         suspend fun checkUserData(context: Context, db: MainDB)
 
         //For Dev

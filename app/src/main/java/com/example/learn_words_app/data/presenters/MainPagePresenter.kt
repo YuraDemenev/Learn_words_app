@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.presenters
 
 import android.content.Context
+import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.interfaces.MainPageContract
 
@@ -10,6 +11,13 @@ class MainPagePresenter(
 ) : MainPageContract.Presenter {
     override suspend fun checkUserData(context: Context, db: MainDB) {
         model.checkUserData(context, db)
+    }
+
+    override suspend fun getLevelsCardData(
+        context: Context,
+        db: MainDB
+    ): MutableList<LevelsCardData> {
+        return model.getLevelsCardData(context, db)
     }
 
     //For Dev

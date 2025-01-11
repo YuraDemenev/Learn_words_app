@@ -3,6 +3,8 @@ package com.example.learn_words_app.data.models
 import android.content.Context
 import android.util.Log
 import com.app.proto.LevelsProto
+import com.example.learn_words_app.data.additionalData.LevelsCardData
+import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.dataBase.Levels
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
@@ -10,7 +12,6 @@ import com.example.learn_words_app.data.dataBase.WordsLevels
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.proto.convertLevelsProtoToLevels
 import com.example.learn_words_app.data.proto.userParamsDataStore
-import com.example.learn_words_app.data.userData.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -22,6 +23,33 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
+    override suspend fun getLevelsCardData(
+        context: Context,
+        db: MainDB
+    ): MutableList<LevelsCardData> {
+        //Создаем Scope для запуска корутин
+        val myScope = CoroutineScope(Dispatchers.IO)
+        //Массив для возвращения
+        var listOfLevels = mutableListOf<LevelsCardData>()
+
+        //Получаем уровни для данных в карточках на странице выбора уровней
+        myScope.launch {
+            val levelsFromDB = db.getDao().getAllLevels()
+
+            //Проходим по всем уровням
+            levelsFromDB.forEach { level ->
+                if (level.id != null) {
+                    var countWords = db.getDao().getCountWordsByLevelId(level.id)
+                    val levelCarData =
+                        LevelsCardData(level.name, countWords, level.countLearnedWords)
+                    listOfLevels.add(levelCarData)
+                }
+            }
+        }.join()
+
+        return listOfLevels
+    }
+
     override suspend fun checkUserData(context: Context, db: MainDB) {
         //Получаем данные из хранилища Proto DataStore
         val userFlow: Flow<User> = context.userParamsDataStore.data.map { userProto ->
@@ -133,7 +161,7 @@ class MainPageModel : MainPageContract.Model {
         myScope.launch {
             val deferredList = levelsMap.map { mapValue ->
                 async(Dispatchers.IO) {
-                    val level = Levels(mapValue.value, mapValue.key)
+                    val level = Levels(mapValue.value, mapValue.key, 0)
                     db.getDao().insertLevel(level)
                 }
             }

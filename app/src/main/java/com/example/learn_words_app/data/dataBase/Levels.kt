@@ -10,4 +10,5 @@ data class Levels(
     val id: Int? = null,
     @ColumnInfo(name = "name")
     val name: String,
+    val countLearnedWords: Int,
 )

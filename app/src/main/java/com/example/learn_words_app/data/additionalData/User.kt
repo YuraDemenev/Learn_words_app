@@ -1,4 +1,4 @@
-package com.example.learn_words_app.data.userData
+package com.example.learn_words_app.data.additionalData
 
 import com.example.learn_words_app.data.dataBase.Levels
 

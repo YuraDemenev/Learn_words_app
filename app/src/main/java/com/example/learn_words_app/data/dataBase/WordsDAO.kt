@@ -45,6 +45,14 @@ interface WordsDAO {
     @Query("SELECT * FROM levels WHERE name = :name1 OR name = :name2 OR name = :name3 GROUP BY id")
     fun getBaseLevels(name1: String, name2: String, name3: String): List<Levels>
 
+    //Запрос на получение всех Levels
+    @Query("SELECT * FROM levels")
+    fun getAllLevels(): Array<Levels>
+
+    //Запрос на получение кол-во слов с определенным уровнем
+    @Query("SELECT COUNT(*) FROM words WHERE level_id=:levelId")
+    fun getCountWordsByLevelId(levelId: Int): Int
+
     //Запрос на проверку наличие записи в таблице по имени
     @Query("SELECT EXISTS(SELECT * FROM levels WHERE name = :name)")
     suspend fun checkLevelExist(name: String): Boolean

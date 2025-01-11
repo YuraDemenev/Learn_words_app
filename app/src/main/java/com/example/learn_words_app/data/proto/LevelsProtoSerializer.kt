@@ -35,6 +35,7 @@ val Context.levelsParamsDataStore: DataStore<LevelsProto> by dataStore(
 fun convertLevelsProtoToLevels(levelsProto: LevelsProto): Levels {
     return Levels(
         id = levelsProto.id,
-        name = levelsProto.name
+        name = levelsProto.name,
+        countLearnedWords = 0
     )
 }
