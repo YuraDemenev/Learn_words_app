@@ -76,6 +76,9 @@ dependencies {
     implementation(libs.protobuf.kotlin)
     implementation(libs.grpc.kotlin.stub)
 
+    //Для отображения карточек
+    implementation(libs.androidx.cardview)
+
 
     //Base
     implementation(libs.androidx.core.ktx)

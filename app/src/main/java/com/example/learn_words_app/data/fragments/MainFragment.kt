@@ -50,7 +50,7 @@ class MainFragment : Fragment(), MainPageContract.View {
         myScope.launch { presenter.checkUserData(thisContext, db) }
 
         //Переход на страницу выбора тем
-        binding.mainTextContainerLearnNewWords.setOnClickListener {
+        binding.mainTextContainerChooseCategory.setOnClickListener {
             (requireActivity() as MainActivity).loadFragment("")
         }
 
