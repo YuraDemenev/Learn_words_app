@@ -30,7 +30,7 @@ class MainPageModel : MainPageContract.Model {
         //Создаем Scope для запуска корутин
         val myScope = CoroutineScope(Dispatchers.IO)
         //Массив для возвращения
-        var listOfLevels = mutableListOf<LevelsCardData>()
+        val listOfLevels = mutableListOf<LevelsCardData>()
 
         //Получаем уровни для данных в карточках на странице выбора уровней
         myScope.launch {
@@ -40,6 +40,7 @@ class MainPageModel : MainPageContract.Model {
             levelsFromDB.forEach { level ->
                 if (level.id != null) {
                     var countWords = db.getDao().getCountWordsByLevelId(level.id)
+                    //TODO сделать вычисления процентов
                     val levelCarData =
                         LevelsCardData(level.name, countWords, level.countLearnedWords)
                     listOfLevels.add(levelCarData)

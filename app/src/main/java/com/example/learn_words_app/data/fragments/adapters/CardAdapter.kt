@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learn_words_app.R
@@ -20,11 +21,13 @@ class CardAdapter(private val data: MutableList<LevelsCardData>) :
         val levelsName: TextView
         val countWords: TextView
         val levelsPercent: TextView
+        val checkBox: CheckBox
 
         init {
             levelsName = view.findViewById(R.id.levelsName)
             countWords = view.findViewById(R.id.countWords)
             levelsPercent = view.findViewById(R.id.levelsPercent)
+            checkBox = view.findViewById(R.id.levelsCheckBox)
         }
     }
 
@@ -93,5 +96,11 @@ class CardAdapter(private val data: MutableList<LevelsCardData>) :
         levelName = levelName.replaceFirstChar { it.uppercase() }
 
         holder.levelsName.text = levelName
+
+        //Когда нажали на checkBox
+        holder.checkBox.setOnClickListener {
+            //Если выбрали check box
+
+        }
     }
 }

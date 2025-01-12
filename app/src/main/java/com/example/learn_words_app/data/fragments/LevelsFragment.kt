@@ -48,6 +48,7 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
                 arrayOfLevelsData = presenter.getLevelsCardData(thisContext, db)
             }.join()
         }
+        //TODO Сделать изменение в FlowLevels при выборе тем
 
         //Для создание списка из card_view_for_levels
         val cardAdapter = CardAdapter(arrayOfLevelsData)
@@ -56,5 +57,6 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = cardAdapter
+
     }
 }

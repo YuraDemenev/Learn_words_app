@@ -1,11 +1,14 @@
 package com.example.learn_words_app.data.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.learn_words_app.MainActivity
+import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.models.MainPageModel
@@ -16,7 +19,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainFragment : Fragment(), MainPageContract.View {
+    //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
+    private val flowLevelsModel: FlowLevelsModel by viewModels()
 
+    //Binding
     private lateinit var binding: ActivityMainBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +42,8 @@ class MainFragment : Fragment(), MainPageContract.View {
         return binding.root
     }
 
+    //SetTextI18n - убирает предупреждение при сложении строк (Android создает предупреждение для поддержки разных языков)
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val thisContext = requireContext()
         //Получаем/создаем БД
@@ -45,6 +53,11 @@ class MainFragment : Fragment(), MainPageContract.View {
         //Создаем Scope для запуска корутин
         val myScope = CoroutineScope(Dispatchers.IO)
 
+        //Наблюдатель за FlowLevelsModel.
+        //Меняем кол-во категорий
+        flowLevelsModel.data.observe(viewLifecycleOwner, { levelsData ->
+            binding.mainSmallTextSelectedCategories.text = "Выбрано категорий: ${levelsData.size}"
+        })
 
         //Проверка данных пользователя
         myScope.launch { presenter.checkUserData(thisContext, db) }

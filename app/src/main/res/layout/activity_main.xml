@@ -83,7 +83,7 @@
 
                         <!--Текст для показа сколько выбранно категорий-->
                         <TextView
-                            android:id="@+id/mainSmallTextChoosedCategories"
+                            android:id="@+id/mainSmallTextSelectedCategories"
                             android:layout_width="match_parent"
                             android:layout_height="22sp"
                             android:layout_marginStart="7dp"
