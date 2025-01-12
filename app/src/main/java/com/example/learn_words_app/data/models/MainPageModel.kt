@@ -39,10 +39,12 @@ class MainPageModel : MainPageContract.Model {
             //Проходим по всем уровням
             levelsFromDB.forEach { level ->
                 if (level.id != null) {
-                    var countWords = db.getDao().getCountWordsByLevelId(level.id)
-                    //TODO сделать вычисления процентов
+                    val countWords = db.getDao().getCountWordsByLevelId(level.id)
+                    //Вычисление процентов выученных слов
+                    val percentage = countWords / 100 * level.countLearnedWords
+                    //Создание LevelCardData
                     val levelCarData =
-                        LevelsCardData(level.name, countWords, level.countLearnedWords)
+                        LevelsCardData(level.name, countWords, percentage)
                     listOfLevels.add(levelCarData)
                 }
             }

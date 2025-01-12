@@ -48,8 +48,16 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
                 arrayOfLevelsData = presenter.getLevelsCardData(thisContext, db)
             }.join()
         }
-        //TODO Сделать изменение в FlowLevels при выборе тем
 
+        //Удаляем последний элемент и ставим его на 1 место (Карточка Свои слова должна быть 1 элементом)
+        val lastElement = arrayOfLevelsData.removeAt(arrayOfLevelsData.size - 1)
+        arrayOfLevelsData.add(0, lastElement)
+        //Переименовываем с Your_Words на Ваши слова
+        arrayOfLevelsData[0].levelName = "Ваши слова"
+
+        //TODO Убрать костыль в виде пустой карточки (Почему -то последний элемент не отображается)
+        arrayOfLevelsData.add(LevelsCardData("", 0, 0))
+        //TODO Сделать изменение в FlowLevels при выборе тем
         //Для создание списка из card_view_for_levels
         val cardAdapter = CardAdapter(arrayOfLevelsData)
 

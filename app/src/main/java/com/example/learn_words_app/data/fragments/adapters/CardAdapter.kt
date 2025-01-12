@@ -46,7 +46,7 @@ class CardAdapter(private val data: MutableList<LevelsCardData>) :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // Get element from your dataset at this position and replace the
+        // Get an element from your dataset at this position and replace the
         // contents of the view with that element
 //        holder.textTest.text = data[position]
         holder.levelsPercent.text = data[position].percentsLearned.toString() + "%"
@@ -59,7 +59,7 @@ class CardAdapter(private val data: MutableList<LevelsCardData>) :
                 holder.countWords.text = "$countWords слово"
             } else if (countWords in 2..4) {
                 holder.countWords.text = "$countWords слова"
-            } else if (countWords >= 5) {
+            } else if (countWords >= 5 || countWords == 0) {
                 holder.countWords.text = "$countWords слов"
             }
         } else {
@@ -70,11 +70,13 @@ class CardAdapter(private val data: MutableList<LevelsCardData>) :
                 } else {
                     holder.countWords.text = "$countWords слов"
                 }
-                //Если число оканчивающиеся на 2, 3, 4 кроме 12,13,14
+                //Если число оканчивающиеся на 2, 3 кроме 12,13,14
             } else if (countWords.toString().last() == '2' || countWords.toString()
                     .last() == '3' || countWords.toString().last() == '4'
             ) {
-                if (countWords != 12 && countWords != 13 && countWords != 14) {
+                if (countWords != 12 && countWords != 13 && countWords != 14 && countWords.toString()
+                        .last() != '4'
+                ) {
                     holder.countWords.text = "$countWords слов"
                 } else {
                     holder.countWords.text = "$countWords слова"
@@ -100,7 +102,11 @@ class CardAdapter(private val data: MutableList<LevelsCardData>) :
         //Когда нажали на checkBox
         holder.checkBox.setOnClickListener {
             //Если выбрали check box
-
+            if (holder.checkBox.isChecked) {
+                val test = 1
+            } else {
+                val test = 2
+            }
         }
     }
 }
