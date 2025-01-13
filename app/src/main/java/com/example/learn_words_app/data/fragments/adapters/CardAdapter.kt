@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.fragments.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,13 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learn_words_app.R
+import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 
-class CardAdapter(private val data: MutableList<LevelsCardData>) :
+class CardAdapter(
+    private val data: MutableList<LevelsCardData>,
+    var flowLevelsModel: FlowLevelsModel
+) :
     RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
     /**
@@ -99,13 +104,24 @@ class CardAdapter(private val data: MutableList<LevelsCardData>) :
 
         holder.levelsName.text = levelName
 
+        //Проверяем есть ли уровень в flowLevelsModel, чтобы поставить галочку в checkBox
+        if (flowLevelsModel.data.value?.contains(levelName) == true) {
+            holder.checkBox.isChecked = true
+        }
+
         //Когда нажали на checkBox
         holder.checkBox.setOnClickListener {
+            val localLevelName = holder.levelsName.text.toString()
             //Если выбрали check box
             if (holder.checkBox.isChecked) {
-                val test = 1
+                flowLevelsModel.data.value?.add(localLevelName)
             } else {
-                val test = 2
+                if (flowLevelsModel.data.value?.contains(localLevelName) == true) {
+                    flowLevelsModel.data.value?.remove(localLevelName)
+                } else {
+                    Log.e("flow Levels Model error", "Flow levels Model does`t have level name")
+                    throw Exception()
+                }
             }
         }
     }

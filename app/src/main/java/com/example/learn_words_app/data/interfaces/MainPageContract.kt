@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.interfaces
 
 import android.content.Context
+import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.dataBase.MainDB
 
@@ -16,7 +17,9 @@ interface MainPageContract {
     interface Model {
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
-        suspend fun checkUserData(context: Context, db: MainDB)
+        suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
+
+        suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
 
         //For Dev
         suspend fun upDB(c: Context, db: MainDB)
@@ -34,7 +37,9 @@ interface MainPageContract {
     interface Presenter {
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
-        suspend fun checkUserData(context: Context, db: MainDB)
+        suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
+
+        suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
 
         //For Dev
         suspend fun clickOnUpDB(c: Context, db: MainDB)

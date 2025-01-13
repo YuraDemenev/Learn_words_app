@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <!-- Фиксированная область наверху -->
-    <View
+    <FrameLayout
         android:id="@+id/fixedView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -18,7 +18,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </View>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/backToMainMenuContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/levelsIconBackMainMenu"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_marginStart="10sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/choose_category_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:layout_marginStart="10sp"
+                android:text="В главное меню"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/levelsIconBackMainMenu"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

@@ -3,6 +3,7 @@ package com.example.learn_words_app.data.models
 import android.content.Context
 import android.util.Log
 import com.app.proto.LevelsProto
+import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.dataBase.Levels
@@ -53,29 +54,19 @@ class MainPageModel : MainPageContract.Model {
         return listOfLevels
     }
 
-    override suspend fun checkUserData(context: Context, db: MainDB) {
-        //Получаем данные из хранилища Proto DataStore
-        val userFlow: Flow<User> = context.userParamsDataStore.data.map { userProto ->
-            User(
-                userProto.userId,
-                userProto.curRepeatDays,
-                userProto.maxRepeatDays,
-                userProto.countFullLearnedWords,
-                userProto.countLearningWords,
-                userProto.countKnewWords,
-                userProto.listOfLevelsList.map { levelsProto ->
-                    convertLevelsProtoToLevels(levelsProto)
-                }.toMutableList(),
-                userProto.checkBritishVariables
-            )
-        }
+    override suspend fun checkUserData(
+        context: Context,
+        db: MainDB,
+        flowLevelsModel: FlowLevelsModel
+    ) {
 
+        val userFlow = getUserProtoData(context)
         //Проверяем есть ли пользователь в хранилище или нет
-        val checkUser = userFlow.first()
+        var checkUser = userFlow.first()
         //Если пользователя нет
-        if (checkUser.userId.contains("")) {
+        if (checkUser.userId == "") {
             //Получаем список id и name из таблицы tables
-            val baseLevels = db.getDao().getBaseLevels("A1.txt", "A2.txt", "B1.txt")
+            val baseLevels = db.getDao().getBaseLevels("A1", "A2", "B1")
             //Создаем список для LevelsProto
             val listOfLevelsBuilders = mutableListOf<LevelsProto>()
 
@@ -112,9 +103,69 @@ class MainPageModel : MainPageContract.Model {
                 )
                 return
             }
+            //Получаем user для того чтобы ниже получить данные
+            checkUser = userFlow.first()
 
         }
+        //Проверка что flow levels model не null
+        if (flowLevelsModel.data.value == null) {
+            Log.e(
+                "flow levels model is null",
+                "Main page model, checkUserData, flow levels model is null"
+            )
+        }
+
+        //Добавляем в flow levels model уровни
+        val listOfLevels = checkUser.listOfLevels
+        listOfLevels.forEach { locLevel ->
+            flowLevelsModel.data.value?.add(locLevel.name, locLevel.id)
+        }
+
         Log.i("Check user data", "Success checked user data")
+    }
+
+    //Обновляем Proto данные пользователя
+    override suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel) {
+        val listOfLevelsBuilders = mutableListOf<LevelsProto>()
+        //Проверка что flow levels model не null
+        if (flowLevelsModel.data.value == null) {
+            Log.e(
+                "flow levels model is null",
+                "Main page model, updateProtoData, flow levels model is null"
+            )
+        }
+
+        //Получаем map из Flow level
+        val curLevels = flowLevelsModel.data.value?.toMap()
+        if (curLevels == null) {
+            Log.e(
+                "current levels are null",
+                "Main page model, updateProtoData, current levels are null"
+            )
+            throw Exception()
+        } else {
+            //Проходим по list Levels и заполняем List LevelsProto
+            curLevels.forEach { (level, id) ->
+                listOfLevelsBuilders.add(
+                    LevelsProto.newBuilder().setId(id).setName(level).build()
+                )
+            }
+        }
+        val userFlow = getUserProtoData(context)
+        val user = userFlow.first()
+
+        context.userParamsDataStore.updateData { userPorto ->
+            userPorto.toBuilder().clearListOfLevels()
+                .setUserId(user.userId)
+                .setCurRepeatDays(0)
+                .setMaxRepeatDays(0)
+                .setCountFullLearnedWords(0)
+                .setCountLearningWords(0)
+                .setCountKnewWords(0)
+                .addAllListOfLevels(listOfLevelsBuilders)
+                .setCheckBritishVariables(false)
+                .build()
+        }
     }
 
     override suspend fun clearUserData(context: Context) {
@@ -286,4 +337,25 @@ class MainPageModel : MainPageContract.Model {
         }
         Log.i("Dropped database", "Dropped database")
     }
+
+    private suspend fun getUserProtoData(context: Context): Flow<User> {
+        //Получаем данные из хранилища Proto DataStore
+        val userFlow: Flow<User> = context.userParamsDataStore.data.map { userProto ->
+            User(
+                userProto.userId,
+                userProto.curRepeatDays,
+                userProto.maxRepeatDays,
+                userProto.countFullLearnedWords,
+                userProto.countLearningWords,
+                userProto.countKnewWords,
+                userProto.listOfLevelsList.map { levelsProto ->
+                    convertLevelsProtoToLevels(levelsProto)
+                }.toMutableList(),
+                userProto.checkBritishVariables
+            )
+        }
+        return userFlow
+    }
+
+
 }

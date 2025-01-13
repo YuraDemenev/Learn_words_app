@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.R
+import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.fragments.adapters.CardAdapter
@@ -21,8 +24,9 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 
 class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View {
-
+    private val flowLevelsModel: FlowLevelsModel by activityViewModels()
     private lateinit var binding: FragmentLevelsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,12 +63,17 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
         arrayOfLevelsData.add(LevelsCardData("", 0, 0))
         //TODO Сделать изменение в FlowLevels при выборе тем
         //Для создание списка из card_view_for_levels
-        val cardAdapter = CardAdapter(arrayOfLevelsData)
+        val cardAdapter = CardAdapter(arrayOfLevelsData, flowLevelsModel)
 
         val recyclerView: RecyclerView = binding.levelsRecyclerView
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = cardAdapter
+
+        //Для возвращения в главное меню
+        binding.backToMainMenuContainer.setOnClickListener {
+            (requireActivity() as MainActivity).loadFragment("Main")
+        }
 
     }
 }
