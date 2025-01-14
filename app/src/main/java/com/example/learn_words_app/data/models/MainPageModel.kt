@@ -118,7 +118,14 @@ class MainPageModel : MainPageContract.Model {
         //Добавляем в flow levels model уровни
         val listOfLevels = checkUser.listOfLevels
         listOfLevels.forEach { locLevel ->
-            flowLevelsModel.data.value?.add(locLevel.name, locLevel.id)
+            if (locLevel.id != null) {
+                flowLevelsModel.data.value?.add(locLevel.name)
+            } else {
+                Log.e(
+                    "level id is null",
+                    "Main page model, checkUserData, level id is null"
+                )
+            }
         }
 
         Log.i("Check user data", "Success checked user data")
@@ -126,6 +133,7 @@ class MainPageModel : MainPageContract.Model {
 
     //Обновляем Proto данные пользователя
     override suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel) {
+        //Для добавления в Proto data levelsList
         val listOfLevelsBuilders = mutableListOf<LevelsProto>()
         //Проверка что flow levels model не null
         if (flowLevelsModel.data.value == null) {
@@ -135,8 +143,8 @@ class MainPageModel : MainPageContract.Model {
             )
         }
 
-        //Получаем map из Flow level
-        val curLevels = flowLevelsModel.data.value?.toMap()
+        //Получаем уровни из Flow level
+        val curLevels = flowLevelsModel.data.value?.toList()
         if (curLevels == null) {
             Log.e(
                 "current levels are null",
@@ -145,23 +153,25 @@ class MainPageModel : MainPageContract.Model {
             throw Exception()
         } else {
             //Проходим по list Levels и заполняем List LevelsProto
-            curLevels.forEach { (level, id) ->
+            curLevels.forEach { level ->
                 listOfLevelsBuilders.add(
-                    LevelsProto.newBuilder().setId(id).setName(level).build()
+                    LevelsProto.newBuilder().setId(0).setName(level).build()
                 )
             }
         }
+        //Получаем прогресс пользователя
         val userFlow = getUserProtoData(context)
         val user = userFlow.first()
 
+        //Обновляем прогресс пользователя
         context.userParamsDataStore.updateData { userPorto ->
             userPorto.toBuilder().clearListOfLevels()
                 .setUserId(user.userId)
-                .setCurRepeatDays(0)
-                .setMaxRepeatDays(0)
-                .setCountFullLearnedWords(0)
-                .setCountLearningWords(0)
-                .setCountKnewWords(0)
+                .setCurRepeatDays(user.curRepeatDays)
+                .setMaxRepeatDays(user.maxRepeatDays)
+                .setCountFullLearnedWords(user.countFullLearnedWords)
+                .setCountLearningWords(user.countLearningWords)
+                .setCountKnewWords(user.countKnewWords)
                 .addAllListOfLevels(listOfLevelsBuilders)
                 .setCheckBritishVariables(false)
                 .build()
@@ -357,5 +367,11 @@ class MainPageModel : MainPageContract.Model {
         return userFlow
     }
 
-
+//    private fun checkIsDataNull(data: Any, tag: String, message: String): Boolean {
+//        if (data == null) {
+//            Log.e(tag, message)
+//            return false
+//        }
+//        return true
+//    }
 }

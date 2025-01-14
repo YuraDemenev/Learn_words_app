@@ -109,6 +109,7 @@ class CardAdapter(
             holder.checkBox.isChecked = true
         }
 
+
         //Когда нажали на checkBox
         holder.checkBox.setOnClickListener {
             val localLevelName = holder.levelsName.text.toString()

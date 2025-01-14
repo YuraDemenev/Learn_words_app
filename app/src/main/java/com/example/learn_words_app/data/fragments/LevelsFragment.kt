@@ -21,6 +21,7 @@ import com.example.learn_words_app.databinding.FragmentLevelsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View {
@@ -72,6 +73,12 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
 
         //Для возвращения в главное меню
         binding.backToMainMenuContainer.setOnClickListener {
+
+            runBlocking {
+                myScope.launch {
+                    presenter.updateProtoData(thisContext, flowLevelsModel)
+                }.join()
+            }
             (requireActivity() as MainActivity).loadFragment("Main")
         }
 

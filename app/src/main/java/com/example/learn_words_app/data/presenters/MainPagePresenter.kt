@@ -18,6 +18,10 @@ class MainPagePresenter(
         model.checkUserData(context, db, flowLevelsModel)
     }
 
+    override suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel) {
+        model.updateProtoData(context, flowLevelsModel)
+    }
+
     override suspend fun getLevelsCardData(
         context: Context,
         db: MainDB
