@@ -3,6 +3,8 @@ syntax = "proto3";
 option java_package = "com.app.proto";
 option java_multiple_files = true;
 
+import  "google/protobuf/timestamp.proto";
+
 message LevelsProto {
   int32 id = 1;
   string name = 2;
@@ -14,7 +16,9 @@ message  UserProto{
   int32 maxRepeatDays = 3;
   int32 countFullLearnedWords = 4;
   int32 countLearningWords = 5;
-  int32 countKnewWords = 6;
-  repeated LevelsProto listOfLevels = 7;
-  bool checkBritishVariables = 8;
+  int32 countLearnedWordsToday = 6;
+  int32 countKnewWords = 7;
+  repeated LevelsProto listOfLevels = 8;
+  bool checkBritishVariables = 9;
+  google.protobuf.Timestamp lastTimeLearnedWords = 10;
 }

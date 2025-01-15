@@ -65,6 +65,11 @@ class MainFragment : Fragment(), MainPageContract.View {
             (requireActivity() as MainActivity).loadFragment("Levels")
         }
 
+        //Listener нажатия учить слова
+        binding.mainTextContainerLearnNewWords.setOnClickListener {
+
+        }
+
         //Only for DEV
         //Listener нажатия на текст UpDB
         binding.upDataBase.setOnClickListener {
@@ -80,6 +85,9 @@ class MainFragment : Fragment(), MainPageContract.View {
                 presenter.clearUserData(thisContext)
             }
         }
+
+        //Меняем надпись сегодня выучено слов
+        binding.countLearnigWords.text = "сегодня выучено слов 0/$"
 
         //Наблюдатель за FlowLevelsModel.
         //Меняем кол-во категорий

@@ -73,7 +73,7 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
 
         //Для возвращения в главное меню
         binding.backToMainMenuContainer.setOnClickListener {
-
+            //TODO Сделать alert если выбрано 0 категорий
             runBlocking {
                 myScope.launch {
                     presenter.updateProtoData(thisContext, flowLevelsModel)

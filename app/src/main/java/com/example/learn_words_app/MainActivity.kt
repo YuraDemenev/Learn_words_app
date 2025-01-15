@@ -34,4 +34,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onDestroy() {
+        //TODO Сделать сохранения прогресса пользователя в Proto data
+        super.onDestroy()
+    }
 }

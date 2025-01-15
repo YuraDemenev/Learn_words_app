@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
@@ -83,19 +84,21 @@ class MainPageModel : MainPageContract.Model {
             }
 
             try {
+                val user = User(userId = "test", countLearningWords = 10)
                 //Обновляем данные в Proto DataStore
-                context.userParamsDataStore.updateData { userPorto ->
-                    userPorto.toBuilder().clearListOfLevels()
-                        .setUserId("test")
-                        .setCurRepeatDays(0)
-                        .setMaxRepeatDays(0)
-                        .setCountFullLearnedWords(0)
-                        .setCountLearningWords(0)
-                        .setCountKnewWords(0)
-                        .addAllListOfLevels(listOfLevelsBuilders)
-                        .setCheckBritishVariables(false)
-                        .build()
-                }
+//                context.userParamsDataStore.updateData { userPorto ->
+//                    userPorto.toBuilder().clearListOfLevels()
+//                        .setUserId("test")
+//                        .setCurRepeatDays(0)
+//                        .setMaxRepeatDays(0)
+//                        .setCountFullLearnedWords(0)
+//                        .setCountLearningWords(10)
+//                        .setCountKnewWords(0)
+//                        .addAllListOfLevels(listOfLevelsBuilders)
+//                        .setCheckBritishVariables(false)
+//                        .build()
+//                }
+                setUserProtoData(context, user, listOfLevelsBuilders)
             } catch (e: Exception) {
                 Log.e(
                     "Check user data. Update Proto DataStore",
@@ -164,18 +167,7 @@ class MainPageModel : MainPageContract.Model {
         val user = userFlow.first()
 
         //Обновляем прогресс пользователя
-        context.userParamsDataStore.updateData { userPorto ->
-            userPorto.toBuilder().clearListOfLevels()
-                .setUserId(user.userId)
-                .setCurRepeatDays(user.curRepeatDays)
-                .setMaxRepeatDays(user.maxRepeatDays)
-                .setCountFullLearnedWords(user.countFullLearnedWords)
-                .setCountLearningWords(user.countLearningWords)
-                .setCountKnewWords(user.countKnewWords)
-                .addAllListOfLevels(listOfLevelsBuilders)
-                .setCheckBritishVariables(false)
-                .build()
-        }
+        setUserProtoData(context, user, listOfLevelsBuilders)
     }
 
     override suspend fun clearUserData(context: Context) {
@@ -348,7 +340,7 @@ class MainPageModel : MainPageContract.Model {
         Log.i("Dropped database", "Dropped database")
     }
 
-    private suspend fun getUserProtoData(context: Context): Flow<User> {
+    private fun getUserProtoData(context: Context): Flow<User> {
         //Получаем данные из хранилища Proto DataStore
         val userFlow: Flow<User> = context.userParamsDataStore.data.map { userProto ->
             User(
@@ -357,14 +349,40 @@ class MainPageModel : MainPageContract.Model {
                 userProto.maxRepeatDays,
                 userProto.countFullLearnedWords,
                 userProto.countLearningWords,
+                userProto.countLearnedWordsToday,
                 userProto.countKnewWords,
                 userProto.listOfLevelsList.map { levelsProto ->
                     convertLevelsProtoToLevels(levelsProto)
                 }.toMutableList(),
-                userProto.checkBritishVariables
+                userProto.checkBritishVariables,
+                Instant.ofEpochSecond(
+                    userProto.lastTimeLearnedWords.seconds,
+                    userProto.lastTimeLearnedWords.nanos.toLong()
+                )
+
             )
         }
         return userFlow
+    }
+
+    private suspend fun setUserProtoData(
+        context: Context,
+        user: User,
+        listOfLevelsBuilders: MutableList<LevelsProto>
+    ) {
+        //Обновляем прогресс пользователя
+        context.userParamsDataStore.updateData { userPorto ->
+            userPorto.toBuilder().clearListOfLevels()
+                .setUserId(user.userId)
+                .setCurRepeatDays(user.curRepeatDays)
+                .setMaxRepeatDays(user.maxRepeatDays)
+                .setCountFullLearnedWords(user.countFullLearnedWords)
+                .setCountLearningWords(user.countLearningWords)
+                .setCountKnewWords(user.countKnewWords)
+                .addAllListOfLevels(listOfLevelsBuilders)
+                .setCheckBritishVariables(false)
+                .build()
+        }
     }
 
 //    private fun checkIsDataNull(data: Any, tag: String, message: String): Boolean {

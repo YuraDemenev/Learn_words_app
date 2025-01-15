@@ -111,7 +111,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <!--Layout чтобы хранить 2 текста разного размера-->
+                    <!--Layout, чтобы хранить 2 текста разного размера-->
                     <LinearLayout
                         android:id="@+id/mainTextContainerLearnNewWords"
                         android:layout_width="0sp"
@@ -447,6 +447,7 @@
                     android:layout_marginBottom="10dp">
 
                     <TextView
+                        android:id="@+id/countLearnigWords"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Сегодня выученно / слов"
