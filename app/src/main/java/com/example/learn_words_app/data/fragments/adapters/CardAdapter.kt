@@ -98,7 +98,7 @@ class CardAdapter(
         if (levelName.contains("_")) {
             levelName = levelName.replace("_", " ")
         }
-        
+
         //Проверяем есть ли уровень в flowLevelsModel, чтобы поставить галочку в checkBox
         if (flowLevelsModel.data.value?.contains(levelName) == true) {
             holder.checkBox.isChecked = true
@@ -111,15 +111,22 @@ class CardAdapter(
 
         //Когда нажали на checkBox
         holder.checkBox.setOnClickListener {
-            val localLevelName = holder.levelsName.text.toString()
+            var localLevelName = holder.levelsName.text.toString()
+            //1 букву в слове возводим в lowerCase (Потому что у нас в БД все названия с lowerCase
+            localLevelName = localLevelName.replaceFirstChar { it.lowercase() }
+
             //Если выбрали check box
             if (holder.checkBox.isChecked) {
+
                 flowLevelsModel.data.value?.add(localLevelName)
             } else {
                 if (flowLevelsModel.data.value?.contains(localLevelName) == true) {
                     flowLevelsModel.data.value?.remove(localLevelName)
                 } else {
-                    Log.e("flow Levels Model error", "Flow levels Model does`t have level name")
+                    Log.e(
+                        "flow Levels Model error",
+                        "Flow levels Model does`t have level name: $localLevelName"
+                    )
                     throw Exception()
                 }
             }

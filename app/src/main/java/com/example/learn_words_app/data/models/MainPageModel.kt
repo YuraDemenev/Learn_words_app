@@ -54,9 +54,7 @@ class MainPageModel : MainPageContract.Model {
             words = db.getDao().getWordsByLevelsIdsMultiplyQueries(arrayLevelsIds, 10)
 
         }.join()
-        Log.i("test", words.toString())
-        val test = mutableListOf<Words>()
-        return test
+        return words.toMutableList()
     }
 
     override suspend fun getLevelsCardData(

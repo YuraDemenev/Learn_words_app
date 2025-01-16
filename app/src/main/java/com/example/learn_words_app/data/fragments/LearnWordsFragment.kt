@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.dataBase.MainDB
+import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
@@ -47,9 +49,14 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         binding.learnWordsBackToMenuContainer.setOnClickListener {
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEVELS)
         }
+
+        var listOfWords = mutableListOf<Words>()
         runBlocking {
-            myScope.launch { presenter.getWordsForLearn(thisContext, db, flowLevelsModel) }.join()
+            myScope.launch {
+                listOfWords = presenter.getWordsForLearn(thisContext, db, flowLevelsModel)
+            }.join()
         }
+        Log.i("test", listOfWords.toString())
 
     }
 }
