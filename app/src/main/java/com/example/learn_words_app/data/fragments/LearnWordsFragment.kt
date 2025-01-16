@@ -1,10 +1,10 @@
 package com.example.learn_words_app.data.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.MainActivity
@@ -50,13 +50,61 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEVELS)
         }
 
+        //Список слов, для того чтобы предлагать пользователю новые слова
         var listOfWords = mutableListOf<Words>()
         runBlocking {
             myScope.launch {
                 listOfWords = presenter.getWordsForLearn(thisContext, db, flowLevelsModel)
             }.join()
         }
-        Log.i("test", listOfWords.toString())
 
+        //Для сохранения тех слов которые пользователь не знает
+        val listOfNewWords = mutableListOf<Words>()
+        //Для итерации по listOfWords
+        //TODO Продумать что будет если пользователь в середине изучения выйдет в главное меню
+        var indexWord = 0
+        var countLearnedWords = 0
+
+        binding.learnWordsWord.text = listOfWords[indexWord].englishWord
+        binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
+
+        //При нажатии на 'я знаю это слово'
+        //TODO Добавить красивые анимации смены слова
+        binding.learnWordsIKnowThisWordText.setOnClickListener {
+            //TODO изменить 10 на переменную
+            if (countLearnedWords < 10) {
+                indexWord++
+                binding.learnWordsIKnowThisWordText.text = listOfWords[indexWord].englishWord
+                binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
+                
+            } else {
+                //Удаляем элемент перевод
+                val parent = binding.learnWordsTranslation.parent as ViewGroup
+                parent.removeView(binding.learnWordsTranslation)
+
+                //Убираем margin у английского слова, чтобы разместить элемент посередине
+                val layoutParams =
+                    binding.learnWordsWord.layoutParams as ViewGroup.MarginLayoutParams
+                layoutParams.topMargin = 0
+
+                //Чтобы поменять start of end
+                val constraintLayout = binding.learnWordsLayoutInCard
+                // Create a ConstraintSet object
+                val constraintSet = ConstraintSet()
+                // Clone the existing constraints from the ConstraintLayout
+                constraintSet.clone(constraintLayout)
+                // Set the constraint
+                constraintSet.connect(
+                    binding.learnWordsWord.id,
+                    ConstraintSet.BOTTOM,
+                    binding.learnWordsDownContainer.id,
+                    ConstraintSet.TOP,
+                    0
+                )
+            }
+        }
+
+        //При нажатии на 'я не знаю это слово'
+//        binding.learnWordsIDontKnowThisWordText
     }
 }

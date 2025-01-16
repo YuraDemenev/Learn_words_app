@@ -37,6 +37,9 @@ class MainPageModel : MainPageContract.Model {
         myScope.launch {
             val hashSet = flowLevelsModel.data.value
             if (hashSet != null) {
+                if (hashSet.size == 0) {
+                    Log.e("Main page model get words for learn.", "hash set size is zero")
+                }
                 listOfLevels = db.getDao().getLevelsByNamesMultipleQueries(hashSet)
             }
         }.join()

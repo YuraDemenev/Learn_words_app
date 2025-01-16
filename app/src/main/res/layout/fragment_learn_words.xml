@@ -78,6 +78,7 @@
         app:cardCornerRadius="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/learnWordsLayoutInCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -137,37 +138,51 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <TextView
-                android:id="@+id/learnWordsWord"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/learnWordsWordAndTranscriptionContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="140dp"
-                android:text="Word"
-                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/learnWordsHighContainer" />
+                app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
+                <TextView
+                    android:id="@+id/learnWordsWord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Word"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/learnWordsWordAndTranscriptionContainer" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="транскрипция"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/learnWordsWord" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="транскрипция"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/learnWordsWord" />
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
 
             <TextView
+                android:id="@+id/learnWordsTranslation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="140dp"
                 android:text="Перевод"
                 android:textSize="25sp"
-                app:layout_constraintBottom_toTopOf="@id/learnWordsDownContainer"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/learnWordsDownContainer"
@@ -178,6 +193,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
+                    android:id="@+id/learnWordsIKnowThisWordText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="40dp"
@@ -188,6 +204,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
+                    android:id="@+id/learnWordsIDontKnowThisWordText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="40dp"

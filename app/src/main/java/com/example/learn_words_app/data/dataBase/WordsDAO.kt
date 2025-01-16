@@ -54,6 +54,14 @@ interface WordsDAO {
     suspend fun getLevelsByNamesMultipleQueries(levels: HashSet<String>): List<Levels> {
         val placeholders = levels.joinToString(" OR ") { "name = ?" }
         val args = levels.map { "$it" }.toTypedArray()
+        //В array могут быть темы в которых есть пробелы, их нужно заменить на _
+        args.forEachIndexed { i, word ->
+            if (word.contains(" ")) {
+                val newWord = word.replace(" ", "_")
+                args[i] = newWord
+            }
+
+        }
         val query = SimpleSQLiteQuery("SELECT * FROM levels WHERE $placeholders", args)
         return getLevelsByNames(query)
     }

@@ -109,6 +109,7 @@ class CardAdapter(
 
         holder.levelsName.text = levelName
 
+        //TODO Если ничего не меняли в темах не обновлять Proto data
         //Когда нажали на checkBox
         holder.checkBox.setOnClickListener {
             var localLevelName = holder.levelsName.text.toString()
