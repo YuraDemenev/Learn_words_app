@@ -2,7 +2,10 @@ package com.example.learn_words_app.data.dataBase
 
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.RawQuery
 import androidx.room.Upsert
+import androidx.sqlite.db.SimpleSQLiteQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -31,6 +34,29 @@ interface WordsDAO {
     //Удаляем primaryKeys, чтобы в новой таблице id начинался с 1
     @Query("DELETE FROM sqlite_sequence")
     suspend fun deletePrimaryKeys()
+
+    //Динамический запрос для получения слов из таблицы по уровням
+    @RawQuery
+    suspend fun getWordsByLevelsIds(query: SupportSQLiteQuery): List<Words>
+    suspend fun getWordsByLevelsIdsMultiplyQueries(ids: Array<Int>, countWords: Int): List<Words> {
+        val placeholders = ids.joinToString(" OR ") { "level_id = ?" }
+        val args = ids.map { "$it" }.toTypedArray()
+        val query = SimpleSQLiteQuery(
+            "SELECT * FROM words WHERE $placeholders ORDER BY RANDOM() LIMIT $countWords",
+            args
+        )
+        return getWordsByLevelsIds(query)
+    }
+
+    //Динамический запрос для получения уровней из таблицы по именам
+    @RawQuery
+    suspend fun getLevelsByNames(query: SupportSQLiteQuery): List<Levels>
+    suspend fun getLevelsByNamesMultipleQueries(levels: HashSet<String>): List<Levels> {
+        val placeholders = levels.joinToString(" OR ") { "name = ?" }
+        val args = levels.map { "$it" }.toTypedArray()
+        val query = SimpleSQLiteQuery("SELECT * FROM levels WHERE $placeholders", args)
+        return getLevelsByNames(query)
+    }
 
     @Query("SELECT * FROM words")
     //Flow похож на каналы в Go, данные приходят когда обновляются, можно использовать

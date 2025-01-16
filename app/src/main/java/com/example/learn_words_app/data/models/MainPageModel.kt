@@ -25,6 +25,40 @@ import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
+    override suspend fun getWordsForLearn(
+        context: Context,
+        db: MainDB,
+        flowLevelsModel: FlowLevelsModel
+    ): MutableList<Words> {
+        val myScope = CoroutineScope(Dispatchers.IO)
+        lateinit var listOfLevels: List<Levels>
+
+        //Получаем уровни
+        myScope.launch {
+            val hashSet = flowLevelsModel.data.value
+            if (hashSet != null) {
+                listOfLevels = db.getDao().getLevelsByNamesMultipleQueries(hashSet)
+            }
+        }.join()
+
+        //Получаем из list levels ids чтобы их использовать в следующем запросе
+        val arrayLevelsIds: Array<Int> = Array<Int>(listOfLevels.size) { 0 }
+        listOfLevels.forEachIndexed { index, level ->
+            if (level.id != null) {
+                arrayLevelsIds[index] = level.id
+            }
+        }
+        //Получаем случайный список слов с levels_id
+        lateinit var words: List<Words>
+        myScope.launch {
+            words = db.getDao().getWordsByLevelsIdsMultiplyQueries(arrayLevelsIds, 10)
+
+        }.join()
+        Log.i("test", words.toString())
+        val test = mutableListOf<Words>()
+        return test
+    }
+
     override suspend fun getLevelsCardData(
         context: Context,
         db: MainDB
@@ -67,7 +101,7 @@ class MainPageModel : MainPageContract.Model {
         //Если пользователя нет
         if (checkUser.userId == "") {
             //Получаем список id и name из таблицы tables
-            val baseLevels = db.getDao().getBaseLevels("A1", "A2", "B1")
+            val baseLevels = db.getDao().getBaseLevels("a1", "a2", "b1")
             //Создаем список для LevelsProto
             val listOfLevelsBuilders = mutableListOf<LevelsProto>()
 
@@ -85,19 +119,6 @@ class MainPageModel : MainPageContract.Model {
 
             try {
                 val user = User(userId = "test", countLearningWords = 10)
-                //Обновляем данные в Proto DataStore
-//                context.userParamsDataStore.updateData { userPorto ->
-//                    userPorto.toBuilder().clearListOfLevels()
-//                        .setUserId("test")
-//                        .setCurRepeatDays(0)
-//                        .setMaxRepeatDays(0)
-//                        .setCountFullLearnedWords(0)
-//                        .setCountLearningWords(10)
-//                        .setCountKnewWords(0)
-//                        .addAllListOfLevels(listOfLevelsBuilders)
-//                        .setCheckBritishVariables(false)
-//                        .build()
-//                }
                 setUserProtoData(context, user, listOfLevelsBuilders)
             } catch (e: Exception) {
                 Log.e(

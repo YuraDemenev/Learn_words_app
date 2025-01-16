@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
+import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.fragments.adapters.CardAdapter
@@ -61,6 +62,7 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
         arrayOfLevelsData[0].levelName = "Ваши слова"
 
         //TODO Убрать костыль в виде пустой карточки (Почему -то последний элемент не отображается)
+        //TODO Переделать порядок уровней в recycler view
         arrayOfLevelsData.add(LevelsCardData("", 0, 0))
         //TODO Сделать изменение в FlowLevels при выборе тем
         //Для создание списка из card_view_for_levels
@@ -79,7 +81,7 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
                     presenter.updateProtoData(thisContext, flowLevelsModel)
                 }.join()
             }
-            (requireActivity() as MainActivity).loadFragment("Main")
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
         }
 
     }

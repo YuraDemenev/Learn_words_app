@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.dataBase.MainDB
+import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
 
 class MainPagePresenter(
@@ -20,6 +21,14 @@ class MainPagePresenter(
 
     override suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel) {
         model.updateProtoData(context, flowLevelsModel)
+    }
+
+    override suspend fun getWordsForLearn(
+        context: Context,
+        db: MainDB,
+        flowLevelsModel: FlowLevelsModel
+    ): MutableList<Words> {
+        return model.getWordsForLearn(context, db, flowLevelsModel)
     }
 
     override suspend fun getLevelsCardData(

@@ -98,17 +98,16 @@ class CardAdapter(
         if (levelName.contains("_")) {
             levelName = levelName.replace("_", " ")
         }
-
-        //1 букву в слове возводим в upperCase
-        levelName = levelName.replaceFirstChar { it.uppercase() }
-
-        holder.levelsName.text = levelName
-
+        
         //Проверяем есть ли уровень в flowLevelsModel, чтобы поставить галочку в checkBox
         if (flowLevelsModel.data.value?.contains(levelName) == true) {
             holder.checkBox.isChecked = true
         }
 
+        //1 букву в слове возводим в upperCase
+        levelName = levelName.replaceFirstChar { it.uppercase() }
+
+        holder.levelsName.text = levelName
 
         //Когда нажали на checkBox
         holder.checkBox.setOnClickListener {

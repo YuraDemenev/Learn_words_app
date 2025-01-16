@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
+import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.models.MainPageModel
@@ -62,12 +63,12 @@ class MainFragment : Fragment(), MainPageContract.View {
 
         //Переход на страницу выбора тем
         binding.mainTextContainerChooseCategory.setOnClickListener {
-            (requireActivity() as MainActivity).loadFragment("Levels")
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEVELS)
         }
 
         //Listener нажатия учить слова
         binding.mainTextContainerLearnNewWords.setOnClickListener {
-
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEARN_WORDS)
         }
 
         //Only for DEV
@@ -87,7 +88,7 @@ class MainFragment : Fragment(), MainPageContract.View {
         }
 
         //Меняем надпись сегодня выучено слов
-        binding.countLearnigWords.text = "сегодня выучено слов 0/$"
+        binding.countLearnedWords.text = "сегодня выучено слов 0/10"
 
         //Наблюдатель за FlowLevelsModel.
         //Меняем кол-во категорий

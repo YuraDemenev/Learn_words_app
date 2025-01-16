@@ -3,6 +3,8 @@ package com.example.learn_words_app
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.learn_words_app.data.additionalData.FragmentsNames
+import com.example.learn_words_app.data.fragments.LearnWordsFragment
 import com.example.learn_words_app.data.fragments.LevelsFragment
 import com.example.learn_words_app.data.fragments.MainFragment
 
@@ -10,19 +12,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.empty_fragment)
-        loadFragment("Main")
+        loadFragment(FragmentsNames.MAIN)
 
     }
 
-    fun loadFragment(name: String) {
+    fun loadFragment(fragmentName: FragmentsNames) {
         val manager = supportFragmentManager.beginTransaction()
-        when (name) {
-            "Main" -> {
+        when (fragmentName) {
+            FragmentsNames.MAIN -> {
                 manager.replace(R.id.empty_fragment_container, MainFragment()).commit()
             }
 
-            "Levels" -> {
+            FragmentsNames.LEVELS -> {
                 manager.replace(R.id.empty_fragment_container, LevelsFragment()).commit()
+            }
+
+            FragmentsNames.LEARN_WORDS -> {
+                manager.replace(R.id.empty_fragment_container, LearnWordsFragment()).commit()
             }
 
             else -> {
