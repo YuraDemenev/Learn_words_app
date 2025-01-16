@@ -30,27 +30,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/levelsIconBackMainMenu"
-                    android:layout_width="30sp"
-                    android:layout_height="30sp"
-                    android:layout_marginStart="20sp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/choose_category_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="30sp"
-                    android:layout_marginStart="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:text="В главное меню"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/levelsIconBackMainMenu"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="Повторить слова"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -60,12 +69,13 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/learnWordsLearnedCountNewWords"
         android:layout_width="match_parent"
         android:layout_height="30sp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:text="Заучено 0/10 новых слов"
+        android:text="Изучено 0/10 новых слов"
         android:textSize="20sp" />
 
     <androidx.cardview.widget.CardView
@@ -117,6 +127,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/levelName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -142,6 +153,7 @@
                 android:id="@+id/learnWordsWordAndTranscriptionContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
                 app:layout_constraintBottom_toTopOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -150,6 +162,7 @@
                     android:id="@+id/learnWordsWord"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Word"
                     android:textSize="25sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -157,6 +170,7 @@
                     app:layout_constraintTop_toTopOf="@id/learnWordsWordAndTranscriptionContainer" />
 
                 <TextView
+                    android:id="@+id/transcription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="транскрипция"
@@ -178,6 +192,8 @@
                 android:id="@+id/learnWordsTranslation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
                 android:text="Перевод"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"

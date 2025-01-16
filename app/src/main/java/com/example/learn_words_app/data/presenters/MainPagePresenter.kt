@@ -27,7 +27,7 @@ class MainPagePresenter(
         context: Context,
         db: MainDB,
         flowLevelsModel: FlowLevelsModel
-    ): MutableList<Words> {
+    ): Pair<MutableList<Words>, HashMap<Int, String>> {
         return model.getWordsForLearn(context, db, flowLevelsModel)
     }
 

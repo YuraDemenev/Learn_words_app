@@ -29,7 +29,7 @@ class MainPageModel : MainPageContract.Model {
         context: Context,
         db: MainDB,
         flowLevelsModel: FlowLevelsModel
-    ): MutableList<Words> {
+    ): Pair<MutableList<Words>, HashMap<Int, String>> {
         val myScope = CoroutineScope(Dispatchers.IO)
         lateinit var listOfLevels: List<Levels>
 
@@ -45,19 +45,32 @@ class MainPageModel : MainPageContract.Model {
         }.join()
 
         //Получаем из list levels ids чтобы их использовать в следующем запросе
-        val arrayLevelsIds: Array<Int> = Array<Int>(listOfLevels.size) { 0 }
+        val arrayLevelsIds: Array<Int> = Array(listOfLevels.size) { 0 }
         listOfLevels.forEachIndexed { index, level ->
             if (level.id != null) {
                 arrayLevelsIds[index] = level.id
             }
         }
+
         //Получаем случайный список слов с levels_id
         lateinit var words: List<Words>
         myScope.launch {
             words = db.getDao().getWordsByLevelsIdsMultiplyQueries(arrayLevelsIds, 10)
 
         }.join()
-        return words.toMutableList()
+
+        //Создаем hash map, чтобы хранить названия уровней по ids
+        val hashMap = HashMap<Int, String>()
+        listOfLevels.forEach { element ->
+            if (element.id != null) {
+                hashMap[element.id] = element.name
+            } else {
+                Log.e("Main page contract", "listOfLevels has element with null id")
+                throw Exception()
+            }
+        }
+        val pair = Pair(words.toMutableList(), hashMap)
+        return pair
     }
 
     override suspend fun getLevelsCardData(

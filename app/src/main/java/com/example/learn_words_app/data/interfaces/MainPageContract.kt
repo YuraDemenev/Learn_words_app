@@ -20,7 +20,7 @@ interface MainPageContract {
             context: Context,
             db: MainDB,
             flowLevelsModel: FlowLevelsModel
-        ): MutableList<Words>
+        ): Pair<MutableList<Words>, HashMap<Int, String>>
 
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
@@ -46,7 +46,7 @@ interface MainPageContract {
             context: Context,
             db: MainDB,
             flowLevelsModel: FlowLevelsModel
-        ): MutableList<Words>
+        ): Pair<MutableList<Words>, HashMap<Int, String>>
 
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 

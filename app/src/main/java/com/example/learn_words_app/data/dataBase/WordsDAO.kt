@@ -66,6 +66,7 @@ interface WordsDAO {
         return getLevelsByNames(query)
     }
 
+
     @Query("SELECT * FROM words")
     //Flow похож на каналы в Go, данные приходят когда обновляются, можно использовать
     //observe для контроля изменений в данных

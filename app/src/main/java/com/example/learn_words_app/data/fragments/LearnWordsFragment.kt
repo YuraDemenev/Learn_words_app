@@ -1,6 +1,8 @@
 package com.example.learn_words_app.data.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +40,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val thisContext = requireContext()
         //Получаем/создаем БД
@@ -47,16 +50,20 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
         //Для возвращения в главное меню
         binding.learnWordsBackToMenuContainer.setOnClickListener {
-            (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEVELS)
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
         }
 
-        //Список слов, для того чтобы предлагать пользователю новые слова
-        var listOfWords = mutableListOf<Words>()
+
+        lateinit var pair: Pair<MutableList<Words>, HashMap<Int, String>>
         runBlocking {
             myScope.launch {
-                listOfWords = presenter.getWordsForLearn(thisContext, db, flowLevelsModel)
+                pair = presenter.getWordsForLearn(thisContext, db, flowLevelsModel)
             }.join()
         }
+        //Список слов, для того чтобы предлагать пользователю новые слова
+        val listOfWords = pair.first
+        //Hash Map, чтобы получать название уровня по id
+        val hashMap = pair.second
 
         //Для сохранения тех слов которые пользователь не знает
         val listOfNewWords = mutableListOf<Words>()
@@ -68,19 +75,46 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         binding.learnWordsWord.text = listOfWords[indexWord].englishWord
         binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
 
+        //Для изменения названия уровня
+        changeLevelName(binding, hashMap, listOfWords, indexWord)
+
+        //TODO Добавить переход на страницу повторять слова при нажатии на текст
+
         //При нажатии на 'я знаю это слово'
         //TODO Добавить красивые анимации смены слова
-        binding.learnWordsIKnowThisWordText.setOnClickListener {
+        binding.learnWordsIDontKnowThisWordText.setOnClickListener {
             //TODO изменить 10 на переменную
-            if (countLearnedWords < 10) {
+            if (countLearnedWords < 9) {
                 indexWord++
-                binding.learnWordsIKnowThisWordText.text = listOfWords[indexWord].englishWord
+                countLearnedWords++
+
+                binding.learnWordsWord.text = listOfWords[indexWord].englishWord
                 binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
-                
-            } else {
+
+                binding.learnWordsLearnedCountNewWords.text =
+                    "Заучено $countLearnedWords/10 новых слов"
+
+                binding.levelName.text = hashMap[listOfWords[indexWord].id]
+
+                //Для изменения названия уровня
+                changeLevelName(binding, hashMap, listOfWords, indexWord)
+
+            } else if (countLearnedWords == 9) {
+                //Увеличиваем кол-во выученных слов
+                countLearnedWords++
+                binding.learnWordsLearnedCountNewWords.text =
+                    "Заучено $countLearnedWords/10 новых слов"
+
+                //Для изменения названия уровня
+                changeLevelName(binding, hashMap, listOfWords, indexWord)
+
                 //Удаляем элемент перевод
-                val parent = binding.learnWordsTranslation.parent as ViewGroup
+                var parent = binding.learnWordsTranslation.parent as ViewGroup
                 parent.removeView(binding.learnWordsTranslation)
+
+                //Удаляем элемент транскрипция
+                parent = binding.transcription.parent as ViewGroup
+                parent.removeView(binding.transcription)
 
                 //Убираем margin у английского слова, чтобы разместить элемент посередине
                 val layoutParams =
@@ -95,16 +129,44 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
                 constraintSet.clone(constraintLayout)
                 // Set the constraint
                 constraintSet.connect(
-                    binding.learnWordsWord.id,
-                    ConstraintSet.BOTTOM,
-                    binding.learnWordsDownContainer.id,
+                    binding.learnWordsWordAndTranscriptionContainer.id,
                     ConstraintSet.TOP,
+                    binding.guideline.id,
+                    ConstraintSet.BOTTOM,
                     0
                 )
+                constraintSet.applyTo(constraintLayout)
+
+                binding.learnWordsWord.text = "Вы выучили все слова на сегодня"
             }
         }
 
         //При нажатии на 'я не знаю это слово'
-//        binding.learnWordsIDontKnowThisWordText
+//        binding.learnWordsIKnowThisWordText
+    }
+
+    private fun changeLevelName(
+        binding: FragmentLearnWordsBinding,
+        hashMap: HashMap<Int, String>,
+        listOfWords: MutableList<Words>,
+        indexWord: Int
+    ) {
+        //Для изменения названия уровня
+        val str = hashMap[listOfWords[indexWord].levelId]
+        if (str != null) {
+            binding.levelName.text = changeWordForShow(str)
+        } else {
+            Log.e("Learn words fragment", "changeLevelName str is null")
+            throw Exception()
+        }
+    }
+
+    private fun changeWordForShow(word: String): String {
+        var myWord = word
+        if (word.contains("_")) {
+            myWord = word.replace("_", " ")
+        }
+        myWord = myWord.replaceFirstChar { it.uppercase() }
+        return myWord
     }
 }
