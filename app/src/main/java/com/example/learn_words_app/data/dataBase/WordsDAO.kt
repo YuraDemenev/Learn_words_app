@@ -35,11 +35,14 @@ interface WordsDAO {
     @Query("DELETE FROM sqlite_sequence")
     suspend fun deletePrimaryKeys()
 
+    @Query("UPDATE words_levels SET stage = 6 WHERE word_id = :wordId")
+    fun updateWordLevelsStage(wordId: Int)
+
     //Динамический запрос для получения 1 слова
     @RawQuery
     suspend fun getWordByLevelsIds(query: SupportSQLiteQuery): Words
     suspend fun getWordByLevelsIdsMultiplyQueries(ids: Array<Int>): Words {
-        val placeholders = ids.joinToString(" OR ") { "level_id = ?" }
+        val placeholders = ids.joinToString(" OR ") { "words.level_id = ?" }
         val args = ids.map { "$it" }.toTypedArray()
         val query = SimpleSQLiteQuery(
             "SELECT * FROM words " +

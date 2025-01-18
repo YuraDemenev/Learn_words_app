@@ -25,9 +25,10 @@ class MainPagePresenter(
         context: Context,
         db: MainDB,
         flowLevelsModel: FlowLevelsModel,
+        wordId: Int?,
         callback: WordCallback
     ) {
-        model.getOneWordForLearn(context, db, flowLevelsModel, callback)
+        model.getOneWordForLearn(context, db, flowLevelsModel, wordId, callback)
     }
 
     override suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel) {
@@ -41,6 +42,14 @@ class MainPagePresenter(
         countLearningWords: Int
     ): Pair<MutableList<Words>, HashMap<Int, String>> {
         return model.getWordsForLearn(context, db, flowLevelsModel, countLearningWords)
+    }
+
+    override suspend fun updateWordsLevels(
+        context: Context,
+        db: MainDB,
+        listOfNewWords: List<Words>
+    ) {
+        model.updateWordsLevels(context, db, listOfNewWords)
     }
 
     override suspend fun getUser(context: Context): User {

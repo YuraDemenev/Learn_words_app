@@ -102,7 +102,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
         //Для изменения названия уровня
         changeLevelName(binding, hashMap, listOfWords, indexWord)
-
+        
         //TODO Добавить переход на страницу повторять слова при нажатии на текст
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -173,20 +173,20 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
         //При нажатии на 'я знаю это слово'
         binding.learnWordsIKnowThisWordText.setOnClickListener {
+
             //Необходимо получить 1 новое слово из БД
             lateinit var newWord: Words
-            //TODO Продумать чтобы не брать из БД слова, которые уже были взяты в первом запросе, или в последующих
             //Делаем callback чтобы не блокировать основной поток пока получаем значение из БД
             myScope.launch {
                 presenter.getOneWordForLearn(
                     thisContext,
                     db,
                     flowLevelsModel,
+                    listOfWords[indexWord].id,
                     object : WordCallback {
                         override fun onWordReceived(words: Words) {
                             newWord = words
                             listOfWords.add(newWord)
-
                         }
                     })
             }
@@ -235,6 +235,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
             nextWord(indexWord, listOfWords, countLearnedWords, hashMap)
 
             // TODO Сделать изменение в БД, что слово выучено
+
         }
     }
 

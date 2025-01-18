@@ -31,10 +31,21 @@ class MainPageModel : MainPageContract.Model {
         context: Context,
         db: MainDB,
         flowLevelsModel: FlowLevelsModel,
+        wordId: Int?,
         callback: WordCallback
     ) {
         val myScope = CoroutineScope(Dispatchers.IO)
         lateinit var listOfLevels: List<Levels>
+
+        if (wordId != null) {
+            //Меняем в words_levels stage на 6, так как пользователь уже слово знает
+            myScope.launch {
+                db.getDao().updateWordLevelsStage(wordId)
+            }.join()
+        } else {
+            Log.e("Main Page Model", "getOneWordForLearn, wordId is null")
+            throw Exception()
+        }
 
         //Получаем уровни
         myScope.launch {
@@ -111,7 +122,10 @@ class MainPageModel : MainPageContract.Model {
             if (element.id != null) {
                 hashMap[element.id] = element.name
             } else {
-                Log.e("Main page contract", "listOfLevels has element with null id")
+                Log.e(
+                    "Main page contract",
+                    "getWordsForLearn, listOfLevels has element with null id"
+                )
                 throw Exception()
             }
         }
@@ -249,6 +263,25 @@ class MainPageModel : MainPageContract.Model {
 
         //Обновляем прогресс пользователя
         setUserProtoData(context, user, listOfLevelsBuilders)
+    }
+
+    override suspend fun updateWordsLevels(
+        context: Context,
+        db: MainDB,
+        listOfNewWords: List<Words>
+    ) {
+
+        listOfNewWords.forEach { word ->
+            val myScope = CoroutineScope(Dispatchers.IO)
+            myScope.launch {
+                if (word.id != null) {
+                    db.getDao().updateWordLevelsStage(word.id)
+                } else {
+                    Log.e("Main Page Model", "updateWordsLevels word id is null")
+                    throw Exception()
+                }
+            }
+        }
     }
 
     override suspend fun clearUserData(context: Context) {

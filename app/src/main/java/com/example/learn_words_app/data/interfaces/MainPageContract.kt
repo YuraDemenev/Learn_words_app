@@ -28,6 +28,7 @@ interface MainPageContract {
             context: Context,
             db: MainDB,
             flowLevelsModel: FlowLevelsModel,
+            wordId: Int?,
             callback: WordCallback
         )
 
@@ -38,6 +39,8 @@ interface MainPageContract {
         suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
 
         suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
+
+        suspend fun updateWordsLevels(context: Context, db: MainDB, listOfNewWords: List<Words>)
 
         //For Dev
         suspend fun upDB(c: Context, db: MainDB)
@@ -67,11 +70,13 @@ interface MainPageContract {
         suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
 
         suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
+        suspend fun updateWordsLevels(context: Context, db: MainDB, listOfNewWords: List<Words>)
 
         suspend fun getOneWordForLearn(
             context: Context,
             db: MainDB,
             flowLevelsModel: FlowLevelsModel,
+            wordId: Int?,
             callback: WordCallback
         )
 
