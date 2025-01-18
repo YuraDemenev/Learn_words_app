@@ -3,6 +3,7 @@ package com.example.learn_words_app.data.interfaces
 import android.content.Context
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
+import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 
@@ -19,7 +20,8 @@ interface MainPageContract {
         suspend fun getWordsForLearn(
             context: Context,
             db: MainDB,
-            flowLevelsModel: FlowLevelsModel
+            flowLevelsModel: FlowLevelsModel,
+            countLearningWords: Int
         ): Pair<MutableList<Words>, HashMap<Int, String>>
 
         suspend fun getOneWordForLearn(
@@ -28,6 +30,8 @@ interface MainPageContract {
             flowLevelsModel: FlowLevelsModel,
             callback: WordCallback
         )
+
+        suspend fun getUser(context: Context): User
 
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
@@ -52,8 +56,11 @@ interface MainPageContract {
         suspend fun getWordsForLearn(
             context: Context,
             db: MainDB,
-            flowLevelsModel: FlowLevelsModel
+            flowLevelsModel: FlowLevelsModel,
+            countLearningWords: Int
         ): Pair<MutableList<Words>, HashMap<Int, String>>
+
+        suspend fun getUser(context: Context): User
 
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
@@ -76,8 +83,5 @@ interface MainPageContract {
 
         //For Dev
         suspend fun clearUserData(context: Context)
-
     }
-
-
 }

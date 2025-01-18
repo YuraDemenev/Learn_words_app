@@ -15,6 +15,7 @@ import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
+import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
@@ -58,13 +59,29 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
         }
 
+        //Получаем пользователя
+        lateinit var user: User
+        runBlocking {
+            myScope.launch {
+                user = presenter.getUser(thisContext)
+            }.join()
+        }
 
+        //Получаем слова для изучения
         lateinit var pair: Pair<MutableList<Words>, HashMap<Int, String>>
         runBlocking {
             myScope.launch {
-                pair = presenter.getWordsForLearn(thisContext, db, flowLevelsModel)
+                pair = presenter.getWordsForLearn(
+                    thisContext,
+                    db,
+                    flowLevelsModel,
+                    user.countLearningWords
+                )
             }.join()
         }
+
+        user.countLearningWords -= 1
+
         //Список слов, для того чтобы предлагать пользователю новые слова
         val listOfWords = pair.first
         //Hash Map, чтобы получать название уровня по id
@@ -76,6 +93,9 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         //TODO Продумать что будет если пользователь в середине изучения выйдет в главное меню
         var indexWord = 0
         var countLearnedWords = 0
+
+        //Кол-во слов которые нужно выучить
+        val countLearningWords = user.countLearningWords
 
         binding.learnWordsWord.text = listOfWords[indexWord].englishWord
         binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
@@ -90,21 +110,20 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         //При нажатии на 'я не знаю это слово'
         //TODO Добавить красивые анимации смены слова
         binding.learnWordsIDontKnowThisWordText.setOnClickListener {
-            //TODO изменить 9 на переменную
-            if (countLearnedWords < 9) {
+            if (countLearnedWords < countLearningWords) {
                 indexWord++
                 countLearnedWords++
 
                 nextWord(indexWord, listOfWords, countLearnedWords, hashMap)
 
-            } else if (countLearnedWords == 9) {
+            } else if (countLearnedWords == countLearningWords) {
                 //Добавляем слово в список, новых слов
                 listOfNewWords.add(listOfWords[indexWord])
 
                 //Увеличиваем кол-во выученных слов
                 countLearnedWords++
                 binding.learnWordsLearnedCountNewWords.text =
-                    "Заучено $countLearnedWords/10 новых слов"
+                    "Заучено $countLearnedWords/$countLearningWords новых слов"
 
                 //Для изменения названия уровня
                 changeLevelName(binding, hashMap, listOfWords, indexWord)

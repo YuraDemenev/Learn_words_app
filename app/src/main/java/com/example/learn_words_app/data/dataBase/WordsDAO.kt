@@ -42,7 +42,10 @@ interface WordsDAO {
         val placeholders = ids.joinToString(" OR ") { "level_id = ?" }
         val args = ids.map { "$it" }.toTypedArray()
         val query = SimpleSQLiteQuery(
-            "SELECT * FROM words WHERE $placeholders ORDER BY RANDOM() LIMIT 1",
+            "SELECT * FROM words " +
+                    "JOIN words_levels on words.id = words_levels.word_id " +
+                    "WHERE $placeholders AND words_levels.stage = 0 " +
+                    "ORDER BY RANDOM() LIMIT 1",
             args
         )
         return getWordByLevelsIds(query)
@@ -52,13 +55,17 @@ interface WordsDAO {
     @RawQuery
     suspend fun getWordsByLevelsIds(query: SupportSQLiteQuery): List<Words>
     suspend fun getWordsByLevelsIdsMultiplyQueries(ids: Array<Int>, countWords: Int): List<Words> {
-        val placeholders = ids.joinToString(" OR ") { "level_id = ?" }
+        val placeholders = ids.joinToString(" OR ") { "words.level_id = ?" }
         val args = ids.map { "$it" }.toTypedArray()
+
         //Чтобы получить больше слов, и когда пользователь нажимает на я знаю это слово, ему не казалось что приложение лагает.
-        //TODO добавить +10
-        val changedCountWords = countWords
+        //Потому что надо снова идти в БД за данными
+        val changedCountWords = countWords + 10
         val query = SimpleSQLiteQuery(
-            "SELECT * FROM words WHERE $placeholders ORDER BY RANDOM() LIMIT $changedCountWords",
+            "SELECT * FROM words " +
+                    "JOIN words_levels on words.id = words_levels.word_id " +
+                    "WHERE $placeholders AND words_levels.stage = 0 " +
+                    "ORDER BY RANDOM() LIMIT $changedCountWords",
             args
         )
         return getWordsByLevelsIds(query)

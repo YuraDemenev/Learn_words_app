@@ -65,10 +65,16 @@ class MainPageModel : MainPageContract.Model {
         callback.onWordReceived(word)
     }
 
+    override suspend fun getUser(context: Context): User {
+        val userFlow = getUserProtoData(context)
+        return userFlow.first()
+    }
+
     override suspend fun getWordsForLearn(
         context: Context,
         db: MainDB,
-        flowLevelsModel: FlowLevelsModel
+        flowLevelsModel: FlowLevelsModel,
+        countLearningWords: Int
     ): Pair<MutableList<Words>, HashMap<Int, String>> {
         val myScope = CoroutineScope(Dispatchers.IO)
         lateinit var listOfLevels: List<Levels>
@@ -95,8 +101,8 @@ class MainPageModel : MainPageContract.Model {
         //Получаем случайный список слов с levels_id
         lateinit var words: List<Words>
         myScope.launch {
-            words = db.getDao().getWordsByLevelsIdsMultiplyQueries(arrayLevelsIds, 10)
-
+            words =
+                db.getDao().getWordsByLevelsIdsMultiplyQueries(arrayLevelsIds, countLearningWords)
         }.join()
 
         //Создаем hash map, чтобы хранить названия уровней по ids

@@ -3,6 +3,7 @@ package com.example.learn_words_app.data.presenters
 import android.content.Context
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
+import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
@@ -36,9 +37,14 @@ class MainPagePresenter(
     override suspend fun getWordsForLearn(
         context: Context,
         db: MainDB,
-        flowLevelsModel: FlowLevelsModel
+        flowLevelsModel: FlowLevelsModel,
+        countLearningWords: Int
     ): Pair<MutableList<Words>, HashMap<Int, String>> {
-        return model.getWordsForLearn(context, db, flowLevelsModel)
+        return model.getWordsForLearn(context, db, flowLevelsModel, countLearningWords)
+    }
+
+    override suspend fun getUser(context: Context): User {
+        return model.getUser(context)
     }
 
     override suspend fun getLevelsCardData(
