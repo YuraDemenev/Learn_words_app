@@ -11,6 +11,7 @@ import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.dataBase.WordsLevels
 import com.example.learn_words_app.data.interfaces.MainPageContract
+import com.example.learn_words_app.data.interfaces.WordCallback
 import com.example.learn_words_app.data.proto.convertLevelsProtoToLevels
 import com.example.learn_words_app.data.proto.userParamsDataStore
 import kotlinx.coroutines.CoroutineScope
@@ -25,6 +26,45 @@ import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
+
+    override suspend fun getOneWordForLearn(
+        context: Context,
+        db: MainDB,
+        flowLevelsModel: FlowLevelsModel,
+        callback: WordCallback
+    ) {
+        val myScope = CoroutineScope(Dispatchers.IO)
+        lateinit var listOfLevels: List<Levels>
+
+        //Получаем уровни
+        myScope.launch {
+            val hashSet = flowLevelsModel.data.value
+            if (hashSet != null) {
+                if (hashSet.size == 0) {
+                    Log.e("Main page model get words for learn.", "hash set size is zero")
+                }
+                listOfLevels = db.getDao().getLevelsByNamesMultipleQueries(hashSet)
+            }
+        }.join()
+
+        //Получаем из list levels ids чтобы их использовать в следующем запросе
+        val arrayLevelsIds: Array<Int> = Array(listOfLevels.size) { 0 }
+        listOfLevels.forEachIndexed { index, level ->
+            if (level.id != null) {
+                arrayLevelsIds[index] = level.id
+            }
+        }
+
+        //Получаем случайное слово
+        lateinit var word: Words
+        myScope.launch {
+            word = db.getDao().getWordByLevelsIdsMultiplyQueries(arrayLevelsIds)
+
+        }.join()
+
+        callback.onWordReceived(word)
+    }
+
     override suspend fun getWordsForLearn(
         context: Context,
         db: MainDB,
@@ -419,12 +459,4 @@ class MainPageModel : MainPageContract.Model {
                 .build()
         }
     }
-
-//    private fun checkIsDataNull(data: Any, tag: String, message: String): Boolean {
-//        if (data == null) {
-//            Log.e(tag, message)
-//            return false
-//        }
-//        return true
-//    }
 }

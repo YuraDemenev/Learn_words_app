@@ -22,6 +22,13 @@ interface MainPageContract {
             flowLevelsModel: FlowLevelsModel
         ): Pair<MutableList<Words>, HashMap<Int, String>>
 
+        suspend fun getOneWordForLearn(
+            context: Context,
+            db: MainDB,
+            flowLevelsModel: FlowLevelsModel,
+            callback: WordCallback
+        )
+
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
         suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
@@ -54,6 +61,13 @@ interface MainPageContract {
 
         suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
 
+        suspend fun getOneWordForLearn(
+            context: Context,
+            db: MainDB,
+            flowLevelsModel: FlowLevelsModel,
+            callback: WordCallback
+        )
+
         //For Dev
         suspend fun clickOnUpDB(c: Context, db: MainDB)
 
@@ -62,6 +76,7 @@ interface MainPageContract {
 
         //For Dev
         suspend fun clearUserData(context: Context)
+
     }
 
 

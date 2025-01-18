@@ -6,6 +6,7 @@ import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
+import com.example.learn_words_app.data.interfaces.WordCallback
 
 class MainPagePresenter(
     private val model: MainPageContract.Model,
@@ -17,6 +18,15 @@ class MainPagePresenter(
         flowLevelsModel: FlowLevelsModel
     ) {
         model.checkUserData(context, db, flowLevelsModel)
+    }
+
+    override suspend fun getOneWordForLearn(
+        context: Context,
+        db: MainDB,
+        flowLevelsModel: FlowLevelsModel,
+        callback: WordCallback
+    ) {
+        model.getOneWordForLearn(context, db, flowLevelsModel, callback)
     }
 
     override suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel) {

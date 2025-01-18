@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -16,6 +18,7 @@ import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
+import com.example.learn_words_app.data.interfaces.WordCallback
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
@@ -39,6 +42,8 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         binding = FragmentLearnWordsBinding.inflate(inflater)
         return binding.root
     }
+
+    //TODO Продумать ситуацию когда, запрашиваем больше слов чем есть в БД на данном уровне
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,26 +85,22 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
         //TODO Добавить переход на страницу повторять слова при нажатии на текст
 
-        //При нажатии на 'я знаю это слово'
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+
+        //При нажатии на 'я не знаю это слово'
         //TODO Добавить красивые анимации смены слова
         binding.learnWordsIDontKnowThisWordText.setOnClickListener {
-            //TODO изменить 10 на переменную
+            //TODO изменить 9 на переменную
             if (countLearnedWords < 9) {
                 indexWord++
                 countLearnedWords++
 
-                binding.learnWordsWord.text = listOfWords[indexWord].englishWord
-                binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
-
-                binding.learnWordsLearnedCountNewWords.text =
-                    "Заучено $countLearnedWords/10 новых слов"
-
-                binding.levelName.text = hashMap[listOfWords[indexWord].id]
-
-                //Для изменения названия уровня
-                changeLevelName(binding, hashMap, listOfWords, indexWord)
+                nextWord(indexWord, listOfWords, countLearnedWords, hashMap)
 
             } else if (countLearnedWords == 9) {
+                //Добавляем слово в список, новых слов
+                listOfNewWords.add(listOfWords[indexWord])
+
                 //Увеличиваем кол-во выученных слов
                 countLearnedWords++
                 binding.learnWordsLearnedCountNewWords.text =
@@ -116,12 +117,20 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
                 parent = binding.transcription.parent as ViewGroup
                 parent.removeView(binding.transcription)
 
+                //Удаляем элемент я знаю это слово
+                parent = binding.learnWordsIKnowThisWordText.parent as ViewGroup
+                parent.removeView(binding.learnWordsIKnowThisWordText)
+
+                //Удаляем элемент я не знаю это слово
+                parent = binding.learnWordsIDontKnowThisWordText.parent as ViewGroup
+                parent.removeView(binding.learnWordsIDontKnowThisWordText)
+
                 //Убираем margin у английского слова, чтобы разместить элемент посередине
                 val layoutParams =
                     binding.learnWordsWord.layoutParams as ViewGroup.MarginLayoutParams
                 layoutParams.topMargin = 0
 
-                //Чтобы поменять start of end
+                //Чтобы поменять start of на end of
                 val constraintLayout = binding.learnWordsLayoutInCard
                 // Create a ConstraintSet object
                 val constraintSet = ConstraintSet()
@@ -141,8 +150,73 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
             }
         }
 
-        //При нажатии на 'я не знаю это слово'
-//        binding.learnWordsIKnowThisWordText
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+
+        //При нажатии на 'я знаю это слово'
+        binding.learnWordsIKnowThisWordText.setOnClickListener {
+            //Необходимо получить 1 новое слово из БД
+            lateinit var newWord: Words
+            //TODO Продумать чтобы не брать из БД слова, которые уже были взяты в первом запросе, или в последующих
+            //Делаем callback чтобы не блокировать основной поток пока получаем значение из БД
+            myScope.launch {
+                presenter.getOneWordForLearn(
+                    thisContext,
+                    db,
+                    flowLevelsModel,
+                    object : WordCallback {
+                        override fun onWordReceived(words: Words) {
+                            newWord = words
+                            listOfWords.add(newWord)
+
+                        }
+                    })
+            }
+
+            indexWord++
+
+            //Если мы должны получить последние слово из списка, но он ешё не пришло из БД,
+            // то создаем progress bar
+            if (indexWord == listOfWords.size) {
+                //Скрываем элементы
+                val wordAndTranslationContainer = binding.learnWordsWordAndTranscriptionContainer
+                wordAndTranslationContainer.visibility = View.INVISIBLE
+
+                val translation = binding.learnWordsTranslation
+                translation.visibility = View.INVISIBLE
+
+                //Создаём progress bar
+                val progressBar = ProgressBar(thisContext)
+                val layoutParams = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                )
+
+                layoutParams.startToStart = binding.learnWordsLayoutInCard.id
+                layoutParams.endToEnd = binding.learnWordsLayoutInCard.id
+                layoutParams.topToBottom = binding.learnWordsHighContainer.id
+                layoutParams.bottomToTop = binding.learnWordsDownContainer.id
+                progressBar.layoutParams = layoutParams
+
+                //Add progressBar
+                val layout = binding.learnWordsLayoutInCard
+                layout.addView(progressBar)
+
+                //TODO сделать что-то с while
+                while (indexWord == listOfWords.size) {
+
+                }
+
+                //Удаляем progress bar
+                layout.removeView(progressBar)
+                //Делаем видимыми элементы
+                wordAndTranslationContainer.visibility = View.VISIBLE
+                translation.visibility = View.VISIBLE
+
+            }
+            nextWord(indexWord, listOfWords, countLearnedWords, hashMap)
+
+            // TODO Сделать изменение в БД, что слово выучено
+        }
     }
 
     private fun changeLevelName(
@@ -168,5 +242,25 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         }
         myWord = myWord.replaceFirstChar { it.uppercase() }
         return myWord
+    }
+
+    //Меняем текущее слово на следующее
+    @SuppressLint("SetTextI18n")
+    private fun nextWord(
+        indexWord: Int,
+        listOfWords: MutableList<Words>,
+        countLearnedWords: Int,
+        hashMap: HashMap<Int, String>
+    ) {
+        binding.learnWordsWord.text = listOfWords[indexWord].englishWord
+        binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
+
+        binding.learnWordsLearnedCountNewWords.text =
+            "Заучено $countLearnedWords/10 новых слов"
+
+        binding.levelName.text = hashMap[listOfWords[indexWord].id]
+
+        //Для изменения названия уровня
+        changeLevelName(binding, hashMap, listOfWords, indexWord)
     }
 }

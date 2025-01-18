@@ -35,14 +35,30 @@ interface WordsDAO {
     @Query("DELETE FROM sqlite_sequence")
     suspend fun deletePrimaryKeys()
 
+    //Динамический запрос для получения 1 слова
+    @RawQuery
+    suspend fun getWordByLevelsIds(query: SupportSQLiteQuery): Words
+    suspend fun getWordByLevelsIdsMultiplyQueries(ids: Array<Int>): Words {
+        val placeholders = ids.joinToString(" OR ") { "level_id = ?" }
+        val args = ids.map { "$it" }.toTypedArray()
+        val query = SimpleSQLiteQuery(
+            "SELECT * FROM words WHERE $placeholders ORDER BY RANDOM() LIMIT 1",
+            args
+        )
+        return getWordByLevelsIds(query)
+    }
+
     //Динамический запрос для получения слов из таблицы по уровням
     @RawQuery
     suspend fun getWordsByLevelsIds(query: SupportSQLiteQuery): List<Words>
     suspend fun getWordsByLevelsIdsMultiplyQueries(ids: Array<Int>, countWords: Int): List<Words> {
         val placeholders = ids.joinToString(" OR ") { "level_id = ?" }
         val args = ids.map { "$it" }.toTypedArray()
+        //Чтобы получить больше слов, и когда пользователь нажимает на я знаю это слово, ему не казалось что приложение лагает.
+        //TODO добавить +10
+        val changedCountWords = countWords
         val query = SimpleSQLiteQuery(
-            "SELECT * FROM words WHERE $placeholders ORDER BY RANDOM() LIMIT $countWords",
+            "SELECT * FROM words WHERE $placeholders ORDER BY RANDOM() LIMIT $changedCountWords",
             args
         )
         return getWordsByLevelsIds(query)
