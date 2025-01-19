@@ -270,7 +270,6 @@ class MainPageModel : MainPageContract.Model {
         db: MainDB,
         listOfNewWords: List<Words>
     ) {
-
         listOfNewWords.forEach { word ->
             val myScope = CoroutineScope(Dispatchers.IO)
             myScope.launch {
