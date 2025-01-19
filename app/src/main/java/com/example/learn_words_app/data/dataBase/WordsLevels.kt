@@ -3,6 +3,7 @@ package com.example.learn_words_app.data.dataBase
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import java.util.Date
 
 //Junction Table
 @Entity(
@@ -32,11 +33,14 @@ import androidx.room.ForeignKey
     ],
     primaryKeys = ["word_id", "level_id"]
 )
+
 data class WordsLevels(
     @ColumnInfo(name = "word_id")
     val wordId: Int,
     @ColumnInfo(name = "level_id", index = true)
     val levelId: Int,
     @ColumnInfo(name = "stage")
-    val stage: Int
+    val stage: Int,
+    @ColumnInfo(name = "date_for_repeat")
+    val dateForLearn: Date?
 )

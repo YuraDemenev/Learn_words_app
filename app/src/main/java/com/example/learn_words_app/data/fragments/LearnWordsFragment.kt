@@ -28,11 +28,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
+
 class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageContract.View {
     private lateinit var binding: FragmentLearnWordsBinding
 
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
+
+    //Для сохранения тех слов которые пользователь не знает
+    private val listOfNewWords = mutableListOf<Words>()
+
+    private val presenter = MainPagePresenter(MainPageModel(), this)
+    private val myScope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +48,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
     ): View {
         //Получаем binding
         binding = FragmentLearnWordsBinding.inflate(inflater)
+
         return binding.root
     }
 
@@ -51,11 +59,14 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         val thisContext = requireContext()
         //Получаем/создаем БД
         val db = MainDB.getDB(thisContext)
-        val presenter = MainPagePresenter(MainPageModel(), this)
-        val myScope = CoroutineScope(Dispatchers.IO)
 
         //Для возвращения в главное меню
         binding.learnWordsBackToMenuContainer.setOnClickListener {
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
+        }
+
+        //Для перехода на страницу повтора слов
+        binding.repeatWords.setOnClickListener {
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
         }
 
@@ -87,8 +98,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         //Hash Map, чтобы получать название уровня по id
         val hashMap = pair.second
 
-        //Для сохранения тех слов которые пользователь не знает
-        val listOfNewWords = mutableListOf<Words>()
         //Для итерации по listOfWords
         //TODO Продумать что будет если пользователь в середине изучения выйдет в главное меню
         var indexWord = 0
@@ -102,8 +111,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
         //Для изменения названия уровня
         changeLevelName(binding, hashMap, listOfWords, indexWord)
-        
-        //TODO Добавить переход на страницу повторять слова при нажатии на текст
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -171,6 +178,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
+        //TODO Баг, почему-то когда иногда меняется кол-во слов когда все слова выучены 10/9
         //При нажатии на 'я знаю это слово'
         binding.learnWordsIKnowThisWordText.setOnClickListener {
 
@@ -239,6 +247,17 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        val thisContext = requireContext()
+        //Получаем/создаем БД
+        val db = MainDB.getDB(thisContext)
+
+        myScope.launch {
+            presenter.updateWordsLevels(db, listOfNewWords, 1)
+        }
+    }
+
     private fun changeLevelName(
         binding: FragmentLearnWordsBinding,
         hashMap: HashMap<Int, String>,
@@ -282,5 +301,8 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
         //Для изменения названия уровня
         changeLevelName(binding, hashMap, listOfWords, indexWord)
+
+        //Добавляем слово в список, новых слов
+        listOfNewWords.add(listOfWords[indexWord])
     }
 }

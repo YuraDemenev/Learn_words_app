@@ -40,7 +40,11 @@ interface MainPageContract {
 
         suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
 
-        suspend fun updateWordsLevels(context: Context, db: MainDB, listOfNewWords: List<Words>)
+        suspend fun updateWordsLevels(
+            db: MainDB,
+            listOfNewWords: List<Words>,
+            stage: Int
+        )
 
         //For Dev
         suspend fun upDB(c: Context, db: MainDB)
@@ -70,7 +74,11 @@ interface MainPageContract {
         suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
 
         suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
-        suspend fun updateWordsLevels(context: Context, db: MainDB, listOfNewWords: List<Words>)
+        suspend fun updateWordsLevels(
+            db: MainDB,
+            listOfNewWords: List<Words>,
+            stage: Int
+        )
 
         suspend fun getOneWordForLearn(
             context: Context,

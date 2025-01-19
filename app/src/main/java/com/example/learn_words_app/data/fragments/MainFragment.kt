@@ -71,6 +71,11 @@ class MainFragment : Fragment(), MainPageContract.View {
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEARN_WORDS)
         }
 
+        //Listener нажатия повторить слова
+        binding.repeatWords.setOnClickListener {
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.REPEAT_WORDS)
+        }
+
         //Only for DEV
         //Listener нажатия на текст UpDB
         binding.upDataBase.setOnClickListener {

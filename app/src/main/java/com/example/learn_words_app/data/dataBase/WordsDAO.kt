@@ -35,8 +35,8 @@ interface WordsDAO {
     @Query("DELETE FROM sqlite_sequence")
     suspend fun deletePrimaryKeys()
 
-    @Query("UPDATE words_levels SET stage = 6 WHERE word_id = :wordId")
-    fun updateWordLevelsStage(wordId: Int)
+    @Query("UPDATE words_levels SET stage = :stage WHERE word_id = :wordId")
+    fun updateWordLevelsStage(wordId: Int, stage: Int)
 
     //Динамический запрос для получения 1 слова
     @RawQuery
@@ -114,11 +114,17 @@ interface WordsDAO {
     @Query("SELECT COUNT(*) FROM words WHERE level_id=:levelId")
     fun getCountWordsByLevelId(levelId: Int): Int
 
+    // Запрос на получение количества записей в таблице levels
+    @Query("SELECT COUNT(*) FROM levels")
+    suspend fun getCountLevels(): Int
+
+    //Запрос на получения stage из words_levels
+    @Query("SELECT stage FROM words_levels WHERE word_id = :wordId")
+    suspend fun getStageByWordId(wordId: Int): Int
+
     //Запрос на проверку наличие записи в таблице по имени
     @Query("SELECT EXISTS(SELECT * FROM levels WHERE name = :name)")
     suspend fun checkLevelExist(name: String): Boolean
 
-    // Запрос на получение количества записей в таблице levels
-    @Query("SELECT COUNT(*) FROM levels")
-    suspend fun getCountLevels(): Int
+
 }

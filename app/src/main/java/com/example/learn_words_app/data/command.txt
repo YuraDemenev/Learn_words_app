@@ -1,0 +1,4 @@
+adb -s emulator-5554 shell
+su
+cd data/data/com.example.android.learn_words_app/databases
+sqlite3 words.DB

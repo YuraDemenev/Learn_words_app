@@ -7,13 +7,13 @@ import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.fragments.LearnWordsFragment
 import com.example.learn_words_app.data.fragments.LevelsFragment
 import com.example.learn_words_app.data.fragments.MainFragment
+import com.example.learn_words_app.data.fragments.RepeatWordsFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.empty_fragment)
         loadFragment(FragmentsNames.MAIN)
-
     }
 
     fun loadFragment(fragmentName: FragmentsNames) {
@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
 
             FragmentsNames.LEARN_WORDS -> {
                 manager.replace(R.id.empty_fragment_container, LearnWordsFragment()).commit()
+            }
+
+            FragmentsNames.REPEAT_WORDS -> {
+                manager.replace(R.id.empty_fragment_container, RepeatWordsFragment()).commit()
             }
 
             else -> {

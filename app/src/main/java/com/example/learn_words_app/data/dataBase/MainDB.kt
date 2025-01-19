@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.learn_words_app.data.additionalData.Converters
 
-@Database(entities = [Words::class, Levels::class, WordsLevels::class], version = 9)
+@Database(entities = [Words::class, Levels::class, WordsLevels::class], version = 10)
+@TypeConverters(Converters::class)
 //abstract class Используется для определения общих характеристик и поведения, которые
 // разделяют классы-наследники.
 abstract class MainDB : RoomDatabase() {

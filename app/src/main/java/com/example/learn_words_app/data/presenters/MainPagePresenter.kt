@@ -45,11 +45,11 @@ class MainPagePresenter(
     }
 
     override suspend fun updateWordsLevels(
-        context: Context,
         db: MainDB,
-        listOfNewWords: List<Words>
+        listOfNewWords: List<Words>,
+        stage: Int
     ) {
-        model.updateWordsLevels(context, db, listOfNewWords)
+        model.updateWordsLevels(db, listOfNewWords, stage)
     }
 
     override suspend fun getUser(context: Context): User {

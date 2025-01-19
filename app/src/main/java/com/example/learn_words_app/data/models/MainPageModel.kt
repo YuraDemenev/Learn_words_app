@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.time.Instant
+import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
@@ -40,7 +41,7 @@ class MainPageModel : MainPageContract.Model {
         if (wordId != null) {
             //Меняем в words_levels stage на 6, так как пользователь уже слово знает
             myScope.launch {
-                db.getDao().updateWordLevelsStage(wordId)
+                db.getDao().updateWordLevelsStage(wordId, 6)
             }.join()
         } else {
             Log.e("Main Page Model", "getOneWordForLearn, wordId is null")
@@ -191,6 +192,11 @@ class MainPageModel : MainPageContract.Model {
                 }
             }
 
+            if (listOfLevelsBuilders.size == 3) {
+                Log.e("Main Page Model", "checkUserData, listOfLevelsBuilders don`t has 3 elements")
+                throw Exception()
+            }
+
             try {
                 val user = User(userId = "test", countLearningWords = 10)
                 setUserProtoData(context, user, listOfLevelsBuilders)
@@ -265,16 +271,33 @@ class MainPageModel : MainPageContract.Model {
         setUserProtoData(context, user, listOfLevelsBuilders)
     }
 
+    //TODO почистить context где он не используется
     override suspend fun updateWordsLevels(
-        context: Context,
         db: MainDB,
-        listOfNewWords: List<Words>
+        listOfNewWords: List<Words>,
+        stage: Int
     ) {
         listOfNewWords.forEach { word ->
             val myScope = CoroutineScope(Dispatchers.IO)
+
             myScope.launch {
                 if (word.id != null) {
-                    db.getDao().updateWordLevelsStage(word.id)
+                    //Если фаза не введена, то получаем из БД
+                    if (stage == -1) {
+                        var stageChanged = -1
+
+                        //Получаем фазу для данного слова
+                        myScope.launch {
+                            stageChanged = db.getDao().getStageByWordId(word.id)
+                            stageChanged++
+                        }.join()
+
+                        db.getDao().updateWordLevelsStage(word.id, stageChanged)
+
+                    } else {
+                        db.getDao().updateWordLevelsStage(word.id, stage)
+                    }
+
                 } else {
                     Log.e("Main Page Model", "updateWordsLevels word id is null")
                     throw Exception()
@@ -428,7 +451,7 @@ class MainPageModel : MainPageContract.Model {
                             //Получаем id levels
                             val levelId = levelsMap.getValue(nameInMap)
                             //Добавляем wordsLevels в таблицу wordsLevels
-                            val wordLevels = WordsLevels(id, levelId, 0)
+                            val wordLevels = WordsLevels(id, levelId, 0, Date.from(Instant.now()))
                             db.getDao().insertWordsLevel(wordLevels)
 
                         }
