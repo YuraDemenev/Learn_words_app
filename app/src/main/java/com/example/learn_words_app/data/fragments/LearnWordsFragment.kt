@@ -32,6 +32,8 @@ import kotlinx.coroutines.runBlocking
 class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageContract.View {
     private lateinit var binding: FragmentLearnWordsBinding
 
+    private var countLearningWords = 0
+
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
 
@@ -91,8 +93,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
             }.join()
         }
 
-        user.countLearningWords -= 1
-
         //Список слов, для того чтобы предлагать пользователю новые слова
         val listOfWords = pair.first
         //Hash Map, чтобы получать название уровня по id
@@ -104,7 +104,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         var countLearnedWords = 0
 
         //Кол-во слов которые нужно выучить
-        val countLearningWords = user.countLearningWords
+        countLearningWords = user.countLearningWords
 
         binding.learnWordsWord.text = listOfWords[indexWord].englishWord
         binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
@@ -117,13 +117,14 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         //При нажатии на 'я не знаю это слово'
         //TODO Добавить красивые анимации смены слова
         binding.learnWordsIDontKnowThisWordText.setOnClickListener {
-            if (countLearnedWords < countLearningWords) {
+            if (countLearnedWords < countLearningWords - 1) {
                 indexWord++
                 countLearnedWords++
 
                 nextWord(indexWord, listOfWords, countLearnedWords, hashMap)
 
-            } else if (countLearnedWords == countLearningWords) {
+            } else if (countLearnedWords == countLearningWords - 1) {
+                indexWord++
                 //Добавляем слово в список, новых слов
                 listOfNewWords.add(listOfWords[indexWord])
 
@@ -177,14 +178,13 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
-
-        //TODO Баг, почему-то когда иногда меняется кол-во слов когда все слова выучены 10/9
         //При нажатии на 'я знаю это слово'
         binding.learnWordsIKnowThisWordText.setOnClickListener {
 
             //Необходимо получить 1 новое слово из БД
             lateinit var newWord: Words
             //Делаем callback чтобы не блокировать основной поток пока получаем значение из БД
+            //В этой функции также обновляем слово, которое знаем
             myScope.launch {
                 presenter.getOneWordForLearn(
                     thisContext,
@@ -241,9 +241,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
             }
             nextWord(indexWord, listOfWords, countLearnedWords, hashMap)
-
-            // TODO Сделать изменение в БД, что слово выучено
-
         }
     }
 
@@ -295,7 +292,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
 
         binding.learnWordsLearnedCountNewWords.text =
-            "Заучено $countLearnedWords/10 новых слов"
+            "Заучено $countLearnedWords/$countLearningWords новых слов"
 
         binding.levelName.text = hashMap[listOfWords[indexWord].id]
 

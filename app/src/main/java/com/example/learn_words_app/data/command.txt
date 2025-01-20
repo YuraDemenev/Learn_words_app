@@ -1,4 +1,12 @@
 adb -s emulator-5554 shell
 su
-cd data/data/com.example.android.learn_words_app/databases
+cd data/data/com.example.learn_words_app/databases
 sqlite3 words.DB
+
+.headers on
+.mode column
+sqlite3 --table words.DB
+--box words.DB
+
+exos- сервер (60)
+iron wolf-сетвое хранилище (6)
