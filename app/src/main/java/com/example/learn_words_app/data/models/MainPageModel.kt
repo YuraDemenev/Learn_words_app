@@ -25,6 +25,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
 
@@ -43,7 +44,7 @@ class MainPageModel : MainPageContract.Model {
         if (wordId != null) {
             //Меняем в words_levels stage на 6, так как пользователь уже слово знает
             myScope.launch {
-                db.getDao().updateWordLevelsStage(wordId, 6)
+                db.getDao().updateWordLevelsStage(wordId, 6, Date.from(Instant.now()))
             }.join()
         } else {
             Log.e("Main Page Model", "getOneWordForLearn, wordId is null")
@@ -287,10 +288,36 @@ class MainPageModel : MainPageContract.Model {
                             stageChanged++
                         }.join()
 
-                        db.getDao().updateWordLevelsStage(word.id, stageChanged)
+                        var countHoursForAdd = 0L
+                        when (stageChanged) {
+                            1 -> {
+                                countHoursForAdd = 24
+                            }
+
+                            2 -> {
+                                countHoursForAdd = 72
+                            }
+
+                            3 -> {
+                                countHoursForAdd = 168
+                            }
+
+                            4 -> {
+                                countHoursForAdd = 720
+                            }
+
+                            5 -> {
+                                countHoursForAdd = 4320
+                            }
+
+                        }
+                        val dateLearn =
+                            Date.from(Instant.now().plus(countHoursForAdd, ChronoUnit.HOURS))
+                        db.getDao().updateWordLevelsStage(word.id, stageChanged, dateLearn)
 
                     } else {
-                        db.getDao().updateWordLevelsStage(word.id, stage)
+                        val dateLearn = Date.from(Instant.now().plus(4, ChronoUnit.HOURS))
+                        db.getDao().updateWordLevelsStage(word.id, stage, dateLearn)
                     }
 
                 } else {

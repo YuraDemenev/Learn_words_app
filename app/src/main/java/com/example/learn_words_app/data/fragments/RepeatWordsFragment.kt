@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
-import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 
-class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words), MainPageContract.View {
+class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
     private lateinit var binding: FragmentLearnWordsBinding
 
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
@@ -29,6 +28,6 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words), MainPageCo
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        
+
     }
 }

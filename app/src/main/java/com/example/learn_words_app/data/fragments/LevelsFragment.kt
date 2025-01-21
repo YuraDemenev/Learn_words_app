@@ -15,9 +15,9 @@ import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.fragments.adapters.CardAdapter
-import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
+import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.FragmentLevelsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +25,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View {
+class LevelsFragment : Fragment(R.layout.fragment_levels) {
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
     private lateinit var binding: FragmentLevelsBinding
 
@@ -43,7 +43,7 @@ class LevelsFragment : Fragment(R.layout.fragment_levels), MainPageContract.View
         val thisContext = requireContext()
         //Получаем/создаем БД
         val db = MainDB.getDB(thisContext)
-        val presenter = MainPagePresenter(MainPageModel(), this)
+        val presenter = MainPagePresenter(MainPageModel(), MainPageView())
         val myScope = CoroutineScope(Dispatchers.IO)
 
         lateinit var arrayOfLevelsData: MutableList<LevelsCardData>

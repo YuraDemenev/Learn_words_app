@@ -9,11 +9,48 @@ import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.interfaces.WordCallback
+import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 
 class MainPagePresenter(
     private val model: MainPageContract.Model,
     private var mainView: MainPageContract.View
 ) : MainPageContract.Presenter {
+
+    override fun nextWord(
+        binding: FragmentLearnWordsBinding,
+        user: User,
+        listOfNewWords: MutableList<Words>,
+        indexWord: Int,
+        listOfWords: MutableList<Words>,
+        countLearnedWords: Int,
+        hashMap: HashMap<Int, String>,
+        checkAddWord: Boolean
+    ) {
+        mainView.nextWord(
+            binding,
+            user,
+            listOfNewWords,
+            indexWord,
+            listOfWords,
+            countLearnedWords,
+            hashMap,
+            checkAddWord
+        )
+    }
+
+    override fun changeLevelName(
+        binding: FragmentLearnWordsBinding,
+        hashMap: HashMap<Int, String>,
+        listOfWords: MutableList<Words>,
+        indexWord: Int
+    ) {
+        mainView.changeLevelName(binding, hashMap, listOfWords, indexWord)
+    }
+
+    override fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding) {
+        mainView.changePageToYouAllLearned(binding)
+    }
+
     override suspend fun checkUserData(
         context: Context,
         db: MainDB,

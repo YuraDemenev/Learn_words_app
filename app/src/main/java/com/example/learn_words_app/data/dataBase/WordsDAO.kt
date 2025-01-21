@@ -7,6 +7,7 @@ import androidx.room.Upsert
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.flow.Flow
+import java.util.Date
 
 @Dao
 interface WordsDAO {
@@ -35,8 +36,8 @@ interface WordsDAO {
     @Query("DELETE FROM sqlite_sequence")
     suspend fun deletePrimaryKeys()
 
-    @Query("UPDATE words_levels SET stage = :stage WHERE word_id = :wordId")
-    fun updateWordLevelsStage(wordId: Int, stage: Int)
+    @Query("UPDATE words_levels SET stage = :stage, date_for_repeat = :date WHERE word_id = :wordId")
+    fun updateWordLevelsStage(wordId: Int, stage: Int, date: Date)
 
     //Динамический запрос для получения 1 слова
     @RawQuery

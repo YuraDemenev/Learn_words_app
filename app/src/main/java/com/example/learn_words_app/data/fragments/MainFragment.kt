@@ -11,16 +11,16 @@ import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.dataBase.MainDB
-import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
+import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class MainFragment : Fragment(), MainPageContract.View {
+class MainFragment : Fragment() {
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
 
@@ -51,7 +51,7 @@ class MainFragment : Fragment(), MainPageContract.View {
         //Получаем/создаем БД
         val db = MainDB.getDB(thisContext)
         //Создаем presenter для MVP архитектуры
-        val presenter = MainPagePresenter(MainPageModel(), this)
+        val presenter = MainPagePresenter(MainPageModel(), MainPageView())
         //Создаем Scope для запуска корутин
         val myScope = CoroutineScope(Dispatchers.IO)
 
