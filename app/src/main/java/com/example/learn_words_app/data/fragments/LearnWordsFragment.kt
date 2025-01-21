@@ -113,18 +113,17 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
             //Кол-во слов которые нужно выучить
             val countLearningWords = user.countLearningWords
 
-            binding.learnWordsWord.text = listOfWords[indexWord].englishWord
-            binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
-
-            //Для изменения названия уровня
-            presenter.changeLevelName(binding, hashMap, listOfWords, indexWord)
-
-            //Меняем кол-во изученных слов
-            if (user.countLearnedWordsToday != 0) {
-                val countLearnedWords = user.countLearnedWordsToday
-                binding.learnWordsLearnedCountNewWords.text =
-                    "Заучено $countLearnedWords/$countLearningWords новых слов"
-            }
+            presenter.nextWord(
+                binding,
+                user,
+                listOfNewWords,
+                indexWord,
+                listOfWords,
+                user.countLearnedWordsToday,
+                hashMap,
+                false,
+                thisContext
+            )
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -143,10 +142,10 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                         listOfWords,
                         user.countLearnedWordsToday,
                         hashMap,
-                        true
+                        true,
+                        thisContext
                     )
-                    //nextWord(indexWord, listOfWords, user.countLearnedWordsToday, hashMap, true)
-
+                    
                 } else if (user.countLearnedWordsToday == countLearningWords - 1) {
                     indexWord++
                     //Добавляем слово в список, новых слов
@@ -239,7 +238,8 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                     listOfWords,
                     user.countLearnedWordsToday,
                     hashMap,
-                    false
+                    false,
+                    thisContext
                 )
             }
         }

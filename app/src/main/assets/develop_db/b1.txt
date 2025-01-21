@@ -101,7 +101,7 @@ ashamed;стыдно
 asleep;спит
 as long as;до тех пор, пока
 to assist;чтобы помочь
-as well (as);а также (как)
+as well (as)&;а также (как)&
 at all;вообще
 at first;сначала
 at last;наконец
@@ -130,7 +130,7 @@ awesome;потрясающе
 awful;ужасно
 to babysit;нянчиться
 background;фон
-background;фон (опыт в продажах)
+background;опыт,прошлое (опыт в продажах)
 backwards;в обратном порядке
 badly;плохо
 baker;пекарь
@@ -215,8 +215,8 @@ to bring up;воспитывать (Она выросла в Лондоне.)
 broad;широкий
 bug;жук (Он нашел жука в своей постели.)
 building;здание
-bulb;лампочка (лампочка, бык)
-bunch;букет (букет цветов, отличная компания друзей)
+bulb;лампочка
+bunch;букет,группа,куча (букет цветов, отличная группа друзей)
 burning;горящий
 to bury;хоронить
 busy;занят
@@ -238,10 +238,10 @@ calm;спокойный
 camp;лагерь
 camping/campsite;кемпинг
 to cancel;отменить
-capital;столица (столица, столица Италии)
+capital;столица (столица Италии)
 card;карта (кредитная карта, карточная игра)
 cardboard;картон
-care;заботиться (заботиться о ком-то)
+care;забота (заботиться о ком-то)
 to care;заботиться (заботиться (о/для/кого-то))
 to something;к чему-то
 careful;осторожный
@@ -359,7 +359,7 @@ contents;содержание
 continent;континент
 to continue;продолжить
 control;управлять (пультом дистанционного управления)
-to control;контролировать (Контролируйте своей собакой!)
+to control;контролировать (Контролируйте свою собаку!)
 convenient;удобный
 to convince;убедить
 cooking;готовить
@@ -389,7 +389,7 @@ to create;создать
 creative;творческий
 credit;кредит
 credit card;кредитная карта
-crew;экипаж (бортпроводники)
+crew;экипаж,команда (бортпроводники, команда скорой помощи)
 crime;преступление
 criminal;преступник
 crop;обрезать
@@ -445,8 +445,9 @@ demand;требование
 to demand;требовать
 to depart;отходить
 department store;универмаг
-to depend;зависеть (от/от) (Это зависит от того, что вы хотите сделать.)
-deposit (pay a deposit);внести депозит (внести депозит)
+to depend;зависеть (от)&
+deposit;депозит
+pay a deposit;внести депозит
 depressed;подавленный
 depth;глубина (глубина воды)
 to describe;описывать
@@ -476,7 +477,7 @@ to disappoint;разочаровывать
 disappointed;разочарован
 disappointing;разочаровывающий
 disappointment;разочарование
-disc/disk;диск/диск (жёсткий диск)
+disc/disk;диск (жёсткий диск)
 disco;дискотека
 discount;скидка
 to discover;обнаружить
@@ -498,7 +499,7 @@ DJ;Диджей
 doctor;доктор
 documentary;документальный
 donkey;осел
-dot;точка (символ '.') (Вы посещали CambridgeESOL точка org? (.org))
+dot;точка (символ '.' Вы посещали CambridgeESOL точка org? .org)
 to doubt;сомневаться
 doubt;сомневаться
 download;загрузка
@@ -577,7 +578,7 @@ exactly;именно
 examination/exam;экзамен/экзамен
 examiner;экзаменатор
 except;кроме
-exchange;обмен (в обмен на)
+exchange;обмен (в обмен на)&
 to exchange;обменять
 excitement;волнение
 exciting;захватывающий
@@ -608,7 +609,7 @@ to fail;потерпеть неудачу
 fairly;довольно
 to fall;падать (Он упал и повредил ногу.)
 false;неправда
-familiar (with);знакомый (с)
+familiar (with)&;знакомый (с)&
 to fancy;мечтать
 fare;стоимость проезда (стоимость обратного билета составляет 26 фунтов стерлингов.)
 farming;фермерство
@@ -692,14 +693,14 @@ generally;обычно (я обычно прихожу домой около 7.0
 generation;поколение
 generous;щедрый
 gentle;нежный
-to get along (with);ладить (с) (Как ты ладишь с Гарри?)
+to get along (with)&;ладить (с)&
 to get back;вернуться
 to get down;спускаться
 to get fit;чтобы быть в форме
 to get in;попасть внутрь
 to get off;выходить (Мы выходим на следующей остановке.)
 to get on;попасть на
-to get on (with);ладить (с) (Ты хорошо ладишь с Сэмом?)
+to get on (with)&;ладить (с)&
 to get rid of;избавиться от
 to get up;вставать
 giant;гигантский
@@ -728,7 +729,7 @@ to go on;продолжаться
 to go out;выходить на улицу
 gorgeous;великолепный
 government;правительство
-to go (with/together);сочетаться (с/вместе) (Твой галстук не подходит к твоей рубашке.)
+to go (with/together)&;сочетаться (с/вместе)&
 to grab;схватить
 grade;оценка
 graduation;выпускной
@@ -836,7 +837,7 @@ to imagine;представить
 immediately;немедленно
 importance;важность
 impossible;невозможно
-impressed (by/with);под впечатлением
+impressed (by/with)&;под впечатлением
 improvement;улучшение
 in advance;заранее
 in case;в случае
@@ -871,7 +872,7 @@ to insist;настаивать
 to inspire (She inspired him to become an actor.);вдохновлять
 to install;установить
 instance (for instance);пример
-instead (of) (There were no lemons so I got oranges instead., Can you come on Monday instead of Tuesday?);вместо
+instead (of)&;вместо
 instrument (musical instrument);инструмент (музыкальный инструмент)
 intelligent;умный
 to intend (to intend to do something);намереваться
@@ -901,10 +902,10 @@ jam (strawberry jam, traffic jam);джем
 jar;банка
 jazz;джаз
 jealous;ревновать
-jet (to go by jet (plane));реактивный самолет
+jet (to go by jet/plane);реактивный самолет
 jewelry (UK jewellery);ювелирные изделия
 to jog;бегать трусцой
-to join (The rivers join there., to join the army, to join (in) a game);присоединиться
+to join (The rivers join there., to join the army, to join a game);присоединиться
 to joke;шутить
 joke;шутка
 to judge;судить
@@ -968,7 +969,7 @@ list;список
 literature;литература
 liter (UK litre);литр
 litter;мусорить
-live (live music/sport);жить
+live (live music/sport);жизнь, прямой эфир
 lively;живой
 load;загружать
 loan;кредит
@@ -1004,7 +1005,7 @@ main;основной
 make;сделать
 male;мужской
 mall (shopping mall);торговый центр
-to manage (to manage a business, to manage to do something (succeed in));управлять
+to manage (to manage a business, to manage to do something);управлять
 mark;отметить
 market (to buy something from a market);рынок
 marriage;брак
@@ -1044,7 +1045,7 @@ minus;минус
 miserable;несчастный
 to miss;скучать
 mix;смешивать
-mobile (phone);мобильный телефон
+mobile (phone)&;мобильный телефон
 model (It's cheap because it's last year's model., She’s a fashion model.);модель
 modern;современный
 moment;момент
@@ -1105,7 +1106,7 @@ to notice (Did you notice anything wrong?);заметить
 noticeboard;доска объявлений
 novel;роман
 nowadays;в настоящее время
-number (numbers 5 to 7, a large number of cars, What’s your (phone) number?);номер
+number (numbers 5 to 7, a large number of cars, What’s your phone number?);номер
 object;объект
 obvious;очевидно
 obviously;очевидно
@@ -1130,7 +1131,7 @@ opportunity;возможность
 opposite;напротив
 option;вариант
 orchestra;оркестр
-order (in order to (conj), to put something in order);порядок
+order (in order to, to put something in order);порядок
 to order (to order a meal);заказывать
 ordinary;обычный
 organisation;организация
@@ -1144,7 +1145,7 @@ outdoor/outdoors;на открытом воздухе
 out of date;устаревший
 out of order;не по порядку
 outside;снаружи
-over (I’m going over the road., over 40 people (more than), to be over (finished), Several birds were flying over the roof of the school.);над
+over (I’m going over the road., over 40 people, to be over, Several birds were flying over the roof of the school.);над
 to owe;быть должен
 own (my own pen, on my own);собственный
 to own (to own a car);владеть
@@ -1176,7 +1177,7 @@ to pause;сделать паузу
 pavement;тротуар
 pay;оплата
 to pay;платить
-PC (personal computer);ПК (персональный компьютер)
+PC (personal computer)&;ПК (персональный компьютер)&
 peace;мир
 peaceful;мирный
 peak;пик
@@ -1295,7 +1296,7 @@ to promote;продвигать
 to pronounce (to pronounce a word correctly);произносить
 pronunciation;произношение
 proper;собственно
-properly (as in working properly) (My computer isn’t working properly);правильно
+properly (as in working properly, My computer isn’t working properly);правильно
 to protect;защищать
 proud;гордый
 to prove;доказать
@@ -1380,7 +1381,7 @@ relaxed;расслабленный
 reliable;надежный
 relieved;облегчение
 religion;религия
-to rely (on);полагаться (на)
+to rely (on)&;полагаться (на)&
 to remain;оставаться
 to remind;напомнить
 to remove;удалить
@@ -1413,12 +1414,12 @@ revision;пересмотр
 reward;наградить
 right (the right time, the right person for the job, my right foot, Everything will be all right.);правильно
 right-hand;правая рука
-to ring (stand in a ring, a wedding ring, Give me a ring tomorrow. (call), Suddenly the bell rang.);звонить
+to ring (stand in a ring, a wedding ring, Give me a ring tomorrow., Suddenly the bell rang.);звонить
 to ring back;перезвонить
 to ring up;звонить
 to rise (The sun rises in the east., Prices are rising.);расти
 to rob;грабить
-rock (rock (music), a hard piece of rock);рок
+rock (rock music, a hard piece of rock);рок
 rocket (They sent a rocket into space.);ракета
 role;роль
 roll (a roll of film, a bread roll);рулон
@@ -1467,7 +1468,7 @@ secondary (secondary school);средний
 second-hand;из вторых рук
 section;раздел
 security;безопасность
-to see (to see something (with the eyes), to see the joke (understand), to see someone about a problem);видеть
+to see (to see something-with the eyes, to see the joke-understand, to see someone about a problem);видеть
 to seem;казаться
 to select;выбрать
 selfie (take a selfie);селфи
@@ -1532,7 +1533,7 @@ similar;похожий
 simple;простой
 sincerely (Yours sincerely sing);искренне
 singing;петь
-single (a single ticket to Manchester, to be single (unmarried), a single room);один
+single (a single ticket to Manchester, to be single-unmarried, a single room);один
 sink (a kitchen sink);раковина
 to sink (The ship began to sink.);тонуть
 sir (Yes, sir!);сэр
@@ -1551,7 +1552,7 @@ smartphone;смартфон
 smoke;дым
 to smoke;курить
 smoking;курение
-smooth (a smooth surface, a smooth ride in the new car (comfortable));гладкий
+smooth (a smooth surface, a smooth ride in the new car-comfortable);гладкий
 to snowboard;кататься на сноуборде
 soap opera;мыльная опера
 sociable;общительный
@@ -1613,7 +1614,7 @@ to steal;украсть
 steep;крутой
 step (two steps forward, to climb the steps);шаг
 to step forward/back/out;идти вперед/назад/выйти
-to step over/in/on/out of (something);перешагивать через/в/на/из
+to step over/in/on/out of (something)&;перешагивать через/в/на/из
 stick;палка
 to stick (to stick two things together);все еще, по-прежнему
 sticky;липкий
@@ -1679,7 +1680,7 @@ to take (to take someone’s hand, to take a photo, to take a long time, to take
 to take away (Take 15 away from 78.);отнять
 to take care of (take care of someone.);заботиться
 to take off (Do you want to take off your coat?, The plane takes off at 6.);взлетать, снимать
-to take part (in) (Everybody took part in the meeting.);принять участие
+to take part (in)&;принять участие
 to take place (The meeting took place at six.);состояться
 to take up (He decided to take up a new hobby.);заняться
 talent;талант
@@ -1696,7 +1697,7 @@ technique;техника
 technology;технология
 teenager;подросток
 to telephone;позвонить по телефону
-television (TV);телевидение
+television (TV)&;телевидение
 to tell (to tell a story, to tell someone something, to tell someone to do something, You can’t always tell.);рассказать
 temperature (to have a temperature, air temperature);температура
 temporary;временный
@@ -1765,11 +1766,11 @@ trend;тенденция
 trick;трюк
 trip (a weekend trip);поездка
 trouble;неприятности
-trunk (UK boot);сундук, багажник, ствол (дерева)
+trunk (UK boot);сундук, багажник, ствол дерева
 trumpet;трубить
 to trust (to trust someone);доверять
 truth;правда
-to try (to try to do something, to try (out) something);пробовать
+to try (to try to do something, to try something);пробовать
 to try on (to try on shoes);примерять
 tube (a tube of toothpaste);тюбик
 turn (It’s my turn);очередь
@@ -1925,7 +1926,7 @@ worry;беспокойство
 to worry;беспокоиться
 worth;стоит
 would;бы
-to wrap (to wrap (up) a parcel);заворачивать
+to wrap (to wrap up a parcel);заворачивать
 to write down (write down an address);записывать
 writer;писатель
 writing;написание

@@ -135,7 +135,7 @@ sweet;сладкий
 fridge;холодильник
 pan;кастрюля, сковорода
 takeaway;вынос
-can (of beans);банка
+can (can of beans);банка
 fried;жареный
 tasty;вкусный
 canteen;столовая

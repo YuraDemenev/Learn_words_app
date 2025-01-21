@@ -46,7 +46,7 @@ blanket;одеяло, покрывало, плед
 downstairs;внизу
 dream;мечтать
 elevator (UK lift);лифт (лифт Великобритании)
-floor (ground,1st);этаж
+floor (ground,1st)&;этаж
 internet;интернет
 message;сообщение
 roof;крыша
@@ -67,7 +67,7 @@ envelope;конверт
 fridge;холодильник
 gate;ворота
 key;ключ
-letter (as in mail);письмо
+letter (as in mail)&;письмо
 oven;печь
 screen;экран
 shampoo;шампунь
@@ -100,7 +100,7 @@ carpet;ковёр
 ceiling;потолок
 cellar;подвал, погреб
 central heating;центральное отопление
-channel (with TV);канал
+channel (with TV)&;канал
 chest of drawers;комод
 cottage;коттедж
 curtain;занавес
@@ -121,7 +121,7 @@ furniture;мебель
 garage;гараж
 gas;газ
 grill;гриль
-ground (floor);земля
+ground (floor)&;земля
 handle;обрабатывать
 to heat;нагревать
 heater;обогреватель
@@ -132,10 +132,9 @@ iron;железо
 jug;кувшин
 kettle;чайник
 ladder;лестница
-laptop (computer);ноутбук (компьютер)
+laptop (computer)&;ноутбук (компьютер)&
 lift;поднять
 light;свет
-(clothes) line;
 living-room;гостиная
 lock;запереть
 microwave;микроволновка
@@ -167,7 +166,7 @@ tap;тапнуть
 television;телевидение
 toilet;туалет
 tower;башня
-TV (screen/set);Телевизор
+TV (screen/set)&;Телевизор
 vase;ваза
 video;видео
 washing;мытьё

@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Word"
-                    android:textSize="25sp"
+                    android:textSize="35sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/learnWordsWordAndTranscriptionContainer" />
@@ -187,7 +187,7 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:text="Перевод"
-                android:textSize="25sp"
+                android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guideline" />

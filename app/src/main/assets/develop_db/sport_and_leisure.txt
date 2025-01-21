@@ -51,7 +51,7 @@ throw;бросок
 toy;игрушка
 walk;прогулка
 watch;часы
-band (music);группа
+band (music)&;группа
 cinema;кино
 comic;комический
 comic book;комикс
@@ -90,14 +90,14 @@ concert;концерт
 diary;дневник
 drum;барабанить
 festival;фестиваль
-flashlight (UK torch);фонарик (британский фонарик)
+flashlight (UK torch);фонарик
 golf;гольф
 hotel;отель
 instrument;инструмент
 invitation;приглашение
-join (a club);присоединиться
+join (join a club);присоединиться
 magazine;журнал
-match (football);матч
+match (football match);матч
 meet;встретиться
 member;член
 online;онлайн
@@ -152,8 +152,8 @@ cycling;езда на велосипеде
 cyclist;велосипедист
 dancing;танцы
 diving;нырять
-enter (a competition);принять участие, участвовать
-(sports) facilities;
+enter (enter a competition);принять участие, участвовать
+facilities;объекты,сооружения,
 fitness;фитнес
 soccer player (UK football player);футболист
 goalkeeper;вратарь
@@ -170,13 +170,13 @@ join in;присоединиться
 to kick;пинать
 kit;комплект
 league;лига
-locker (room);шкафчик
+locker (room)&;шкафчик
 long jump;прыжок в длину
 luck;удача
 match;сопоставить
 motor-racing;автогонки
 to play;играть
-point(s);точка
+point(s)&;точка
 to practise;практиковать
 race track;гоночная трасса
 racing;гонка
@@ -194,7 +194,7 @@ to sail;плыть, идти под парусами
 sailing;парусный спорт
 sea;море
 season;сезон
-shoot(ing);стрелять
+shoot(ing)&;стрелять
 shorts;шорты
 skating;катание на коньках
 skiing;катание на лыжах

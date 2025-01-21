@@ -25,11 +25,11 @@ ambulance;скорая помощь
 bicycle;велосипед
 fire truck (UK fire engine);пожарная машина
 journey;путешествие
-lift (ride);поднять
+to give a lift/ride;подвезти
 motorway;автомагистраль
 passenger;пассажир
 platform;платформа
-racing (car, bike);гоночный
+racing (racing car, bike);гоночный
 railway;железная дорога
 rocket;ракета
 spaceship;космический корабль
@@ -149,7 +149,7 @@ petrol;бензин
 petrol station;автозаправочная станция
 pilot;пилот
 public transport;общественный транспорт
-rail (road);железная дорога
+rail (rail road);железная дорога
 reception;прием
 to repair;ремонтировать
 reservation;оговорка
@@ -161,7 +161,6 @@ roundabout;кольцевая развязка
 route;маршрут
 to sail;плыть
 scooter;скутер
-(bus) service;
 sightseeing;осмотр достопримечательностей
 signpost;указатель
 single room;одноместный номер

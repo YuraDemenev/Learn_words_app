@@ -24,7 +24,8 @@ class MainPagePresenter(
         listOfWords: MutableList<Words>,
         countLearnedWords: Int,
         hashMap: HashMap<Int, String>,
-        checkAddWord: Boolean
+        checkAddWord: Boolean,
+        thisContext: Context
     ) {
         mainView.nextWord(
             binding,
@@ -34,7 +35,8 @@ class MainPagePresenter(
             listOfWords,
             countLearnedWords,
             hashMap,
-            checkAddWord
+            checkAddWord,
+            thisContext
         )
     }
 

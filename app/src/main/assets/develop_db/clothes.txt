@@ -88,5 +88,5 @@ underwear;нижнее белье
 undress;раздеваться
 wallet;бумажник
 watch;смотреть
-wear (out);изнашивать
+wear (out)&;изнашивать
 wool;шерсть

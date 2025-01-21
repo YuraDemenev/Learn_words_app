@@ -49,7 +49,7 @@ college;колледж
 to comb;расчесывать
 conversation;разговор
 corner;угол
-to could;мог (о возможности)
+to could;мог (о возможности)&
 creature;существо
 to cut;резать
 dark;темный
@@ -74,7 +74,7 @@ to end;до конца
 engine;двигатель
 enormous;огромный
 enough;достаточно
-to enter;участвовать (в конкурсе,в соревнованиях)
+to enter;участвовать (в конкурсе,в соревнованиях)&
 environment;окружающая среда
 ever;когда-либо
 everywhere;везде
@@ -224,7 +224,7 @@ to remember;помнить
 to repeat;повторять
 restaurant;ресторан
 rich;богатый
-right;направо (в смысле направления)
+right;направо (в смысле направления)&
 same;то же самое
 to save;чтобы сохранить
 science;наука

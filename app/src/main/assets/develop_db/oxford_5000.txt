@@ -942,7 +942,7 @@ costly;дорогостоящий
 councillor;советник
 counselling;консультирование
 counsellor;консультант
-to counter (argue against);возражать (против)
+to counter (argue against)&;возражать (против)&
 counterpart;аналог
 countless;бесчисленное множество
 coup;переворот
@@ -1188,7 +1188,7 @@ governance;управление
 grace;благодать
 grasp;схватить
 grave;могила (для умершего)
-grave (serious);серьёзный
+grave (serious)&;серьёзный
 gravity;гравитация
 grid;сетка
 grief;горе
@@ -1762,8 +1762,8 @@ strand;нить
 strategic;стратегический
 striking;поразительный
 strip;полоска (длинная узкая часть)
-to strip (remove clothes/a layer);раздеваться (снимать одежду/слой)
-to strive;стремиться
+to strip (remove clothes/a layer);раздеваться (снимать одежду)
+to strive;стремиться/слой
 structural;структурный
 to stumble;споткнуться
 to stun;оглушить

@@ -20,7 +20,8 @@ interface MainPageContract {
             listOfWords: MutableList<Words>,
             countLearnedWords: Int,
             hashMap: HashMap<Int, String>,
-            checkAddWord: Boolean
+            checkAddWord: Boolean,
+            thisContext: Context
         )
 
         fun changeLevelName(
@@ -31,6 +32,8 @@ interface MainPageContract {
         )
 
         fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding)
+
+//        fun addExplanation(binding: FragmentLearnWordsBinding, word: Words, thisContext: Context)
     }
 
     //Управляет данными приложения.
@@ -88,6 +91,7 @@ interface MainPageContract {
     interface Presenter {
         //Views
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+//        fun addExplanation(binding: FragmentLearnWordsBinding, word: Words, thisContext: Context)
         fun nextWord(
             binding: FragmentLearnWordsBinding,
             user: User,
@@ -96,7 +100,8 @@ interface MainPageContract {
             listOfWords: MutableList<Words>,
             countLearnedWords: Int,
             hashMap: HashMap<Int, String>,
-            checkAddWord: Boolean
+            checkAddWord: Boolean,
+            thisContext: Context
         )
 
         fun changeLevelName(

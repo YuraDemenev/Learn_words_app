@@ -92,7 +92,7 @@ kid;малыш
 to know;знать
 to learn;учиться
 lesson;урок
-letter;буква (как в алфавите)
+letter;буква (как в алфавите)&
 like;нравится
 to like;нравиться
 line;строка
@@ -116,7 +116,7 @@ monkey;обезьяна
 morning;утро
 mother;мать
 mouse/mice;мышь/мыши
-mouse (computer);мышь (компьютерная)
+mouse (computer)&;мышь (компьютерная)&
 mum;мама
 my;мой
 name;имя
@@ -294,7 +294,7 @@ to get up;вставать
 to go shopping;ходить по магазинам
 grass;трава
 grown-up;взрослый
-have (got);имею
+have (got)&;имею
 to help;чтобы помочь
 homework;домашнее задание
 to hop;прыгать
@@ -405,7 +405,7 @@ vegetable;овощ
 to video;к видео
 village;деревня
 to wait;ждать
-to wake (up);просыпаться (вставать)
+to wake (up)&;просыпаться (вставать)
 to wash;мыть
 to water;к воде
 waterfall;водопад
