@@ -503,6 +503,15 @@
                 android:text="Clear user data"
                 android:textSize="22sp" />
 
+            <TextView
+                android:id="@+id/checkUserData"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:text="Check user data"
+                android:textSize="22sp" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

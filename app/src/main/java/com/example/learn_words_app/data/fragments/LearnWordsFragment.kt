@@ -33,7 +33,6 @@ import kotlinx.coroutines.runBlocking
 class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageContract.View {
     private lateinit var binding: FragmentLearnWordsBinding
 
-    //    private var countLearningWords = 0
     private lateinit var user: User
 
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
@@ -95,162 +94,138 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
             }.join()
         }
 
-        //Список слов, для того чтобы предлагать пользователю новые слова
-        val listOfWords = pair.first
-        //Hash Map, чтобы получать название уровня по id
-        val hashMap = pair.second
+        //Проверяем что все слова выучены
+        if (user.countLearnedWordsToday == user.countLearningWords) {
+            val countLearningWords = user.countLearningWords
+            val countLearnedWords = user.countLearnedWordsToday
 
-        //Для итерации по listOfWords
-        //TODO Продумать что будет если пользователь в середине изучения выйдет в главное меню
-        var indexWord = 0
-//        var countLearnedWords = user.countLearnedWordsToday
-
-        //Кол-во слов которые нужно выучить
-        val countLearningWords = user.countLearningWords
-
-        binding.learnWordsWord.text = listOfWords[indexWord].englishWord
-        binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
-
-        //Для изменения названия уровня
-        changeLevelName(binding, hashMap, listOfWords, indexWord)
-
-        //Меняем кол-во изученных слов
-        if (user.countLearnedWordsToday != 0) {
             binding.learnWordsLearnedCountNewWords.text =
-                "Заучено $user.countLearnedWordsToday/$countLearningWords новых слов"
-        }
+                "Заучено $countLearnedWords/$countLearningWords новых слов"
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------
+            changePageToYouAllLearned()
+        } else {
 
-        //При нажатии на 'я не знаю это слово'
-        //TODO Добавить красивые анимации смены слова
-        binding.learnWordsIDontKnowThisWordText.setOnClickListener {
-            if (user.countLearnedWordsToday < countLearningWords - 1) {
-                indexWord++
-                user.countLearnedWordsToday++
+            //Список слов, для того чтобы предлагать пользователю новые слова
+            val listOfWords = pair.first
+            //Hash Map, чтобы получать название уровня по id
+            val hashMap = pair.second
 
-                nextWord(indexWord, listOfWords, user.countLearnedWordsToday, hashMap)
+            //Для итерации по listOfWords
+            var indexWord = 0
 
-            } else if (user.countLearnedWordsToday == countLearningWords - 1) {
-                indexWord++
-                //Добавляем слово в список, новых слов
-                listOfNewWords.add(listOfWords[indexWord])
+            //Кол-во слов которые нужно выучить
+            val countLearningWords = user.countLearningWords
 
-                //Увеличиваем кол-во выученных слов
-                user.countLearnedWordsToday++
+            binding.learnWordsWord.text = listOfWords[indexWord].englishWord
+            binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
 
+            //Для изменения названия уровня
+            changeLevelName(binding, hashMap, listOfWords, indexWord)
 
+            //Меняем кол-во изученных слов
+            if (user.countLearnedWordsToday != 0) {
+                val countLearnedWords = user.countLearnedWordsToday
                 binding.learnWordsLearnedCountNewWords.text =
-                    "Заучено $user.countLearnedWordsToday/$countLearningWords новых слов"
-
-                //Для изменения названия уровня
-                changeLevelName(binding, hashMap, listOfWords, indexWord)
-
-                //Удаляем элемент перевод
-                var parent = binding.learnWordsTranslation.parent as ViewGroup
-                parent.removeView(binding.learnWordsTranslation)
-
-                //Удаляем элемент транскрипция
-                parent = binding.transcription.parent as ViewGroup
-                parent.removeView(binding.transcription)
-
-                //Удаляем элемент я знаю это слово
-                parent = binding.learnWordsIKnowThisWordText.parent as ViewGroup
-                parent.removeView(binding.learnWordsIKnowThisWordText)
-
-                //Удаляем элемент я не знаю это слово
-                parent = binding.learnWordsIDontKnowThisWordText.parent as ViewGroup
-                parent.removeView(binding.learnWordsIDontKnowThisWordText)
-
-                //Убираем margin у английского слова, чтобы разместить элемент посередине
-                val layoutParams =
-                    binding.learnWordsWord.layoutParams as ViewGroup.MarginLayoutParams
-                layoutParams.topMargin = 0
-
-                //Чтобы поменять start of на end of
-                val constraintLayout = binding.learnWordsLayoutInCard
-                // Create a ConstraintSet object
-                val constraintSet = ConstraintSet()
-                // Clone the existing constraints from the ConstraintLayout
-                constraintSet.clone(constraintLayout)
-                // Set the constraint
-                constraintSet.connect(
-                    binding.learnWordsWordAndTranscriptionContainer.id,
-                    ConstraintSet.TOP,
-                    binding.guideline.id,
-                    ConstraintSet.BOTTOM,
-                    0
-                )
-                constraintSet.applyTo(constraintLayout)
-
-                binding.learnWordsWord.text = "Вы выучили все слова на сегодня"
+                    "Заучено $countLearnedWords/$countLearningWords новых слов"
             }
-        }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
-        //При нажатии на 'я знаю это слово'
-        binding.learnWordsIKnowThisWordText.setOnClickListener {
 
-            //Необходимо получить 1 новое слово из БД
-            lateinit var newWord: Words
-            //Делаем callback чтобы не блокировать основной поток пока получаем значение из БД
-            //В этой функции также обновляем слово, которое знаем
-            myScope.launch {
-                presenter.getOneWordForLearn(
-                    thisContext,
-                    db,
-                    flowLevelsModel,
-                    listOfWords[indexWord].id,
-                    object : WordCallback {
-                        override fun onWordReceived(words: Words) {
-                            newWord = words
-                            listOfWords.add(newWord)
-                        }
-                    })
+            //При нажатии на 'я не знаю это слово'
+            //TODO Добавить красивые анимации смены слова
+            binding.learnWordsIDontKnowThisWordText.setOnClickListener {
+                if (user.countLearnedWordsToday < countLearningWords - 1) {
+                    indexWord++
+                    user.countLearnedWordsToday++
+
+                    nextWord(indexWord, listOfWords, user.countLearnedWordsToday, hashMap)
+
+                } else if (user.countLearnedWordsToday == countLearningWords - 1) {
+                    indexWord++
+                    //Добавляем слово в список, новых слов
+                    listOfNewWords.add(listOfWords[indexWord])
+
+                    //Увеличиваем кол-во выученных слов
+                    user.countLearnedWordsToday++
+
+                    val countLearningWordsText = user.countLearningWords
+                    binding.learnWordsLearnedCountNewWords.text =
+                        "Заучено $countLearningWordsText/$countLearningWords новых слов"
+
+                    //Для изменения названия уровня
+                    changeLevelName(binding, hashMap, listOfWords, indexWord)
+
+                    //Меняем на странице ui элементы для ситуации когда всё выучено
+                    changePageToYouAllLearned()
+                }
             }
 
-            indexWord++
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+            //При нажатии на 'я знаю это слово'
+            binding.learnWordsIKnowThisWordText.setOnClickListener {
 
-            //Если мы должны получить последние слово из списка, но он ешё не пришло из БД,
-            // то создаем progress bar
-            if (indexWord == listOfWords.size) {
-                //Скрываем элементы
-                val wordAndTranslationContainer = binding.learnWordsWordAndTranscriptionContainer
-                wordAndTranslationContainer.visibility = View.INVISIBLE
-
-                val translation = binding.learnWordsTranslation
-                translation.visibility = View.INVISIBLE
-
-                //Создаём progress bar
-                val progressBar = ProgressBar(thisContext)
-                val layoutParams = ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                )
-
-                layoutParams.startToStart = binding.learnWordsLayoutInCard.id
-                layoutParams.endToEnd = binding.learnWordsLayoutInCard.id
-                layoutParams.topToBottom = binding.learnWordsHighContainer.id
-                layoutParams.bottomToTop = binding.learnWordsDownContainer.id
-                progressBar.layoutParams = layoutParams
-
-                //Add progressBar
-                val layout = binding.learnWordsLayoutInCard
-                layout.addView(progressBar)
-
-                //TODO сделать что-то с while
-                while (indexWord == listOfWords.size) {
-
+                //Необходимо получить 1 новое слово из БД
+                lateinit var newWord: Words
+                //Делаем callback чтобы не блокировать основной поток пока получаем значение из БД
+                //В этой функции также обновляем слово, которое знаем
+                myScope.launch {
+                    presenter.getOneWordForLearn(
+                        thisContext,
+                        db,
+                        flowLevelsModel,
+                        listOfWords[indexWord].id,
+                        object : WordCallback {
+                            override fun onWordReceived(words: Words) {
+                                newWord = words
+                                listOfWords.add(newWord)
+                            }
+                        })
                 }
 
-                //Удаляем progress bar
-                layout.removeView(progressBar)
-                //Делаем видимыми элементы
-                wordAndTranslationContainer.visibility = View.VISIBLE
-                translation.visibility = View.VISIBLE
+                indexWord++
 
+                //Если мы должны получить последние слово из списка, но он ешё не пришло из БД,
+                // то создаем progress bar
+                if (indexWord == listOfWords.size) {
+                    //Скрываем элементы
+                    val wordAndTranslationContainer =
+                        binding.learnWordsWordAndTranscriptionContainer
+                    wordAndTranslationContainer.visibility = View.INVISIBLE
+
+                    val translation = binding.learnWordsTranslation
+                    translation.visibility = View.INVISIBLE
+
+                    //Создаём progress bar
+                    val progressBar = ProgressBar(thisContext)
+                    val layoutParams = ConstraintLayout.LayoutParams(
+                        ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                        ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    )
+
+                    layoutParams.startToStart = binding.learnWordsLayoutInCard.id
+                    layoutParams.endToEnd = binding.learnWordsLayoutInCard.id
+                    layoutParams.topToBottom = binding.learnWordsHighContainer.id
+                    layoutParams.bottomToTop = binding.learnWordsDownContainer.id
+                    progressBar.layoutParams = layoutParams
+
+                    //Add progressBar
+                    val layout = binding.learnWordsLayoutInCard
+                    layout.addView(progressBar)
+
+                    //TODO сделать что-то с while
+                    while (indexWord == listOfWords.size) {
+
+                    }
+
+                    //Удаляем progress bar
+                    layout.removeView(progressBar)
+                    //Делаем видимыми элементы
+                    wordAndTranslationContainer.visibility = View.VISIBLE
+                    translation.visibility = View.VISIBLE
+
+                }
+                nextWord(indexWord, listOfWords, user.countLearnedWordsToday, hashMap)
             }
-            nextWord(indexWord, listOfWords, user.countLearnedWordsToday, hashMap)
         }
     }
 
@@ -260,19 +235,14 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         //Получаем/создаем БД
         val db = MainDB.getDB(thisContext)
 
-        //Если пользователь выучил все слова
-        if (user.countLearnedWordsToday == user.countLearningWords) {
-            myScope.launch {
-                presenter.updateWordsLevels(db, listOfNewWords, 1)
-            }
-        } else {
-            //Для обновления данных нам нужно передать список уровней, но на этой странице
-            val listOfLevelsBuilders = convertProtoLevelsToLevels(user.listOfLevels)
+        myScope.launch {
+            presenter.updateWordsLevels(db, listOfNewWords, 1)
+        }
+        val listOfLevelsBuilders = convertProtoLevelsToLevels(user.listOfLevels)
 
-            //Обновляем данные в user proto
-            myScope.launch {
-                presenter.updateUserProto(thisContext, user, listOfLevelsBuilders)
-            }
+        //Обновляем данные в user proto
+        myScope.launch {
+            presenter.updateUserProto(thisContext, user, listOfLevelsBuilders)
         }
     }
 
@@ -323,5 +293,47 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
 
         //Добавляем слово в список, новых слов
         listOfNewWords.add(listOfWords[indexWord])
+    }
+
+    //Меняем на странице ui элементы для ситуации когда всё выучено
+    private fun changePageToYouAllLearned() {
+        //Удаляем элемент перевод
+        var parent = binding.learnWordsTranslation.parent as ViewGroup
+        parent.removeView(binding.learnWordsTranslation)
+
+        //Удаляем элемент транскрипция
+        parent = binding.transcription.parent as ViewGroup
+        parent.removeView(binding.transcription)
+
+        //Удаляем элемент я знаю это слово
+        parent = binding.learnWordsIKnowThisWordText.parent as ViewGroup
+        parent.removeView(binding.learnWordsIKnowThisWordText)
+
+        //Удаляем элемент я не знаю это слово
+        parent = binding.learnWordsIDontKnowThisWordText.parent as ViewGroup
+        parent.removeView(binding.learnWordsIDontKnowThisWordText)
+
+        //Убираем margin у английского слова, чтобы разместить элемент посередине
+        val layoutParams =
+            binding.learnWordsWord.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.topMargin = 0
+
+        //Чтобы поменять start of на end of
+        val constraintLayout = binding.learnWordsLayoutInCard
+        // Create a ConstraintSet object
+        val constraintSet = ConstraintSet()
+        // Clone the existing constraints from the ConstraintLayout
+        constraintSet.clone(constraintLayout)
+        // Set the constraint
+        constraintSet.connect(
+            binding.learnWordsWordAndTranscriptionContainer.id,
+            ConstraintSet.TOP,
+            binding.guideline.id,
+            ConstraintSet.BOTTOM,
+            0
+        )
+        constraintSet.applyTo(constraintLayout)
+
+        binding.learnWordsWord.text = "Вы выучили все слова на сегодня"
     }
 }

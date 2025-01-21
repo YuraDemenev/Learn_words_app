@@ -95,6 +95,12 @@ class MainFragment : Fragment(), MainPageContract.View {
         //Меняем надпись сегодня выучено слов
         binding.countLearnedWords.text = "сегодня выучено слов 0/10"
 
+        binding.checkUserData.setOnClickListener {
+            myScope.launch {
+                presenter.checkUserData(thisContext, db, flowLevelsModel)
+            }
+        }
+
         //Наблюдатель за FlowLevelsModel.
         //Меняем кол-во категорий
         flowLevelsModel.data.observe(viewLifecycleOwner, { levelsData ->
