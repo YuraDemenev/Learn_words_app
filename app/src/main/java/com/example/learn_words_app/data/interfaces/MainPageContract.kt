@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.interfaces
 
 import android.content.Context
+import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.additionalData.User
@@ -46,6 +47,12 @@ interface MainPageContract {
             stage: Int
         )
 
+        suspend fun updateUserProto(
+            context: Context,
+            user: User,
+            listOfLevelsBuilders: MutableList<LevelsProto>
+        )
+
         //For Dev
         suspend fun upDB(c: Context, db: MainDB)
 
@@ -78,6 +85,12 @@ interface MainPageContract {
             db: MainDB,
             listOfNewWords: List<Words>,
             stage: Int
+        )
+
+        suspend fun updateUserProto(
+            context: Context,
+            user: User,
+            listOfLevelsBuilders: MutableList<LevelsProto>
         )
 
         suspend fun getOneWordForLearn(

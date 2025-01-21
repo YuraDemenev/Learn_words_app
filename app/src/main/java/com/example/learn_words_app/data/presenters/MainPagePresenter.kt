@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.presenters
 
 import android.content.Context
+import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.additionalData.User
@@ -50,6 +51,14 @@ class MainPagePresenter(
         stage: Int
     ) {
         model.updateWordsLevels(db, listOfNewWords, stage)
+    }
+
+    override suspend fun updateUserProto(
+        context: Context,
+        user: User,
+        listOfLevelsBuilders: MutableList<LevelsProto>
+    ) {
+        model.updateUserProto(context, user, listOfLevelsBuilders)
     }
 
     override suspend fun getUser(context: Context): User {

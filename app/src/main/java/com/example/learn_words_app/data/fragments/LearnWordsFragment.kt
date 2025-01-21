@@ -22,6 +22,7 @@ import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.interfaces.WordCallback
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
+import com.example.learn_words_app.data.proto.convertProtoLevelsToLevels
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +33,8 @@ import kotlinx.coroutines.runBlocking
 class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageContract.View {
     private lateinit var binding: FragmentLearnWordsBinding
 
-    private var countLearningWords = 0
+    //    private var countLearningWords = 0
+    private lateinit var user: User
 
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
@@ -55,6 +57,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
     }
 
     //TODO Продумать ситуацию когда, запрашиваем больше слов чем есть в БД на данном уровне
+    //TODO Если есть пояснение в скобках, нужно вывести в отдельной строке пояснения
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,7 +76,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         }
 
         //Получаем пользователя
-        lateinit var user: User
         runBlocking {
             myScope.launch {
                 user = presenter.getUser(thisContext)
@@ -88,7 +90,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
                     thisContext,
                     db,
                     flowLevelsModel,
-                    user.countLearningWords
+                    user.countLearningWords - user.countLearnedWordsToday
                 )
             }.join()
         }
@@ -101,10 +103,10 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         //Для итерации по listOfWords
         //TODO Продумать что будет если пользователь в середине изучения выйдет в главное меню
         var indexWord = 0
-        var countLearnedWords = 0
+//        var countLearnedWords = user.countLearnedWordsToday
 
         //Кол-во слов которые нужно выучить
-        countLearningWords = user.countLearningWords
+        val countLearningWords = user.countLearningWords
 
         binding.learnWordsWord.text = listOfWords[indexWord].englishWord
         binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
@@ -112,26 +114,34 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         //Для изменения названия уровня
         changeLevelName(binding, hashMap, listOfWords, indexWord)
 
+        //Меняем кол-во изученных слов
+        if (user.countLearnedWordsToday != 0) {
+            binding.learnWordsLearnedCountNewWords.text =
+                "Заучено $user.countLearnedWordsToday/$countLearningWords новых слов"
+        }
+
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
         //При нажатии на 'я не знаю это слово'
         //TODO Добавить красивые анимации смены слова
         binding.learnWordsIDontKnowThisWordText.setOnClickListener {
-            if (countLearnedWords < countLearningWords - 1) {
+            if (user.countLearnedWordsToday < countLearningWords - 1) {
                 indexWord++
-                countLearnedWords++
+                user.countLearnedWordsToday++
 
-                nextWord(indexWord, listOfWords, countLearnedWords, hashMap)
+                nextWord(indexWord, listOfWords, user.countLearnedWordsToday, hashMap)
 
-            } else if (countLearnedWords == countLearningWords - 1) {
+            } else if (user.countLearnedWordsToday == countLearningWords - 1) {
                 indexWord++
                 //Добавляем слово в список, новых слов
                 listOfNewWords.add(listOfWords[indexWord])
 
                 //Увеличиваем кол-во выученных слов
-                countLearnedWords++
+                user.countLearnedWordsToday++
+
+
                 binding.learnWordsLearnedCountNewWords.text =
-                    "Заучено $countLearnedWords/$countLearningWords новых слов"
+                    "Заучено $user.countLearnedWordsToday/$countLearningWords новых слов"
 
                 //Для изменения названия уровня
                 changeLevelName(binding, hashMap, listOfWords, indexWord)
@@ -240,7 +250,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
                 translation.visibility = View.VISIBLE
 
             }
-            nextWord(indexWord, listOfWords, countLearnedWords, hashMap)
+            nextWord(indexWord, listOfWords, user.countLearnedWordsToday, hashMap)
         }
     }
 
@@ -250,8 +260,19 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         //Получаем/создаем БД
         val db = MainDB.getDB(thisContext)
 
-        myScope.launch {
-            presenter.updateWordsLevels(db, listOfNewWords, 1)
+        //Если пользователь выучил все слова
+        if (user.countLearnedWordsToday == user.countLearningWords) {
+            myScope.launch {
+                presenter.updateWordsLevels(db, listOfNewWords, 1)
+            }
+        } else {
+            //Для обновления данных нам нужно передать список уровней, но на этой странице
+            val listOfLevelsBuilders = convertProtoLevelsToLevels(user.listOfLevels)
+
+            //Обновляем данные в user proto
+            myScope.launch {
+                presenter.updateUserProto(thisContext, user, listOfLevelsBuilders)
+            }
         }
     }
 
@@ -266,7 +287,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
         if (str != null) {
             binding.levelName.text = changeWordForShow(str)
         } else {
-            Log.e("Learn words fragment", "changeLevelName str is null")
+            Log.e("Learn words fragment", "changeLevelName, str is null")
             throw Exception()
         }
     }
@@ -290,6 +311,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words), MainPageCont
     ) {
         binding.learnWordsWord.text = listOfWords[indexWord].englishWord
         binding.learnWordsTranslation.text = listOfWords[indexWord].russianTranslation
+        val countLearningWords = user.countLearningWords
 
         binding.learnWordsLearnedCountNewWords.text =
             "Заучено $countLearnedWords/$countLearningWords новых слов"

@@ -17,8 +17,9 @@ message  UserProto{
   int32 countFullLearnedWords = 4;
   int32 countLearningWords = 5;
   int32 countLearnedWordsToday = 6;
-  int32 countKnewWords = 7;
-  repeated LevelsProto listOfLevels = 8;
-  bool checkBritishVariables = 9;
-  google.protobuf.Timestamp lastTimeLearnedWords = 10;
+  bool checkLearnedAllWordsToday = 7;
+  int32 countKnewWords = 8;
+  repeated LevelsProto listOfLevels = 9;
+  bool checkBritishVariables = 10;
+  google.protobuf.Timestamp lastTimeLearnedWords = 11;
 }

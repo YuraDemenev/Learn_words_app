@@ -10,10 +10,12 @@ class User(
     var countFullLearnedWords: Int = 0,
     var countLearningWords: Int = 0,
     var countLearnedWordsToday: Int = 0,
+    var checkLearnedAllWordsToday: Boolean = false,
     var countKnewWords: Int = 0,
     var listOfLevels: MutableList<Levels> = mutableListOf(),
     var checkBritishVariables: Boolean = false,
     var lastTimeLearnedWords: Instant = Instant.ofEpochSecond(0, 0),
-)
+
+    )
 
 

@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.proto
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
@@ -38,4 +39,22 @@ fun convertLevelsProtoToLevels(levelsProto: LevelsProto): Levels {
         name = levelsProto.name,
         countLearnedWords = 0
     )
+}
+
+//Функция для конвертации Levels в ProtLevels
+fun convertProtoLevelsToLevels(levels: List<Levels>): MutableList<LevelsProto> {
+    val listOfLevelsBuilders = mutableListOf<LevelsProto>()
+
+    //Проходим по list Levels и заполняем List LevelsProto
+    levels.forEach { level ->
+        if (level.id != null) {
+            listOfLevelsBuilders.add(
+                LevelsProto.newBuilder().setId(level.id).setName(level.name).build()
+            )
+        } else {
+            Log.e("Check user data. get levels from db", "level id is null")
+            throw Exception()
+        }
+    }
+    return listOfLevelsBuilders
 }

@@ -9,4 +9,4 @@ sqlite3 --table words.DB
 --box words.DB
 
 exos- сервер (60)
-iron wolf-сетвое хранилище (6)
+iron wolf-сетевое хранилище (6)
