@@ -3,12 +3,15 @@ package com.example.learn_words_app.data.views
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
-import android.view.Gravity
+import android.util.TypedValue
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.dataBase.Words
@@ -33,17 +36,18 @@ class MainPageView : MainPageContract.View {
         var russianWord = word.russianTranslation
 
         //Если в английском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
-        if (englishWord.contains("(")) {
-            if (englishWord[englishWord.length - 1] == '&') {
-                englishWord = englishWord.dropLast(1)
-
-            } else {
-                val splitWords = word.englishWord.split("(")
-                englishWord = splitWords[0]
-                englishWord.trim()
-                addEnglishExplanation(binding, splitWords[1], thisContext)
-            }
-        }
+//        if (englishWord.contains("(")) {
+//            if (englishWord[englishWord.length - 1] == '&') {
+//                englishWord = englishWord.dropLast(1)
+//
+//            } else {
+//                val splitWords = word.englishWord.split("(")
+//                englishWord = splitWords[0]
+//                englishWord.trim()
+//                addEnglishExplanation(binding, splitWords[1], thisContext)
+//            }
+//        }
+        addEnglishExplanation(binding, englishWord, thisContext)
 
         //Если в русском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
         binding.learnWordsWord.text = englishWord
@@ -127,130 +131,87 @@ class MainPageView : MainPageContract.View {
     @SuppressLint("SetTextI18n")
     private fun addEnglishExplanation(
         binding: FragmentLearnWordsBinding,
-        explanation: String,
+        explanations: String,
         thisContext: Context
     ) {
-
-
-        //Создаём black line down
-        val blackLineDown = LinearLayout(thisContext)
-        var layoutParams = ConstraintLayout.LayoutParams(
+        //Добавляем NestedScrollView
+        val scrollView = NestedScrollView(thisContext)
+        var constraintParams = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
-            4,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
-        //Присваиваем id
-        blackLineDown.id = R.id.blackLineDownExplanation
+        constraintParams.matchConstraintMaxHeight = convertDpToPx(thisContext, 150f)
+        scrollView.id = R.id.scrollViewWithTable
 
-        //Привязываем элемент
-        layoutParams.startToStart = binding.learnWordsLayoutInCard.id
-        layoutParams.endToEnd = binding.learnWordsLayoutInCard.id
-        layoutParams.bottomToTop = binding.guideline.id
-        blackLineDown.layoutParams = layoutParams
+        constraintParams.startToStart = binding.learnWordsLayoutInCard.id
+        constraintParams.endToEnd = binding.learnWordsLayoutInCard.id
+        constraintParams.bottomToTop = binding.guideline.id
 
-        blackLineDown.setBackgroundColor(android.graphics.Color.BLACK)
+        scrollView.layoutParams = constraintParams
 
-        //добавляем black line
+        //Add scrollView
         val layout = binding.learnWordsLayoutInCard
-        layout.addView(blackLineDown)
+        layout.addView(scrollView)
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //Add table
+        val table = TableLayout(thisContext).apply {
+            layoutParams = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            )
+        }
 
-        //Создаём Container explanation
-        val containerExplanation = ConstraintLayout(thisContext)
-        layoutParams = ConstraintLayout.LayoutParams(
-            ConstraintLayout.LayoutParams.MATCH_PARENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        table.background = ContextCompat.getDrawable(thisContext, R.drawable.rounded_corners)
+
+        val strings = listOf(
+            "Test1",
+            "Test2",
+            "Test3",
+            "Row2 Col1",
+            "Row2 Col2",
+            "Row2 Col3",
+            "Test1",
+            "Test2",
+            "Test3",
+            "Row2 Col1",
+            "Row2 Col2",
+            "Row2 Col3"
         )
 
-        //Присваиваем id
-        containerExplanation.id = R.id.containerExplanation
+//        val strings = explanations.split(",")
+//        //В последнем элементе ')' её нужно удалить
+//        strings[strings.size - 1].dropLast(1)
 
-        //Привязываем элемент
-        layoutParams.startToStart = binding.learnWordsLayoutInCard.id
-        layoutParams.endToEnd = binding.learnWordsLayoutInCard.id
-        layoutParams.bottomToTop = blackLineDown.id
+        strings.forEach { string ->
+            val tableRow = TableRow(thisContext).apply {
+                layoutParams = TableLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_PARENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    marginStart = 15
+                    marginEnd = 15
+                }
+            }
 
-        containerExplanation.layoutParams = layoutParams
 
-        //добавляем container explanation
-        layout.addView(containerExplanation)
+            // Add TextViews with strings to the TableRow
+            val textView = TextView(thisContext).apply {
+                text = string
+                textSize = 15f
+                // Padding for aesthetics
+                setPadding(16, 16, 16, 16)
+            }
+            tableRow.addView(textView)
+
+            // Добавляем row
+            table.addView(tableRow)
+        }
+
+        scrollView.addView(table)
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        val explanationName = TextView(thisContext)
-        layoutParams = ConstraintLayout.LayoutParams(
-            ConstraintLayout.LayoutParams.WRAP_CONTENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        //Присваиваем id
-        explanationName.id = R.id.explanationName
-
-        //Привязываем элемент
-        layoutParams.startToStart = containerExplanation.id
-        layoutParams.topToTop = containerExplanation.id
-        layoutParams.bottomToTop = R.id.explanationText
-
-        explanationName.layoutParams = layoutParams
-
-        //Добавляем текст
-        explanationName.text = "Пояснение:"
-        explanationName.textSize = 25f
-
-
-        //Добавляем в контейнер explanation name
-        containerExplanation.addView(explanationName)
-
-        //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        val explanationText = TextView(thisContext)
-        layoutParams = ConstraintLayout.LayoutParams(
-            ConstraintLayout.LayoutParams.WRAP_CONTENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        //Присваиваем id
-        explanationText.id = R.id.explanationText
-
-        //Привязываем элемент
-        layoutParams.startToStart = containerExplanation.id
-        layoutParams.topToBottom = explanationName.id
-        layoutParams.bottomToBottom = containerExplanation.id
-
-        explanationText.layoutParams = layoutParams
-
-        //Добавляем текст
-        val englishWord = explanation.replace(")", "")
-        explanationText.text = englishWord
-        explanationText.textSize = 25f
-        explanationText.gravity = Gravity.START
-
-        //Добавляем в контейнер explanation name
-        containerExplanation.addView(explanationText)
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //Создаём black line up
-        val blackLineUp = LinearLayout(thisContext)
-        layoutParams = ConstraintLayout.LayoutParams(
-            ConstraintLayout.LayoutParams.MATCH_PARENT,
-            4,
-        )
-        //Присваиваем id
-        blackLineUp.id = R.id.blackLineUpExplanation
-
-        //Привязываем элемент
-        layoutParams.startToStart = binding.learnWordsLayoutInCard.id
-        layoutParams.endToEnd = binding.learnWordsLayoutInCard.id
-        layoutParams.bottomToTop = containerExplanation.id
-        blackLineUp.layoutParams = layoutParams
-
-        blackLineUp.setBackgroundColor(android.graphics.Color.BLACK)
-
-        //добавляем black line
-        layout.addView(blackLineUp)
-
-        //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //Перепривязваем container со словом
-
-        //Чтобы поменять start of на end of
+        //Привязываем wordsContainer к таблице
         val constraintLayout = binding.learnWordsLayoutInCard
         // Create a ConstraintSet object
         val constraintSet = ConstraintSet()
@@ -260,11 +221,12 @@ class MainPageView : MainPageContract.View {
         constraintSet.connect(
             binding.learnWordsWordAndTranscriptionContainer.id,
             ConstraintSet.BOTTOM,
-            blackLineUp.id,
+            scrollView.id,
             ConstraintSet.TOP,
-            100,
+            convertDpToPx(thisContext, 15f)
         )
         constraintSet.applyTo(constraintLayout)
+
     }
 
     private fun changeWordForShow(word: String): String {
@@ -274,5 +236,13 @@ class MainPageView : MainPageContract.View {
         }
         myWord = myWord.replaceFirstChar { it.uppercase() }
         return myWord
+    }
+
+    private fun convertDpToPx(context: Context, dp: Float): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp,
+            context.resources.displayMetrics
+        ).toInt()
     }
 }

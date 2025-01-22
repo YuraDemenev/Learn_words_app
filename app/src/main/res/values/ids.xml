@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="blackLineDownExplanation" type="id" />
-    <item name="containerExplanation" type="id" />
-    <item name="explanationName" type="id" />
-    <item name="explanationText" type="id" />
-    <item name="blackLineUpExplanation" type="id" />
+    <item name="scrollViewWithTable" type="id" />
 </resources>
