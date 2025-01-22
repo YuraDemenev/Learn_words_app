@@ -36,18 +36,18 @@ class MainPageView : MainPageContract.View {
         var russianWord = word.russianTranslation
 
         //Если в английском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
-//        if (englishWord.contains("(")) {
-//            if (englishWord[englishWord.length - 1] == '&') {
-//                englishWord = englishWord.dropLast(1)
-//
-//            } else {
-//                val splitWords = word.englishWord.split("(")
-//                englishWord = splitWords[0]
-//                englishWord.trim()
-//                addEnglishExplanation(binding, splitWords[1], thisContext)
-//            }
-//        }
-        addEnglishExplanation(binding, englishWord, thisContext)
+        if (englishWord.contains("(")) {
+            //Символ & означает что не надо переносить значение в () в пояснение
+            if (englishWord[englishWord.length - 1] == '&') {
+                englishWord = englishWord.dropLast(1)
+
+            } else {
+                val splitWords = word.englishWord.split("(")
+                englishWord = splitWords[0]
+                englishWord.trim()
+                addEnglishExplanation(binding, splitWords[1], thisContext)
+            }
+        }
 
         //Если в русском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
         binding.learnWordsWord.text = englishWord
@@ -134,9 +134,28 @@ class MainPageView : MainPageContract.View {
         explanations: String,
         thisContext: Context
     ) {
+        //Добавляем container с scroll view и table и text view
+        val container = ConstraintLayout(thisContext)
+        var constraintParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.MATCH_PARENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+        container.id = R.id.scrollViewWithTableContainer
+
+        constraintParams.startToStart = binding.learnWordsLayoutInCard.id
+        constraintParams.endToEnd = binding.learnWordsLayoutInCard.id
+        constraintParams.bottomToTop = binding.guideline.id
+
+        container.layoutParams = constraintParams
+        //Add
+        val layout = binding.learnWordsLayoutInCard
+        layout.addView(container)
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
         //Добавляем NestedScrollView
         val scrollView = NestedScrollView(thisContext)
-        var constraintParams = ConstraintLayout.LayoutParams(
+        constraintParams = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
             ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
@@ -145,13 +164,12 @@ class MainPageView : MainPageContract.View {
 
         constraintParams.startToStart = binding.learnWordsLayoutInCard.id
         constraintParams.endToEnd = binding.learnWordsLayoutInCard.id
-        constraintParams.bottomToTop = binding.guideline.id
+        constraintParams.bottomToBottom = container.id
 
         scrollView.layoutParams = constraintParams
 
-        //Add scrollView
-        val layout = binding.learnWordsLayoutInCard
-        layout.addView(scrollView)
+
+        container.addView(scrollView)
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //Add table
@@ -164,26 +182,14 @@ class MainPageView : MainPageContract.View {
 
         table.background = ContextCompat.getDrawable(thisContext, R.drawable.rounded_corners)
 
-        val strings = listOf(
-            "Test1",
-            "Test2",
-            "Test3",
-            "Row2 Col1",
-            "Row2 Col2",
-            "Row2 Col3",
-            "Test1",
-            "Test2",
-            "Test3",
-            "Row2 Col1",
-            "Row2 Col2",
-            "Row2 Col3"
-        )
-
-//        val strings = explanations.split(",")
-//        //В последнем элементе ')' её нужно удалить
-//        strings[strings.size - 1].dropLast(1)
+        val strings = explanations.split(",").toMutableList()
+        //В последнем элементе ')' её нужно удалить
+        strings[strings.size - 1] = strings[strings.size - 1].dropLast(1)
 
         strings.forEach { string ->
+            if (string.last() == '.') {
+                string.dropLast(1)
+            }
             val tableRow = TableRow(thisContext).apply {
                 layoutParams = TableLayout.LayoutParams(
                     ConstraintLayout.LayoutParams.MATCH_PARENT,
@@ -211,7 +217,29 @@ class MainPageView : MainPageContract.View {
         scrollView.addView(table)
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //Привязываем wordsContainer к таблице
+        //Добавляем TextView
+        val textView = TextView(thisContext)
+        constraintParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        constraintParams.startToStart = container.id
+        constraintParams.topToTop = container.id
+        constraintParams.bottomToTop = scrollView.id
+        constraintParams.bottomMargin = convertDpToPx(thisContext, 5f)
+        constraintParams.marginStart = convertDpToPx(thisContext, 10f)
+
+        textView.textSize = 15f
+        textView.text = "Explanation:"
+
+        textView.layoutParams = constraintParams
+        //Add
+        container.addView(textView)
+
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        //Привязываем wordsContainer к container
         val constraintLayout = binding.learnWordsLayoutInCard
         // Create a ConstraintSet object
         val constraintSet = ConstraintSet()
@@ -221,7 +249,7 @@ class MainPageView : MainPageContract.View {
         constraintSet.connect(
             binding.learnWordsWordAndTranscriptionContainer.id,
             ConstraintSet.BOTTOM,
-            scrollView.id,
+            container.id,
             ConstraintSet.TOP,
             convertDpToPx(thisContext, 15f)
         )
