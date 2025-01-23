@@ -21,8 +21,9 @@ interface MainPageContract {
             countLearnedWords: Int,
             hashMap: HashMap<Int, String>,
             checkAddWord: Boolean,
-            thisContext: Context
-        )
+            thisContext: Context,
+            checkExplanation: Boolean
+        ): Boolean
 
         fun changeLevelName(
             binding: FragmentLearnWordsBinding,
@@ -91,7 +92,6 @@ interface MainPageContract {
     interface Presenter {
         //Views
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
-//        fun addExplanation(binding: FragmentLearnWordsBinding, word: Words, thisContext: Context)
         fun nextWord(
             binding: FragmentLearnWordsBinding,
             user: User,
@@ -101,8 +101,9 @@ interface MainPageContract {
             countLearnedWords: Int,
             hashMap: HashMap<Int, String>,
             checkAddWord: Boolean,
-            thisContext: Context
-        )
+            thisContext: Context,
+            checkExplanation: Boolean
+        ): Boolean
 
         fun changeLevelName(
             binding: FragmentLearnWordsBinding,

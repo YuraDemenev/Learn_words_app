@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="scrollViewWithTable" type="id" />
-    <item name="scrollViewWithTableContainer" type="id" />
+    <item name="scrollViewWithTableEnglish" type="id" />
+    <item name="scrollViewWithTableContainerEnglish" type="id" />
+    <item name="scrollViewWithTableRussian" type="id" />
+    <item name="scrollViewWithTableContainerRussian" type="id" />
 </resources>

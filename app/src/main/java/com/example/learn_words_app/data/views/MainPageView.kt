@@ -29,11 +29,18 @@ class MainPageView : MainPageContract.View {
         countLearnedWords: Int,
         hashMap: HashMap<Int, String>,
         checkAddWord: Boolean,
-        thisContext: Context
-    ) {
+        thisContext: Context,
+        checkExplanation: Boolean
+    ): Boolean {
         val word = listOfWords[indexWord]
         var englishWord = word.englishWord
         var russianWord = word.russianTranslation
+        var checkEnglishExplanation = false
+        var checkRussianExplanation = false
+
+        if (checkExplanation) {
+            deleteExplanations(binding, thisContext)
+        }
 
         //Если в английском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
         if (englishWord.contains("(")) {
@@ -42,14 +49,47 @@ class MainPageView : MainPageContract.View {
                 englishWord = englishWord.dropLast(1)
 
             } else {
+                checkEnglishExplanation = true
+
                 val splitWords = word.englishWord.split("(")
                 englishWord = splitWords[0]
                 englishWord.trim()
-                addEnglishExplanation(binding, splitWords[1], thisContext)
+                if (splitWords.size == 2) {
+                    addEnglishExplanation(binding, splitWords[1], thisContext)
+                } else {
+                    Log.e(
+                        "MainPageView",
+                        "nextWord, splitWords english, size!=2, english word: $englishWord"
+                    )
+                    throw Exception()
+                }
             }
         }
 
         //Если в русском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
+        if (russianWord.contains("(")) {
+            //Символ & означает что не надо переносить значение в () в пояснение
+            if (russianWord[russianWord.length - 1] == '&') {
+                russianWord = russianWord.dropLast(1)
+
+            } else {
+
+                checkRussianExplanation = true
+                val splitWords = word.russianTranslation.split("(")
+                russianWord = splitWords[0]
+                russianWord.trim()
+                if (splitWords.size == 2) {
+                    addRussianExplanation(binding, splitWords[1], thisContext)
+                } else {
+                    Log.e(
+                        "MainPageView",
+                        "nextWord, splitWords russian, size!=2, russian word: $russianWord"
+                    )
+                    throw Exception()
+                }
+            }
+        }
+
         binding.learnWordsWord.text = englishWord
         binding.learnWordsTranslation.text = russianWord
         val countLearningWords = user.countLearningWords
@@ -67,7 +107,7 @@ class MainPageView : MainPageContract.View {
             listOfNewWords.add(listOfWords[indexWord])
         }
 
-
+        return checkEnglishExplanation || checkRussianExplanation
     }
 
     override fun changeLevelName(
@@ -128,6 +168,44 @@ class MainPageView : MainPageContract.View {
         binding.learnWordsWord.text = "Вы выучили все слова на сегодня"
     }
 
+    private fun deleteExplanations(
+        binding: FragmentLearnWordsBinding,
+        thisContext: Context
+    ) {
+        val englishContainer: ConstraintLayout? =
+            binding.root.findViewById(R.id.scrollViewWithTableContainerEnglish)
+
+        if (englishContainer != null) {
+            val parent = englishContainer.parent as ViewGroup
+            parent.removeView(englishContainer)
+
+            //привязываем word and transcription container
+            //Чтобы поменять start of на end of
+            val constraintLayout = binding.learnWordsLayoutInCard
+            // Create a ConstraintSet object
+            val constraintSet = ConstraintSet()
+            // Clone the existing constraints from the ConstraintLayout
+            constraintSet.clone(constraintLayout)
+            // Set the constraint
+            constraintSet.connect(
+                binding.learnWordsWordAndTranscriptionContainer.id,
+                ConstraintSet.BOTTOM,
+                binding.guideline.id,
+                ConstraintSet.BOTTOM,
+                convertDpToPx(thisContext, 40f)
+            )
+            constraintSet.applyTo(constraintLayout)
+        }
+
+        val russianContainer: ConstraintLayout? =
+            binding.root.findViewById(R.id.scrollViewWithTableContainerRussian)
+
+        russianContainer?.let {
+            val parent = russianContainer.parent as ViewGroup
+            parent.removeView(russianContainer)
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     private fun addEnglishExplanation(
         binding: FragmentLearnWordsBinding,
@@ -136,11 +214,11 @@ class MainPageView : MainPageContract.View {
     ) {
         //Добавляем container с scroll view и table и text view
         val container = ConstraintLayout(thisContext)
-        var constraintParams = ConstraintLayout.LayoutParams(
+        val constraintParams = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
             ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
-        container.id = R.id.scrollViewWithTableContainer
+        container.id = R.id.scrollViewWithTableContainerEnglish
 
         constraintParams.startToStart = binding.learnWordsLayoutInCard.id
         constraintParams.endToEnd = binding.learnWordsLayoutInCard.id
@@ -153,21 +231,109 @@ class MainPageView : MainPageContract.View {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+        createExplanationContainer(
+            thisContext,
+            binding,
+            container,
+            explanations,
+            "Explanation",
+            R.id.scrollViewWithTableRussian
+        )
+
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        //Привязываем wordsContainer к container
+        val constraintLayout = binding.learnWordsLayoutInCard
+        // Create a ConstraintSet object
+        val constraintSet = ConstraintSet()
+        // Clone the existing constraints from the ConstraintLayout
+        constraintSet.clone(constraintLayout)
+        // Set the constraint
+        constraintSet.connect(
+            binding.learnWordsWordAndTranscriptionContainer.id,
+            ConstraintSet.BOTTOM,
+            container.id,
+            ConstraintSet.TOP,
+            convertDpToPx(thisContext, 15f)
+        )
+        constraintSet.applyTo(constraintLayout)
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun addRussianExplanation(
+        binding: FragmentLearnWordsBinding,
+        explanations: String,
+        thisContext: Context
+    ) {
+        //Добавляем container с scroll view и table и text view
+        val container = ConstraintLayout(thisContext)
+        val constraintParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.MATCH_PARENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+        container.id = R.id.scrollViewWithTableContainerRussian
+
+        constraintParams.startToStart = binding.learnWordsLayoutInCard.id
+        constraintParams.endToEnd = binding.learnWordsLayoutInCard.id
+        constraintParams.topToBottom = binding.learnWordsTranslation.id
+
+        container.layoutParams = constraintParams
+        //Add
+        val layout = binding.learnWordsLayoutInCard
+        layout.addView(container)
+
+        createExplanationContainer(
+            thisContext,
+            binding,
+            container,
+            explanations,
+            "Пояснение",
+            R.id.scrollViewWithTableRussian
+        )
+
+    }
+
+    private fun changeWordForShow(word: String): String {
+        var myWord = word
+        if (word.contains("_")) {
+            myWord = word.replace("_", " ")
+        }
+        myWord = myWord.replaceFirstChar { it.uppercase() }
+        return myWord
+    }
+
+    private fun convertDpToPx(context: Context, dp: Float): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp,
+            context.resources.displayMetrics
+        ).toInt()
+    }
+
+    private fun createExplanationContainer(
+        thisContext: Context,
+        binding: FragmentLearnWordsBinding,
+        container: ConstraintLayout,
+        explanations: String,
+        textViewText: String,
+        scrollViewId: Int
+    ) {
+
         //Добавляем NestedScrollView
         val scrollView = NestedScrollView(thisContext)
-        constraintParams = ConstraintLayout.LayoutParams(
+        var constraintParams = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
             ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
         constraintParams.matchConstraintMaxHeight = convertDpToPx(thisContext, 150f)
-        scrollView.id = R.id.scrollViewWithTable
+        scrollView.id = scrollViewId
 
         constraintParams.startToStart = binding.learnWordsLayoutInCard.id
         constraintParams.endToEnd = binding.learnWordsLayoutInCard.id
         constraintParams.bottomToBottom = container.id
 
         scrollView.layoutParams = constraintParams
-
 
         container.addView(scrollView)
 
@@ -231,46 +397,10 @@ class MainPageView : MainPageContract.View {
         constraintParams.marginStart = convertDpToPx(thisContext, 10f)
 
         textView.textSize = 15f
-        textView.text = "Explanation:"
+        textView.text = textViewText
 
         textView.layoutParams = constraintParams
         //Add
         container.addView(textView)
-
-        //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        //Привязываем wordsContainer к container
-        val constraintLayout = binding.learnWordsLayoutInCard
-        // Create a ConstraintSet object
-        val constraintSet = ConstraintSet()
-        // Clone the existing constraints from the ConstraintLayout
-        constraintSet.clone(constraintLayout)
-        // Set the constraint
-        constraintSet.connect(
-            binding.learnWordsWordAndTranscriptionContainer.id,
-            ConstraintSet.BOTTOM,
-            container.id,
-            ConstraintSet.TOP,
-            convertDpToPx(thisContext, 15f)
-        )
-        constraintSet.applyTo(constraintLayout)
-
-    }
-
-    private fun changeWordForShow(word: String): String {
-        var myWord = word
-        if (word.contains("_")) {
-            myWord = word.replace("_", " ")
-        }
-        myWord = myWord.replaceFirstChar { it.uppercase() }
-        return myWord
-    }
-
-    private fun convertDpToPx(context: Context, dp: Float): Int {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            dp,
-            context.resources.displayMetrics
-        ).toInt()
     }
 }

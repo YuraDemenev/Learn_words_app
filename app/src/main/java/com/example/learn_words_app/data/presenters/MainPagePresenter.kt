@@ -25,9 +25,10 @@ class MainPagePresenter(
         countLearnedWords: Int,
         hashMap: HashMap<Int, String>,
         checkAddWord: Boolean,
-        thisContext: Context
-    ) {
-        mainView.nextWord(
+        thisContext: Context,
+        checkExplanation: Boolean
+    ): Boolean {
+        return mainView.nextWord(
             binding,
             user,
             listOfNewWords,
@@ -36,7 +37,8 @@ class MainPagePresenter(
             countLearnedWords,
             hashMap,
             checkAddWord,
-            thisContext
+            thisContext,
+            checkExplanation
         )
     }
 

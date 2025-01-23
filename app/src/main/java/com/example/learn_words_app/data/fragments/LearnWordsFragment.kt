@@ -32,6 +32,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     private lateinit var binding: FragmentLearnWordsBinding
 
     private lateinit var user: User
+    private var checkExplanation = false
 
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
@@ -113,7 +114,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
             //Кол-во слов которые нужно выучить
             val countLearningWords = user.countLearningWords
 
-            presenter.nextWord(
+            checkExplanation = presenter.nextWord(
                 binding,
                 user,
                 listOfNewWords,
@@ -122,7 +123,8 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                 user.countLearnedWordsToday,
                 hashMap,
                 false,
-                thisContext
+                thisContext,
+                checkExplanation
             )
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -134,7 +136,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                     indexWord++
                     user.countLearnedWordsToday++
 
-                    presenter.nextWord(
+                    checkExplanation = presenter.nextWord(
                         binding,
                         user,
                         listOfNewWords,
@@ -143,9 +145,10 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                         user.countLearnedWordsToday,
                         hashMap,
                         true,
-                        thisContext
+                        thisContext,
+                        checkExplanation
                     )
-                    
+
                 } else if (user.countLearnedWordsToday == countLearningWords - 1) {
                     indexWord++
                     //Добавляем слово в список, новых слов
@@ -230,7 +233,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                     translation.visibility = View.VISIBLE
 
                 }
-                presenter.nextWord(
+                checkExplanation = presenter.nextWord(
                     binding,
                     user,
                     listOfNewWords,
@@ -239,7 +242,8 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                     user.countLearnedWordsToday,
                     hashMap,
                     false,
-                    thisContext
+                    thisContext,
+                    checkExplanation
                 )
             }
         }
