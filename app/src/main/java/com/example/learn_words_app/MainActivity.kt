@@ -49,4 +49,6 @@ class MainActivity : AppCompatActivity() {
         //TODO Сделать сохранения прогресса пользователя в Proto data
         super.onDestroy()
     }
+
+    //TODO сделать background для status bar
 }

@@ -39,6 +39,10 @@ interface WordsDAO {
     @Query("UPDATE words_levels SET stage = :stage, date_for_repeat = :date WHERE word_id = :wordId")
     fun updateWordLevelsStage(wordId: Int, stage: Int, date: Date)
 
+    //Получаем слово из БД по id
+    @Query("SELECT * FROM words WHERE id = :wordId")
+    suspend fun getWordById(wordId: Int): Words
+
     //Динамический запрос для получения 1 слова
     @RawQuery
     suspend fun getWordByLevelsIds(query: SupportSQLiteQuery): Words

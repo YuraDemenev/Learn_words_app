@@ -16,6 +16,13 @@ class MainPagePresenter(
     private var mainView: MainPageContract.View
 ) : MainPageContract.Presenter {
 
+    override fun deleteExplanations(
+        binding: FragmentLearnWordsBinding,
+        thisContext: Context
+    ) {
+        mainView.deleteExplanations(binding, thisContext)
+    }
+
     override fun nextWord(
         binding: FragmentLearnWordsBinding,
         user: User,
@@ -73,8 +80,12 @@ class MainPagePresenter(
         model.getOneWordForLearn(context, db, flowLevelsModel, wordId, callback)
     }
 
-    override suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel) {
-        model.updateProtoData(context, flowLevelsModel)
+    override suspend fun updateProtoData(
+        context: Context,
+        flowLevelsModel: FlowLevelsModel,
+        db: MainDB
+    ) {
+        model.updateProtoData(context, flowLevelsModel, db)
     }
 
     override suspend fun getWordsForLearn(
@@ -102,8 +113,8 @@ class MainPagePresenter(
         model.updateUserProto(context, user, listOfLevelsBuilders)
     }
 
-    override suspend fun getUser(context: Context): User {
-        return model.getUser(context)
+    override suspend fun getUser(context: Context, db: MainDB): User {
+        return model.getUser(context, db)
     }
 
     override suspend fun getLevelsCardData(

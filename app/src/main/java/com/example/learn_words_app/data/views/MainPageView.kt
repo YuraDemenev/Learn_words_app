@@ -168,7 +168,7 @@ class MainPageView : MainPageContract.View {
         binding.learnWordsWord.text = "Вы выучили все слова на сегодня"
     }
 
-    private fun deleteExplanations(
+    override fun deleteExplanations(
         binding: FragmentLearnWordsBinding,
         thisContext: Context
     ) {

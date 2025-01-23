@@ -22,4 +22,5 @@ message  UserProto{
   repeated LevelsProto listOfLevels = 9;
   bool checkBritishVariables = 10;
   google.protobuf.Timestamp lastTimeLearnedWords = 11;
+  repeated int32 listOfWordsIdsForRepeat = 12;
 }

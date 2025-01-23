@@ -78,7 +78,7 @@ class LevelsFragment : Fragment(R.layout.fragment_levels) {
             //TODO Сделать alert если выбрано 0 категорий
             runBlocking {
                 myScope.launch {
-                    presenter.updateProtoData(thisContext, flowLevelsModel)
+                    presenter.updateProtoData(thisContext, flowLevelsModel, db)
                 }.join()
             }
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)

@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.additionalData
 
 import com.example.learn_words_app.data.dataBase.Levels
+import com.example.learn_words_app.data.dataBase.Words
 import java.time.Instant
 
 class User(
@@ -15,7 +16,7 @@ class User(
     var listOfLevels: MutableList<Levels> = mutableListOf(),
     var checkBritishVariables: Boolean = false,
     var lastTimeLearnedWords: Instant = Instant.ofEpochSecond(0, 0),
-
-    )
+    var listOfWordsForRepeat: List<Words> = listOf()
+)
 
 

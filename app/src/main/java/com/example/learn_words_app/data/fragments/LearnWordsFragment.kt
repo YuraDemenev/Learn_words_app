@@ -55,7 +55,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     }
 
     //TODO Продумать ситуацию когда, запрашиваем больше слов чем есть в БД на данном уровне
-    //TODO Если есть пояснение в скобках, нужно вывести в отдельной строке пояснения
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,7 +75,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
         //Получаем пользователя
         runBlocking {
             myScope.launch {
-                user = presenter.getUser(thisContext)
+                user = presenter.getUser(thisContext, db)
             }.join()
         }
 
@@ -156,6 +155,11 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
 
                     //Увеличиваем кол-во выученных слов
                     user.countLearnedWordsToday++
+
+                    //Проверяем есть ли сейчас explanation container на экране
+                    if (checkExplanation) {
+                        presenter.deleteExplanations(binding, thisContext)
+                    }
 
                     val countLearningWordsText = user.countLearningWords
                     binding.learnWordsLearnedCountNewWords.text =

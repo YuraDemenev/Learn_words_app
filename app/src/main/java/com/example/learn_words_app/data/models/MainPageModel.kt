@@ -18,12 +18,15 @@ import com.example.learn_words_app.data.proto.userParamsDataStore
 import com.google.protobuf.Timestamp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.Date
@@ -80,8 +83,8 @@ class MainPageModel : MainPageContract.Model {
         callback.onWordReceived(word)
     }
 
-    override suspend fun getUser(context: Context): User {
-        val userFlow = getUserProtoData(context)
+    override suspend fun getUser(context: Context, db: MainDB): User {
+        val userFlow = getUserProtoData(context, db)
         return userFlow.first()
     }
 
@@ -176,7 +179,7 @@ class MainPageModel : MainPageContract.Model {
         flowLevelsModel: FlowLevelsModel
     ) {
 
-        val userFlow = getUserProtoData(context)
+        val userFlow = getUserProtoData(context, db)
         //Проверяем есть ли пользователь в хранилище или нет
         var checkUser = userFlow.first()
         //Если пользователя нет
@@ -232,7 +235,11 @@ class MainPageModel : MainPageContract.Model {
     }
 
     //Обновляем Proto данные пользователя
-    override suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel) {
+    override suspend fun updateProtoData(
+        context: Context,
+        flowLevelsModel: FlowLevelsModel,
+        db: MainDB
+    ) {
         //Для добавления в Proto data levelsList
         val listOfLevelsBuilders = mutableListOf<LevelsProto>()
         //Проверка что flow levels model не null
@@ -260,7 +267,7 @@ class MainPageModel : MainPageContract.Model {
             }
         }
         //Получаем прогресс пользователя
-        val userFlow = getUserProtoData(context)
+        val userFlow = getUserProtoData(context, db)
         val user = userFlow.first()
 
         //Обновляем прогресс пользователя
@@ -506,7 +513,7 @@ class MainPageModel : MainPageContract.Model {
         Log.i("Dropped database", "Dropped database")
     }
 
-    private fun getUserProtoData(context: Context): Flow<User> {
+    private fun getUserProtoData(context: Context, db: MainDB): Flow<User> {
         //Получаем данные из хранилища Proto DataStore
         val userFlow: Flow<User> = context.userParamsDataStore.data.map { userProto ->
             User(
@@ -526,9 +533,9 @@ class MainPageModel : MainPageContract.Model {
                     userProto.lastTimeLearnedWords.seconds,
                     userProto.lastTimeLearnedWords.nanos.toLong()
                 ),
+                getWordsByIds(userProto.listOfWordsIdsForRepeatList, db)
 
-
-                )
+            )
         }
         return userFlow
     }
@@ -558,5 +565,28 @@ class MainPageModel : MainPageContract.Model {
                         .setNanos(user.lastTimeLearnedWords.nano)
                 ).build()
         }
+    }
+
+    //Функция чтобы при получении ids уровней из proto преобразовать данные в list words
+    private fun getWordsByIds(listOfIds: MutableList<Int>, db: MainDB): List<Words> {
+        val listOfWords: MutableList<Words> = mutableListOf()
+
+        runBlocking {
+            // List to hold jobs
+            val jobs = mutableListOf<Job>()
+
+            val myScope = CoroutineScope(Dispatchers.IO)
+            listOfIds.forEach { id ->
+                val job = myScope.launch {
+                    val word = db.getDao().getWordById(id)
+                    listOfWords.add(word)
+                }
+                jobs.add(job)
+            }
+
+            jobs.joinAll()
+        }
+
+        return listOfWords.toList()
     }
 }

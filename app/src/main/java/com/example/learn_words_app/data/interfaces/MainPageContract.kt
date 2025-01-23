@@ -12,6 +12,11 @@ import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 interface MainPageContract {
     //View концентрируется только на UI и пользовательском взаимодействии, а логика работы с данными вынесена в другие компоненты.
     interface View {
+        fun deleteExplanations(
+            binding: FragmentLearnWordsBinding,
+            thisContext: Context
+        )
+
         fun nextWord(
             binding: FragmentLearnWordsBinding,
             user: User,
@@ -56,13 +61,13 @@ interface MainPageContract {
             callback: WordCallback
         )
 
-        suspend fun getUser(context: Context): User
+        suspend fun getUser(context: Context, db: MainDB): User
 
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
         suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
 
-        suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
+        suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel, db: MainDB)
 
         suspend fun updateWordsLevels(
             db: MainDB,
@@ -90,6 +95,11 @@ interface MainPageContract {
     //Получает действия пользователя из View и запрашивает данные у Model.
     //Возвращает обработанные данные в View.
     interface Presenter {
+        fun deleteExplanations(
+            binding: FragmentLearnWordsBinding,
+            thisContext: Context
+        )
+
         //Views
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
         fun nextWord(
@@ -123,13 +133,13 @@ interface MainPageContract {
             countLearningWords: Int
         ): Pair<MutableList<Words>, HashMap<Int, String>>
 
-        suspend fun getUser(context: Context): User
+        suspend fun getUser(context: Context, db: MainDB): User
 
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
         suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
 
-        suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel)
+        suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel, db: MainDB)
         suspend fun updateWordsLevels(
             db: MainDB,
             listOfNewWords: List<Words>,
