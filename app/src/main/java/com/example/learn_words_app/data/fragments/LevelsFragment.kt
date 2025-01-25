@@ -17,6 +17,7 @@ import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.fragments.adapters.CardAdapter
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
+import com.example.learn_words_app.data.proto.convertProtoLevelsToLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.FragmentLevelsBinding
 import kotlinx.coroutines.CoroutineScope
@@ -78,11 +79,13 @@ class LevelsFragment : Fragment(R.layout.fragment_levels) {
             //TODO Сделать alert если выбрано 0 категорий
             runBlocking {
                 myScope.launch {
-                    presenter.updateProtoData(thisContext, flowLevelsModel, db)
+                    val user = presenter.getUser(thisContext, db)
+                    val listOfLevelsBuilders = convertProtoLevelsToLevels(user.listOfLevels)
+                    
+                    presenter.updateUserProto(thisContext, user, listOfLevelsBuilders)
                 }.join()
             }
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
         }
-
     }
 }

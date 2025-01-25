@@ -46,7 +46,7 @@ interface MainPageContract {
     //Выполняет бизнес-логику, например, получает данные из базы данных, сетевого API или других источников.
     //Не знает ничего о View и UI.
     interface Model {
-        suspend fun getWordsForRepeat(db: MainDB): Array<Words>
+        suspend fun getWordsForRepeat(db: MainDB): Array<Int>
 
         suspend fun getWordsForLearn(
             context: Context,
@@ -69,8 +69,6 @@ interface MainPageContract {
 
         suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
 
-        suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel, db: MainDB)
-
         suspend fun updateWordsLevels(
             db: MainDB,
             listOfNewWords: List<Words>,
@@ -80,7 +78,8 @@ interface MainPageContract {
         suspend fun updateUserProto(
             context: Context,
             user: User,
-            listOfLevelsBuilders: MutableList<LevelsProto>
+            listOfLevelsBuilders: MutableList<LevelsProto>,
+            listOfWordsIdsForRepeat: List<Int>
         )
 
         //For Dev
@@ -142,7 +141,6 @@ interface MainPageContract {
 
         suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
 
-        suspend fun updateProtoData(context: Context, flowLevelsModel: FlowLevelsModel, db: MainDB)
         suspend fun updateWordsLevels(
             db: MainDB,
             listOfNewWords: List<Words>,
@@ -152,7 +150,8 @@ interface MainPageContract {
         suspend fun updateUserProto(
             context: Context,
             user: User,
-            listOfLevelsBuilders: MutableList<LevelsProto>
+            listOfLevelsBuilders: MutableList<LevelsProto>,
+            listOfWordsIdsForRepeat: List<Int>
         )
 
         suspend fun getOneWordForLearn(

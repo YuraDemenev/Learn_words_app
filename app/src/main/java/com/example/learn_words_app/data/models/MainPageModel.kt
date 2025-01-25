@@ -204,7 +204,8 @@ class MainPageModel : MainPageContract.Model {
 
             try {
                 val user = User(userId = "test", countLearningWords = 10)
-                setUserProtoData(context, user, listOfLevelsBuilders)
+                val emptyListOfIds: List<Int> = listOf()
+                setUserProtoData(context, user, listOfLevelsBuilders, emptyListOfIds)
             } catch (e: Exception) {
                 Log.e(
                     "Check user data. Update Proto DataStore",
@@ -238,46 +239,6 @@ class MainPageModel : MainPageContract.Model {
         }
 
         Log.i("Check user data", "Success checked user data")
-    }
-
-    //Обновляем Proto данные пользователя
-    override suspend fun updateProtoData(
-        context: Context,
-        flowLevelsModel: FlowLevelsModel,
-        db: MainDB
-    ) {
-        //Для добавления в Proto data levelsList
-        val listOfLevelsBuilders = mutableListOf<LevelsProto>()
-        //Проверка что flow levels model не null
-        if (flowLevelsModel.data.value == null) {
-            Log.e(
-                "flow levels model is null",
-                "Main page model, updateProtoData, flow levels model is null"
-            )
-        }
-
-        //Получаем уровни из Flow level
-        val curLevels = flowLevelsModel.data.value?.toList()
-        if (curLevels == null) {
-            Log.e(
-                "current levels are null",
-                "Main page model, updateProtoData, current levels are null"
-            )
-            throw Exception()
-        } else {
-            //Проходим по list Levels и заполняем List LevelsProto
-            curLevels.forEach { level ->
-                listOfLevelsBuilders.add(
-                    LevelsProto.newBuilder().setId(0).setName(level).build()
-                )
-            }
-        }
-        //Получаем прогресс пользователя
-        val userFlow = getUserProtoData(context, db)
-        val user = userFlow.first()
-
-        //Обновляем прогресс пользователя
-        setUserProtoData(context, user, listOfLevelsBuilders)
     }
 
     //TODO почистить context где он не используется
@@ -346,9 +307,10 @@ class MainPageModel : MainPageContract.Model {
     override suspend fun updateUserProto(
         context: Context,
         user: User,
-        listOfLevelsBuilders: MutableList<LevelsProto>
+        listOfLevelsBuilders: MutableList<LevelsProto>,
+        listOfWordsForRepeatIds: List<Int>
     ) {
-        setUserProtoData(context, user, listOfLevelsBuilders)
+        setUserProtoData(context, user, listOfLevelsBuilders, listOfWordsForRepeatIds)
     }
 
     override suspend fun clearUserData(context: Context) {

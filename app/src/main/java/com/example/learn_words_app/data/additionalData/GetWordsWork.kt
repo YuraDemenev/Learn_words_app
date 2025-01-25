@@ -18,13 +18,13 @@ class GetWordsWork(thisContext: Context, workerParams: WorkerParameters) :
         val db = MainDB.getDB(applicationContext)
         val presenter = MainPagePresenter(MainPageModel(), MainPageView())
 
-        var arrayOfWords: Array<Int> = arrayOf()
+        var arrayOfWordsIds: Array<Int> = arrayOf()
         val myScope = CoroutineScope(Dispatchers.IO)
 
         //TODO сделать callback?
         runBlocking {
             myScope.launch {
-                arrayOfWords = presenter.getWordsForRepeat(db)
+                arrayOfWordsIds = presenter.getWordsForRepeat(db)
             }.join()
         }
 
