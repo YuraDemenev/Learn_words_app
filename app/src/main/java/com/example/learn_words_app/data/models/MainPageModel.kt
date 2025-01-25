@@ -33,6 +33,12 @@ import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
+    override suspend fun getWordsForRepeat(db: MainDB): Array<Int> {
+        val date = Date.from(Instant.now())
+        val listOfWords = db.getDao().getWordsForRepeat(date?.time?.toLong())
+
+        return listOfWords
+    }
 
     override suspend fun getOneWordForLearn(
         context: Context,
@@ -294,36 +300,38 @@ class MainPageModel : MainPageContract.Model {
                             stageChanged = db.getDao().getStageByWordId(word.id)
                             stageChanged++
                         }.join()
-
+                        //TODO Поменять значения 24 72 168 720 4320
                         var countHoursForAdd = 0L
                         when (stageChanged) {
                             1 -> {
-                                countHoursForAdd = 24
+                                countHoursForAdd = 1
                             }
 
                             2 -> {
-                                countHoursForAdd = 72
+                                countHoursForAdd = 1
                             }
 
                             3 -> {
-                                countHoursForAdd = 168
+                                countHoursForAdd = 1
                             }
 
                             4 -> {
-                                countHoursForAdd = 720
+                                countHoursForAdd = 1
                             }
 
                             5 -> {
-                                countHoursForAdd = 4320
+                                countHoursForAdd = 1
                             }
 
                         }
+
+                        //TODO Поменять на Hours
                         val dateLearn =
-                            Date.from(Instant.now().plus(countHoursForAdd, ChronoUnit.HOURS))
+                            Date.from(Instant.now().plus(countHoursForAdd, ChronoUnit.MILLIS))
                         db.getDao().updateWordLevelsStage(word.id, stageChanged, dateLearn)
 
                     } else {
-                        val dateLearn = Date.from(Instant.now().plus(4, ChronoUnit.HOURS))
+                        val dateLearn = Date.from(Instant.now().plus(4, ChronoUnit.MILLIS))
                         db.getDao().updateWordLevelsStage(word.id, stage, dateLearn)
                     }
 
@@ -488,7 +496,7 @@ class MainPageModel : MainPageContract.Model {
                             //Получаем id levels
                             val levelId = levelsMap.getValue(nameInMap)
                             //Добавляем wordsLevels в таблицу wordsLevels
-                            val wordLevels = WordsLevels(id, levelId, 0, Date.from(Instant.now()))
+                            val wordLevels = WordsLevels(id, levelId, 0, Date(0))
                             db.getDao().insertWordsLevel(wordLevels)
 
                         }
@@ -543,11 +551,13 @@ class MainPageModel : MainPageContract.Model {
     private suspend fun setUserProtoData(
         context: Context,
         user: User,
-        listOfLevelsBuilders: MutableList<LevelsProto>
+        listOfLevelsBuilders: MutableList<LevelsProto>,
+        listOfWordsIdsForRepeat: List<Int>
     ) {
 
         //Обновляем прогресс пользователя
         context.userParamsDataStore.updateData { userPorto ->
+            userPorto.toBuilder().clearListOfWordsIdsForRepeat()
             userPorto.toBuilder().clearListOfLevels()
                 .setUserId(user.userId)
                 .setCurRepeatDays(user.curRepeatDays)
@@ -563,7 +573,9 @@ class MainPageModel : MainPageContract.Model {
                     Timestamp.newBuilder()
                         .setSeconds(user.lastTimeLearnedWords.epochSecond)
                         .setNanos(user.lastTimeLearnedWords.nano)
-                ).build()
+                )
+                .addAllListOfWordsIdsForRepeat(listOfWordsIdsForRepeat)
+                .build()
         }
     }
 

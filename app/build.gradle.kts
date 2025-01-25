@@ -80,6 +80,10 @@ dependencies {
     implementation(libs.androidx.cardview)
 
 
+    //Для Work manager (Чтобы запускать функции по расписанию)
+    // Kotlin + coroutines
+    implementation(libs.androidx.work.runtime.ktx)
+
     //Base
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

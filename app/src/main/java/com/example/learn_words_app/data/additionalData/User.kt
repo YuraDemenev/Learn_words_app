@@ -19,4 +19,8 @@ class User(
     var listOfWordsForRepeat: List<Words> = listOf()
 )
 
+//private fun createProtoListOfWordsForRepeat() {
+//    val list = mutableListOf<Int>()
+//
+//}
 

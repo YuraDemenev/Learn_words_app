@@ -46,6 +46,8 @@ interface MainPageContract {
     //Выполняет бизнес-логику, например, получает данные из базы данных, сетевого API или других источников.
     //Не знает ничего о View и UI.
     interface Model {
+        suspend fun getWordsForRepeat(db: MainDB): Array<Words>
+
         suspend fun getWordsForLearn(
             context: Context,
             db: MainDB,
@@ -95,6 +97,7 @@ interface MainPageContract {
     //Получает действия пользователя из View и запрашивает данные у Model.
     //Возвращает обработанные данные в View.
     interface Presenter {
+        suspend fun getWordsForRepeat(db: MainDB): Array<Int>
         fun deleteExplanations(
             binding: FragmentLearnWordsBinding,
             thisContext: Context

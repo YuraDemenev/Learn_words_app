@@ -15,6 +15,9 @@ class MainPagePresenter(
     private val model: MainPageContract.Model,
     private var mainView: MainPageContract.View
 ) : MainPageContract.Presenter {
+    override suspend fun getWordsForRepeat(db: MainDB): Array<Int> {
+        return model.getWordsForRepeat(db)
+    }
 
     override fun deleteExplanations(
         binding: FragmentLearnWordsBinding,
