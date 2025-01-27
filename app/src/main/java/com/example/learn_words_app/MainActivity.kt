@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         //Создаём work request, чтобы каждые 2 часа получать слова из БД, которые надо повторять
         val workRequest =
-            PeriodicWorkRequestBuilder<GetWordsWork>(5, TimeUnit.SECONDS)
+            PeriodicWorkRequestBuilder<GetWordsWork>(2, TimeUnit.HOURS)
                 .addTag("GetWordsWork")
                 .build()
 
@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             ExistingPeriodicWorkPolicy.KEEP,
             workRequest,
         )
+
 
 //        deleteWorks()
 //        getUUID()
@@ -93,12 +94,6 @@ class MainActivity : AppCompatActivity() {
                 WorkInfo.State.FAILED -> println("Work failed")
                 WorkInfo.State.BLOCKED -> println("Work is blocked")
                 WorkInfo.State.CANCELLED -> println("Work is cancelled")
-                WorkInfo.State.ENQUEUED -> TODO()
-                WorkInfo.State.RUNNING -> TODO()
-                WorkInfo.State.SUCCEEDED -> TODO()
-                WorkInfo.State.FAILED -> TODO()
-                WorkInfo.State.BLOCKED -> TODO()
-                WorkInfo.State.CANCELLED -> TODO()
             }
         }
     }

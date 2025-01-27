@@ -10,15 +10,18 @@ import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
+import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
+import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.time.Instant
 
 class MainFragment : Fragment() {
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
@@ -58,9 +61,30 @@ class MainFragment : Fragment() {
         //Проверка данных пользователя
         //TODO что-то сделать с run block??
         runBlocking {
-            myScope.launch { presenter.checkUserData(thisContext, db, flowLevelsModel) }.join()
-        }
+            myScope.launch {
+                presenter.checkUserData(thisContext, db, flowLevelsModel)
 
+                //Проверяем когда пользователь последний раз заходил в приложение
+                val user = presenter.getUser(thisContext, db)
+                val duration = java.time.Duration.between(user.lastTimeLearnedWords, Instant.now())
+
+                //Если прошло 24 часа обновляем кол-во выученных новых слов
+                if (duration.toHours() >= 24) {
+                    user.countLearnedWordsToday = 0
+                    user.checkLearnedAllWordsToday = false
+                    val emptyList: List<Int> = listOf()
+
+                    presenter.updateUserProto(
+                        thisContext,
+                        user,
+                        convertLevelsToProtoLevels(user.listOfLevels),
+                        emptyList,
+                        user.convertDateToTimestamp()
+                    )
+                }
+            }.join()
+        }
+        
         //Переход на страницу выбора тем
         binding.mainTextContainerChooseCategory.setOnClickListener {
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEVELS)

@@ -42,7 +42,7 @@ fun convertLevelsProtoToLevels(levelsProto: LevelsProto): Levels {
 }
 
 //Функция для конвертации Levels в ProtLevels
-fun convertProtoLevelsToLevels(levels: List<Levels>): MutableList<LevelsProto> {
+fun convertLevelsToProtoLevels(levels: List<Levels>): MutableList<LevelsProto> {
     val listOfLevelsBuilders = mutableListOf<LevelsProto>()
 
     //Проходим по list Levels и заполняем List LevelsProto

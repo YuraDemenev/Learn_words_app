@@ -8,6 +8,7 @@ import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
+import com.google.protobuf.Timestamp
 
 interface MainPageContract {
     //View концентрируется только на UI и пользовательском взаимодействии, а логика работы с данными вынесена в другие компоненты.
@@ -79,7 +80,8 @@ interface MainPageContract {
             context: Context,
             user: User,
             listOfLevelsBuilders: MutableList<LevelsProto>,
-            listOfWordsIdsForRepeat: List<Int>
+            listOfWordsIdsForRepeat: List<Int>,
+            lastTimeLearned: Timestamp
         )
 
         //For Dev
@@ -151,7 +153,8 @@ interface MainPageContract {
             context: Context,
             user: User,
             listOfLevelsBuilders: MutableList<LevelsProto>,
-            listOfWordsIdsForRepeat: List<Int>
+            listOfWordsIdsForRepeat: List<Int>,
+            lastTimeLearned: Timestamp
         )
 
         suspend fun getOneWordForLearn(

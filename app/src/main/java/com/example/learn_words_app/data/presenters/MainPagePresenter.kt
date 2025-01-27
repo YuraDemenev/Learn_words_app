@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.presenters
 
 import android.content.Context
+import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.additionalData.User
@@ -9,6 +10,7 @@ import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.interfaces.WordCallback
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
+import com.google.protobuf.Timestamp
 
 class MainPagePresenter(
     private val model: MainPageContract.Model,
@@ -97,6 +99,22 @@ class MainPagePresenter(
         stage: Int
     ) {
         model.updateWordsLevels(db, listOfNewWords, stage)
+    }
+
+    override suspend fun updateUserProto(
+        context: Context,
+        user: User,
+        listOfLevelsBuilders: MutableList<LevelsProto>,
+        listOfWordsIdsForRepeat: List<Int>,
+        lastTimeLearned: Timestamp
+    ) {
+        model.updateUserProto(
+            context,
+            user,
+            listOfLevelsBuilders,
+            listOfWordsIdsForRepeat,
+            lastTimeLearned
+        )
     }
 
     override suspend fun getUser(context: Context, db: MainDB): User {

@@ -13,11 +13,12 @@ import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.LevelsCardData
+import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.fragments.adapters.CardAdapter
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.data.proto.convertProtoLevelsToLevels
+import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.FragmentLevelsBinding
 import kotlinx.coroutines.CoroutineScope
@@ -80,9 +81,16 @@ class LevelsFragment : Fragment(R.layout.fragment_levels) {
             runBlocking {
                 myScope.launch {
                     val user = presenter.getUser(thisContext, db)
-                    val listOfLevelsBuilders = convertProtoLevelsToLevels(user.listOfLevels)
-                    
-                    presenter.updateUserProto(thisContext, user, listOfLevelsBuilders)
+                    val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
+                    val emptyList: List<Int> = listOf()
+
+                    presenter.updateUserProto(
+                        thisContext,
+                        user,
+                        listOfLevelsBuilders,
+                        emptyList,
+                        user.convertDateToTimestamp()
+                    )
                 }.join()
             }
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)

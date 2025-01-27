@@ -19,13 +19,15 @@ import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.WordCallback
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.data.proto.convertProtoLevelsToLevels
+import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
+import com.google.protobuf.Timestamp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.time.Instant
 
 
 class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
@@ -256,6 +258,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     override fun onDestroy() {
         super.onDestroy()
 
+        //TODO Если все слова выучены сделать checkLearnedWords = true
         if (listOfNewWords.size != 0) {
             val thisContext = requireContext()
             //Получаем/создаем БД
@@ -264,11 +267,18 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
             myScope.launch {
                 presenter.updateWordsLevels(db, listOfNewWords, 1)
             }
-            val listOfLevelsBuilders = convertProtoLevelsToLevels(user.listOfLevels)
+            val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
 
             //Обновляем данные в user proto
             myScope.launch {
-                presenter.updateUserProto(thisContext, user, listOfLevelsBuilders)
+                user.countFullLearnedWords += user.countLearningWords
+                val emptyList: List<Int> = listOf()
+                presenter.updateUserProto(
+                    thisContext, user, listOfLevelsBuilders, emptyList,
+                    Timestamp.newBuilder()
+                        .setSeconds(Instant.now().epochSecond)
+                        .setNanos(Instant.now().nano).build()
+                )
             }
         }
     }

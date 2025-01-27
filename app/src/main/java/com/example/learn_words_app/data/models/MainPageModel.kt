@@ -6,6 +6,7 @@ import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.additionalData.User
+import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
 import com.example.learn_words_app.data.dataBase.Levels
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
@@ -13,7 +14,7 @@ import com.example.learn_words_app.data.dataBase.WordsLevels
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.interfaces.WordCallback
 import com.example.learn_words_app.data.proto.convertLevelsProtoToLevels
-import com.example.learn_words_app.data.proto.convertProtoLevelsToLevels
+import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.proto.userParamsDataStore
 import com.google.protobuf.Timestamp
 import kotlinx.coroutines.CoroutineScope
@@ -195,7 +196,7 @@ class MainPageModel : MainPageContract.Model {
             //Создаем список для LevelsProto
             var listOfLevelsBuilders = mutableListOf<LevelsProto>()
 
-            listOfLevelsBuilders = convertProtoLevelsToLevels(baseLevels)
+            listOfLevelsBuilders = convertLevelsToProtoLevels(baseLevels)
 
             if (listOfLevelsBuilders.size != 3) {
                 Log.e("Main Page Model", "checkUserData, listOfLevelsBuilders don`t has 3 elements")
@@ -205,7 +206,13 @@ class MainPageModel : MainPageContract.Model {
             try {
                 val user = User(userId = "test", countLearningWords = 10)
                 val emptyListOfIds: List<Int> = listOf()
-                setUserProtoData(context, user, listOfLevelsBuilders, emptyListOfIds)
+                setUserProtoData(
+                    context,
+                    user,
+                    listOfLevelsBuilders,
+                    emptyListOfIds,
+                    user.convertDateToTimestamp()
+                )
             } catch (e: Exception) {
                 Log.e(
                     "Check user data. Update Proto DataStore",
@@ -308,9 +315,16 @@ class MainPageModel : MainPageContract.Model {
         context: Context,
         user: User,
         listOfLevelsBuilders: MutableList<LevelsProto>,
-        listOfWordsForRepeatIds: List<Int>
+        listOfWordsIdsForRepeat: List<Int>,
+        lastTimeLearned: Timestamp
     ) {
-        setUserProtoData(context, user, listOfLevelsBuilders, listOfWordsForRepeatIds)
+        setUserProtoData(
+            context,
+            user,
+            listOfLevelsBuilders,
+            listOfWordsIdsForRepeat,
+            lastTimeLearned
+        )
     }
 
     override suspend fun clearUserData(context: Context) {
@@ -514,30 +528,46 @@ class MainPageModel : MainPageContract.Model {
         context: Context,
         user: User,
         listOfLevelsBuilders: MutableList<LevelsProto>,
-        listOfWordsIdsForRepeat: List<Int>
+        listOfWordsIdsForRepeat: List<Int>,
+        lastTimeLearned: Timestamp
     ) {
+        if (listOfWordsIdsForRepeat.isNotEmpty()) {
+            //Полностью обновляем пользователя
+            context.userParamsDataStore.updateData { userPorto ->
+                userPorto.toBuilder().clearListOfWordsIdsForRepeat()
+                userPorto.toBuilder().clearListOfLevels()
+                    .setUserId(user.userId)
+                    .setCurRepeatDays(user.curRepeatDays)
+                    .setMaxRepeatDays(user.maxRepeatDays)
+                    .setCountFullLearnedWords(user.countFullLearnedWords)
+                    .setCountLearningWords(user.countLearningWords)
+                    .setCountLearnedWordsToday(user.countLearnedWordsToday)
+                    .setCheckLearnedAllWordsToday(user.checkLearnedAllWordsToday)
+                    .setCountKnewWords(user.countKnewWords)
+                    .addAllListOfLevels(listOfLevelsBuilders)
+                    .setCheckBritishVariables(false)
+                    .setLastTimeLearnedWords(lastTimeLearned)
+                    .addAllListOfWordsIdsForRepeat(listOfWordsIdsForRepeat)
+                    .build()
+            }
 
-        //Обновляем прогресс пользователя
-        context.userParamsDataStore.updateData { userPorto ->
-            userPorto.toBuilder().clearListOfWordsIdsForRepeat()
-            userPorto.toBuilder().clearListOfLevels()
-                .setUserId(user.userId)
-                .setCurRepeatDays(user.curRepeatDays)
-                .setMaxRepeatDays(user.maxRepeatDays)
-                .setCountFullLearnedWords(user.countFullLearnedWords)
-                .setCountLearningWords(user.countLearningWords)
-                .setCountLearnedWordsToday(user.countLearnedWordsToday)
-                .setCheckLearnedAllWordsToday(user.checkLearnedAllWordsToday)
-                .setCountKnewWords(user.countKnewWords)
-                .addAllListOfLevels(listOfLevelsBuilders)
-                .setCheckBritishVariables(false)
-                .setLastTimeLearnedWords(
-                    Timestamp.newBuilder()
-                        .setSeconds(user.lastTimeLearnedWords.epochSecond)
-                        .setNanos(user.lastTimeLearnedWords.nano)
-                )
-                .addAllListOfWordsIdsForRepeat(listOfWordsIdsForRepeat)
-                .build()
+        } else {
+            //Не обновляем список words ids
+            context.userParamsDataStore.updateData { userPorto ->
+                userPorto.toBuilder().clearListOfLevels()
+                    .setUserId(user.userId)
+                    .setCurRepeatDays(user.curRepeatDays)
+                    .setMaxRepeatDays(user.maxRepeatDays)
+                    .setCountFullLearnedWords(user.countFullLearnedWords)
+                    .setCountLearningWords(user.countLearningWords)
+                    .setCountLearnedWordsToday(user.countLearnedWordsToday)
+                    .setCheckLearnedAllWordsToday(user.checkLearnedAllWordsToday)
+                    .setCountKnewWords(user.countKnewWords)
+                    .addAllListOfLevels(listOfLevelsBuilders)
+                    .setCheckBritishVariables(false)
+                    .setLastTimeLearnedWords(lastTimeLearned)
+                    .build()
+            }
         }
     }
 

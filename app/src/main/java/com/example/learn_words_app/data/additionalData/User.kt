@@ -2,6 +2,7 @@ package com.example.learn_words_app.data.additionalData
 
 import com.example.learn_words_app.data.dataBase.Levels
 import com.example.learn_words_app.data.dataBase.Words
+import com.google.protobuf.Timestamp
 import java.time.Instant
 
 class User(
@@ -15,12 +16,12 @@ class User(
     var countKnewWords: Int = 0,
     var listOfLevels: MutableList<Levels> = mutableListOf(),
     var checkBritishVariables: Boolean = false,
-    var lastTimeLearnedWords: Instant = Instant.ofEpochSecond(0, 0),
+    var lastTimeLearnedWords: Instant = Instant.now(),
     var listOfWordsForRepeat: List<Words> = listOf()
 )
 
-//private fun createProtoListOfWordsForRepeat() {
-//    val list = mutableListOf<Int>()
-//
-//}
-
+fun User.convertDateToTimestamp(): Timestamp {
+    return Timestamp.newBuilder()
+        .setSeconds(this.lastTimeLearnedWords.epochSecond)
+        .setNanos(this.lastTimeLearnedWords.nano).build()
+}
