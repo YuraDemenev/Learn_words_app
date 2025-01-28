@@ -329,17 +329,24 @@ class MainPageModel : MainPageContract.Model {
 
     override suspend fun clearUserData(context: Context) {
         try {
+            val listOfWordsIdsForRepeat: List<Int> = listOf()
+            val timestamp = Timestamp.newBuilder().setSeconds(0).setNanos(0).build()
             //Обновляем данные в Proto DataStore
             context.userParamsDataStore.updateData { userPorto ->
-                userPorto.toBuilder().clearListOfLevels()
+                userPorto.toBuilder()
+                    .clearListOfWordsIdsForRepeat()
+                    .clearListOfLevels()
                     .setUserId("")
                     .setCurRepeatDays(0)
                     .setMaxRepeatDays(0)
                     .setCountFullLearnedWords(0)
                     .setCountLearningWords(0)
+                    .setCountLearnedWordsToday(0)
+                    .setCheckLearnedAllWordsToday(false)
                     .setCountKnewWords(0)
-                    .clearListOfLevels()
                     .setCheckBritishVariables(false)
+                    .setLastTimeLearnedWords(timestamp)
+                    .addAllListOfWordsIdsForRepeat(listOfWordsIdsForRepeat)
                     .build()
             }
         } catch (e: Exception) {

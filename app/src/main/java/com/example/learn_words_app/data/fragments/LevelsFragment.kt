@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.proto.LevelsProto
 import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
@@ -18,7 +20,6 @@ import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.fragments.adapters.CardAdapter
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.FragmentLevelsBinding
 import kotlinx.coroutines.CoroutineScope
@@ -81,7 +82,33 @@ class LevelsFragment : Fragment(R.layout.fragment_levels) {
             runBlocking {
                 myScope.launch {
                     val user = presenter.getUser(thisContext, db)
-                    val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
+
+                    //Для добавления в Proto data levelsList
+                    val listOfLevelsBuilders = mutableListOf<LevelsProto>()
+                    //Проверка что flow levels model не null
+                    if (flowLevelsModel.data.value == null) {
+                        Log.e(
+                            "flow levels model is null",
+                            "LevelsFragment, backToMainMenuContainer, flow levels model is null"
+                        )
+                    }
+                    //Получаем уровни из Flow level
+                    val curLevels = flowLevelsModel.data.value?.toList()
+                    if (curLevels == null) {
+                        Log.e(
+                            "current levels are null",
+                            "LevelsFragment, backToMainMenuContainer, current levels are null"
+                        )
+                        throw Exception()
+                    } else {
+                        //Проходим по list Levels и заполняем List LevelsProto
+                        curLevels.forEach { level ->
+                            listOfLevelsBuilders.add(
+                                LevelsProto.newBuilder().setId(0).setName(level).build()
+                            )
+                        }
+                    }
+
                     val emptyList: List<Int> = listOf()
 
                     presenter.updateUserProto(
