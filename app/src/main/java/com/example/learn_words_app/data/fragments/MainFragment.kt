@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.fragments
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -149,7 +150,11 @@ class MainFragment : Fragment() {
         }
 
         //Меняем надпись сегодня выучено слов
-        binding.countLearnedWords.text = "сегодня выучено слов 0/10"
+        binding.countLearningWords.text = "Кол-во новых слов в день: ${user.countLearningWords}"
+
+        binding.mainIconCountNewWords.setOnClickListener {
+            val dialog = Dialog(thisContext)
+        }
 
         binding.checkUserData.setOnClickListener {
             myScope.launch {
