@@ -1,7 +1,9 @@
 package com.example.learn_words_app.data.fragments
 
 import android.annotation.SuppressLint
-import android.app.Dialog
+import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.MainActivity
+import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.User
@@ -19,6 +22,7 @@ import com.example.learn_words_app.data.presenters.MainPagePresenter
 import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.ActivityMainBinding
+import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -152,8 +156,102 @@ class MainFragment : Fragment() {
         //Меняем надпись сегодня выучено слов
         binding.countLearningWords.text = "Кол-во новых слов в день: ${user.countLearningWords}"
 
-        binding.mainIconCountNewWords.setOnClickListener {
-            val dialog = Dialog(thisContext)
+        binding.mainChangeCountLearningWords.setOnClickListener {
+            var checkChose = false
+
+            val builder = AlertDialog.Builder(thisContext)
+            val inflater = layoutInflater
+            val dialogView = inflater.inflate(R.layout.dialog_choose_count_learning_words, null)
+
+            builder.setView(dialogView)
+
+            // Create and show the dialog
+            val dialog: AlertDialog = builder.create()
+            //Чтобы alert был без заднего фона
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            //Добавляем listener на закрытие alert
+            dialog.setOnDismissListener {
+                if (checkChose) {
+                    myScope.launch {
+                        //Обновляем proto user data
+                        val listOfProtoLevels = convertLevelsToProtoLevels(user.listOfLevels)
+                        val emptyList: List<Int> = listOf()
+
+                        presenter.updateUserProto(
+                            thisContext,
+                            user,
+                            listOfProtoLevels,
+                            emptyList,
+                            user.convertDateToTimestamp()
+                        )
+                    }
+                }
+            }
+
+            //Создаем alert
+            dialog.show()
+
+            //TODO Добавить цвет для кнопок при нажатии и при открытие alert
+            //Нажатие на 5
+            dialog.findViewById<MaterialCardView>(R.id.fiveWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 5
+            }
+
+            //Нажатие на 10
+            dialog.findViewById<MaterialCardView>(R.id.tenWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 10
+            }
+
+            //Нажатие на 15
+            dialog.findViewById<MaterialCardView>(R.id.fifteenWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 15
+            }
+
+            //Нажатие на 20
+            dialog.findViewById<MaterialCardView>(R.id.twentyWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 20
+            }
+
+            //Нажатие на 25
+            dialog.findViewById<MaterialCardView>(R.id.twentyFiveWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 25
+            }
+
+            //Нажатие на 30
+            dialog.findViewById<MaterialCardView>(R.id.thirtyWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 30
+            }
+
+            //Нажатие на 35
+            dialog.findViewById<MaterialCardView>(R.id.thirtyFiveWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 35
+            }
+
+            //Нажатие на 40
+            dialog.findViewById<MaterialCardView>(R.id.fortyWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 40
+            }
+
+            //Нажатие на 45
+            dialog.findViewById<MaterialCardView>(R.id.fortyFiveWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 45
+            }
+
+            //Нажатие на 50
+            dialog.findViewById<MaterialCardView>(R.id.fiftyWords).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = 50
+            }
+
         }
 
         binding.checkUserData.setOnClickListener {

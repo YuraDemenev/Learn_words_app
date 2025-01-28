@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialogChoseCountOfLearningWords"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/alert_chose_count_learning_words"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerFiveToTwenty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/fiveWords"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/tenWords"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.2">
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -35,11 +43,335 @@
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:text="5"
+                android:textColor="@color/white"
                 android:textSize="35sp" />
 
         </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/tenWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/fifteenWords"
+            app:layout_constraintStart_toEndOf="@id/fiveWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="10"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/fifteenWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/twentyWords"
+            app:layout_constraintStart_toEndOf="@id/tenWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/twentyWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="@id/twentyFiveWords"
+            app:layout_constraintStart_toEndOf="@id/fifteenWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="20"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/twentyFiveWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/twentyWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="25"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerThirtyToFifty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerFiveToTwenty">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/thirtyWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/thirtyFiveWords"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="30"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/thirtyFiveWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/fortyWords"
+            app:layout_constraintStart_toEndOf="@id/thirtyWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="35"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/fortyWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/fortyFiveWords"
+            app:layout_constraintStart_toEndOf="@id/thirtyFiveWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="40"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/fortyFiveWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/fiftyWords"
+            app:layout_constraintStart_toEndOf="@id/fortyWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="45"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/fiftyWords"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fortyFiveWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="50"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerDown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerThirtyToFifty">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/writeNumber"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/exit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/choose_category_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/exit"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/writeNumber"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#808080"
+            app:strokeWidth="3dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/free_dots"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
