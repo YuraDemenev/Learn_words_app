@@ -41,9 +41,8 @@ interface WordsDAO {
 
     @Query(
         """
-        SELECT id FROM words 
-        JOIN words_levels on words.id = words_levels.word_id         
-        WHERE words_levels.date_for_repeat >= :dateNow AND words_levels.date_for_repeat != 0
+        SELECT word_id FROM words_levels 
+        WHERE words_levels.date_for_repeat <= :dateNow AND words_levels.date_for_repeat != 0
         """
     )
     fun getWordsForRepeat(dateNow: Long?): Array<Int>

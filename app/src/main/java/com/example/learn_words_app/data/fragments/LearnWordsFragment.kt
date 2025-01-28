@@ -258,7 +258,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     override fun onDestroy() {
         super.onDestroy()
 
-        //TODO Если все слова выучены сделать checkLearnedWords = true
         if (listOfNewWords.size != 0) {
             val thisContext = requireContext()
             //Получаем/создаем БД
@@ -271,6 +270,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
 
             //Обновляем данные в user proto
             myScope.launch {
+                user.checkLearnedAllWordsToday = true
                 user.countFullLearnedWords += user.countLearningWords
                 val emptyList: List<Int> = listOf()
                 presenter.updateUserProto(

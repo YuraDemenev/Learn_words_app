@@ -1,7 +1,6 @@
 package com.example.learn_words_app
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         //Создаём work request, чтобы каждые 2 часа получать слова из БД, которые надо повторять
         val workRequest =
-            PeriodicWorkRequestBuilder<GetWordsWork>(2, TimeUnit.HOURS)
+            PeriodicWorkRequestBuilder<GetWordsWork>(1, TimeUnit.MINUTES)
                 .addTag("GetWordsWork")
                 .build()
 
@@ -40,10 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.empty_fragment)
         loadFragment(FragmentsNames.MAIN)
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
     }
 
     fun loadFragment(fragmentName: FragmentsNames) {

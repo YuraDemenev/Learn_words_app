@@ -534,8 +534,11 @@ class MainPageModel : MainPageContract.Model {
         if (listOfWordsIdsForRepeat.isNotEmpty()) {
             //Полностью обновляем пользователя
             context.userParamsDataStore.updateData { userPorto ->
-                userPorto.toBuilder().clearListOfWordsIdsForRepeat()
-                userPorto.toBuilder().clearListOfLevels()
+                userPorto.toBuilder()
+                    //Очищаем user proto data
+                    .clearListOfWordsIdsForRepeat()
+                    .clearListOfLevels()
+                    //Меняем user proto data
                     .setUserId(user.userId)
                     .setCurRepeatDays(user.curRepeatDays)
                     .setMaxRepeatDays(user.maxRepeatDays)

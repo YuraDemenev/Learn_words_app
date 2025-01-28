@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
+import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.models.MainPageModel
@@ -57,6 +58,7 @@ class MainFragment : Fragment() {
         val presenter = MainPagePresenter(MainPageModel(), MainPageView())
         //Создаем Scope для запуска корутин
         val myScope = CoroutineScope(Dispatchers.IO)
+        lateinit var user: User
 
         //Проверка данных пользователя
         //TODO что-то сделать с run block??
@@ -65,11 +67,11 @@ class MainFragment : Fragment() {
                 presenter.checkUserData(thisContext, db, flowLevelsModel)
 
                 //Проверяем когда пользователь последний раз заходил в приложение
-                val user = presenter.getUser(thisContext, db)
+                user = presenter.getUser(thisContext, db)
                 val duration = java.time.Duration.between(user.lastTimeLearnedWords, Instant.now())
 
                 //Если прошло 24 часа обновляем кол-во выученных новых слов
-                if (duration.toHours() >= 24) {
+                if (duration.toHours() >= 18) {
                     user.countLearnedWordsToday = 0
                     user.checkLearnedAllWordsToday = false
                     val emptyList: List<Int> = listOf()
@@ -84,7 +86,33 @@ class MainFragment : Fragment() {
                 }
             }.join()
         }
-        
+
+        //TODO удалить это потом
+        var arrayOfWordsIds: Array<Int> = arrayOf()
+
+        runBlocking {
+            myScope.launch {
+                arrayOfWordsIds = presenter.getWordsForRepeat(db)
+            }.join()
+        }
+
+        val listOfProtoLevels = convertLevelsToProtoLevels(user.listOfLevels)
+
+        //Обновляем proto data
+        myScope.launch {
+            presenter.updateUserProto(
+                thisContext,
+                user,
+                listOfProtoLevels,
+                arrayOfWordsIds.toList(),
+                user.convertDateToTimestamp()
+            )
+        }
+
+        //Добавляем кол-во слов для повторения
+        binding.mainSmallTextRepeatWords.text =
+            "Слова для повтора: ${user.listOfWordsForRepeat.size}"
+
         //Переход на страницу выбора тем
         binding.mainTextContainerChooseCategory.setOnClickListener {
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEVELS)
