@@ -88,30 +88,34 @@ class MainFragment : Fragment() {
         }
 
         //TODO удалить это потом
-        var arrayOfWordsIds: Array<Int> = arrayOf()
-
-        runBlocking {
-            myScope.launch {
-                arrayOfWordsIds = presenter.getWordsForRepeat(db)
-            }.join()
-        }
-
-        val listOfProtoLevels = convertLevelsToProtoLevels(user.listOfLevels)
-
-        //Обновляем proto data
-        myScope.launch {
-            presenter.updateUserProto(
-                thisContext,
-                user,
-                listOfProtoLevels,
-                arrayOfWordsIds.toList(),
-                user.convertDateToTimestamp()
-            )
-        }
+//        var arrayOfWordsIds: Array<Int> = arrayOf()
+//
+//        runBlocking {
+//            myScope.launch {
+//                arrayOfWordsIds = presenter.getWordsForRepeat(db)
+//            }.join()
+//        }
+//
+//        val listOfProtoLevels = convertLevelsToProtoLevels(user.listOfLevels)
+//
+//        //Обновляем proto data
+//        myScope.launch {
+//            presenter.updateUserProto(
+//                thisContext,
+//                user,
+//                listOfProtoLevels,
+//                arrayOfWordsIds.toList(),
+//                user.convertDateToTimestamp()
+//            )
+//        }
 
         //Добавляем кол-во слов для повторения
         binding.mainSmallTextRepeatWords.text =
             "Слова для повтора: ${user.listOfWordsForRepeat.size}"
+
+        //Добавляем кол-во слов для повторения
+        binding.mainSmallTextTodayLearned.text =
+            "Выучено сегодня новых слов: ${user.countLearnedWordsToday}"
 
         //Переход на страницу выбора тем
         binding.mainTextContainerChooseCategory.setOnClickListener {

@@ -557,7 +557,8 @@ class MainPageModel : MainPageContract.Model {
         } else {
             //Не обновляем список words ids
             context.userParamsDataStore.updateData { userPorto ->
-                userPorto.toBuilder().clearListOfLevels()
+                userPorto.toBuilder()
+                    .clearListOfLevels()
                     .setUserId(user.userId)
                     .setCurRepeatDays(user.curRepeatDays)
                     .setMaxRepeatDays(user.maxRepeatDays)

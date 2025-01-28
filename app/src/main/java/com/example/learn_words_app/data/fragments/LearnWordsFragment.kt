@@ -14,6 +14,7 @@ import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.User
+import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.WordCallback
@@ -34,7 +35,13 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     private lateinit var binding: FragmentLearnWordsBinding
 
     private lateinit var user: User
+
+    //Чтобы проверять было ли добавлено Explanation и если да убирать его
     private var checkExplanation = false
+
+    //Если пользователь знает слово, меняем на true и в OnDestroy,
+    // если пользователь не выучил ни 1 слова, обновляем proto data
+    private var checkUserKnowWord = false
 
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
@@ -178,6 +185,8 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
 //-----------------------------------------------------------------------------------------------------------------------------------------------
             //При нажатии на 'я знаю это слово'
             binding.learnWordsIKnowThisWordText.setOnClickListener {
+                user.countKnewWords += 1
+                checkUserKnowWord = true
 
                 //Необходимо получить 1 новое слово из БД
                 lateinit var newWord: Words
@@ -255,29 +264,50 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
+    override fun onPause() {
+        super.onPause()
         if (listOfNewWords.size != 0) {
             val thisContext = requireContext()
+            val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
+
             //Получаем/создаем БД
             val db = MainDB.getDB(thisContext)
 
             myScope.launch {
                 presenter.updateWordsLevels(db, listOfNewWords, 1)
             }
-            val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
 
-            //Обновляем данные в user proto
+            //Обновляем данные в user proto (Обновляем время когда последний раз выучили все слова)
             myScope.launch {
-                user.checkLearnedAllWordsToday = true
-                user.countFullLearnedWords += user.countLearningWords
                 val emptyList: List<Int> = listOf()
+
+                //Проверяем выучили ли мы все слова
+                if (user.countLearnedWordsToday == user.countLearningWords) {
+                    user.checkLearnedAllWordsToday = true
+                }
+
                 presenter.updateUserProto(
                     thisContext, user, listOfLevelsBuilders, emptyList,
                     Timestamp.newBuilder()
                         .setSeconds(Instant.now().epochSecond)
                         .setNanos(Instant.now().nano).build()
+                )
+            }
+
+
+        } else if (checkUserKnowWord) {
+            val thisContext = requireContext()
+            val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
+
+            myScope.launch {
+                val emptyList: List<Int> = listOf()
+                //Так как пользователь мог нажать на i know this word, нужно обновить кол-во слов, которые пользователь знает
+                presenter.updateUserProto(
+                    thisContext,
+                    user,
+                    listOfLevelsBuilders,
+                    emptyList,
+                    user.convertDateToTimestamp()
                 )
             }
         }

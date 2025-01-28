@@ -20,6 +20,9 @@ class User(
     var listOfWordsForRepeat: List<Words> = listOf()
 )
 
+//Функция, чтобы вернуть TimeStamp для изменения proto data
+// (Время в proto data должно меняться только когда пользователь выучил все новые слова, поэтому
+// если надо обновить и не менять время, возвращаем то время, которое есть у пользователя)
 fun User.convertDateToTimestamp(): Timestamp {
     return Timestamp.newBuilder()
         .setSeconds(this.lastTimeLearnedWords.epochSecond)
