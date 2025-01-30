@@ -155,7 +155,13 @@ class MainFragment : Fragment() {
         //При нажатии изменить кол-во изучаемых слов
         binding.mainChangeCountLearningWords.setOnClickListener {
             val inflater = layoutInflater
-            presenter.createAlertChoseCountLearningWords(user, thisContext, inflater, presenter)
+            presenter.createAlertChoseCountLearningWords(
+                user,
+                thisContext,
+                inflater,
+                presenter,
+                binding
+            )
 
         }
 

@@ -9,6 +9,7 @@ import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.presenters.MainPagePresenter
+import com.example.learn_words_app.databinding.ActivityMainBinding
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import com.google.protobuf.Timestamp
 
@@ -19,7 +20,8 @@ interface MainPageContract {
             user: User,
             thisContext: Context,
             inflater: LayoutInflater,
-            presenter: MainPagePresenter
+            presenter: MainPagePresenter,
+            binding: ActivityMainBinding
         )
 
         fun deleteExplanations(
@@ -113,7 +115,8 @@ interface MainPageContract {
             user: User,
             thisContext: Context,
             inflater: LayoutInflater,
-            presenter: MainPagePresenter
+            presenter: MainPagePresenter,
+            binding: ActivityMainBinding
         )
 
         fun nextWord(

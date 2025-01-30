@@ -23,6 +23,7 @@ import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.presenters.MainPagePresenter
 import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
+import com.example.learn_words_app.databinding.ActivityMainBinding
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.CoroutineScope
@@ -221,7 +222,8 @@ class MainPageView : MainPageContract.View {
         user: User,
         thisContext: Context,
         inflater: LayoutInflater,
-        presenter: MainPagePresenter
+        presenter: MainPagePresenter,
+        binding: ActivityMainBinding
     ) {
         var checkChose = false
         val myScope = CoroutineScope(Dispatchers.IO)
@@ -250,7 +252,10 @@ class MainPageView : MainPageContract.View {
                         emptyList,
                         user.convertDateToTimestamp()
                     )
+
                 }
+                binding.countLearningWords.text =
+                    "Кол-во новых слов в день: ${user.countLearningWords}"
             }
         }
 
