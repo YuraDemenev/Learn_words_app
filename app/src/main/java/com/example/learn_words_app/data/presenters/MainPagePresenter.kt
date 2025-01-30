@@ -1,6 +1,7 @@
 package com.example.learn_words_app.data.presenters
 
 import android.content.Context
+import android.view.LayoutInflater
 import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
@@ -25,6 +26,15 @@ class MainPagePresenter(
         thisContext: Context
     ) {
         mainView.deleteExplanations(binding, thisContext)
+    }
+
+    override fun createAlertChoseCountLearningWords(
+        user: User,
+        thisContext: Context,
+        inflater: LayoutInflater,
+        presenter: MainPagePresenter
+    ) {
+        mainView.createAlertChoseCountLearningWords(user, thisContext, inflater, presenter)
     }
 
     override fun nextWord(
