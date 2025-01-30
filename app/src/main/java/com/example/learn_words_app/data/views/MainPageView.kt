@@ -3,15 +3,23 @@ package com.example.learn_words_app.data.views
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
@@ -29,6 +37,7 @@ import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 class MainPageView : MainPageContract.View {
     @SuppressLint("SetTextI18n")
@@ -266,8 +275,8 @@ class MainPageView : MainPageContract.View {
         var currentColorNumber =
             changeBackgroundAlertChoseCountLearningWords(dialog, user, thisContext)
 
-        val hashMapOfIds: Map<Int, Int> =
-            mapOf(
+        val arrayOfPairs: Array<Pair<Int, Int>> =
+            arrayOf(
                 Pair(R.id.fiveWords, 5),
                 Pair(R.id.tenWords, 10),
                 Pair(R.id.fifteenWords, 15),
@@ -280,7 +289,10 @@ class MainPageView : MainPageContract.View {
                 Pair(R.id.fiftyWords, 50)
             )
 
-        hashMapOfIds.forEach { id, countWords ->
+        arrayOfPairs.forEach { pair ->
+            val id = pair.first
+            val countWords = pair.second
+
             dialogView.findViewById<MaterialCardView>(id).setOnClickListener {
                 checkChose = true
                 user.countLearningWords = countWords
@@ -304,6 +316,56 @@ class MainPageView : MainPageContract.View {
                 }
                 currentColorNumber = id
             }
+        }
+
+        dialog.findViewById<MaterialCardView>(R.id.writeNumber).setOnClickListener {
+            val editText = EditText(thisContext).apply {
+                requestFocus()
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                )
+                setHintTextColor(Color.WHITE)
+                textSize = 25f
+                gravity = Gravity.CENTER
+                setTextColor(Color.WHITE)
+                //Меняем линию под полем ввода
+                backgroundTintList = ColorStateList.valueOf(Color.WHITE)
+                //Меняем курсор
+                if (Build.VERSION.SDK_INT >= 29) {
+                    setTextCursorDrawable(
+                        getDrawable(
+                            thisContext,
+                            R.drawable.main_alert_choose_number_cursor_color
+                        )
+                    )
+                }
+
+
+            }
+            editText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+            dialog.findViewById<MaterialCardView>(R.id.writeNumber)
+                .removeView(dialogView.findViewById(R.id.imageWriteYourNumber))
+            dialog.findViewById<MaterialCardView>(R.id.writeNumber).addView(editText)
         }
     }
 

@@ -330,6 +330,7 @@
             app:strokeWidth="3dp">
 
             <ImageView
+                android:id="@+id/imageWriteYourNumber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
