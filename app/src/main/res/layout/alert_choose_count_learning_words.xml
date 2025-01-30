@@ -4,7 +4,7 @@
     android:id="@+id/dialogChoseCountOfLearningWords"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/alert_chose_count_learning_words"
+    android:background="@drawable/main_alert_chose_count_learning_words"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -337,7 +337,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/choose_category_icon"
+                android:src="@drawable/main_choose_category_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

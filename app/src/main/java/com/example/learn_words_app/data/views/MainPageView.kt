@@ -257,71 +257,159 @@ class MainPageView : MainPageContract.View {
         //Создаем alert
         dialog.show()
 
-        if (user.countLearningWords == 10) {
-            dialog.findViewById<MaterialCardView>(R.id.tenWords)
-                .setBackgroundColor(Color.GREEN)
-        }
+        //Для того чтобы разукрасить то кол-во, которое пользователь уже изучает
+        var currentColorNumber =
+            changeBackgroundAlertChoseCountLearningWords(dialog, user, thisContext)
 
-        //TODO Добавить цвет для кнопок при нажатии и при открытие alert
-        //Нажатие на 5
-        dialog.findViewById<MaterialCardView>(R.id.fiveWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 5
-        }
+        val hashMapOfIds: Map<Int, Int> =
+            mapOf(
+                Pair(R.id.fiveWords, 5),
+                Pair(R.id.tenWords, 10),
+                Pair(R.id.fifteenWords, 15),
+                Pair(R.id.twentyWords, 20),
+                Pair(R.id.twentyFiveWords, 25),
+                Pair(R.id.thirtyWords, 30),
+                Pair(R.id.thirtyFiveWords, 35),
+                Pair(R.id.fortyWords, 40),
+                Pair(R.id.fortyFiveWords, 45),
+                Pair(R.id.fiftyWords, 50)
+            )
 
-        //Нажатие на 10
-        dialog.findViewById<MaterialCardView>(R.id.tenWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 10
-        }
+        hashMapOfIds.forEach { id, countWords ->
+            dialogView.findViewById<MaterialCardView>(id).setOnClickListener {
+                checkChose = true
+                user.countLearningWords = countWords
 
-        //Нажатие на 15
-        dialog.findViewById<MaterialCardView>(R.id.fifteenWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 15
+                //Меняем цвет
+                dialog.findViewById<MaterialCardView?>(id).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                //Меняем предыдущий номер
+                if (currentColorNumber != -1) {
+                    dialog.findViewById<MaterialCardView?>(currentColorNumber)
+                        .setBackgroundDrawable(
+                            ContextCompat.getDrawable(
+                                thisContext,
+                                R.drawable.main_base_background_changed_count_learning_words
+                            )
+                        )
+                }
+                currentColorNumber = id
+            }
         }
+    }
 
-        //Нажатие на 20
-        dialog.findViewById<MaterialCardView>(R.id.twentyWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 20
-        }
+    private fun changeBackgroundAlertChoseCountLearningWords(
+        dialog: AlertDialog,
+        user: User,
+        thisContext: Context
+    ): Int {
+        //Для того чтобы разукрасить то кол-во, которое пользователь уже изучает
+        when (user.countLearningWords) {
+            5 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.fiveWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.fiveWords
+            }
 
-        //Нажатие на 25
-        dialog.findViewById<MaterialCardView>(R.id.twentyFiveWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 25
-        }
+            10 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.tenWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.tenWords
+            }
 
-        //Нажатие на 30
-        dialog.findViewById<MaterialCardView>(R.id.thirtyWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 30
-        }
+            15 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.fifteenWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.fifteenWords
+            }
 
-        //Нажатие на 35
-        dialog.findViewById<MaterialCardView>(R.id.thirtyFiveWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 35
-        }
+            20 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.twentyWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.twentyWords
+            }
 
-        //Нажатие на 40
-        dialog.findViewById<MaterialCardView>(R.id.fortyWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 40
-        }
+            25 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.twentyFiveWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.twentyFiveWords
+            }
 
-        //Нажатие на 45
-        dialog.findViewById<MaterialCardView>(R.id.fortyFiveWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 45
-        }
+            30 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.thirtyWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.thirtyWords
+            }
 
-        //Нажатие на 50
-        dialog.findViewById<MaterialCardView>(R.id.fiftyWords).setOnClickListener {
-            checkChose = true
-            user.countLearningWords = 50
+            35 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.thirtyFiveWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.thirtyFiveWords
+            }
+
+            40 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.fortyWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.fortyWords
+            }
+
+            45 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.fortyFiveWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.fortyFiveWords
+            }
+
+            50 -> {
+                dialog.findViewById<MaterialCardView?>(R.id.fiftyWords).setBackgroundDrawable(
+                    ContextCompat.getDrawable(
+                        thisContext,
+                        R.drawable.main_background_changed_count_learning_words
+                    )
+                )
+                return R.id.fiftyWords
+            }
         }
+        return -1
     }
 
     @SuppressLint("SetTextI18n")
@@ -465,7 +553,8 @@ class MainPageView : MainPageContract.View {
             )
         }
 
-        table.background = ContextCompat.getDrawable(thisContext, R.drawable.rounded_corners)
+        table.background =
+            ContextCompat.getDrawable(thisContext, R.drawable.learn_words_table_rounded_corners)
 
         val strings = explanations.split(",").toMutableList()
         //В последнем элементе ')' её нужно удалить

@@ -49,7 +49,7 @@
                     android:layout_height="30sp"
                     android:contentDescription="Choose category icon in main menu"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/choose_category_icon"
+                    android:src="@drawable/main_choose_category_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/mainTextContainerChooseCategory"
                     app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,7 @@
                     android:layout_height="30sp"
                     android:contentDescription="Edit icon in main menu"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/learn_new_words_icon"
+                    android:src="@drawable/main_learn_new_words_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -153,7 +153,7 @@
                     android:layout_height="30sp"
                     android:contentDescription="Edit icon in main menu"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/repeat_words_icon"
+                    android:src="@drawable/main_repeat_words_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -234,7 +234,7 @@
                     android:layout_height="30sp"
                     android:contentDescription="Repeat all words icon in main menu"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/repeat_all_words"
+                    android:src="@drawable/main_repeat_all_words"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -450,7 +450,7 @@
                     android:layout_height="30sp"
                     android:contentDescription="Repeat all words icon in main menu"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/repeat_all_words"
+                    android:src="@drawable/main_repeat_all_words"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

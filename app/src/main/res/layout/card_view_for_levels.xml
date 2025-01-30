@@ -25,7 +25,7 @@
             android:layout_height="30dp"
             android:contentDescription="Repeat all words icon in main menu"
             android:scaleType="fitCenter"
-            android:src="@drawable/repeat_all_words"
+            android:src="@drawable/main_repeat_all_words"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
