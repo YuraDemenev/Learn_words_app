@@ -323,7 +323,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/exit"
+            app:layout_constraintEnd_toStartOf="@id/saveCountLearningWords"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="#808080"
@@ -345,7 +345,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/exit"
+            android:id="@+id/saveCountLearningWords"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:layout_marginStart="5dp"

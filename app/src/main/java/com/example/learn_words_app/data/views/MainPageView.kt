@@ -1,5 +1,7 @@
 package com.example.learn_words_app.data.views
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
@@ -8,6 +10,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
@@ -234,6 +237,7 @@ class MainPageView : MainPageContract.View {
         presenter: MainPagePresenter,
         binding: ActivityMainBinding
     ) {
+        var checkWriteMyNumber = false
         var checkChose = false
         val myScope = CoroutineScope(Dispatchers.IO)
 
@@ -275,6 +279,7 @@ class MainPageView : MainPageContract.View {
         var currentColorNumber =
             changeBackgroundAlertChoseCountLearningWords(dialog, user, thisContext)
 
+        //Создаем CardViews
         val arrayOfPairs: Array<Pair<Int, Int>> =
             arrayOf(
                 Pair(R.id.fiveWords, 5),
@@ -325,10 +330,12 @@ class MainPageView : MainPageContract.View {
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                 )
+                inputType = InputType.TYPE_CLASS_NUMBER
                 setHintTextColor(Color.WHITE)
                 textSize = 25f
                 gravity = Gravity.CENTER
                 setTextColor(Color.WHITE)
+                id = R.id.alertDialogWriteNumberEditText
                 //Меняем линию под полем ввода
                 backgroundTintList = ColorStateList.valueOf(Color.WHITE)
                 //Меняем курсор
@@ -340,9 +347,11 @@ class MainPageView : MainPageContract.View {
                         )
                     )
                 }
-
-
             }
+
+            checkChose = true
+            checkWriteMyNumber = true
+
             editText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
@@ -350,16 +359,20 @@ class MainPageView : MainPageContract.View {
                     count: Int,
                     after: Int
                 ) {
-                    TODO("Not yet implemented")
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    TODO("Not yet implemented")
+                    s?.let {
+                        if (start >= 0 && start < s.length) {
+                            //Проверяем что длина числа не больше 3
+                            if (s.length > 3) {
+                                startShakeAnimAlertDialogCountLearningWords(dialog, thisContext)
+                            }
+                        }
+                    }
                 }
 
-                override fun afterTextChanged(s: Editable?) {
-                    TODO("Not yet implemented")
-                }
+                override fun afterTextChanged(s: Editable?) {}
 
             })
 
@@ -367,7 +380,69 @@ class MainPageView : MainPageContract.View {
                 .removeView(dialogView.findViewById(R.id.imageWriteYourNumber))
             dialog.findViewById<MaterialCardView>(R.id.writeNumber).addView(editText)
         }
+
+        dialogView.findViewById<MaterialCardView>(R.id.saveCountLearningWords).setOnClickListener {
+            if (checkWriteMyNumber) {
+                val editText = dialog.findViewById<EditText>(R.id.alertDialogWriteNumberEditText)
+                editText.let {
+                    val text = editText.text.toString()
+                    val number = text.toInt()
+                    if (number < 1 || number > 100) {
+                        dialog.findViewById<MaterialCardView?>(R.id.writeNumber)
+                            .setBackgroundDrawable(
+                                ContextCompat.getDrawable(
+                                    thisContext,
+                                    R.drawable.main_red_background_count_learning_words
+                                )
+                            )
+                        startShakeAnimAlertDialogCountLearningWords(dialog, thisContext)
+                    } else {
+                        user.countLearningWords = number
+                        dialog.dismiss()
+                    }
+                }
+            } else {
+                dialog.dismiss()
+            }
+        }
     }
+
+    private fun startShakeAnimAlertDialogCountLearningWords(
+        dialog: AlertDialog,
+        thisContext: Context
+    ) {
+        dialog.findViewById<MaterialCardView?>(R.id.writeNumber)
+            .setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    thisContext,
+                    R.drawable.main_red_background_count_learning_words
+                )
+            )
+
+        val view = dialog.findViewById<MaterialCardView?>(
+            R.id.writeNumber
+        )
+        val translationX = PropertyValuesHolder.ofFloat(
+            "translationX",
+            -10f,
+            10f,
+            -8f,
+            8f,
+            -6f,
+            6f,
+            -4f,
+            4f,
+            -2f,
+            2f,
+            0f
+        )
+        val animator = ObjectAnimator.ofPropertyValuesHolder(view, translationX)
+        animator.duration = 800 // Duration
+        animator.repeatCount = 0 // No repeat
+
+        animator.start()
+    }
+
 
     private fun changeBackgroundAlertChoseCountLearningWords(
         dialog: AlertDialog,
