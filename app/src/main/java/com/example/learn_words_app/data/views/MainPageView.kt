@@ -388,13 +388,6 @@ class MainPageView : MainPageContract.View {
                     val text = editText.text.toString()
                     val number = text.toInt()
                     if (number < 1 || number > 100) {
-                        dialog.findViewById<MaterialCardView?>(R.id.writeNumber)
-                            .setBackgroundDrawable(
-                                ContextCompat.getDrawable(
-                                    thisContext,
-                                    R.drawable.main_red_background_count_learning_words
-                                )
-                            )
                         startShakeAnimAlertDialogCountLearningWords(dialog, thisContext)
                     } else {
                         user.countLearningWords = number
