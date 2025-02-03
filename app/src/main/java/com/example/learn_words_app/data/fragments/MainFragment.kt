@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
-import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.models.MainPageModel
@@ -20,7 +19,6 @@ import com.example.learn_words_app.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.time.Instant
 
 class MainFragment : Fragment() {
@@ -59,16 +57,7 @@ class MainFragment : Fragment() {
 
         //Создаем Scope для запуска корутин
         val myScope = CoroutineScope(Dispatchers.IO)
-        lateinit var user: User
-
-        //Проверка данных пользователя
-        //TODO что-то сделать с run block??
-        runBlocking {
-            myScope.launch {
-                presenter.checkUserData(thisContext, db, flowLevelsModel)
-                user = presenter.getUser(thisContext, db)
-            }.join()
-        }
+        val user = userViewModel.getUser()
 
         //Проверяем когда пользователь последний раз заходил в приложение
         //Если прошло 24 часа обновляем кол-во выученных новых слов
@@ -80,12 +69,15 @@ class MainFragment : Fragment() {
         }
 
         //Добавляем кол-во слов для повторения
-        binding.mainSmallTextRepeatWords.text =
-            "Слова для повтора: ${user.listOfWordsForRepeat.size}"
+        userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
+            binding.mainSmallTextRepeatWords.text =
+                "Слова для повтора: ${userObserve.listOfWordsForRepeat.size}"
+        }
 
-        //Добавляем кол-во слов для повторения
-        binding.mainSmallTextTodayLearned.text =
-            "Выучено сегодня новых слов: ${user.countLearnedWordsToday}"
+        userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
+            binding.mainSmallTextTodayLearned.text =
+                "Выучено сегодня новых слов: ${userObserve.countLearnedWordsToday}"
+        }
 
         //Переход на страницу выбора тем
         binding.mainTextContainerChooseCategory.setOnClickListener {
@@ -118,19 +110,12 @@ class MainFragment : Fragment() {
             }
         }
 
-        val myUser = userViewModel.getUser()
-
-        binding.countLearningWords.text =
-            "Кол-во новых слов в день: ${myUser.countLearningWords}"
-
+        //Меняем надпись сегодня выучено слов
         userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
             binding.countLearningWords.text =
                 "Кол-во новых слов в день: ${userObserve.countLearningWords}"
         }
 
-
-        //Меняем надпись сегодня выучено слов
-        binding.countLearningWords.text = "Кол-во новых слов в день: ${user.countLearningWords}"
 
         //При нажатии изменить кол-во изучаемых слов
         binding.mainChangeCountLearningWords.setOnClickListener {
@@ -145,15 +130,15 @@ class MainFragment : Fragment() {
 
         binding.checkUserData.setOnClickListener {
             myScope.launch {
-                presenter.checkUserData(thisContext, db, flowLevelsModel)
+                flowLevelsModel.updateLevels(presenter.checkUserData(thisContext, db))
             }
         }
 
         //Наблюдатель за FlowLevelsModel.
         //Меняем кол-во категорий
-        flowLevelsModel.data.observe(viewLifecycleOwner, { levelsData ->
+        flowLevelsModel.data.observe(viewLifecycleOwner) { levelsData ->
             //Меняем текст на UI
             binding.mainSmallTextSelectedCategories.text = "Выбрано категорий: ${levelsData.size}"
-        })
+        }
     }
 }

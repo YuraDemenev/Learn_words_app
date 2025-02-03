@@ -11,4 +11,11 @@ open class FlowLevelsModel : ViewModel() {
     val data: MutableLiveData<HashSet<String>> by lazy {
         MutableLiveData<HashSet<String>>(HashSet())
     }
+
+    // Method to update levels data
+    fun updateLevels(newLevels: HashSet<String>) {
+        data.value = newLevels
+    }
 }
+
+

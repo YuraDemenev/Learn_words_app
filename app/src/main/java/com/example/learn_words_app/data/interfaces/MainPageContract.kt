@@ -78,7 +78,7 @@ interface MainPageContract {
 
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
-        suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
+        suspend fun checkUserData(context: Context, db: MainDB): HashSet<String>
 
         suspend fun updateWordsLevels(
             db: MainDB,
@@ -159,7 +159,7 @@ interface MainPageContract {
 
         suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
 
-        suspend fun checkUserData(context: Context, db: MainDB, flowLevelsModel: FlowLevelsModel)
+        suspend fun checkUserData(context: Context, db: MainDB): HashSet<String>
 
         suspend fun updateWordsLevels(
             db: MainDB,
