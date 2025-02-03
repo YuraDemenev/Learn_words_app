@@ -52,8 +52,7 @@ class MainActivity : AppCompatActivity() {
                 userViewModel.updateUser(user)
             }
         }
-
-
+        
         //Создаём work request, чтобы каждые 2 часа получать слова из БД, которые надо повторять
         val workRequest =
             PeriodicWorkRequestBuilder<GetWordsWork>(1, TimeUnit.MINUTES)
@@ -65,7 +64,6 @@ class MainActivity : AppCompatActivity() {
             ExistingPeriodicWorkPolicy.KEEP,
             workRequest,
         )
-
 
 //        deleteWorks()
 //        getUUID()
