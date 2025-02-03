@@ -6,11 +6,11 @@ import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.additionalData.User
+import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.interfaces.WordCallback
-import com.example.learn_words_app.databinding.ActivityMainBinding
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import com.google.protobuf.Timestamp
 
@@ -30,13 +30,12 @@ class MainPagePresenter(
     }
 
     override fun createAlertChoseCountLearningWords(
-        user: User,
+        userViewModel: UserViewModel,
         thisContext: Context,
         inflater: LayoutInflater,
         presenter: MainPagePresenter,
-        binding: ActivityMainBinding
     ) {
-        mainView.createAlertChoseCountLearningWords(user, thisContext, inflater, presenter, binding)
+        mainView.createAlertChoseCountLearningWords(userViewModel, thisContext, inflater, presenter)
     }
 
     override fun nextWord(

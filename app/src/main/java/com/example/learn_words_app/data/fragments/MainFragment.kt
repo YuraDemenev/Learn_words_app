@@ -11,11 +11,10 @@ import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.User
-import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
+import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
@@ -27,6 +26,7 @@ import java.time.Instant
 class MainFragment : Fragment() {
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     //Binding
     private lateinit var binding: ActivityMainBinding
@@ -66,49 +66,18 @@ class MainFragment : Fragment() {
         runBlocking {
             myScope.launch {
                 presenter.checkUserData(thisContext, db, flowLevelsModel)
-
-                //Проверяем когда пользователь последний раз заходил в приложение
                 user = presenter.getUser(thisContext, db)
-                val duration = java.time.Duration.between(user.lastTimeLearnedWords, Instant.now())
-
-                //Если прошло 24 часа обновляем кол-во выученных новых слов
-                if (duration.toHours() >= 18) {
-                    user.countLearnedWordsToday = 0
-                    user.checkLearnedAllWordsToday = false
-                    val emptyList: List<Int> = listOf()
-
-                    presenter.updateUserProto(
-                        thisContext,
-                        user,
-                        convertLevelsToProtoLevels(user.listOfLevels),
-                        emptyList,
-                        user.convertDateToTimestamp()
-                    )
-                }
             }.join()
         }
 
-        //TODO удалить это потом
-//        var arrayOfWordsIds: Array<Int> = arrayOf()
-//
-//        runBlocking {
-//            myScope.launch {
-//                arrayOfWordsIds = presenter.getWordsForRepeat(db)
-//            }.join()
-//        }
-//
-//        val listOfProtoLevels = convertLevelsToProtoLevels(user.listOfLevels)
-//
-//        //Обновляем proto data
-//        myScope.launch {
-//            presenter.updateUserProto(
-//                thisContext,
-//                user,
-//                listOfProtoLevels,
-//                arrayOfWordsIds.toList(),
-//                user.convertDateToTimestamp()
-//            )
-//        }
+        //Проверяем когда пользователь последний раз заходил в приложение
+        //Если прошло 24 часа обновляем кол-во выученных новых слов
+        if (java.time.Duration.between(user.lastTimeLearnedWords, Instant.now()).toHours() >= 18) {
+            user.countLearnedWordsToday = 0
+            user.checkLearnedAllWordsToday = false
+
+            userViewModel.updateUser(user)
+        }
 
         //Добавляем кол-во слов для повторения
         binding.mainSmallTextRepeatWords.text =
@@ -149,6 +118,17 @@ class MainFragment : Fragment() {
             }
         }
 
+        val myUser = userViewModel.getUser()
+
+        binding.countLearningWords.text =
+            "Кол-во новых слов в день: ${myUser.countLearningWords}"
+
+        userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
+            binding.countLearningWords.text =
+                "Кол-во новых слов в день: ${userObserve.countLearningWords}"
+        }
+
+
         //Меняем надпись сегодня выучено слов
         binding.countLearningWords.text = "Кол-во новых слов в день: ${user.countLearningWords}"
 
@@ -156,13 +136,11 @@ class MainFragment : Fragment() {
         binding.mainChangeCountLearningWords.setOnClickListener {
             val inflater = layoutInflater
             presenter.createAlertChoseCountLearningWords(
-                user,
+                userViewModel,
                 thisContext,
                 inflater,
-                presenter,
-                binding
+                presenter
             )
-
         }
 
         binding.checkUserData.setOnClickListener {

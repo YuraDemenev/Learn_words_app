@@ -6,10 +6,10 @@ import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.LevelsCardData
 import com.example.learn_words_app.data.additionalData.User
+import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.databinding.ActivityMainBinding
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import com.google.protobuf.Timestamp
 
@@ -17,11 +17,10 @@ interface MainPageContract {
     //View концентрируется только на UI и пользовательском взаимодействии, а логика работы с данными вынесена в другие компоненты.
     interface View {
         fun createAlertChoseCountLearningWords(
-            user: User,
+            userViewModel: UserViewModel,
             thisContext: Context,
             inflater: LayoutInflater,
             presenter: MainPagePresenter,
-            binding: ActivityMainBinding
         )
 
         fun deleteExplanations(
@@ -112,11 +111,10 @@ interface MainPageContract {
         //Views
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
         fun createAlertChoseCountLearningWords(
-            user: User,
+            userViewModel: UserViewModel,
             thisContext: Context,
             inflater: LayoutInflater,
             presenter: MainPagePresenter,
-            binding: ActivityMainBinding
         )
 
         fun nextWord(

@@ -13,8 +13,7 @@ import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
-import com.example.learn_words_app.data.additionalData.User
-import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
+import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.WordCallback
@@ -23,18 +22,17 @@ import com.example.learn_words_app.data.presenters.MainPagePresenter
 import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
-import com.google.protobuf.Timestamp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.time.Instant
 
 
 class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     private lateinit var binding: FragmentLearnWordsBinding
+    private val userViewModel: UserViewModel by activityViewModels()
 
-    private lateinit var user: User
+    private var user = userViewModel.getUser()
 
     //Чтобы проверять было ли добавлено Explanation и если да убирать его
     private var checkExplanation = false
@@ -79,13 +77,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
         //Для перехода на страницу повтора слов
         binding.repeatWords.setOnClickListener {
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
-        }
-
-        //Получаем пользователя
-        runBlocking {
-            myScope.launch {
-                user = presenter.getUser(thisContext, db)
-            }.join()
         }
 
         //Проверяем что все слова выучены
@@ -248,6 +239,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                     translation.visibility = View.VISIBLE
 
                 }
+                //TODO nextWord убрать user.countLearnedWordsToday
                 checkExplanation = presenter.nextWord(
                     binding,
                     user,
@@ -277,39 +269,12 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                 presenter.updateWordsLevels(db, listOfNewWords, 1)
             }
 
-            //Обновляем данные в user proto (Обновляем время когда последний раз выучили все слова)
-            myScope.launch {
-                val emptyList: List<Int> = listOf()
-
-                //Проверяем выучили ли мы все слова
-                if (user.countLearnedWordsToday == user.countLearningWords) {
-                    user.checkLearnedAllWordsToday = true
-                }
-
-                presenter.updateUserProto(
-                    thisContext, user, listOfLevelsBuilders, emptyList,
-                    Timestamp.newBuilder()
-                        .setSeconds(Instant.now().epochSecond)
-                        .setNanos(Instant.now().nano).build()
-                )
-            }
-
+            //Обновляем данные в user
+            userViewModel.updateUser(user)
 
         } else if (checkUserKnowWord) {
-            val thisContext = requireContext()
-            val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
-
-            myScope.launch {
-                val emptyList: List<Int> = listOf()
-                //Так как пользователь мог нажать на i know this word, нужно обновить кол-во слов, которые пользователь знает
-                presenter.updateUserProto(
-                    thisContext,
-                    user,
-                    listOfLevelsBuilders,
-                    emptyList,
-                    user.convertDateToTimestamp()
-                )
-            }
+            //Обновляем данные в user
+            userViewModel.updateUser(user)
         }
     }
 }

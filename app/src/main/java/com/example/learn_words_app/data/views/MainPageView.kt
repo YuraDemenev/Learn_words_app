@@ -29,17 +29,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.User
-import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
+import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
-import com.example.learn_words_app.databinding.ActivityMainBinding
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import com.google.android.material.card.MaterialCardView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class MainPageView : MainPageContract.View {
@@ -231,15 +226,15 @@ class MainPageView : MainPageContract.View {
     }
 
     override fun createAlertChoseCountLearningWords(
-        user: User,
+        userViewModel: UserViewModel,
         thisContext: Context,
         inflater: LayoutInflater,
         presenter: MainPagePresenter,
-        binding: ActivityMainBinding
     ) {
+        val user = userViewModel.getUser()
+
         var checkWriteMyNumber = false
         var checkChose = false
-        val myScope = CoroutineScope(Dispatchers.IO)
 
         val builder = AlertDialog.Builder(thisContext)
         val dialogView = inflater.inflate(R.layout.alert_choose_count_learning_words, null)
@@ -250,25 +245,11 @@ class MainPageView : MainPageContract.View {
         val dialog: AlertDialog = builder.create()
         //Чтобы alert был без заднего фона
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         //Добавляем listener на закрытие alert
         dialog.setOnDismissListener {
             if (checkChose) {
-                myScope.launch {
-                    //Обновляем proto user data
-                    val listOfProtoLevels = convertLevelsToProtoLevels(user.listOfLevels)
-                    val emptyList: List<Int> = listOf()
-
-                    presenter.updateUserProto(
-                        thisContext,
-                        user,
-                        listOfProtoLevels,
-                        emptyList,
-                        user.convertDateToTimestamp()
-                    )
-
-                }
-                binding.countLearningWords.text =
-                    "Кол-во новых слов в день: ${user.countLearningWords}"
+                userViewModel.updateUser(user)
             }
         }
 

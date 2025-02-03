@@ -15,7 +15,7 @@ import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.LevelsCardData
-import com.example.learn_words_app.data.additionalData.convertDateToTimestamp
+import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.fragments.adapters.CardAdapter
 import com.example.learn_words_app.data.models.MainPageModel
@@ -25,11 +25,11 @@ import com.example.learn_words_app.databinding.FragmentLevelsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class LevelsFragment : Fragment(R.layout.fragment_levels) {
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
     private lateinit var binding: FragmentLevelsBinding
 
     override fun onCreateView(
@@ -79,47 +79,46 @@ class LevelsFragment : Fragment(R.layout.fragment_levels) {
         //Для возвращения в главное меню
         binding.backToMainMenuContainer.setOnClickListener {
             //TODO Сделать alert если выбрано 0 категорий
-            runBlocking {
-                myScope.launch {
-                    val user = presenter.getUser(thisContext, db)
 
-                    //Для добавления в Proto data levelsList
-                    val listOfLevelsBuilders = mutableListOf<LevelsProto>()
-                    //Проверка что flow levels model не null
-                    if (flowLevelsModel.data.value == null) {
-                        Log.e(
-                            "flow levels model is null",
-                            "LevelsFragment, backToMainMenuContainer, flow levels model is null"
-                        )
-                    }
-                    //Получаем уровни из Flow level
-                    val curLevels = flowLevelsModel.data.value?.toList()
-                    if (curLevels == null) {
-                        Log.e(
-                            "current levels are null",
-                            "LevelsFragment, backToMainMenuContainer, current levels are null"
-                        )
-                        throw Exception()
-                    } else {
-                        //Проходим по list Levels и заполняем List LevelsProto
-                        curLevels.forEach { level ->
-                            listOfLevelsBuilders.add(
-                                LevelsProto.newBuilder().setId(0).setName(level).build()
-                            )
-                        }
-                    }
+            val user = userViewModel.getUser()
 
-                    val emptyList: List<Int> = listOf()
-
-                    presenter.updateUserProto(
-                        thisContext,
-                        user,
-                        listOfLevelsBuilders,
-                        emptyList,
-                        user.convertDateToTimestamp()
-                    )
-                }.join()
+            //Для добавления в Proto data levelsList
+            val listOfLevelsBuilders = mutableListOf<LevelsProto>()
+            //Проверка что flow levels model не null
+            if (flowLevelsModel.data.value == null) {
+                Log.e(
+                    "flow levels model is null",
+                    "LevelsFragment, backToMainMenuContainer, flow levels model is null"
+                )
+                throw Exception()
             }
+            //Получаем уровни из Flow level
+            val curLevels = flowLevelsModel.data.value?.toList()
+            if (curLevels == null) {
+                Log.e(
+                    "current levels are null",
+                    "LevelsFragment, backToMainMenuContainer, current levels are null"
+                )
+                throw Exception()
+            } else {
+                //Проходим по list Levels и заполняем List LevelsProto
+                curLevels.forEach { level ->
+                    listOfLevelsBuilders.add(
+                        LevelsProto.newBuilder().setId(0).setName(level).build()
+                    )
+                }
+            }
+
+//            val emptyList: List<Int> = listOf()
+//
+//            presenter.updateUserProto(
+//                thisContext,
+//                user,
+//                listOfLevelsBuilders,
+//                emptyList,
+//                user.convertDateToTimestamp()
+//            )
+
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
         }
     }
