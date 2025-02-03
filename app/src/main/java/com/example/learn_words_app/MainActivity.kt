@@ -10,6 +10,7 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
+import com.app.proto.LevelsProto
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.GetWordsWork
@@ -22,7 +23,6 @@ import com.example.learn_words_app.data.fragments.MainFragment
 import com.example.learn_words_app.data.fragments.RepeatWordsFragment
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 flowLevelsModel.updateLevels(presenter.checkUserData(thisContext, db))
                 val user = presenter.getUser(thisContext, db)
-                
+
                 userViewModel.updateUser(user)
             }
         }
@@ -110,9 +110,17 @@ class MainActivity : AppCompatActivity() {
         val user = userViewModel.getUser()
         val presenter = MainPagePresenter(MainPageModel(), MainPageView())
         val myScope = CoroutineScope(Dispatchers.IO)
-        val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
+        val listOfLevelsBuilders = mutableListOf<LevelsProto>()
         val emptyList: List<Int> = listOf()
         val thisContext = this
+
+        //Получаем уровни, которые выбраны у пользователя
+        val levels = flowLevelsModel.getData()
+        levels.forEach { level ->
+            listOfLevelsBuilders.add(
+                LevelsProto.newBuilder().setId(0).setName(level).build()
+            )
+        }
 
         runBlocking {
             myScope.launch {
