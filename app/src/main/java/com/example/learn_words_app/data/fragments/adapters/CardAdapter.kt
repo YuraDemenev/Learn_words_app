@@ -118,8 +118,10 @@ class CardAdapter(
 
             //Если выбрали check box
             if (holder.checkBox.isChecked) {
-
-                flowLevelsModel.data.value?.add(localLevelName)
+                val hashSet = flowLevelsModel.getData()
+                hashSet.add(localLevelName)
+                flowLevelsModel.updateLevels(hashSet)
+                
             } else {
                 if (flowLevelsModel.data.value?.contains(localLevelName) == true) {
                     flowLevelsModel.data.value?.remove(localLevelName)

@@ -15,6 +15,6 @@ class UserViewModel : ViewModel() {
     }
 
     fun getUser(): User {
-        return _user.value ?: throw IllegalStateException("User is null")
+        return _user.value ?: throw IllegalStateException("getUser, User is null")
     }
 }

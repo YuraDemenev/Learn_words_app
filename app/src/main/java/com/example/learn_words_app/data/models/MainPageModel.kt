@@ -182,13 +182,14 @@ class MainPageModel : MainPageContract.Model {
 
     override suspend fun checkUserData(
         context: Context,
-        db: MainDB,
-        flowLevelsModel: FlowLevelsModel
-    ) {
+        db: MainDB
 
+    ): HashSet<String> {
         val userFlow = getUserProtoData(context, db)
         //Проверяем есть ли пользователь в хранилище или нет
         var checkUser = userFlow.first()
+        val flowLevels: HashSet<String> = hashSetOf()
+
         //Если пользователя нет
         if (checkUser.userId == "") {
             //Получаем список id и name из таблицы tables
@@ -218,34 +219,29 @@ class MainPageModel : MainPageContract.Model {
                     "Check user data. Update Proto DataStore",
                     "can`t update, err: $e"
                 )
-                return
+                throw e
             }
             //Получаем user для того чтобы ниже получить данные
             checkUser = userFlow.first()
 
-        }
-        //Проверка что flow levels model не null
-        if (flowLevelsModel.data.value == null) {
-            Log.e(
-                "flow levels model is null",
-                "Main page model, checkUserData, flow levels model is null"
-            )
         }
 
         //Добавляем в flow levels model уровни
         val listOfLevels = checkUser.listOfLevels
         listOfLevels.forEach { locLevel ->
             if (locLevel.id != null) {
-                flowLevelsModel.data.value?.add(locLevel.name)
+                flowLevels.add(locLevel.name)
             } else {
                 Log.e(
                     "level id is null",
                     "Main page model, checkUserData, level id is null"
                 )
+                throw Exception()
             }
         }
 
         Log.i("Check user data", "Success checked user data")
+        return flowLevels
     }
 
     //TODO почистить context где он не используется

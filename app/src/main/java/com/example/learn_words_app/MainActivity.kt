@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
+import com.app.proto.LevelsProto
+import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.GetWordsWork
 import com.example.learn_words_app.data.additionalData.UserViewModel
@@ -20,17 +23,18 @@ import com.example.learn_words_app.data.fragments.MainFragment
 import com.example.learn_words_app.data.fragments.RepeatWordsFragment
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     private val userViewModel: UserViewModel by viewModels()
+    private val flowLevelsModel: FlowLevelsModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +42,17 @@ class MainActivity : AppCompatActivity() {
         //Получаем user из proto data
         val db = MainDB.getDB(this)
         val presenter = MainPagePresenter(MainPageModel(), MainPageView())
-        val myScope = CoroutineScope(Dispatchers.Main)
         val thisContext = this
 
-        runBlocking {
-            myScope.launch {
-                userViewModel.updateUser(presenter.getUser(thisContext, db))
+        lifecycleScope.launch {
+            withContext(Dispatchers.Main) {
+                flowLevelsModel.updateLevels(presenter.checkUserData(thisContext, db))
+                val user = presenter.getUser(thisContext, db)
+
+                userViewModel.updateUser(user)
             }
         }
+
 
         //Создаём work request, чтобы каждые 2 часа получать слова из БД, которые надо повторять
         val workRequest =
@@ -103,9 +110,17 @@ class MainActivity : AppCompatActivity() {
         val user = userViewModel.getUser()
         val presenter = MainPagePresenter(MainPageModel(), MainPageView())
         val myScope = CoroutineScope(Dispatchers.IO)
-        val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
+        val listOfLevelsBuilders = mutableListOf<LevelsProto>()
         val emptyList: List<Int> = listOf()
         val thisContext = this
+
+        //Получаем уровни, которые выбраны у пользователя
+        val levels = flowLevelsModel.getData()
+        levels.forEach { level ->
+            listOfLevelsBuilders.add(
+                LevelsProto.newBuilder().setId(0).setName(level).build()
+            )
+        }
 
         runBlocking {
             myScope.launch {

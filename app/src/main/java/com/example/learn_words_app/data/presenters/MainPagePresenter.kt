@@ -80,9 +80,8 @@ class MainPagePresenter(
     override suspend fun checkUserData(
         context: Context,
         db: MainDB,
-        flowLevelsModel: FlowLevelsModel
-    ) {
-        model.checkUserData(context, db, flowLevelsModel)
+    ): HashSet<String> {
+        return model.checkUserData(context, db)
     }
 
     override suspend fun getOneWordForLearn(
