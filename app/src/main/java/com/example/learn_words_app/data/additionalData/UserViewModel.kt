@@ -14,6 +14,12 @@ class UserViewModel : ViewModel() {
         _user.value = newUser
     }
 
+    fun updateCountLearnedWordsToday(newCount: Int) {
+        _user.value?.let {
+            _user.value = it.copy(countLearnedWordsToday = newCount)
+        }
+    }
+
     fun getUser(): User {
         return _user.value ?: throw IllegalStateException("getUser, User is null")
     }

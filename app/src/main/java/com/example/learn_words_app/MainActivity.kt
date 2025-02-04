@@ -120,6 +120,7 @@ class MainActivity : AppCompatActivity() {
                 LevelsProto.newBuilder().setId(0).setName(level).build()
             )
         }
+        Log.i("close app, user:", user.toString())
 
         runBlocking {
             myScope.launch {

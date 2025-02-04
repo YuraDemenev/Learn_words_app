@@ -5,7 +5,7 @@ import com.example.learn_words_app.data.dataBase.Words
 import com.google.protobuf.Timestamp
 import java.time.Instant
 
-class User(
+data class User(
     var userId: String = "",
     var curRepeatDays: Int = 0,
     var maxRepeatDays: Int = 0,

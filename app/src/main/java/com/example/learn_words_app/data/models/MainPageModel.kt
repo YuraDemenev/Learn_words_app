@@ -35,6 +35,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
     override suspend fun getWordsForRepeat(db: MainDB): Array<Int> {
+        //TODO проверить запрос, что он учитывает stage
         val date = Date.from(Instant.now())
         val listOfWords = db.getDao().getWordsForRepeat(date?.time?.toLong())
 

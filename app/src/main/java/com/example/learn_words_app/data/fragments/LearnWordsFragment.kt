@@ -13,36 +13,33 @@ import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
+import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.WordCallback
 import com.example.learn_words_app.data.models.MainPageModel
 import com.example.learn_words_app.data.presenters.MainPagePresenter
-import com.example.learn_words_app.data.proto.convertLevelsToProtoLevels
 import com.example.learn_words_app.data.views.MainPageView
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.time.Instant
 
 
 class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     private lateinit var binding: FragmentLearnWordsBinding
     private val userViewModel: UserViewModel by activityViewModels()
 
-    private var user = userViewModel.getUser()
+    //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
+    private val flowLevelsModel: FlowLevelsModel by activityViewModels()
+
+    private lateinit var user: User
 
     //Чтобы проверять было ли добавлено Explanation и если да убирать его
     private var checkExplanation = false
-
-    //Если пользователь знает слово, меняем на true и в OnDestroy,
-    // если пользователь не выучил ни 1 слова, обновляем proto data
-    private var checkUserKnowWord = false
-
-    //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
-    private val flowLevelsModel: FlowLevelsModel by activityViewModels()
 
     //Для сохранения тех слов которые пользователь не знает
     private val listOfNewWords = mutableListOf<Words>()
@@ -57,7 +54,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     ): View {
         //Получаем binding
         binding = FragmentLearnWordsBinding.inflate(inflater)
-
+        user = userViewModel.getUser()
         return binding.root
     }
 
@@ -79,16 +76,16 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
             (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
         }
 
-        //Проверяем что все слова выучены
-        if (user.countLearnedWordsToday == user.countLearningWords) {
-            val countLearningWords = user.countLearningWords
-            val countLearnedWords = user.countLearnedWordsToday
-
+        userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
             binding.learnWordsLearnedCountNewWords.text =
-                "Заучено $countLearnedWords/$countLearningWords новых слов"
+                "Заучено ${userObserve.countLearnedWordsToday}/${userObserve.countLearningWords} новых слов"
+        }
 
+        //Если пользователь уже выучил все слова
+        if (user.checkLearnedAllWordsToday) {
             presenter.changePageToYouAllLearned(binding)
         } else {
+
             //Получаем слова для изучения
             lateinit var pair: Pair<MutableList<Words>, HashMap<Int, String>>
             runBlocking {
@@ -134,6 +131,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                 if (user.countLearnedWordsToday < countLearningWords - 1) {
                     indexWord++
                     user.countLearnedWordsToday++
+                    userViewModel.updateCountLearnedWordsToday(user.countLearnedWordsToday)
 
                     checkExplanation = presenter.nextWord(
                         binding,
@@ -155,15 +153,12 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
 
                     //Увеличиваем кол-во выученных слов
                     user.countLearnedWordsToday++
+                    userViewModel.updateCountLearnedWordsToday(user.countLearnedWordsToday)
 
                     //Проверяем есть ли сейчас explanation container на экране
                     if (checkExplanation) {
                         presenter.deleteExplanations(binding, thisContext)
                     }
-
-                    val countLearningWordsText = user.countLearningWords
-                    binding.learnWordsLearnedCountNewWords.text =
-                        "Заучено $countLearningWordsText/$countLearningWords новых слов"
 
                     //Для изменения названия уровня
                     presenter.changeLevelName(binding, hashMap, listOfWords, indexWord)
@@ -177,7 +172,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
             //При нажатии на 'я знаю это слово'
             binding.learnWordsIKnowThisWordText.setOnClickListener {
                 user.countKnewWords += 1
-                checkUserKnowWord = true
 
                 //Необходимо получить 1 новое слово из БД
                 lateinit var newWord: Words
@@ -254,26 +248,29 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                 )
             }
         }
+
     }
 
     override fun onPause() {
         super.onPause()
+
+        if (user.countLearnedWordsToday == user.countLearningWords) {
+            user.checkLearnedAllWordsToday = true
+            user.lastTimeLearnedWords = Instant.now()
+        }
+
         if (listOfNewWords.size != 0) {
             val thisContext = requireContext()
-            val listOfLevelsBuilders = convertLevelsToProtoLevels(user.listOfLevels)
-
             //Получаем/создаем БД
             val db = MainDB.getDB(thisContext)
 
             myScope.launch {
                 presenter.updateWordsLevels(db, listOfNewWords, 1)
             }
+        }
 
-            //Обновляем данные в user
-            userViewModel.updateUser(user)
-
-        } else if (checkUserKnowWord) {
-            //Обновляем данные в user
+        //Обновляем данные в user
+        CoroutineScope(Dispatchers.Main).launch {
             userViewModel.updateUser(user)
         }
     }

@@ -13,7 +13,6 @@ import com.example.learn_words_app.R
 import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.LevelsCardData
-import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.fragments.adapters.CardAdapter
 import com.example.learn_words_app.data.models.MainPageModel
@@ -27,7 +26,6 @@ import kotlinx.coroutines.runBlocking
 
 class LevelsFragment : Fragment(R.layout.fragment_levels) {
     private val flowLevelsModel: FlowLevelsModel by activityViewModels()
-    private val userViewModel: UserViewModel by activityViewModels()
     private lateinit var binding: FragmentLevelsBinding
 
     override fun onCreateView(
