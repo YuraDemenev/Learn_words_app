@@ -45,7 +45,6 @@ class MainPageView : MainPageContract.View {
         listOfNewWords: MutableList<Words>,
         indexWord: Int,
         listOfWords: MutableList<Words>,
-        countLearnedWords: Int,
         hashMap: HashMap<Int, String>,
         checkAddWord: Boolean,
         thisContext: Context,
@@ -114,7 +113,7 @@ class MainPageView : MainPageContract.View {
         val countLearningWords = user.countLearningWords
 
         binding.learnWordsLearnedCountNewWords.text =
-            "Заучено $countLearnedWords/$countLearningWords новых слов"
+            "Заучено ${user.countLearnedWordsToday}/$countLearningWords новых слов"
 
         binding.levelName.text = hashMap[word.id]
 
