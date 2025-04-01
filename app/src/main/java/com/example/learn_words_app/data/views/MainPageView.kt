@@ -91,7 +91,6 @@ class MainPageView : MainPageContract.View {
                 russianWord = russianWord.dropLast(1)
 
             } else {
-
                 checkRussianExplanation = true
                 val splitWords = word.russianTranslation.split("(")
                 russianWord = splitWords[0]

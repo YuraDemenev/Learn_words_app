@@ -19,7 +19,6 @@ import com.example.learn_words_app.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.Instant
 
 class MainFragment : Fragment() {
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
@@ -57,21 +56,11 @@ class MainFragment : Fragment() {
 
         //Создаем Scope для запуска корутин
         val myScope = CoroutineScope(Dispatchers.IO)
-        val user = userViewModel.getUser()
-
-        //Проверяем когда пользователь последний раз заходил в приложение
-        //Если прошло 24 часа обновляем кол-во выученных новых слов
-        if (java.time.Duration.between(user.lastTimeLearnedWords, Instant.now()).toHours() >= 18) {
-            user.countLearnedWordsToday = 0
-            user.checkLearnedAllWordsToday = false
-
-            userViewModel.updateUser(user)
-        }
 
         //Добавляем кол-во слов для повторения
         userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
             binding.mainSmallTextRepeatWords.text =
-                "Слова для повтора: ${userObserve.listOfWordsForRepeat.size}"
+                "Слова для повтора: ${userObserve.hashMapOfWordsForRepeatAndLevelsNames.size}"
         }
 
         userViewModel.user.observe(viewLifecycleOwner) { userObserve ->

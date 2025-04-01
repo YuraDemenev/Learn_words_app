@@ -47,6 +47,9 @@ interface WordsDAO {
     )
     fun getWordsForRepeat(dateNow: Long?): Array<Int>
 
+    @Query("SELECT name FROM levels WHERE id = :levelId")
+    suspend fun getLevelNameById(levelId: Int): String
+
     //Получаем слово из БД по id
     @Query("SELECT * FROM words WHERE id = :wordId")
     suspend fun getWordById(wordId: Int): Words

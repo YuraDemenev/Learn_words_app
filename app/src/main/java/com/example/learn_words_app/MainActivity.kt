@@ -29,6 +29,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import java.time.Instant
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 
@@ -48,6 +49,18 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 flowLevelsModel.updateLevels(presenter.checkUserData(thisContext, db))
                 val user = presenter.getUser(thisContext, db)
+
+                //Проверяем когда пользователь последний раз заходил в приложение
+                //Если прошло 24 часа обновляем кол-во выученных новых слов
+                if (java.time.Duration.between(user.lastTimeLearnedWords, Instant.now())
+                        .toHours() >= 18
+                ) {
+                    user.countLearnedWordsToday = 0
+                    user.checkLearnedAllWordsToday = false
+                    user.countRepeatedWordsToday = 0
+
+                    userViewModel.updateUser(user)
+                }
 
                 userViewModel.updateUser(user)
             }

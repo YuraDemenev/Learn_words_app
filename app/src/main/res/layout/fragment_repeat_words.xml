@@ -156,7 +156,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
-                    android:id="@+id/learnWordsWord"
+                    android:id="@+id/word"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -174,7 +174,7 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/learnWordsWord" />
+                    app:layout_constraintTop_toBottomOf="@id/word" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

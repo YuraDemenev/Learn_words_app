@@ -23,4 +23,5 @@ message  UserProto{
   bool checkBritishVariables = 10;
   google.protobuf.Timestamp lastTimeLearnedWords = 11;
   repeated int32 listOfWordsIdsForRepeat = 12;
+  int32 countRepeatedWordsToday = 13;
 }

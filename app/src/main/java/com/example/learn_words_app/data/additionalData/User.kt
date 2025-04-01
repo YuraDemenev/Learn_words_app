@@ -17,7 +17,8 @@ data class User(
     var listOfLevels: MutableList<Levels> = mutableListOf(),
     var checkBritishVariables: Boolean = false,
     var lastTimeLearnedWords: Instant = Instant.now(),
-    var listOfWordsForRepeat: List<Words> = listOf()
+    var hashMapOfWordsForRepeatAndLevelsNames: HashMap<Words, String> = hashMapOf(),
+    var countRepeatedWordsToday: Int = 0
 )
 
 //Функция, чтобы вернуть TimeStamp для изменения proto data
@@ -28,3 +29,4 @@ fun User.convertDateToTimestamp(): Timestamp {
         .setSeconds(this.lastTimeLearnedWords.epochSecond)
         .setNanos(this.lastTimeLearnedWords.nano).build()
 }
+//TODO добавить app verison?

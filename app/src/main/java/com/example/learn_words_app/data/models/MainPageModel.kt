@@ -521,7 +521,8 @@ class MainPageModel : MainPageContract.Model {
                     userProto.lastTimeLearnedWords.seconds,
                     userProto.lastTimeLearnedWords.nanos.toLong()
                 ),
-                getWordsByIds(userProto.listOfWordsIdsForRepeatList, db)
+                getWordsByIds(userProto.listOfWordsIdsForRepeatList, db),
+                userProto.countRepeatedWordsToday
 
             )
         }
@@ -555,6 +556,7 @@ class MainPageModel : MainPageContract.Model {
                     .setCheckBritishVariables(false)
                     .setLastTimeLearnedWords(lastTimeLearned)
                     .addAllListOfWordsIdsForRepeat(listOfWordsIdsForRepeat)
+                    .setCountRepeatedWordsToday(user.countRepeatedWordsToday)
                     .build()
             }
 
@@ -580,8 +582,8 @@ class MainPageModel : MainPageContract.Model {
     }
 
     //Функция чтобы при получении ids уровней из proto преобразовать данные в list words
-    private fun getWordsByIds(listOfIds: MutableList<Int>, db: MainDB): List<Words> {
-        val listOfWords: MutableList<Words> = mutableListOf()
+    private fun getWordsByIds(listOfIds: MutableList<Int>, db: MainDB): HashMap<Words, String> {
+        val hashMap: HashMap<Words, String> = hashMapOf()
 
         runBlocking {
             // List to hold jobs
@@ -591,7 +593,8 @@ class MainPageModel : MainPageContract.Model {
             listOfIds.forEach { id ->
                 val job = myScope.launch {
                     val word = db.getDao().getWordById(id)
-                    listOfWords.add(word)
+                    val levelName = db.getDao().getLevelNameById(word.levelId)
+                    hashMap[word] = levelName
                 }
                 jobs.add(job)
             }
@@ -599,6 +602,6 @@ class MainPageModel : MainPageContract.Model {
             jobs.joinAll()
         }
 
-        return listOfWords.toList()
+        return hashMap
     }
 }
