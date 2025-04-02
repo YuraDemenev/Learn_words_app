@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.R
@@ -65,21 +66,34 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
         //Для оптимизации
         run {
             //Получаем случайное значение, от которого зависит, какое слово покажем пользователю, русское или английское
-            val randVal = getBoolean()
+            val randBool = getBoolean()
             lateinit var word: String
-            if (randVal) {
+            lateinit var hideWord: String
+            if (randBool) {
                 word = listOfWords[0].first.englishWord
+                hideWord = listOfWords[0].first.russianTranslation
             } else {
                 word = listOfWords[0].first.russianTranslation
+                hideWord = listOfWords[0].first.englishWord
             }
             binding.word.text = word
+            binding.hideWord.text = hideWord
         }
-
 
         //Listener "Посмотреть слово
         binding.seeWordCard.setOnClickListener {
             binding.seeWordCard.visibility = View.INVISIBLE
             binding.writeWordCard.visibility = View.INVISIBLE
+            binding.hideWord.visibility = View.VISIBLE
+
+            //Если есть объяснение
+            if (checkExplanation) {
+                val explanationContainer: ConstraintLayout? =
+                    binding.root.findViewById(R.id.scrollViewWithTableContainerEnglish)
+                if (explanationContainer != null) {
+                    explanationContainer.visibility = View.VISIBLE
+                }
+            }
         }
 
         //Listener "Я не вспомнил это слово"
@@ -129,7 +143,8 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
     }
 
     private fun getBoolean(): Boolean {
-        val value = Random.nextInt(0, 1)
+        //TODO поменять на 2
+        val value = Random.nextInt(1, 2)
         return value == 1
     }
 }

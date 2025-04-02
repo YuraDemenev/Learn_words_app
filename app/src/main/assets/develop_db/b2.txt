@@ -247,7 +247,8 @@ hearing;слушание
 heaven;небеса
 hell;черт возьми
 to hesitate;колебаться
-hire;нанять
+hire;прокат,аренда
+to hire;нанимать,нанять
 hold;держать
 hollow;полый
 holy;святой
@@ -258,8 +259,8 @@ household;домохозяйство
 housing;жилье
 humorous;юмористический
 humour;юмор
-hunt;охотиться
-hunting;охота
+to hunt;охотиться
+hunting;охота,охотничий
 ideal;идеальный
 to illustrate;проиллюстрировать
 illustration;иллюстрация

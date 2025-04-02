@@ -10,7 +10,6 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import com.example.learn_words_app.R
@@ -47,6 +46,9 @@ class RepeatWordsView : RepeatWordsContract.View {
         binding.seeWordCard.visibility = View.VISIBLE
         binding.writeWordCard.visibility = View.VISIBLE
 
+        //Убираем скрытое слово
+        binding.hideWord.visibility = View.INVISIBLE
+
         //Используем канал, чтобы запросить из БД значение, и не дожидаться результата
         val channel = Channel<String>()
         //Получаем название из БД
@@ -63,62 +65,66 @@ class RepeatWordsView : RepeatWordsContract.View {
         }
 
         //Если мы выводим английское слово
-        if (checkEnglishWord) {
-            //Если в английском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
-            if (englishWord.contains("(")) {
-                //Символ & означает что не надо переносить значение в () в пояснение
-                if (englishWord[englishWord.length - 1] == '&') {
-                    englishWord = englishWord.dropLast(1)
 
+        //Если в английском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
+        if (englishWord.contains("(")) {
+            //Символ & означает что не надо переносить значение в () в пояснение
+            if (englishWord[englishWord.length - 1] == '&') {
+                englishWord = englishWord.dropLast(1)
+
+            } else {
+                checkExplanationCurrentWord = true
+
+                val splitWords = word.englishWord.split("(")
+                englishWord = splitWords[0]
+                englishWord.trim()
+                if (splitWords.size == 2) {
+                    addExplanation(binding, splitWords[1], thisContext)
                 } else {
-                    checkExplanationCurrentWord = true
-
-                    val splitWords = word.englishWord.split("(")
-                    englishWord = splitWords[0]
-                    englishWord.trim()
-                    if (splitWords.size == 2) {
-                        addExplanation(binding, splitWords[1], thisContext)
-                    } else {
-                        Log.e(
-                            "RepeatWordsView",
-                            "nextWord, splitWords english, size!=2, english word: $englishWord"
-                        )
-                        throw Exception()
-                    }
-                }
-            }
-
-            //Иначе выводим русское слово
-        } else {
-            //Если в русском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
-            if (russianWord.contains("(")) {
-                //Символ & означает что не надо переносить значение в () в пояснение
-                if (russianWord[russianWord.length - 1] == '&') {
-                    russianWord = russianWord.dropLast(1)
-
-                } else {
-                    checkExplanationCurrentWord = true
-                    val splitWords = word.russianTranslation.split("(")
-                    russianWord = splitWords[0]
-                    russianWord.trim()
-                    if (splitWords.size == 2) {
-                        addExplanation(binding, splitWords[1], thisContext)
-                    } else {
-                        Log.e(
-                            "MainPageView",
-                            "nextWord, splitWords russian, size!=2, russian word: $russianWord"
-                        )
-                        throw Exception()
-                    }
+                    Log.e(
+                        "RepeatWordsView",
+                        "nextWord, splitWords english, size!=2, english word: $englishWord"
+                    )
+                    throw Exception()
                 }
             }
         }
 
+        //Если в русском слове есть '(),' значит есть пояснение, пояснение нужно вынести отдельно
+        if (russianWord.contains("(")) {
+            //Символ & означает что не надо переносить значение в () в пояснение
+            if (russianWord[russianWord.length - 1] == '&') {
+                russianWord = russianWord.dropLast(1)
+
+            } else if (!checkExplanationCurrentWord) {
+                checkExplanationCurrentWord = true
+                val splitWords = word.russianTranslation.split("(")
+                russianWord = splitWords[0]
+                russianWord.trim()
+                if (splitWords.size == 2) {
+                    addExplanation(binding, splitWords[1], thisContext)
+                } else {
+                    Log.e(
+                        "MainPageView",
+                        "nextWord, splitWords russian, size!=2, russian word: $russianWord"
+                    )
+                    throw Exception()
+                }
+            } else if (checkExplanationCurrentWord) {
+                //Убираем скобки
+                val russianWords = russianWord.split("(")
+                russianWord = russianWords[0]
+            }
+        }
+
+
         //Добавляем слово
         if (checkEnglishWord) {
             binding.word.text = englishWord
+            binding.hideWord.text = russianWord
         } else {
             binding.word.text = russianWord
+            binding.hideWord.text = englishWord
         }
 
         binding.countRepeatedWords.text =
@@ -130,7 +136,8 @@ class RepeatWordsView : RepeatWordsContract.View {
             wordLevel = channel.receive()
         }
 
-//        wordLevel.replaceFirstChar { it.uppercase() }
+        wordLevel = wordLevel.replaceFirstChar { it.uppercase() }
+        wordLevel = wordLevel.replace("_", " ")
 
         //Меняем название уровня
         binding.levelName.text = wordLevel
@@ -150,30 +157,30 @@ class RepeatWordsView : RepeatWordsContract.View {
             parent.removeView(englishContainer)
 
             //привязываем word and transcription container
-            //Чтобы поменять start of на end of
-            val constraintLayout = binding.layoutInCard
-            // Create a ConstraintSet object
-            val constraintSet = ConstraintSet()
-            // Clone the existing constraints from the ConstraintLayout
-            constraintSet.clone(constraintLayout)
-            // Set the constraint
-            constraintSet.connect(
-                binding.learnWordsWordAndTranscriptionContainer.id,
-                ConstraintSet.BOTTOM,
-                binding.guidelineInCard.id,
-                ConstraintSet.BOTTOM,
-                convertDpToPx(thisContext, 40f)
-            )
-            constraintSet.applyTo(constraintLayout)
+//            //Чтобы поменять start of на end of
+//            val constraintLayout = binding.layoutInCard
+//            // Create a ConstraintSet object
+//            val constraintSet = ConstraintSet()
+//            // Clone the existing constraints from the ConstraintLayout
+//            constraintSet.clone(constraintLayout)
+//            // Set the constraint
+//            constraintSet.connect(
+//                binding.learnWordsWordAndTranscriptionContainer.id,
+//                ConstraintSet.BOTTOM,
+//                binding.guidelineInCard.id,
+//                ConstraintSet.BOTTOM,
+//                convertDpToPx(thisContext, 40f)
+//            )
+//            constraintSet.applyTo(constraintLayout)
         }
 
-        val russianContainer: ConstraintLayout? =
-            binding.root.findViewById(R.id.scrollViewWithTableContainerRussian)
-
-        russianContainer?.let {
-            val parent = russianContainer.parent as ViewGroup
-            parent.removeView(russianContainer)
-        }
+//        val russianContainer: ConstraintLayout? =
+//            binding.root.findViewById(R.id.scrollViewWithTableContainerRussian)
+//
+//        russianContainer?.let {
+//            val parent = russianContainer.parent as ViewGroup
+//            parent.removeView(russianContainer)
+//        }
     }
 
     private fun convertDpToPx(context: Context, dp: Float): Int {
@@ -203,6 +210,7 @@ class RepeatWordsView : RepeatWordsContract.View {
         constraintParams.bottomToTop = binding.guidelineInCard.id
 
         container.layoutParams = constraintParams
+        container.visibility = View.INVISIBLE
         //Add
         val layout = binding.layoutInCard
         layout.addView(container)
@@ -220,21 +228,21 @@ class RepeatWordsView : RepeatWordsContract.View {
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        //Привязываем wordsContainer к container
-        val constraintLayout = binding.layoutInCard
-        // Create a ConstraintSet object
-        val constraintSet = ConstraintSet()
-        // Clone the existing constraints from the ConstraintLayout
-        constraintSet.clone(constraintLayout)
-        // Set the constraint
-        constraintSet.connect(
-            binding.learnWordsWordAndTranscriptionContainer.id,
-            ConstraintSet.BOTTOM,
-            container.id,
-            ConstraintSet.TOP,
-            convertDpToPx(thisContext, 15f)
-        )
-        constraintSet.applyTo(constraintLayout)
+//        //Привязываем wordsContainer к container
+//        val constraintLayout = binding.layoutInCard
+//        // Create a ConstraintSet object
+//        val constraintSet = ConstraintSet()
+//        // Clone the existing constraints from the ConstraintLayout
+//        constraintSet.clone(constraintLayout)
+//        // Set the constraint
+//        constraintSet.connect(
+//            binding.learnWordsWordAndTranscriptionContainer.id,
+//            ConstraintSet.BOTTOM,
+//            container.id,
+//            ConstraintSet.TOP,
+//            convertDpToPx(thisContext, 15f)
+//        )
+//        constraintSet.applyTo(constraintLayout)
     }
 
     private fun createExplanationContainer(
