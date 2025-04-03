@@ -38,8 +38,14 @@ class RepeatWordsPresenter(
         checkEnglishWord: Boolean,
         indexWord: Int,
         listOfWords: List<Pair<Words, String>>,
-        thisContext: Context,
+        thisContext: Context
     ) {
-        return view.writeWord(binding, checkEnglishWord, indexWord, listOfWords, thisContext)
+        return view.writeWord(
+            binding,
+            checkEnglishWord,
+            indexWord,
+            listOfWords,
+            thisContext,
+        )
     }
 }

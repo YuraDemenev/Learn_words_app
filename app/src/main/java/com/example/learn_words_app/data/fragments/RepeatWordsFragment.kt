@@ -106,7 +106,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
                 checkExplanation,
                 index,
                 listOfWords,
-                thisContext
+                thisContext,
             )
         }
 

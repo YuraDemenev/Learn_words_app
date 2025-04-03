@@ -20,6 +20,7 @@ import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.RepeatWordsContract
 import com.example.learn_words_app.databinding.FragmentRepeatWordsBinding
+import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -147,14 +148,16 @@ class RepeatWordsView : RepeatWordsContract.View {
         return Pair(checkExplanationCurrentWord, word)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun writeWord(
         binding: FragmentRepeatWordsBinding,
         checkEnglishWord: Boolean,
         indexWord: Int,
         listOfWords: List<Pair<Words, String>>,
-        thisContext: Context
+        thisContext: Context,
     ) {
         lateinit var wordToCheck: String
+        var containerWidth: Int
 
         //Для оптимизации
         run {
@@ -164,8 +167,12 @@ class RepeatWordsView : RepeatWordsContract.View {
             } else {
                 wordToCheck = word.first.russianTranslation
             }
+            val wordsToCheck = wordToCheck.split("(")
+            wordToCheck = wordsToCheck[0]
         }
 
+
+        //Container
         val container = ConstraintLayout(thisContext)
         val containerParams = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
@@ -177,11 +184,12 @@ class RepeatWordsView : RepeatWordsContract.View {
         containerParams.endToEnd = binding.layoutInCard.id
         containerParams.topToTop = binding.guidelineInCard.id
         containerParams.bottomToBottom = binding.guidelineInCard.id
-        containerParams.marginStart = convertDpToPx(thisContext, 50f)
-        containerParams.marginEnd = convertDpToPx(thisContext, 50f)
+        containerParams.marginStart = convertDpToPx(thisContext, 15f)
+        containerParams.marginEnd = convertDpToPx(thisContext, 15f)
 
         container.layoutParams = containerParams
 
+        //Plain text
         val plainText = EditText(thisContext).apply {
             layoutParams = ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
@@ -192,29 +200,91 @@ class RepeatWordsView : RepeatWordsContract.View {
                 topToTop = container.id
                 bottomToBottom = container.id
             }
-            hint = "test"
-            textSize = 15f
+            if (checkEnglishWord) {
+                hint = "Введите слово"
+            } else {
+                hint = "Write word"
+            }
+            id = View.generateViewId()
+//            textAlignment = Alignment.ALIGN_CENTER.ordinal
+            textSize = 16f
             isFocusable = true // Disable focus to make it behave like plain text
             isCursorVisible = true // Hide the cursor
             setTextColor(Color.BLACK)
         }
+
+        //Black Line
         val blackLine = ConstraintLayout(thisContext).apply {
             layoutParams = ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 2
             ).apply {
-                containerParams.startToStart = binding.layoutInCard.id
-                containerParams.endToEnd = binding.layoutInCard.id
-                containerParams.topToBottom = plainText.id
-                containerParams.topMargin = 1
+                startToStart = binding.layoutInCard.id
+                endToEnd = binding.layoutInCard.id
+                topToBottom = plainText.id
+                topMargin = 1
             }
+            id = View.generateViewId()
         }
 
+        //Добавление кнопок для проверки
+        val buttonConfirm = MaterialButton(thisContext).apply {
+            val parentWidth = binding.layoutInCard.width
+            val widthPercent = (parentWidth * 0.4).toInt()
+            layoutParams = ConstraintLayout.LayoutParams(
+                widthPercent,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                startToEnd = R.id.getHintWriteWord
+                endToEnd = container.id
+                topToBottom = blackLine.id
+                topMargin = 5
+                cornerRadius = convertDpToPx(thisContext, 10f)
+//                strokeWidth = convertDpToPx(thisContext, 3f)
+                setBackgroundColor(Color.parseColor("#FF424242"))
+//                setBackgroundDrawable(
+//                    ContextCompat.getDrawable(
+//                        thisContext,
+//                        R.drawable.main_base_background_changed_count_learning_words
+//                    )
+//                )
+            }
+
+            id = R.id.confirmWordWriteWord
+            text = "TEST Confirm"
+        }
+        buttonConfirm.setOnClickListener {
+            val text = plainText.text.toString()
+        }
+
+        val buttonGetHint = MaterialButton(thisContext).apply {
+            val parentWidth = binding.layoutInCard.width
+            val widthPercent = (parentWidth * 0.4).toInt()
+            layoutParams = ConstraintLayout.LayoutParams(
+                widthPercent,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                startToStart = container.id
+                endToStart = R.id.confirmWordWriteWord
+                topToBottom = blackLine.id
+                topMargin = 5
+                cornerRadius = convertDpToPx(thisContext, 10f)
+                setBackgroundColor(Color.parseColor("#FF424242"))
+            }
+            id = R.id.getHintWriteWord
+            text = "TEST Hint"
+        }
+
+        //Add All
         container.addView(plainText)
         container.addView(blackLine)
+        container.addView(buttonConfirm)
+        container.addView(buttonGetHint)
+
         val layout = binding.layoutInCard
         layout.addView(container)
     }
+
 
     private fun deleteExplanations(
         binding: FragmentRepeatWordsBinding,
