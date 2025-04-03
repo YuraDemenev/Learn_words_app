@@ -80,7 +80,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
             binding.hideWord.text = hideWord
         }
 
-        //Listener "Посмотреть слово
+        //Listener "Посмотреть слово"
         binding.seeWordCard.setOnClickListener {
             binding.seeWordCard.visibility = View.INVISIBLE
             binding.writeWordCard.visibility = View.INVISIBLE
@@ -94,6 +94,20 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
                     explanationContainer.visibility = View.VISIBLE
                 }
             }
+        }
+
+        //Listener "Ввести слово"
+        binding.writeWordCard.setOnClickListener {
+            binding.seeWordCard.visibility = View.INVISIBLE
+            binding.writeWordCard.visibility = View.INVISIBLE
+
+            repeatWordsPresenter.writeWord(
+                binding,
+                checkExplanation,
+                index,
+                listOfWords,
+                thisContext
+            )
         }
 
         //Listener "Я не вспомнил это слово"

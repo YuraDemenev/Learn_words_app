@@ -32,4 +32,14 @@ class RepeatWordsPresenter(
             db
         )
     }
+
+    override fun writeWord(
+        binding: FragmentRepeatWordsBinding,
+        checkEnglishWord: Boolean,
+        indexWord: Int,
+        listOfWords: List<Pair<Words, String>>,
+        thisContext: Context,
+    ) {
+        return view.writeWord(binding, checkEnglishWord, indexWord, listOfWords, thisContext)
+    }
 }

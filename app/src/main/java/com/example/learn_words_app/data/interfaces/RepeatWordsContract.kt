@@ -20,6 +20,14 @@ interface RepeatWordsContract {
             checkExplanation: Boolean,
             db: MainDB
         ): Pair<Boolean, Words>
+
+        fun writeWord(
+            binding: FragmentRepeatWordsBinding,
+            checkEnglishWord: Boolean,
+            indexWord: Int,
+            listOfWords: List<Pair<Words, String>>,
+            thisContext: Context
+        )
     }
 
     //Управляет данными приложения.
@@ -43,5 +51,13 @@ interface RepeatWordsContract {
             checkExplanation: Boolean,
             db: MainDB
         ): Pair<Boolean, Words>
+
+        fun writeWord(
+            binding: FragmentRepeatWordsBinding,
+            checkEnglishWord: Boolean,
+            indexWord: Int,
+            listOfWords: List<Pair<Words, String>>,
+            thisContext: Context
+        )
     }
 }

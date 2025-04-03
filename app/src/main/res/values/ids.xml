@@ -5,4 +5,5 @@
     <item name="scrollViewWithTableRussian" type="id" />
     <item name="scrollViewWithTableContainerRussian" type="id" />
     <item name="alertDialogWriteNumberEditText" type="id" />
+    <item name="repeatWordWriteWord" type="id" />
 </resources>

@@ -557,7 +557,7 @@ class MainPageView : MainPageContract.View {
             container,
             explanations,
             "Explanation",
-            R.id.scrollViewWithTableRussian
+            R.id.scrollViewWithTableEnglish
         )
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------

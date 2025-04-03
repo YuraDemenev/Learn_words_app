@@ -2,10 +2,12 @@ package com.example.learn_words_app.data.views
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -145,6 +147,75 @@ class RepeatWordsView : RepeatWordsContract.View {
         return Pair(checkExplanationCurrentWord, word)
     }
 
+    override fun writeWord(
+        binding: FragmentRepeatWordsBinding,
+        checkEnglishWord: Boolean,
+        indexWord: Int,
+        listOfWords: List<Pair<Words, String>>,
+        thisContext: Context
+    ) {
+        lateinit var wordToCheck: String
+
+        //Для оптимизации
+        run {
+            val word = listOfWords[indexWord]
+            if (checkEnglishWord) {
+                wordToCheck = word.first.englishWord
+            } else {
+                wordToCheck = word.first.russianTranslation
+            }
+        }
+
+        val container = ConstraintLayout(thisContext)
+        val containerParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.MATCH_PARENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+        container.id = R.id.repeatWordWriteWord
+
+        containerParams.startToStart = binding.layoutInCard.id
+        containerParams.endToEnd = binding.layoutInCard.id
+        containerParams.topToTop = binding.guidelineInCard.id
+        containerParams.bottomToBottom = binding.guidelineInCard.id
+        containerParams.marginStart = convertDpToPx(thisContext, 50f)
+        containerParams.marginEnd = convertDpToPx(thisContext, 50f)
+
+        container.layoutParams = containerParams
+
+        val plainText = EditText(thisContext).apply {
+            layoutParams = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                startToStart = container.id
+                endToEnd = container.id
+                topToTop = container.id
+                bottomToBottom = container.id
+            }
+            hint = "test"
+            textSize = 15f
+            isFocusable = true // Disable focus to make it behave like plain text
+            isCursorVisible = true // Hide the cursor
+            setTextColor(Color.BLACK)
+        }
+        val blackLine = ConstraintLayout(thisContext).apply {
+            layoutParams = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                2
+            ).apply {
+                containerParams.startToStart = binding.layoutInCard.id
+                containerParams.endToEnd = binding.layoutInCard.id
+                containerParams.topToBottom = plainText.id
+                containerParams.topMargin = 1
+            }
+        }
+
+        container.addView(plainText)
+        container.addView(blackLine)
+        val layout = binding.layoutInCard
+        layout.addView(container)
+    }
+
     private fun deleteExplanations(
         binding: FragmentRepeatWordsBinding,
         thisContext: Context
@@ -155,32 +226,7 @@ class RepeatWordsView : RepeatWordsContract.View {
         if (englishContainer != null) {
             val parent = englishContainer.parent as ViewGroup
             parent.removeView(englishContainer)
-
-            //привязываем word and transcription container
-//            //Чтобы поменять start of на end of
-//            val constraintLayout = binding.layoutInCard
-//            // Create a ConstraintSet object
-//            val constraintSet = ConstraintSet()
-//            // Clone the existing constraints from the ConstraintLayout
-//            constraintSet.clone(constraintLayout)
-//            // Set the constraint
-//            constraintSet.connect(
-//                binding.learnWordsWordAndTranscriptionContainer.id,
-//                ConstraintSet.BOTTOM,
-//                binding.guidelineInCard.id,
-//                ConstraintSet.BOTTOM,
-//                convertDpToPx(thisContext, 40f)
-//            )
-//            constraintSet.applyTo(constraintLayout)
         }
-
-//        val russianContainer: ConstraintLayout? =
-//            binding.root.findViewById(R.id.scrollViewWithTableContainerRussian)
-//
-//        russianContainer?.let {
-//            val parent = russianContainer.parent as ViewGroup
-//            parent.removeView(russianContainer)
-//        }
     }
 
     private fun convertDpToPx(context: Context, dp: Float): Int {
@@ -207,7 +253,8 @@ class RepeatWordsView : RepeatWordsContract.View {
 
         constraintParams.startToStart = binding.layoutInCard.id
         constraintParams.endToEnd = binding.layoutInCard.id
-        constraintParams.bottomToTop = binding.guidelineInCard.id
+        constraintParams.topToBottom = binding.hideWordContainer.id
+        constraintParams.topMargin = convertDpToPx(thisContext, 8f)
 
         container.layoutParams = constraintParams
         container.visibility = View.INVISIBLE
@@ -223,7 +270,7 @@ class RepeatWordsView : RepeatWordsContract.View {
             container,
             explanations,
             "Explanation",
-            R.id.scrollViewWithTableRussian
+            R.id.scrollViewWithTableEnglish
         )
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------
