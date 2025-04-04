@@ -294,7 +294,7 @@ class MainPageView : MainPageContract.View {
                         .setBackgroundDrawable(
                             ContextCompat.getDrawable(
                                 thisContext,
-                                R.drawable.main_base_background_changed_count_learning_words
+                                R.color.myGrey
                             )
                         )
                 }
@@ -387,7 +387,7 @@ class MainPageView : MainPageContract.View {
             .setBackgroundDrawable(
                 ContextCompat.getDrawable(
                     thisContext,
-                    R.drawable.main_red_background_count_learning_words
+                    R.color.myRed
                 )
             )
 
@@ -413,6 +413,7 @@ class MainPageView : MainPageContract.View {
         animator.repeatCount = 0 // No repeat
 
         animator.start()
+        //TODO Добавить вибрацию
     }
 
 

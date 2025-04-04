@@ -56,8 +56,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
         }
         //TODO Сделать проверку на ситуацию если слов для повторения нет
 
-        //Индекс 1 потому что 0 элемент используем в блоке run
-        var index = 1
+        var index = 0
         val thisContext = requireContext()
         var listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
         val db = MainDB.getDB(thisContext)
@@ -112,7 +111,9 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 
         //Listener "Я не вспомнил это слово"
         binding.learnWordsIDontKnowThisWordText.setOnClickListener {
+            //TODO скрыть кнопки
             val checkEnglishWord = getBoolean()
+            index++
             val pair = repeatWordsPresenter.nextWords(
                 binding,
                 checkEnglishWord,
@@ -138,7 +139,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 //                }
 //            }
 
-            index++
+
             //Когда index равен размеру листа, получаем новый лист
             if (index == listOfWords.size) {
                 listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)

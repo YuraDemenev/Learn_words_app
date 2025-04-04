@@ -1,8 +1,14 @@
 package com.example.learn_words_app.data.views
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
@@ -157,7 +163,8 @@ class RepeatWordsView : RepeatWordsContract.View {
         thisContext: Context,
     ) {
         lateinit var wordToCheck: String
-        var containerWidth: Int
+        val buttonsColor = ContextCompat.getColor(thisContext, R.color.myGrey)
+        val buttonsRedColor = ContextCompat.getColor(thisContext, R.color.myRed)
 
         //Для оптимизации
         run {
@@ -170,7 +177,6 @@ class RepeatWordsView : RepeatWordsContract.View {
             val wordsToCheck = wordToCheck.split("(")
             wordToCheck = wordsToCheck[0]
         }
-
 
         //Container
         val container = ConstraintLayout(thisContext)
@@ -206,11 +212,11 @@ class RepeatWordsView : RepeatWordsContract.View {
                 hint = "Write word"
             }
             id = View.generateViewId()
-//            textAlignment = Alignment.ALIGN_CENTER.ordinal
             textSize = 16f
-            isFocusable = true // Disable focus to make it behave like plain text
-            isCursorVisible = true // Hide the cursor
+            isFocusable = true
+            isCursorVisible = true
             setTextColor(Color.BLACK)
+            inputType = android.text.InputType.TYPE_CLASS_TEXT
         }
 
         //Black Line
@@ -227,7 +233,7 @@ class RepeatWordsView : RepeatWordsContract.View {
             id = View.generateViewId()
         }
 
-        //Добавление кнопок для проверки
+        //Добавление кнопки для проверки
         val buttonConfirm = MaterialButton(thisContext).apply {
             val parentWidth = binding.layoutInCard.width
             val widthPercent = (parentWidth * 0.4).toInt()
@@ -240,23 +246,58 @@ class RepeatWordsView : RepeatWordsContract.View {
                 topToBottom = blackLine.id
                 topMargin = 5
                 cornerRadius = convertDpToPx(thisContext, 10f)
-//                strokeWidth = convertDpToPx(thisContext, 3f)
-                setBackgroundColor(Color.parseColor("#FF424242"))
-//                setBackgroundDrawable(
-//                    ContextCompat.getDrawable(
-//                        thisContext,
-//                        R.drawable.main_base_background_changed_count_learning_words
-//                    )
-//                )
+                setBackgroundColor(buttonsColor)
             }
 
             id = R.id.confirmWordWriteWord
             text = "TEST Confirm"
         }
         buttonConfirm.setOnClickListener {
+            //TODO Добавить плавную анимацию
             val text = plainText.text.toString()
+            if (text == wordToCheck) {
+                showHideWord(container, binding)
+            } else {
+                buttonConfirm.setBackgroundColor(buttonsRedColor)
+
+                val translationX = PropertyValuesHolder.ofFloat(
+                    "translationX",
+                    -10f,
+                    10f,
+                    -8f,
+                    8f,
+                    -6f,
+                    6f,
+                    -4f,
+                    4f,
+                    -2f,
+                    2f,
+                    0f
+                )
+                val animator = ObjectAnimator.ofPropertyValuesHolder(buttonConfirm, translationX)
+                //Чтобы в конце анимации поменять цвет назад
+                animator.addListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animation: Animator) {}
+
+                    override fun onAnimationEnd(animation: Animator) {
+                        buttonConfirm.setBackgroundColor(buttonsColor)
+                    }
+
+                    override fun onAnimationCancel(animation: Animator) {}
+
+                    override fun onAnimationRepeat(animation: Animator) {}
+
+                })
+
+                animator.duration = 800 // Duration
+                animator.repeatCount = 0 // No repeat
+
+                animator.start()
+                //TODO Добавить вибрацию
+            }
         }
 
+        //Добавление кнопки для получения подсказки
         val buttonGetHint = MaterialButton(thisContext).apply {
             val parentWidth = binding.layoutInCard.width
             val widthPercent = (parentWidth * 0.4).toInt()
@@ -269,10 +310,47 @@ class RepeatWordsView : RepeatWordsContract.View {
                 topToBottom = blackLine.id
                 topMargin = 5
                 cornerRadius = convertDpToPx(thisContext, 10f)
-                setBackgroundColor(Color.parseColor("#FF424242"))
+                setBackgroundColor(buttonsColor)
             }
             id = R.id.getHintWriteWord
             text = "TEST Hint"
+        }
+
+        buttonGetHint.setOnClickListener {
+            val text = plainText.text.toString()
+            if (text.isNotEmpty() && text.length != wordToCheck.length) {
+                val spannable = SpannableString(text)
+                var i = 0
+                var checkFault = false
+                while (i < text.length) {
+                    if (text[i] != wordToCheck[i]) {
+                        checkFault = true
+                        spannable.setSpan(
+                            ForegroundColorSpan(Color.RED),
+                            i,
+                            i + 1,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
+                    i++
+                }
+                //Если не найдено ошибок добавляем 1 букву
+                if (!checkFault) {
+                    plainText.setText(wordToCheck.substring(0, i + 1))
+                } else {
+                    plainText.setText(spannable)
+                }
+                //Двигаем фокус
+                plainText.setSelection(i + 1)
+
+            } else if (text.length == wordToCheck.length) {
+                showHideWord(container, binding)
+            } else {
+                val firstChar = wordToCheck[0].toString()
+                plainText.setText(firstChar)
+                plainText.setSelection(1)
+            }
+
         }
 
         //Add All
@@ -285,6 +363,18 @@ class RepeatWordsView : RepeatWordsContract.View {
         layout.addView(container)
     }
 
+    //Функция для того, чтобы отобразить спрятанные элементы, когда пользователь вспомнил слово
+    private fun showHideWord(container: View, binding: FragmentRepeatWordsBinding) {
+        binding.layoutInCard.removeView(container)
+        binding.hideWord.visibility = View.VISIBLE
+
+        //Если есть объяснение выводим его
+        val explanationContainer: ConstraintLayout? =
+            binding.root.findViewById(R.id.scrollViewWithTableContainerEnglish)
+        if (explanationContainer != null) {
+            explanationContainer.visibility = View.VISIBLE
+        }
+    }
 
     private fun deleteExplanations(
         binding: FragmentRepeatWordsBinding,
