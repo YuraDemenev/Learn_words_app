@@ -318,39 +318,35 @@ class RepeatWordsView : RepeatWordsContract.View {
 
         buttonGetHint.setOnClickListener {
             val text = plainText.text.toString()
-            if (text.isNotEmpty() && text.length != wordToCheck.length) {
-                val spannable = SpannableString(text)
-                var i = 0
-                var checkFault = false
-                while (i < text.length) {
-                    if (text[i] != wordToCheck[i]) {
-                        checkFault = true
-                        spannable.setSpan(
-                            ForegroundColorSpan(Color.RED),
-                            i,
-                            i + 1,
-                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                        )
-                    }
-                    i++
-                }
-                //Если не найдено ошибок добавляем 1 букву
-                if (!checkFault) {
-                    plainText.setText(wordToCheck.substring(0, i + 1))
-                } else {
-                    plainText.setText(spannable)
-                }
-                //Двигаем фокус
-                plainText.setSelection(i + 1)
 
-            } else if (text.length == wordToCheck.length) {
+            val spannable = SpannableString(text)
+            var i = 0
+            var checkFault = false
+            while (i < text.length) {
+                if (i >= wordToCheck.length || text[i] != wordToCheck[i]) {
+                    checkFault = true
+                    spannable.setSpan(
+                        ForegroundColorSpan(Color.RED),
+                        i,
+                        i + 1,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                i++
+            }
+            //Если не найдено ошибок добавляем 1 букву
+            if (!checkFault && text.length != wordToCheck.length) {
+                plainText.setText(wordToCheck.substring(0, i + 1))
+                //Чтобы корректно сдвинуть фокус
+                i++
+
+            } else if (!checkFault && text.length == wordToCheck.length) {
                 showHideWord(container, binding)
             } else {
-                val firstChar = wordToCheck[0].toString()
-                plainText.setText(firstChar)
-                plainText.setSelection(1)
+                plainText.setText(spannable)
             }
-
+            //Двигаем фокус
+            plainText.setSelection(i)
         }
 
         //Add All

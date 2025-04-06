@@ -111,6 +111,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 
         //Listener "Я не вспомнил это слово"
         binding.learnWordsIDontKnowThisWordText.setOnClickListener {
+
             //TODO скрыть кнопки
             val checkEnglishWord = getBoolean()
             index++
