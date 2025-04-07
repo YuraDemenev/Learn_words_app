@@ -352,7 +352,6 @@ class MainPageView : MainPageContract.View {
                 }
 
                 override fun afterTextChanged(s: Editable?) {}
-
             })
 
             dialog.findViewById<MaterialCardView>(R.id.writeNumber)
@@ -365,12 +364,17 @@ class MainPageView : MainPageContract.View {
                 val editText = dialog.findViewById<EditText>(R.id.alertDialogWriteNumberEditText)
                 editText.let {
                     val text = editText.text.toString()
-                    val number = text.toInt()
-                    if (number < 1 || number > 100) {
+                    if (text.isEmpty()) {
                         startShakeAnimAlertDialogCountLearningWords(dialog, thisContext)
+                        
                     } else {
-                        user.countLearningWords = number
-                        dialog.dismiss()
+                        val number = text.toInt()
+                        if (number < 1 || number > 100) {
+                            startShakeAnimAlertDialogCountLearningWords(dialog, thisContext)
+                        } else {
+                            user.countLearningWords = number
+                            dialog.dismiss()
+                        }
                     }
                 }
             } else {

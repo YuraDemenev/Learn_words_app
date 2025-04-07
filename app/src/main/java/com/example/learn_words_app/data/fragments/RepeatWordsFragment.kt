@@ -23,6 +23,7 @@ import com.example.learn_words_app.data.views.RepeatWordsView
 import com.example.learn_words_app.databinding.FragmentRepeatWordsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
@@ -60,22 +61,24 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
         val thisContext = requireContext()
         var listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
         val db = MainDB.getDB(thisContext)
+        var checkWriteWord = false
+        var word = listOfWords[0].first
         val myScope = CoroutineScope(Dispatchers.IO)
 
         //Для оптимизации
         run {
             //Получаем случайное значение, от которого зависит, какое слово покажем пользователю, русское или английское
             val randBool = getBoolean()
-            lateinit var word: String
+            lateinit var wordStr: String
             lateinit var hideWord: String
             if (randBool) {
-                word = listOfWords[0].first.englishWord
+                wordStr = word.englishWord
                 hideWord = listOfWords[0].first.russianTranslation
             } else {
-                word = listOfWords[0].first.russianTranslation
+                wordStr = word.russianTranslation
                 hideWord = listOfWords[0].first.englishWord
             }
-            binding.word.text = word
+            binding.word.text = wordStr
             binding.hideWord.text = hideWord
         }
 
@@ -99,6 +102,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
         binding.writeWordCard.setOnClickListener {
             binding.seeWordCard.visibility = View.INVISIBLE
             binding.writeWordCard.visibility = View.INVISIBLE
+            checkWriteWord = true
 
             repeatWordsPresenter.writeWord(
                 binding,
@@ -111,8 +115,14 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 
         //Listener "Я не вспомнил это слово"
         binding.learnWordsIDontKnowThisWordText.setOnClickListener {
+            //Чтобы удалить container ввода слова
+            if (checkWriteWord) {
+                val writeWordContainer: ConstraintLayout? =
+                    binding.root.findViewById(R.id.repeatWordWriteWord)
+                binding.layoutInCard.removeView(writeWordContainer)
+            }
 
-            //TODO скрыть кнопки
+            checkWriteWord = false
             val checkEnglishWord = getBoolean()
             index++
             val pair = repeatWordsPresenter.nextWords(
@@ -126,20 +136,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
                 db
             )
             checkExplanation = pair.first
-//            val word = pair.second
-
-            //Если пользователь вспомнил слово, то его не надо повторять и удаляем его из hashSet
-//            if (word != null) {
-//                user.hashMapOfWordsForRepeatAndLevelsNames.remove(pair.second)
-//
-//                //Обновляем значение в БД
-//                myScope.launch {
-//                    val listOfUpdateWords: List<Words> = listOf(word)
-//                    //-1 значит в функции нынешняя stage будет получена из БД и увеличена на 1
-//                    mainPagePresenter.updateWordsLevels(db, listOfUpdateWords, -1)
-//                }
-//            }
-
+            word = pair.second
 
             //Когда index равен размеру листа, получаем новый лист
             if (index == listOfWords.size) {
@@ -147,6 +144,42 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
             }
         }
 
+        //Listener "Я вспомнил это слово"
+        binding.learnWordsIKnowThisWordText.setOnClickListener {
+            //Если пользователь вспомнил слово, то его не надо повторять и удаляем его из hashSet
+            user.hashMapOfWordsForRepeatAndLevelsNames.remove(word)
+
+            //Обновляем значение в БД
+            myScope.launch {
+                val listOfUpdateWords: List<Words> = listOf(word)
+                //-1 значит в функции нынешняя stage будет получена из БД и увеличена на 1
+                mainPagePresenter.updateWordsLevels(db, listOfUpdateWords, -1)
+            }
+
+            //Чтобы удалить container ввода слова
+            if (checkWriteWord) {
+                val writeWordContainer: ConstraintLayout? =
+                    binding.root.findViewById(R.id.repeatWordWriteWord)
+                binding.layoutInCard.removeView(writeWordContainer)
+            }
+
+            checkWriteWord = false
+            val checkEnglishWord = getBoolean()
+            index++
+            val pair = repeatWordsPresenter.nextWords(
+                binding,
+                checkEnglishWord,
+                user,
+                index,
+                listOfWords,
+                thisContext,
+                checkExplanation,
+                db
+            )
+            checkExplanation = pair.first
+            word = pair.second
+
+        }
     }
 
     //Получаем из hashMap listOfWords

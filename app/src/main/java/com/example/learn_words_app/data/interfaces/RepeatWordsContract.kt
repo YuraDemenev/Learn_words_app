@@ -34,7 +34,6 @@ interface RepeatWordsContract {
     //Выполняет бизнес-логику, например, получает данные из базы данных, сетевого API или других источников.
     //Не знает ничего о View и UI.
     interface Model {
-
     }
 
     //Посредник между View и Model.
@@ -59,5 +58,7 @@ interface RepeatWordsContract {
             listOfWords: List<Pair<Words, String>>,
             thisContext: Context
         )
+
+        //---------------------------------------------------------------------------------------------------------------------------------------
     }
 }

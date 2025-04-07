@@ -340,6 +340,7 @@ class RepeatWordsView : RepeatWordsContract.View {
                 //Чтобы корректно сдвинуть фокус
                 i++
 
+                //Если не найдено ошибок и длина текста равна длине слова, значит слово корректное
             } else if (!checkFault && text.length == wordToCheck.length) {
                 showHideWord(container, binding)
             } else {
@@ -542,4 +543,34 @@ class RepeatWordsView : RepeatWordsContract.View {
         container.addView(textView)
     }
 
+    //TODO сделать красивую анимацию
+//    private fun animateGradient(button: MaterialButton, mistakes: Int, totalLength: Int) {
+//        // Calculate the percentage of the button to cover
+//        val mistakePercentage = mistakes.toFloat() / totalLength.toFloat()
+//        val gradientWidth =
+//            (mistakePercentage * 0.3f * button.width).toInt() // Limit to 30% of the button
+//
+//        // Create a ShapeDrawable with a gradient
+//        val gradient = ShapeDrawable(object : RectShape() {
+//            override fun draw(canvas: Canvas, paint: Paint) {
+//                val gradientPaint = LinearGradient(
+//                    0f, 0f, gradientWidth.toFloat(), 0f,
+//                    Color.RED, Color.parseColor("#FFC0CB"), // Red to pink gradient
+//                    Shader.TileMode.CLAMP
+//                )
+//                paint.shader = gradientPaint
+//                canvas.drawRect(0f, 0f, gradientWidth.toFloat(), height, paint)
+//            }
+//        })
+//
+//        // Animate the gradient width dynamically
+//        val animator = ValueAnimator.ofInt(0, gradientWidth)
+//        animator.duration = 1000 // Animation duration (1 second)
+//        animator.addUpdateListener {
+//            val animatedWidth = it.animatedValue as Int
+//            gradient.bounds = Rect(0, 0, animatedWidth, button.height)
+//            button.background = gradient
+//        }
+//        animator.start()
+//    }
 }

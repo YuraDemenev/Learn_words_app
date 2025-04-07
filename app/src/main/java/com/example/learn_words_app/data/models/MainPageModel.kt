@@ -266,6 +266,7 @@ class MainPageModel : MainPageContract.Model {
                             stageChanged++
                         }.join()
                         //TODO Поменять значения 24 72 168 720 4320
+                        //TODO добавить проверку для ситуации когда больше 5
                         var countHoursForAdd = 0L
                         when (stageChanged) {
                             1 -> {
@@ -288,6 +289,10 @@ class MainPageModel : MainPageContract.Model {
                                 countHoursForAdd = 1
                             }
 
+                            else -> {
+                                stageChanged = 6
+                                countHoursForAdd = 0
+                            }
                         }
 
                         //TODO Поменять на Hours

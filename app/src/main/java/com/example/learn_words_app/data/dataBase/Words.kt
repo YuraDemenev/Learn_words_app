@@ -34,6 +34,4 @@ data class Words(
     val britishVariable: String,
     @ColumnInfo(name = "level_id", index = true)
     val levelId: Int,
-
-
-    )
+)
