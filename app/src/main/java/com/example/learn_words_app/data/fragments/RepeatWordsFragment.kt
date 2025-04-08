@@ -55,11 +55,29 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
             binding.countRepeatedWords.text =
                 "Повторено ${userObserve.countRepeatedWordsToday}/${userObserve.hashMapOfWordsForRepeatAndLevelsNames.size} слов"
         }
-        //TODO Сделать проверку на ситуацию если слов для повторения нет
+        var listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
+        if (listOfWords.isEmpty()) {
+            hideCards(binding)
+            binding.learnWordsDownContainer.visibility = View.INVISIBLE
+            binding.transcription.visibility = View.INVISIBLE
+            val wordView = binding.word
+            wordView.text = "Слов для повтора нет"
+            wordView.apply {
+                layoutParams = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    startToStart = binding.layoutInCard.id
+                    endToEnd = binding.layoutInCard.id
+                    topToTop = binding.guidelineInCard.id
+                    bottomToBottom = binding.guidelineInCard.id
+                }
+            }
 
+            return
+        }
         var index = 0
         val thisContext = requireContext()
-        var listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
         val db = MainDB.getDB(thisContext)
         var checkWriteWord = false
         var word = listOfWords[0].first
@@ -84,8 +102,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 
         //Listener "Посмотреть слово"
         binding.seeWordCard.setOnClickListener {
-            binding.seeWordCard.visibility = View.INVISIBLE
-            binding.writeWordCard.visibility = View.INVISIBLE
+            hideCards(binding)
             binding.hideWord.visibility = View.VISIBLE
 
             //Если есть объяснение
@@ -100,8 +117,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 
         //Listener "Ввести слово"
         binding.writeWordCard.setOnClickListener {
-            binding.seeWordCard.visibility = View.INVISIBLE
-            binding.writeWordCard.visibility = View.INVISIBLE
+            hideCards(binding)
             checkWriteWord = true
 
             repeatWordsPresenter.writeWord(
@@ -195,5 +211,10 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
         //TODO поменять на 2
         val value = Random.nextInt(1, 2)
         return value == 1
+    }
+
+    private fun hideCards(binding: FragmentRepeatWordsBinding) {
+        binding.seeWordCard.visibility = View.INVISIBLE
+        binding.writeWordCard.visibility = View.INVISIBLE
     }
 }
