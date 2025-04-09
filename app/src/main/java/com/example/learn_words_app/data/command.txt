@@ -11,4 +11,4 @@ sqlite3 --table words.DB
 exos- сервер (60)
 iron wolf-сетевое хранилище (6)
 
-SELECT * FROM words_levels WHERE word_id = 1929;
+SELECT * FROM words_levels WHERE word_id = 999;

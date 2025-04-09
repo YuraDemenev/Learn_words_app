@@ -18,7 +18,9 @@ interface RepeatWordsContract {
             listOfWords: List<Pair<Words, String>>,
             thisContext: Context,
             checkExplanation: Boolean,
-            db: MainDB
+            db: MainDB,
+            countWordsForRepeat: Int,
+            countRepeatWordsInSession: Int
         ): Pair<Boolean, Words>
 
         fun writeWord(
@@ -48,7 +50,9 @@ interface RepeatWordsContract {
             listOfWords: List<Pair<Words, String>>,
             thisContext: Context,
             checkExplanation: Boolean,
-            db: MainDB
+            db: MainDB,
+            countWordsForRepeat: Int,
+            countRepeatWordsInSession: Int
         ): Pair<Boolean, Words>
 
         fun writeWord(

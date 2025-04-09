@@ -9,7 +9,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.learn_words_app.R
-import com.example.learn_words_app.data.additionalData.FlowLevelsModel
 import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
@@ -32,7 +31,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
     private lateinit var user: User
 
     //Список из уровней которые сейчас выбраны пользователем, для изменения UI, и работы программы
-    private val flowLevelsModel: FlowLevelsModel by activityViewModels()
+    //private val flowLevelsModel: FlowLevelsModel by activityViewModels()
     private var checkExplanation = false
     private val repeatWordsPresenter = RepeatWordsPresenter(RepeatWordsModel(), RepeatWordsView())
     private val mainPagePresenter = MainPagePresenter(MainPageModel(), MainPageView())
@@ -51,10 +50,7 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
-            binding.countRepeatedWords.text =
-                "Повторено ${userObserve.countRepeatedWordsToday}/${userObserve.hashMapOfWordsForRepeatAndLevelsNames.size} слов"
-        }
+
         var listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
         if (listOfWords.isEmpty()) {
             hideCards(binding)
@@ -82,6 +78,16 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
         var checkWriteWord = false
         var word = listOfWords[0].first
         val myScope = CoroutineScope(Dispatchers.IO)
+        val countWordsForRepeat = user.hashMapOfWordsForRepeatAndLevelsNames.size
+        var countRepeatWordsInSession = 0
+
+        userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
+//            binding.countRepeatedWords.text =
+//                "Повторено ${userObserve.countRepeatedWordsToday}/${userObserve.hashMapOfWordsForRepeatAndLevelsNames.size} слов"
+            val progressBar = binding.progressBar
+            progressBar.progress =
+                (user.countRepeatedWordsToday.toFloat() / countWordsForRepeat.toFloat() * 100).toInt()
+        }
 
         //Для оптимизации
         run {
@@ -149,8 +155,11 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
                 listOfWords,
                 thisContext,
                 checkExplanation,
-                db
+                db,
+                countWordsForRepeat,
+                countRepeatWordsInSession
             )
+            countRepeatWordsInSession++
             checkExplanation = pair.first
             word = pair.second
 
@@ -190,11 +199,13 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
                 listOfWords,
                 thisContext,
                 checkExplanation,
-                db
+                db,
+                countWordsForRepeat,
+                countRepeatWordsInSession
             )
+            countRepeatWordsInSession++
             checkExplanation = pair.first
             word = pair.second
-
         }
     }
 

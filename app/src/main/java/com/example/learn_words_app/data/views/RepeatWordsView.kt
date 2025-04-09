@@ -43,7 +43,10 @@ class RepeatWordsView : RepeatWordsContract.View {
         listOfWords: List<Pair<Words, String>>,
         thisContext: Context,
         checkExplanation: Boolean,
-        db: MainDB
+        db: MainDB,
+        countWordsForRepeat: Int,
+        countRepeatWordsInSession: Int
+
     ): Pair<Boolean, Words> {
         val pair = listOfWords[indexWord]
         val word = pair.first
@@ -136,8 +139,9 @@ class RepeatWordsView : RepeatWordsContract.View {
             binding.hideWord.text = englishWord
         }
 
-        binding.countRepeatedWords.text =
-            "Повторено ${user.countRepeatedWordsToday}/${user.hashMapOfWordsForRepeatAndLevelsNames.size} слов"
+        val progressBar = binding.progressBar
+        progressBar.progress =
+            (countRepeatWordsInSession / countWordsForRepeat.toFloat() * 100).toInt()
 
         var wordLevel = ""
         //Получаем из канала wordLevel

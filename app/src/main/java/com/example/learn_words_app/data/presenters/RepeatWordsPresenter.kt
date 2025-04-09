@@ -19,7 +19,9 @@ class RepeatWordsPresenter(
         listOfWords: List<Pair<Words, String>>,
         thisContext: Context,
         checkExplanation: Boolean,
-        db: MainDB
+        db: MainDB,
+        countWordsForRepeat: Int,
+        countRepeatWordsInSession: Int
     ): Pair<Boolean, Words> {
         return view.nextWords(
             binding,
@@ -29,7 +31,9 @@ class RepeatWordsPresenter(
             listOfWords,
             thisContext,
             checkExplanation,
-            db
+            db,
+            countWordsForRepeat,
+            countRepeatWordsInSession
         )
     }
 
