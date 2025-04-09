@@ -81,14 +81,8 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
         val countWordsForRepeat = user.hashMapOfWordsForRepeatAndLevelsNames.size
         var countRepeatWordsInSession = 0
 
-        userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
-//            binding.countRepeatedWords.text =
-//                "Повторено ${userObserve.countRepeatedWordsToday}/${userObserve.hashMapOfWordsForRepeatAndLevelsNames.size} слов"
-            val progressBar = binding.progressBar
-            progressBar.progress =
-                (user.countRepeatedWordsToday.toFloat() / countWordsForRepeat.toFloat() * 100).toInt()
-        }
 
+        //TODO Переделать через nextWords
         //Для оптимизации
         run {
             //Получаем случайное значение, от которого зависит, какое слово покажем пользователю, русское или английское

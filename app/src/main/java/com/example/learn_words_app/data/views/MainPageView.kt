@@ -48,7 +48,9 @@ class MainPageView : MainPageContract.View {
         hashMap: HashMap<Int, String>,
         checkAddWord: Boolean,
         thisContext: Context,
-        checkExplanation: Boolean
+        checkExplanation: Boolean,
+        countLearnedWordsInSession: Int,
+        countWordsForLearn: Int
     ): Boolean {
         val word = listOfWords[indexWord]
         var englishWord = word.englishWord
@@ -111,8 +113,13 @@ class MainPageView : MainPageContract.View {
         binding.learnWordsTranslation.text = russianWord
         val countLearningWords = user.countLearningWords
 
-        binding.learnWordsLearnedCountNewWords.text =
-            "Заучено ${user.countLearnedWordsToday}/$countLearningWords новых слов"
+//        binding.learnWordsLearnedCountNewWords.text =
+//            "Заучено ${user.countLearnedWordsToday}/$countLearningWords новых слов"
+
+        val progressBar = binding.progressBar
+        progressBar.progress =
+            (countLearnedWordsInSession / countWordsForLearn.toFloat() * 100).toInt()
+
 
         binding.levelName.text = hashMap[word.id]
 
@@ -366,7 +373,7 @@ class MainPageView : MainPageContract.View {
                     val text = editText.text.toString()
                     if (text.isEmpty()) {
                         startShakeAnimAlertDialogCountLearningWords(dialog, thisContext)
-                        
+
                     } else {
                         val number = text.toInt()
                         if (number < 1 || number > 100) {

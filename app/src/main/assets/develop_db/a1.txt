@@ -307,7 +307,6 @@ inside;внутри
 into;в
 to invite;пригласить
 island;остров
-jungle n;джунгли н
 lake;озеро
 laptop;ноутбук
 last;последний

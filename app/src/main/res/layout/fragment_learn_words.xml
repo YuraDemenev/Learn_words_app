@@ -60,15 +60,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <TextView
-        android:id="@+id/learnWordsLearnedCountNewWords"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="30sp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:text="Изучено 0/10 новых слов"
-        android:textSize="20sp" />
+        android:progressTint="@color/myRed" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
