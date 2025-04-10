@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.learn_words_app.MainActivity
 import com.example.learn_words_app.R
+import com.example.learn_words_app.data.additionalData.FragmentsNames
 import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
@@ -53,25 +55,12 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 
         var listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
         if (listOfWords.isEmpty()) {
-            hideCards(binding)
-            binding.learnWordsDownContainer.visibility = View.INVISIBLE
-            binding.transcription.visibility = View.INVISIBLE
-            val wordView = binding.word
-            wordView.text = "Слов для повтора нет"
-            wordView.apply {
-                layoutParams = ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    startToStart = binding.layoutInCard.id
-                    endToEnd = binding.layoutInCard.id
-                    topToTop = binding.guidelineInCard.id
-                    bottomToBottom = binding.guidelineInCard.id
-                }
-            }
-
+            endRepeat("Слов для повтора нет")
+            val progressBar = binding.progressBar
+            progressBar.progress = 100
             return
         }
+
         var index = 0
         val thisContext = requireContext()
         val db = MainDB.getDB(thisContext)
@@ -141,6 +130,12 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
             checkWriteWord = false
             val checkEnglishWord = getBoolean()
             index++
+            //Когда index равен размеру листа, получаем новый лист
+            if (index == listOfWords.size) {
+                listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
+                index = 0
+            }
+
             val pair = repeatWordsPresenter.nextWords(
                 binding,
                 checkEnglishWord,
@@ -153,14 +148,8 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
                 countWordsForRepeat,
                 countRepeatWordsInSession
             )
-            countRepeatWordsInSession++
             checkExplanation = pair.first
             word = pair.second
-
-            //Когда index равен размеру листа, получаем новый лист
-            if (index == listOfWords.size) {
-                listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
-            }
         }
 
         //Listener "Я вспомнил это слово"
@@ -185,6 +174,13 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
             checkWriteWord = false
             val checkEnglishWord = getBoolean()
             index++
+            if (index == listOfWords.size) {
+                endRepeat("Вы повторили все слова")
+                val progressBar = binding.progressBar
+                progressBar.progress = 100
+                return@setOnClickListener
+            }
+
             val pair = repeatWordsPresenter.nextWords(
                 binding,
                 checkEnglishWord,
@@ -201,6 +197,17 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
             checkExplanation = pair.first
             word = pair.second
         }
+
+        //Для возвращения в главное меню
+        binding.backToMenuContainer.setOnClickListener {
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
+        }
+
+        //Для перехода на страницу повтора слов
+        binding.learnWordsContainer.setOnClickListener {
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.REPEAT_WORDS)
+        }
+
     }
 
     //Получаем из hashMap listOfWords
@@ -210,6 +217,25 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
             list.add(Pair(word, levelName))
         }
         return list
+    }
+
+    private fun endRepeat(str: String) {
+        hideCards(binding)
+        binding.learnWordsDownContainer.visibility = View.INVISIBLE
+        binding.transcription.visibility = View.INVISIBLE
+        val wordView = binding.word
+        wordView.text = str
+        wordView.apply {
+            layoutParams = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                startToStart = binding.layoutInCard.id
+                endToEnd = binding.layoutInCard.id
+                topToTop = binding.guidelineInCard.id
+                bottomToBottom = binding.guidelineInCard.id
+            }
+        }
     }
 
     private fun getBoolean(): Boolean {
