@@ -301,7 +301,7 @@ class MainPageView : MainPageContract.View {
                         .setBackgroundDrawable(
                             ContextCompat.getDrawable(
                                 thisContext,
-                                R.color.myGrey
+                                R.color.grey
                             )
                         )
                 }
@@ -398,7 +398,7 @@ class MainPageView : MainPageContract.View {
             .setBackgroundDrawable(
                 ContextCompat.getDrawable(
                     thisContext,
-                    R.color.myRed
+                    R.color.red
                 )
             )
 

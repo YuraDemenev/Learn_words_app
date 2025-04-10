@@ -167,8 +167,8 @@ class RepeatWordsView : RepeatWordsContract.View {
         thisContext: Context,
     ) {
         lateinit var wordToCheck: String
-        val buttonsColor = ContextCompat.getColor(thisContext, R.color.myGrey)
-        val buttonsRedColor = ContextCompat.getColor(thisContext, R.color.myRed)
+        val buttonsColor = ContextCompat.getColor(thisContext, R.color.grey)
+        val buttonsRedColor = ContextCompat.getColor(thisContext, R.color.red)
 
         //Для оптимизации
         run {

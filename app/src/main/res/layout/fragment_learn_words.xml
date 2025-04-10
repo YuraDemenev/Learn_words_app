@@ -68,7 +68,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:progressTint="@color/myRed" />
+        android:progressTint="@color/red" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
