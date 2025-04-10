@@ -8,9 +8,12 @@
     <color name="lightGreen">#c8f3a1</color>
     <color name="blue">#28b4f7</color>
     <color name="crimson">#d04097</color>
+    <color name="lightCrimson">#ffbbdd</color>
     <color name="brown">#df9755</color>
     <color name="purple">#cf88ff</color>
     <color name="lightPurple">#fad2ff</color>
-    <color name="marine">#00d7a2</color>
+    <color name="marine">#00c192</color>
     <color name="lightMarine">#aef7ea</color>
+    <color name="orange">#ff9f0f</color>
+    <color name="yellow">#ffc20d</color>
 </resources>

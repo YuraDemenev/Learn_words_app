@@ -26,75 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:cardBackgroundColor="@color/green"
-        app:cardCornerRadius="16dp">
-        <!--Выбрать категории + иконка-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
-
-            <!--Иконка выбрать категории-->
-            <ImageView
-                android:id="@+id/mainIconChooseCategory"
-                android:layout_width="30sp"
-                android:layout_height="30sp"
-                android:contentDescription="Choose category icon in main menu"
-                android:scaleType="fitCenter"
-                android:src="@drawable/main_choose_category_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/mainTextContainerChooseCategory"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!--Layout чтобы хранить 2 текста разного размера-->
-            <LinearLayout
-                android:id="@+id/mainTextContainerChooseCategory"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/mainIconChooseCategory"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <!--Текст выбрать категорию-->
-                <TextView
-                    android:id="@+id/mainChooseCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:fontFamily="@font/rubik_variable_font"
-                    android:gravity="center_vertical"
-                    android:text="Выбрать категории"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <!--Текст для показа сколько выбранно категорий-->
-                <TextView
-                    android:id="@+id/mainSmallTextSelectedCategories"
-                    android:layout_width="match_parent"
-                    android:layout_height="22sp"
-                    android:layout_marginStart="7dp"
-                    android:gravity="center_vertical"
-                    android:text="Выбранно категорий: "
-                    android:textColor="@color/lightGreen"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        app:cardBackgroundColor="@color/marine"
+        app:cardBackgroundColor="@color/orange"
         app:cardCornerRadius="16dp">
         <!--Выбрать категории + иконка-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -150,7 +82,7 @@
                     android:layout_marginStart="7dp"
                     android:gravity="center_vertical"
                     android:text="Выучено сегодня: "
-                    android:textColor="@color/lightMarine"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -162,7 +94,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        app:cardBackgroundColor="@color/purple"
+        app:cardBackgroundColor="@color/marine"
         app:cardCornerRadius="16dp">
         <!--Выбрать категории + иконка-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -218,12 +150,81 @@
                     android:layout_marginStart="7dp"
                     android:gravity="center_vertical"
                     android:text="Слова для повтора: "
-                    android:textColor="@color/lightPurple"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-    
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="@color/crimson"
+        app:cardCornerRadius="16dp">
+        <!--Выбрать категории + иконка-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <!--Иконка выбрать категории-->
+            <ImageView
+                android:id="@+id/mainIconChooseCategory"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:contentDescription="Choose category icon in main menu"
+                android:scaleType="fitCenter"
+                android:src="@drawable/main_choose_category_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mainTextContainerChooseCategory"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--Layout чтобы хранить 2 текста разного размера-->
+            <LinearLayout
+                android:id="@+id/mainTextContainerChooseCategory"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mainIconChooseCategory"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!--Текст выбрать категорию-->
+                <TextView
+                    android:id="@+id/mainChooseCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/rubik_variable_font"
+                    android:gravity="center_vertical"
+                    android:text="Выбрать категории"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!--Текст для показа сколько выбранно категорий-->
+                <TextView
+                    android:id="@+id/mainSmallTextSelectedCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="22sp"
+                    android:layout_marginStart="7dp"
+                    android:gravity="center_vertical"
+                    android:text="Выбранно категорий: "
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
     <!--======================================================================================-->
 
     <!--    Надпись дополнителное повторение-->
@@ -233,7 +234,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
-        android:text="Дополнительное повторение" />
+        android:text="Дополнительное повторение"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -242,7 +245,7 @@
         android:layout_marginEnd="10dp"
         app:cardBackgroundColor="@color/brown"
         app:cardCornerRadius="16dp">
-
+       
         <!--Layout в карточке-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -277,15 +280,14 @@
                     android:layout_marginStart="10dp"
                     android:gravity="center_vertical"
                     android:text="Повторить все слова"
+                    android:textColor="@color/white"
                     android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="@id/mainIconRepeatAllWords"
                     app:layout_constraintStart_toEndOf="@id/mainIconRepeatAllWords"
                     app:layout_constraintTop_toTopOf="@id/mainIconRepeatAllWords" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <!--=====================================================================================================================-->
