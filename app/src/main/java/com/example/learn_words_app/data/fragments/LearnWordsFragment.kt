@@ -75,7 +75,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
 
         //Для перехода на страницу повтора слов
         binding.repeatWords.setOnClickListener {
-            (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.REPEAT_WORDS)
         }
 
 

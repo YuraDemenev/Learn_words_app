@@ -15,5 +15,7 @@
     <color name="marine">#00c192</color>
     <color name="lightMarine">#aef7ea</color>
     <color name="orange">#ff9f0f</color>
-    <color name="yellow">#ffc20d</color>
+    <color name="yellow">#FFD70D</color>
+    <color name="test">#F8F1E4</color>
+    <color name="test2">#F76B28</color>
 </resources>

@@ -227,7 +227,7 @@ class RepeatWordsView : RepeatWordsContract.View {
         val blackLine = ConstraintLayout(thisContext).apply {
             layoutParams = ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
-                2
+                1
             ).apply {
                 startToStart = binding.layoutInCard.id
                 endToEnd = binding.layoutInCard.id
