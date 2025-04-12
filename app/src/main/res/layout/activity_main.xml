@@ -68,7 +68,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
-                    android:fontFamily="@font/rubik_variable_font"
                     android:gravity="center_vertical"
                     android:text="Учить новые слова"
                     android:textColor="@color/white"
@@ -83,7 +82,7 @@
                     android:layout_marginStart="7dp"
                     android:gravity="center_vertical"
                     android:text="Выучено сегодня: "
-                    android:textColor="@color/white"
+                    android:textColor="@color/lightBlue"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -136,7 +135,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
-                    android:fontFamily="@font/rubik_variable_font"
                     android:gravity="center_vertical"
                     android:text="Повторить слова"
                     android:textColor="@color/white"
@@ -151,7 +149,7 @@
                     android:layout_marginStart="7dp"
                     android:gravity="center_vertical"
                     android:text="Слова для повтора: "
-                    android:textColor="@color/white"
+                    android:textColor="@color/lightGreen"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -204,7 +202,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
-                    android:fontFamily="@font/rubik_variable_font"
                     android:gravity="center_vertical"
                     android:text="Выбрать категории"
                     android:textColor="@color/white"
@@ -219,7 +216,7 @@
                     android:layout_marginStart="7dp"
                     android:gravity="center_vertical"
                     android:text="Выбранно категорий: "
-                    android:textColor="@color/white"
+                    android:textColor="@color/lightCrimson"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -283,6 +280,7 @@
                     android:text="Повторить все слова"
                     android:textColor="@color/white"
                     android:textSize="22sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/mainIconRepeatAllWords"
                     app:layout_constraintStart_toEndOf="@id/mainIconRepeatAllWords"
                     app:layout_constraintTop_toTopOf="@id/mainIconRepeatAllWords" />
@@ -308,7 +306,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
         android:layout_marginEnd="10sp"
-        app:cardBackgroundColor="@color/blue"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="16dp">
 
         <LinearLayout
@@ -318,7 +316,7 @@
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
-            <!--            &lt;!&ndash; Горизонтальный контейнер для дней недели &ndash;&gt;-->
+            <!-- Горизонтальный контейнер для дней недели -->
             <!--            <LinearLayout-->
             <!--                android:layout_width="match_parent"-->
             <!--                android:layout_height="wrap_content"-->
@@ -434,7 +432,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="160sp"
                     android:layout_height="90sp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/brown"
                     app:cardCornerRadius="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -457,7 +455,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="160sp"
                     android:layout_height="90sp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/brown"
                     app:cardCornerRadius="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -482,7 +480,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@color/white"
+
                 app:cardCornerRadius="16dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
