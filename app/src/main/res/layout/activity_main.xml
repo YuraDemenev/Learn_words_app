@@ -10,22 +10,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!--Надпись учить слова-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="Учить слова"
-        android:textColor="@color/white"
-        android:textSize="22sp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/mainTextContainerLearnNewWords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         app:cardBackgroundColor="@color/blue"
         app:cardCornerRadius="16dp">
@@ -207,87 +198,25 @@
 
     <!--======================================================================================-->
 
-    <!--    Надпись дополнителное повторение-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:text="Дополнительное повторение"
-        android:textColor="@color/white"
-        android:textSize="22sp" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:cardBackgroundColor="@color/orange"
-        app:cardCornerRadius="16dp">
-
-        <!--Layout в карточке-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp">
-
-            <!--повторить все слова + иконка-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="50sp">
-
-                <!--Иконка повторить все слова-->
-                <ImageView
-                    android:id="@+id/mainIconRepeatAllWords"
-                    android:layout_width="30sp"
-                    android:layout_height="30sp"
-                    android:contentDescription="Repeat all words icon in main menu"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/main_repeat_all_words"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/mainRepeatAllWords"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center_vertical"
-                    android:text="Повторить все слова"
-                    android:textColor="@color/black"
-                    android:textSize="26sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
     <!--=====================================================================================================================-->
     <!--    Надпись статистика-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20sp"
-        android:layout_marginTop="15sp"
-        android:layout_marginEnd="10sp"
-        android:text="Статистика"
-        android:textColor="@color/white"
-        android:textSize="22sp" />
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20sp"-->
+    <!--        android:layout_marginTop="15sp"-->
+    <!--        android:layout_marginEnd="10sp"-->
+    <!--        android:text="Статистика"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="22sp" />-->
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:orientation="vertical">
 
@@ -491,6 +420,69 @@
 
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="@color/orange"
+        app:cardCornerRadius="16dp">
+
+        <!--Layout в карточке-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp">
+
+            <!--повторить все слова + иконка-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp">
+
+                <!--Иконка повторить все слова-->
+                <ImageView
+                    android:id="@+id/mainIconRepeatAllWords"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:contentDescription="Repeat all words icon in main menu"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/main_repeat_all_words"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/mainRepeatAllWords"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Повторить все слова"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/mainRepeatAllWordsQuestionMark"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/question_mark"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
