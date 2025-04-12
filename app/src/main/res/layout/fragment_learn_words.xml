@@ -14,8 +14,7 @@
         android:id="@+id/topButtonsContainer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/cardview_dark_background">
+        android:layout_marginTop="5dp">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineFixedTopContainer"
@@ -259,7 +258,6 @@
                             android:text="Я знаю это\n слово"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle=""
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -295,7 +293,6 @@
                             android:id="@+id/learnWordsIDontKnowThisWordText"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-
                             android:gravity="center"
                             android:text="Я не знаю это\n слово"
                             android:textColor="@color/white"
