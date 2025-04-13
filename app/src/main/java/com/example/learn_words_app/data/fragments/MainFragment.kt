@@ -60,12 +60,12 @@ class MainFragment : Fragment() {
         //Добавляем кол-во слов для повторения
         userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
             binding.mainSmallTextRepeatWords.text =
-                "Слова для повтора: ${userObserve.hashMapOfWordsForRepeatAndLevelsNames.size}"
+                "${userObserve.hashMapOfWordsForRepeatAndLevelsNames.size}"
         }
 
         userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
             binding.mainSmallTextTodayLearned.text =
-                "Выучено сегодня новых слов: ${userObserve.countLearnedWordsToday}"
+                "${userObserve.countLearnedWordsToday}"
         }
 
         //Переход на страницу выбора тем
@@ -127,7 +127,7 @@ class MainFragment : Fragment() {
         //Меняем кол-во категорий
         flowLevelsModel.data.observe(viewLifecycleOwner) { levelsData ->
             //Меняем текст на UI
-            binding.mainSmallTextSelectedCategories.text = "Выбрано категорий: ${levelsData.size}"
+            binding.mainSmallTextSelectedCategories.text = "${levelsData.size}"
         }
     }
 }

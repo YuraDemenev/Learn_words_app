@@ -244,7 +244,7 @@
                     android:id="@+id/writeWordCard"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
-                    app:cardBackgroundColor="@color/blue"
+                    app:cardBackgroundColor="@color/superLightGrey"
                     app:cardCornerRadius="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/seeWordCard"
@@ -255,7 +255,7 @@
                     app:strokeWidth="3dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
+                        android:layout_width="122dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
@@ -272,7 +272,7 @@
                     android:id="@+id/seeWordCard"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
-                    app:cardBackgroundColor="@color/lightPurple"
+                    app:cardBackgroundColor="@color/superLightGrey"
                     app:cardCornerRadius="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
