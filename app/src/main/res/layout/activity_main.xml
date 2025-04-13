@@ -23,7 +23,7 @@
         <!--Выбрать категории + иконка-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="50sp"
+            android:layout_height="45sp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -50,7 +50,7 @@
                 android:gravity="center_vertical"
                 android:text="Учить новые слова: 55"
                 android:textColor="@color/black"
-                android:textSize="26sp"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mainIconLearnNewWords"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -84,7 +84,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/repeatWords"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
+            android:layout_height="45sp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -110,7 +110,7 @@
                 android:gravity="center_vertical"
                 android:text="Повторить слова: 55"
                 android:textColor="@color/black"
-                android:textSize="26sp"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mainIconRepeatWords"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -144,7 +144,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mainTextContainerChooseCategory"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
+            android:layout_height="45sp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -171,7 +171,7 @@
                 android:gravity="center_vertical"
                 android:text="Выбрать категории: 55"
                 android:textColor="@color/black"
-                android:textSize="26sp"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mainIconChooseCategory"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -384,7 +384,7 @@
             <!--повторить все слова + иконка-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="50sp"
+                android:layout_height="45sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
@@ -410,7 +410,7 @@
                     android:gravity="center_vertical"
                     android:text="Повторить все слова"
                     android:textColor="@color/black"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -434,7 +434,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
@@ -444,7 +444,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mainChangeCountLearningWords"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="45sp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -479,7 +479,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/mainSettings"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -490,7 +490,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="45sp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
