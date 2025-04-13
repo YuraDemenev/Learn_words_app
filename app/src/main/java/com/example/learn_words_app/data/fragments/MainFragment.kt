@@ -65,7 +65,7 @@ class MainFragment : Fragment() {
 
         userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
             binding.mainLearnNewWords.text =
-                "Учить новые слова: ${userObserve.countLearnedWordsToday}"
+                "Учить новые слова: ${userObserve.countLearningWords - userObserve.countLearnedWordsToday}"
         }
 
         //Наблюдатель за FlowLevelsModel.

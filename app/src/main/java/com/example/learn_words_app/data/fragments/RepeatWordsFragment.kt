@@ -52,6 +52,15 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //Для возвращения в главное меню
+        binding.backToMenuContainer.setOnClickListener {
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
+        }
+
+        //Для перехода на страницу learn words
+        binding.learnWordsContainer.setOnClickListener {
+            (requireActivity() as MainActivity).loadFragment(FragmentsNames.LEARN_WORDS)
+        }
 
         var listOfWords = getListOfWords(user.hashMapOfWordsForRepeatAndLevelsNames)
         if (listOfWords.isEmpty()) {
@@ -197,17 +206,6 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
             checkExplanation = pair.first
             word = pair.second
         }
-
-        //Для возвращения в главное меню
-        binding.backToMenuContainer.setOnClickListener {
-            (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
-        }
-
-        //Для перехода на страницу повтора слов
-        binding.learnWordsContainer.setOnClickListener {
-            (requireActivity() as MainActivity).loadFragment(FragmentsNames.REPEAT_WORDS)
-        }
-
     }
 
     //Получаем из hashMap listOfWords
@@ -223,9 +221,10 @@ class RepeatWordsFragment : Fragment(R.layout.fragment_repeat_words) {
         hideCards(binding)
         binding.learnWordsDownContainer.visibility = View.INVISIBLE
         binding.transcription.visibility = View.INVISIBLE
-        val wordView = binding.word
-        wordView.text = str
-        wordView.apply {
+        val container = binding.learnWordsWordAndTranscriptionContainer
+
+        binding.word.text = str
+        container.apply {
             layoutParams = ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT

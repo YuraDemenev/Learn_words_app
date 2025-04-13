@@ -172,6 +172,11 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                 //Меняем на странице ui элементы для ситуации когда всё выучено
                 presenter.changePageToYouAllLearned(binding)
 
+                //Меняем данные в пользователе
+                user.checkLearnedAllWordsToday = true
+                user.lastTimeLearnedWords = Instant.now()
+                userViewModel.updateUser(user)
+                
                 countLearnedWordsInSession++
                 val progressBar = binding.progressBar
                 progressBar.progress =
@@ -264,10 +269,10 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
     override fun onPause() {
         super.onPause()
 
-        if (user.countLearnedWordsToday == user.countLearningWords) {
-            user.checkLearnedAllWordsToday = true
-            user.lastTimeLearnedWords = Instant.now()
-        }
+//        if (user.countLearnedWordsToday == user.countLearningWords) {
+//            user.checkLearnedAllWordsToday = true
+//            user.lastTimeLearnedWords = Instant.now()
+//        }
 
         if (listOfNewWords.size != 0) {
             val thisContext = requireContext()
@@ -279,9 +284,12 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
             }
         }
 
+//        //Обновляем данные в user
+//        CoroutineScope(Dispatchers.Main).launch {
+//            userViewModel.updateUser(user)
+//        }
         //Обновляем данные в user
-        CoroutineScope(Dispatchers.Main).launch {
-            userViewModel.updateUser(user)
-        }
+        userViewModel.updateUser(user)
+
     }
 }

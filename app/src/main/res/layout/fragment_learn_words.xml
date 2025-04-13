@@ -190,6 +190,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Word"
+                    android:textColor="@color/black"
                     android:textSize="35sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -200,6 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="транскрипция"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -221,6 +223,7 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:text="Перевод"
+                android:textColor="@color/black"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -235,6 +238,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/learnWordsIKnowThisWordText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
@@ -247,11 +251,12 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayoutIKnowWord"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/learnWordsIKnowThisWordText"
+                            android:id="@+id/textIKnowWord"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -274,6 +279,7 @@
                     app:layout_constraintGuide_percent="0.5" />
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/learnWordsIDontKnowThisWordText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
@@ -286,11 +292,12 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayoutIDontKnowWord"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/learnWordsIDontKnowThisWordText"
+                            android:id="@+id/textIDontKnowWord"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"

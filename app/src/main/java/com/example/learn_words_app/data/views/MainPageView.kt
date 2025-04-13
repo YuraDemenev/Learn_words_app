@@ -173,6 +173,10 @@ class MainPageView : MainPageContract.View {
             binding.learnWordsWord.layoutParams as ViewGroup.MarginLayoutParams
         layoutParams.topMargin = 0
 
+        //Меняем progress bar
+        val progressBar = binding.progressBar
+        progressBar.progress = 100
+
         //Чтобы поменять start of на end of
         val constraintLayout = binding.learnWordsLayoutInCard
         // Create a ConstraintSet object
