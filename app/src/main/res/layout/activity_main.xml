@@ -73,6 +73,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/repeatWords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -82,7 +83,7 @@
         app:cardCornerRadius="16dp">
         <!--Выбрать категории + иконка-->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/repeatWords"
+
             android:layout_width="match_parent"
             android:layout_height="45sp"
             android:layout_marginStart="10dp"
@@ -133,6 +134,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/mainTextContainerChooseCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -142,7 +144,7 @@
         app:cardCornerRadius="16dp">
         <!--Выбрать категории + иконка-->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mainTextContainerChooseCategory"
+
             android:layout_width="match_parent"
             android:layout_height="45sp"
             android:layout_marginStart="10dp"

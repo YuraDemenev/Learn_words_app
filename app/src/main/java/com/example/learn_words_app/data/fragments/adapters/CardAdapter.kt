@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learn_words_app.R
@@ -27,12 +28,14 @@ class CardAdapter(
         val countWords: TextView
         val levelsPercent: TextView
         val checkBox: CheckBox
+        val levelIcon: ImageView
 
         init {
             levelsName = view.findViewById(R.id.levelsName)
             countWords = view.findViewById(R.id.countWords)
             levelsPercent = view.findViewById(R.id.levelsPercent)
             checkBox = view.findViewById(R.id.levelsCheckBox)
+            levelIcon = view.findViewById(R.id.levelsIcon)
         }
     }
 
@@ -56,7 +59,21 @@ class CardAdapter(
 //        holder.textTest.text = data[position]
         holder.levelsPercent.text = data[position].percentsLearned.toString() + "%"
         val countWords = data[position].countWords
-
+        when (position) {
+            1, 2 -> holder.levelIcon.setImageResource(R.drawable.categories_book_a)
+            3 -> holder.levelIcon.setImageResource(R.drawable.categories_animals)
+            4, 5 -> holder.levelIcon.setImageResource(R.drawable.categories_book_b)
+            6 -> holder.levelIcon.setImageResource(R.drawable.categories_clothes)
+            7 -> holder.levelIcon.setImageResource(R.drawable.categories_colors)
+            8 -> holder.levelIcon.setImageResource(R.drawable.categories_food)
+            9 -> holder.levelIcon.setImageResource(R.drawable.categories_health)
+            10 -> holder.levelIcon.setImageResource(R.drawable.categories_home)
+            11 -> holder.levelIcon.setImageResource(R.drawable.categories_human)
+            12 -> holder.levelIcon.setImageResource(R.drawable.categories_oxford_5000)
+            13 -> holder.levelIcon.setImageResource(R.drawable.categories_sport)
+            14 -> holder.levelIcon.setImageResource(R.drawable.categories_transport)
+            15 -> holder.levelIcon.setImageResource(R.drawable.categories_work)
+        }
         //Создаем текст кол-во слов + слов/а/о
         //Для слов <9
         if (countWords <= 9) {
@@ -121,7 +138,7 @@ class CardAdapter(
                 val hashSet = flowLevelsModel.getData()
                 hashSet.add(localLevelName)
                 flowLevelsModel.updateLevels(hashSet)
-                
+
             } else {
                 if (flowLevelsModel.data.value?.contains(localLevelName) == true) {
                     flowLevelsModel.data.value?.remove(localLevelName)
