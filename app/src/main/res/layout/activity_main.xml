@@ -340,6 +340,7 @@
 
 
                 <TextView
+                    android:id="@+id/main_count_learned_words_record"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -363,6 +364,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/main_count_learned_words_succession"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -435,6 +437,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/mainChangeCountLearningWords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -444,7 +447,6 @@
         app:cardCornerRadius="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mainChangeCountLearningWords"
             android:layout_width="match_parent"
             android:layout_height="45sp"
             android:layout_marginStart="10dp"

@@ -67,6 +67,8 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
         val db = MainDB.getDB(thisContext)
         val countWordsForLearn = user.countLearningWords
         var countLearnedWordsInSession = 0
+        //Нельзя использовать напрямую потому что countLearnedWordsToday меняется
+        val countLearnedWords = user.countLearnedWordsToday
 
         //Для возвращения в главное меню
         binding.learnWordsBackToMenuContainer.setOnClickListener {
@@ -152,6 +154,10 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                 )
                 countLearnedWordsInSession++
 
+                val progressBar = binding.progressBar
+                progressBar.progress =
+                    (countLearnedWordsInSession / (countWordsForLearn - countLearnedWords).toFloat() * 100).toInt()
+
             } else if (user.countLearnedWordsToday == countLearningWords - 1) {
                 indexWord++
                 //Добавляем слово в список, новых слов
@@ -175,12 +181,14 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                 //Меняем данные в пользователе
                 user.checkLearnedAllWordsToday = true
                 user.lastTimeLearnedWords = Instant.now()
+                user.curRepeatDays++
+                user.maxRepeatDays = user.curRepeatDays.coerceAtLeast(user.maxRepeatDays)
                 userViewModel.updateUser(user)
-                
+
                 countLearnedWordsInSession++
                 val progressBar = binding.progressBar
                 progressBar.progress =
-                    (countLearnedWordsInSession / countWordsForLearn.toFloat() * 100).toInt()
+                    (countLearnedWordsInSession / (countWordsForLearn - countLearnedWords).toFloat() * 100).toInt()
             }
         }
 

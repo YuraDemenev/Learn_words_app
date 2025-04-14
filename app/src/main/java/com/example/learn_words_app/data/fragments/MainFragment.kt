@@ -64,8 +64,12 @@ class MainFragment : Fragment() {
         }
 
         userViewModel.user.observe(viewLifecycleOwner) { userObserve ->
+            var num = userObserve.countLearningWords - userObserve.countLearnedWordsToday
+            if (num < 0) {
+                num = 0
+            }
             binding.mainLearnNewWords.text =
-                "Учить новые слова: ${userObserve.countLearningWords - userObserve.countLearnedWordsToday}"
+                "Учить новые слова: $num"
         }
 
         //Наблюдатель за FlowLevelsModel.
@@ -73,6 +77,15 @@ class MainFragment : Fragment() {
         flowLevelsModel.data.observe(viewLifecycleOwner) { levelsData ->
             //Меняем текст на UI
             binding.mainChooseCategory.text = "Выбрать категории: ${levelsData.size}"
+        }
+
+        userViewModel.user.observe(viewLifecycleOwner) { user ->
+            binding.mainCountLearnedWordsRecord.text = "Вы учите слова ${user.curRepeatDays} дней"
+        }
+
+        userViewModel.user.observe(viewLifecycleOwner) { user ->
+            binding.mainCountLearnedWordsSuccession.text =
+                "Ваш рекорд ${user.maxRepeatDays} дней подряд"
         }
 
         //Переход на страницу выбора тем

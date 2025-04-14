@@ -111,15 +111,6 @@ class MainPageView : MainPageContract.View {
 
         binding.learnWordsWord.text = englishWord
         binding.learnWordsTranslation.text = russianWord
-        val countLearningWords = user.countLearningWords
-
-//        binding.learnWordsLearnedCountNewWords.text =
-//            "Заучено ${user.countLearnedWordsToday}/$countLearningWords новых слов"
-
-        val progressBar = binding.progressBar
-        progressBar.progress =
-            (countLearnedWordsInSession / countWordsForLearn.toFloat() * 100).toInt()
-
 
         binding.levelName.text = hashMap[word.id]
 
@@ -244,6 +235,7 @@ class MainPageView : MainPageContract.View {
 
         var checkWriteMyNumber = false
         var checkChose = false
+        val previousNum = user.countLearningWords
 
         val builder = AlertDialog.Builder(thisContext)
         val dialogView = inflater.inflate(R.layout.alert_choose_count_learning_words, null)
@@ -383,12 +375,18 @@ class MainPageView : MainPageContract.View {
                         if (number < 1 || number > 100) {
                             startShakeAnimAlertDialogCountLearningWords(dialog, thisContext)
                         } else {
+                            if (number > previousNum) {
+                                user.checkLearnedAllWordsToday = false
+                            }
                             user.countLearningWords = number
                             dialog.dismiss()
                         }
                     }
                 }
             } else {
+                if (user.countLearningWords > previousNum) {
+                    user.checkLearnedAllWordsToday = false
+                }
                 dialog.dismiss()
             }
         }
