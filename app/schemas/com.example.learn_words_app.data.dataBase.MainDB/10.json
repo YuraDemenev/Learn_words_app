@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 10,
-    "identityHash": "213b77a8ba5dd84e2f0cfd5931e0f687",
+    "identityHash": "57c18ba149ba9360bda1d1767e8b36d9",
     "entities": [
       {
         "tableName": "words",
@@ -78,7 +78,7 @@
       },
       {
         "tableName": "levels",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `countLearnedWords` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `count_learned_words` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -94,7 +94,7 @@
           },
           {
             "fieldPath": "countLearnedWords",
-            "columnName": "countLearnedWords",
+            "columnName": "count_learned_words",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -184,7 +184,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '213b77a8ba5dd84e2f0cfd5931e0f687')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '57c18ba149ba9360bda1d1767e8b36d9')"
     ]
   }
 }
