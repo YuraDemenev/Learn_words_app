@@ -16,7 +16,7 @@ data class User(
     var countKnewWords: Int = 0,
     var listOfLevels: MutableList<Levels> = mutableListOf(),
     var checkBritishVariables: Boolean = false,
-    var lastTimeLearnedWords: Instant = Instant.now(),
+    var lastTimeLearnedWords: Instant = Instant.parse("2025-01-01T00:00:00Z"),
     var hashMapOfWordsForRepeatAndLevelsNames: HashMap<Words, String> = hashMapOf(),
     var countRepeatedWordsToday: Int = 0
 )

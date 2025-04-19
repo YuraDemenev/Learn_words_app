@@ -26,6 +26,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.time.Duration
 import java.time.Instant
 
 
@@ -180,9 +181,11 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
 
                 //Меняем данные в пользователе
                 user.checkLearnedAllWordsToday = true
-                user.lastTimeLearnedWords = Instant.now()
-                user.curRepeatDays++
-                user.maxRepeatDays = user.curRepeatDays.coerceAtLeast(user.maxRepeatDays)
+                if ((Duration.between(user.lastTimeLearnedWords, Instant.now())).toHours() >= 24) {
+                    user.lastTimeLearnedWords = Instant.now()
+                    user.curRepeatDays++
+                    user.maxRepeatDays = user.curRepeatDays.coerceAtLeast(user.maxRepeatDays)
+                }
                 userViewModel.updateUser(user)
 
                 countLearnedWordsInSession++

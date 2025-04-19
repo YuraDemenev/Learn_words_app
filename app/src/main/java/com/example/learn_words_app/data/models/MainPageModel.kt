@@ -206,6 +206,7 @@ class MainPageModel : MainPageContract.Model {
             }
 
             try {
+                //TODO поменять user id
                 val user = User(userId = "test", countLearningWords = 10)
                 val emptyListOfIds: List<Int> = listOf()
                 setUserProtoData(
@@ -253,13 +254,13 @@ class MainPageModel : MainPageContract.Model {
     ) {
         listOfNewWords.forEach { word ->
             val myScope = CoroutineScope(Dispatchers.IO)
-
+            //TODO сделать обновление levels.count_learned_words когда слово выучено
             myScope.launch {
                 if (word.id != null) {
                     //Если фаза не введена, то получаем из БД
                     if (stage == -1) {
                         var stageChanged = -1
-
+                        //TODO так как words_levels может быть несколько слов, нужно поменять, чтобы обновлять все слова
                         //Получаем фазу для данного слова
                         myScope.launch {
                             stageChanged = db.getDao().getStageByWordId(word.id)
@@ -290,6 +291,7 @@ class MainPageModel : MainPageContract.Model {
                             }
 
                             else -> {
+                                //TODO добавить обновление кол-ва выученных слов
                                 stageChanged = 6
                                 countHoursForAdd = 0
                             }

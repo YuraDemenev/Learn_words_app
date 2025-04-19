@@ -42,7 +42,7 @@ interface WordsDAO {
     @Query(
         """
         SELECT word_id FROM words_levels 
-        WHERE words_levels.date_for_repeat <= :dateNow AND words_levels.date_for_repeat != 0 AND words_levels.stage > 1 AND words_levels.stage <6
+        WHERE words_levels.date_for_repeat <= :dateNow AND words_levels.date_for_repeat != 0 AND words_levels.stage <6
         """
     )
     fun getWordsForRepeat(dateNow: Long?): Array<Int>

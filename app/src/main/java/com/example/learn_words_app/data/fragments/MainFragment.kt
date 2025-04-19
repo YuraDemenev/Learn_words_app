@@ -48,6 +48,7 @@ class MainFragment : Fragment() {
     //SetTextI18n - убирает предупреждение при сложении строк (Android создает предупреждение для поддержки разных языков)
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         val thisContext = requireContext()
         //Получаем/создаем БД
         val db = MainDB.getDB(thisContext)
