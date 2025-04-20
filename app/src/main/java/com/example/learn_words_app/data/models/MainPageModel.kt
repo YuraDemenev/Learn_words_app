@@ -493,14 +493,16 @@ class MainPageModel : MainPageContract.Model {
                         async(Dispatchers.IO) {
                             //Добавляем новое слово в таблицу word
                             val idLong = db.getDao().insertWord(word)
-                            val id = idLong.toInt()
-                            if (id != -1) {
-                                //Получаем id levels
-                                val levelId = levelsMap.getValue(nameInMap)
-                                //Добавляем wordsLevels в таблицу wordsLevels
-                                val wordLevels = WordsLevels(id, levelId)
-                                db.getDao().insertWordsLevel(wordLevels)
+                            var id = idLong.toInt()
+                            if (id == -1) {
+                                id = db.getDao().getWordIdByEnglishWord(word.englishWord)
                             }
+                            //Получаем id levels
+                            val levelId = levelsMap.getValue(nameInMap)
+                            //Добавляем wordsLevels в таблицу wordsLevels
+                            val wordLevels = WordsLevels(id, levelId)
+                            db.getDao().insertWordsLevel(wordLevels)
+
                         }
                     }
                     deferredList.awaitAll()

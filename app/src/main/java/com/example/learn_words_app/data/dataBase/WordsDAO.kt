@@ -64,6 +64,9 @@ interface WordsDAO {
     @Query("SELECT * FROM words WHERE words.id = :wordId")
     suspend fun getWordById(wordId: Int): Words
 
+    @Query("SELECT id FROM words WHERE words.english_word = :word")
+    suspend fun getWordIdByEnglishWord(word: String): Int
+
     //Динамический запрос для получения 1 слова
     @RawQuery
     suspend fun getWordByLevelsIds(query: SupportSQLiteQuery): Words
