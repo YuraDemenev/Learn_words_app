@@ -2,24 +2,11 @@ package com.example.learn_words_app.data.dataBase
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.util.Date
 
-@Entity(
-    tableName = "words", foreignKeys = [
-        ForeignKey(
-            //Таблица на которую указывает внешний ключ
-            entity = Levels::class,
-            //Указывает столбец в родительской таблице на которую указывает внешний ключ
-            parentColumns = arrayOf("id"),
-            //Указывает столбец для которого определен внешний ключ
-            childColumns = arrayOf("level_id"),
-            //Optional
-            onUpdate = ForeignKey.CASCADE,
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
-)
+@Entity(tableName = "words", indices = [Index(value = ["english_word"], unique = true)])
 data class Words(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
@@ -32,8 +19,10 @@ data class Words(
     val transcriptionId: String,
     @ColumnInfo(name = "british_variable")
     val britishVariable: String,
-    @ColumnInfo(name = "level_id", index = true)
-    val levelId: Int,
     @ColumnInfo(name = "pronunciation_id")
     val pronunciationId: Int,
+    @ColumnInfo(name = "stage")
+    val stage: Int,
+    @ColumnInfo(name = "date_for_repeat")
+    val dateForLearn: Date?
 )

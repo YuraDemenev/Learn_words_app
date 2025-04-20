@@ -1,0 +1,187 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 15,
+    "identityHash": "850d957f8009a457cc63f11fd090abdf",
+    "entities": [
+      {
+        "tableName": "words",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `english_word` TEXT NOT NULL, `russian_translation` TEXT NOT NULL, `transcription` TEXT NOT NULL, `british_variable` TEXT NOT NULL, `pronunciation_id` INTEGER NOT NULL, `stage` INTEGER NOT NULL, `date_for_repeat` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "englishWord",
+            "columnName": "english_word",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "russianTranslation",
+            "columnName": "russian_translation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transcriptionId",
+            "columnName": "transcription",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "britishVariable",
+            "columnName": "british_variable",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pronunciationId",
+            "columnName": "pronunciation_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stage",
+            "columnName": "stage",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateForLearn",
+            "columnName": "date_for_repeat",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_words_english_word",
+            "unique": true,
+            "columnNames": [
+              "english_word"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_words_english_word` ON `${TABLE_NAME}` (`english_word`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "levels",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `count_learned_words` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "countLearnedWords",
+            "columnName": "count_learned_words",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "words_levels",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`word_id` INTEGER NOT NULL, `level_id` INTEGER NOT NULL, PRIMARY KEY(`word_id`, `level_id`), FOREIGN KEY(`level_id`) REFERENCES `levels`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`word_id`) REFERENCES `words`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "wordId",
+            "columnName": "word_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "levelId",
+            "columnName": "level_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "word_id",
+            "level_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_words_levels_word_id",
+            "unique": false,
+            "columnNames": [
+              "word_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_words_levels_word_id` ON `${TABLE_NAME}` (`word_id`)"
+          },
+          {
+            "name": "index_words_levels_level_id",
+            "unique": false,
+            "columnNames": [
+              "level_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_words_levels_level_id` ON `${TABLE_NAME}` (`level_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "levels",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "level_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "words",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "word_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '850d957f8009a457cc63f11fd090abdf')"
+    ]
+  }
+}

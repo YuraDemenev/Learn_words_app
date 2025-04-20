@@ -36,13 +36,13 @@ interface WordsDAO {
     @Query("DELETE FROM sqlite_sequence")
     suspend fun deletePrimaryKeys()
 
-    @Query("UPDATE words_levels SET stage = :stage, date_for_repeat = :date WHERE word_id = :wordId")
-    fun updateWordLevelsStage(wordId: Int, stage: Int, date: Date)
+    @Query("UPDATE words SET stage = :stage, date_for_repeat = :date WHERE id = :wordId")
+    fun updateWordStage(wordId: Int, stage: Int, date: Date)
 
     @Query(
         """
-        SELECT word_id FROM words_levels 
-        WHERE words_levels.date_for_repeat <= :dateNow AND words_levels.date_for_repeat != 0 AND words_levels.stage <6
+        SELECT id FROM words 
+        WHERE words.date_for_repeat <= :dateNow AND words.date_for_repeat != 0 AND words.stage <6
         """
     )
     fun getWordsForRepeat(dateNow: Long?): Array<Int>
@@ -50,8 +50,18 @@ interface WordsDAO {
     @Query("SELECT name FROM levels WHERE id = :levelId")
     suspend fun getLevelNameById(levelId: Int): String
 
-    //Получаем слово из БД по id
-    @Query("SELECT * FROM words WHERE id = :wordId")
+    @Query(
+        """
+            SELECT * 
+            FROM levels 
+            JOIN words_levels ON levels.id=words_levels.level_id 
+            WHERE words_levels.word_id = :wordId 
+            LIMIT 1
+        """
+    )
+    suspend fun getLevelByWordId(wordId: Int): Levels
+
+    @Query("SELECT * FROM words WHERE words.id = :wordId")
     suspend fun getWordById(wordId: Int): Words
 
     //Динамический запрос для получения 1 слова
@@ -108,7 +118,6 @@ interface WordsDAO {
         return getLevelsByNames(query)
     }
 
-
     @Query("SELECT * FROM words")
     //Flow похож на каналы в Go, данные приходят когда обновляются, можно использовать
     //observe для контроля изменений в данных
@@ -127,7 +136,7 @@ interface WordsDAO {
     fun getAllLevels(): Array<Levels>
 
     //Запрос на получение кол-во слов с определенным уровнем
-    @Query("SELECT COUNT(*) FROM words WHERE level_id=:levelId")
+    @Query("SELECT COUNT(*) FROM words_levels WHERE level_id=:levelId")
     fun getCountWordsByLevelId(levelId: Int): Int
 
     // Запрос на получение количества записей в таблице levels
@@ -135,12 +144,10 @@ interface WordsDAO {
     suspend fun getCountLevels(): Int
 
     //Запрос на получения stage из words_levels
-    @Query("SELECT stage FROM words_levels WHERE word_id = :wordId")
+    @Query("SELECT stage FROM words WHERE id = :wordId")
     suspend fun getStageByWordId(wordId: Int): Int
 
     //Запрос на проверку наличие записи в таблице по имени
     @Query("SELECT EXISTS(SELECT * FROM levels WHERE name = :name)")
     suspend fun checkLevelExist(name: String): Boolean
-
-
 }

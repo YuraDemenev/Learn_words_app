@@ -133,7 +133,7 @@ class MainPageView : MainPageContract.View {
         indexWord: Int
     ) {
         //Для изменения названия уровня
-        val str = hashMap[listOfWords[indexWord].levelId]
+        val str = hashMap[listOfWords[indexWord].id]
         if (str != null) {
             binding.levelName.text = changeWordForShow(str)
         } else {

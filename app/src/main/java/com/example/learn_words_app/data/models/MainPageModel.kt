@@ -28,6 +28,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.Date
@@ -55,7 +57,7 @@ class MainPageModel : MainPageContract.Model {
         if (wordId != null) {
             //Меняем в words_levels stage на 6, так как пользователь уже слово знает
             myScope.launch {
-                db.getDao().updateWordLevelsStage(wordId, 6, Date.from(Instant.now()))
+                db.getDao().updateWordStage(wordId, 6, Date.from(Instant.now()))
             }.join()
         } else {
             Log.e("Main Page Model", "getOneWordForLearn, wordId is null")
@@ -135,17 +137,28 @@ class MainPageModel : MainPageContract.Model {
 
         //Создаем hash map, чтобы хранить названия уровней по ids
         val hashMap = HashMap<Int, String>()
-        listOfLevels.forEach { element ->
-            if (element.id != null) {
-                hashMap[element.id] = element.name
-            } else {
+        // List to hold jobs
+        val jobs = mutableListOf<Job>()
+        val mutex = Mutex()
+
+        words.forEach { word ->
+            if (word.id == null) {
                 Log.e(
                     "Main page contract",
                     "getWordsForLearn, listOfLevels has element with null id"
                 )
                 throw Exception()
             }
+            val job = myScope.launch {
+                val level = db.getDao().getLevelByWordId(word.id)
+                mutex.withLock {
+                    hashMap[word.id] = level.name
+                }
+            }
+            jobs.add(job)
         }
+        jobs.joinAll()
+
         val pair = Pair(words.toMutableList(), hashMap)
         return pair
     }
@@ -253,7 +266,7 @@ class MainPageModel : MainPageContract.Model {
         Log.i("Check user data", "Success checked user data")
         return flowLevels
     }
-    
+
     override suspend fun updateWordsLevels(
         db: MainDB,
         listOfNewWords: List<Words>,
@@ -307,11 +320,11 @@ class MainPageModel : MainPageContract.Model {
                         //TODO Поменять на Hours
                         val dateLearn =
                             Date.from(Instant.now().plus(countHoursForAdd, ChronoUnit.MILLIS))
-                        db.getDao().updateWordLevelsStage(word.id, stageChanged, dateLearn)
+                        db.getDao().updateWordStage(word.id, stageChanged, dateLearn)
 
                     } else {
                         val dateLearn = Date.from(Instant.now().plus(4, ChronoUnit.MILLIS))
-                        db.getDao().updateWordLevelsStage(word.id, stage, dateLearn)
+                        db.getDao().updateWordStage(word.id, stage, dateLearn)
                     }
 
                 } else {
@@ -471,8 +484,9 @@ class MainPageModel : MainPageContract.Model {
                                 wordsInString[1],
                                 "",
                                 britishVariable,
-                                levelId,
-                                0
+                                0,
+                                0,
+                                Date(0)
                             )
                         }
                         //Upsert request to DB
@@ -480,12 +494,13 @@ class MainPageModel : MainPageContract.Model {
                             //Добавляем новое слово в таблицу word
                             val idLong = db.getDao().insertWord(word)
                             val id = idLong.toInt()
-                            //Получаем id levels
-                            val levelId = levelsMap.getValue(nameInMap)
-                            //Добавляем wordsLevels в таблицу wordsLevels
-                            val wordLevels = WordsLevels(id, levelId, 0, Date(0))
-                            db.getDao().insertWordsLevel(wordLevels)
-
+                            if (id != -1) {
+                                //Получаем id levels
+                                val levelId = levelsMap.getValue(nameInMap)
+                                //Добавляем wordsLevels в таблицу wordsLevels
+                                val wordLevels = WordsLevels(id, levelId)
+                                db.getDao().insertWordsLevel(wordLevels)
+                            }
                         }
                     }
                     deferredList.awaitAll()
@@ -591,6 +606,7 @@ class MainPageModel : MainPageContract.Model {
     //Функция чтобы при получении ids уровней из proto преобразовать данные в list words
     private fun getWordsByIds(listOfIds: MutableList<Int>, db: MainDB): HashMap<Words, String> {
         val hashMap: HashMap<Words, String> = hashMapOf()
+        val mutex = Mutex()
 
         runBlocking {
             // List to hold jobs
@@ -600,8 +616,10 @@ class MainPageModel : MainPageContract.Model {
             listOfIds.forEach { id ->
                 val job = myScope.launch {
                     val word = db.getDao().getWordById(id)
-                    val levelName = db.getDao().getLevelNameById(word.levelId)
-                    hashMap[word] = levelName
+                    val level = db.getDao().getLevelByWordId(id)
+                    mutex.withLock {
+                        hashMap[word] = level.name
+                    }
                 }
                 jobs.add(job)
             }

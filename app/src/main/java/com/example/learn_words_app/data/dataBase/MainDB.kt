@@ -9,7 +9,7 @@ import com.example.learn_words_app.data.additionalData.Converters
 
 @Database(
     entities = [Words::class, Levels::class, WordsLevels::class],
-    version = 14,
+    version = 17,
     exportSchema = true
 )
 @TypeConverters(Converters::class)

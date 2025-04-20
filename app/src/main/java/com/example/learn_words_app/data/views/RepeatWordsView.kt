@@ -54,6 +54,14 @@ class RepeatWordsView : RepeatWordsContract.View {
         var russianWord = word.russianTranslation
         var checkExplanationCurrentWord = false
 
+        if (word.id == null) {
+            Log.e(
+                "Repeat words view",
+                "nextWords, word has null id"
+            )
+            throw Exception()
+        }
+
         //Возвращаем значок клавиатуры и глаза
         binding.seeWordCard.visibility = View.VISIBLE
         binding.writeWordCard.visibility = View.VISIBLE
@@ -65,10 +73,9 @@ class RepeatWordsView : RepeatWordsContract.View {
         val channel = Channel<String>()
         //Получаем название из БД
         CoroutineScope(Dispatchers.IO).launch {
-            // Simulate async database fetch
-            val wordLevel = db.getDao().getLevelNameById(word.levelId)
-            channel.send(wordLevel) // Send the result to the channel
-            channel.close() // Close the channel after sending the result
+            val level = db.getDao().getLevelByWordId(word.id)
+            channel.send(level.name)
+            channel.close()
         }
 
         //Удаляем объяснение
