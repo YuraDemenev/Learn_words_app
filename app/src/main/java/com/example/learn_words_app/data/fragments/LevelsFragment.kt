@@ -50,7 +50,7 @@ class LevelsFragment : Fragment(R.layout.fragment_levels) {
         //Получаем список из карточек
         runBlocking {
             myScope.async {
-                arrayOfLevelsData = presenter.getLevelsCardData(thisContext, db)
+                arrayOfLevelsData = presenter.getLevelsCardData(db)
             }.join()
         }
 

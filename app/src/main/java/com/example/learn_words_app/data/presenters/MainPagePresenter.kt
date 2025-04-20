@@ -93,22 +93,20 @@ class MainPagePresenter(
     }
 
     override suspend fun getOneWordForLearn(
-        context: Context,
         db: MainDB,
         flowLevelsModel: FlowLevelsModel,
         wordId: Int?,
         callback: WordCallback
     ) {
-        model.getOneWordForLearn(context, db, flowLevelsModel, wordId, callback)
+        model.getOneWordForLearn(db, flowLevelsModel, wordId, callback)
     }
 
     override suspend fun getWordsForLearn(
-        context: Context,
         db: MainDB,
         flowLevelsModel: FlowLevelsModel,
         countLearningWords: Int
     ): Pair<MutableList<Words>, HashMap<Int, String>> {
-        return model.getWordsForLearn(context, db, flowLevelsModel, countLearningWords)
+        return model.getWordsForLearn(db, flowLevelsModel, countLearningWords)
     }
 
     override suspend fun updateWordsLevels(
@@ -140,10 +138,9 @@ class MainPagePresenter(
     }
 
     override suspend fun getLevelsCardData(
-        context: Context,
         db: MainDB
     ): MutableList<LevelsCardData> {
-        return model.getLevelsCardData(context, db)
+        return model.getLevelsCardData(db)
     }
 
     //For Dev

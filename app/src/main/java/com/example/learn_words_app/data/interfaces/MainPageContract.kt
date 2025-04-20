@@ -64,14 +64,12 @@ interface MainPageContract {
         suspend fun getWordsForRepeat(db: MainDB): Array<Int>
 
         suspend fun getWordsForLearn(
-            context: Context,
             db: MainDB,
             flowLevelsModel: FlowLevelsModel,
             countLearningWords: Int
         ): Pair<MutableList<Words>, HashMap<Int, String>>
 
         suspend fun getOneWordForLearn(
-            context: Context,
             db: MainDB,
             flowLevelsModel: FlowLevelsModel,
             wordId: Int?,
@@ -80,7 +78,7 @@ interface MainPageContract {
 
         suspend fun getUser(context: Context, db: MainDB): User
 
-        suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
+        suspend fun getLevelsCardData(db: MainDB): MutableList<LevelsCardData>
 
         suspend fun checkUserData(context: Context, db: MainDB): HashSet<String>
 
@@ -158,7 +156,6 @@ interface MainPageContract {
         )
 
         suspend fun getWordsForLearn(
-            context: Context,
             db: MainDB,
             flowLevelsModel: FlowLevelsModel,
             countLearningWords: Int
@@ -166,7 +163,7 @@ interface MainPageContract {
 
         suspend fun getUser(context: Context, db: MainDB): User
 
-        suspend fun getLevelsCardData(context: Context, db: MainDB): MutableList<LevelsCardData>
+        suspend fun getLevelsCardData(db: MainDB): MutableList<LevelsCardData>
 
         suspend fun checkUserData(context: Context, db: MainDB): HashSet<String>
 
@@ -185,7 +182,6 @@ interface MainPageContract {
         )
 
         suspend fun getOneWordForLearn(
-            context: Context,
             db: MainDB,
             flowLevelsModel: FlowLevelsModel,
             wordId: Int?,

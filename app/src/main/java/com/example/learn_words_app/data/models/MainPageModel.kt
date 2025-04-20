@@ -44,7 +44,6 @@ class MainPageModel : MainPageContract.Model {
     }
 
     override suspend fun getOneWordForLearn(
-        context: Context,
         db: MainDB,
         flowLevelsModel: FlowLevelsModel,
         wordId: Int?,
@@ -98,7 +97,6 @@ class MainPageModel : MainPageContract.Model {
     }
 
     override suspend fun getWordsForLearn(
-        context: Context,
         db: MainDB,
         flowLevelsModel: FlowLevelsModel,
         countLearningWords: Int
@@ -153,7 +151,6 @@ class MainPageModel : MainPageContract.Model {
     }
 
     override suspend fun getLevelsCardData(
-        context: Context,
         db: MainDB
     ): MutableList<LevelsCardData> {
         //Создаем Scope для запуска корутин
@@ -256,8 +253,7 @@ class MainPageModel : MainPageContract.Model {
         Log.i("Check user data", "Success checked user data")
         return flowLevels
     }
-
-    //TODO почистить context где он не используется
+    
     override suspend fun updateWordsLevels(
         db: MainDB,
         listOfNewWords: List<Words>,

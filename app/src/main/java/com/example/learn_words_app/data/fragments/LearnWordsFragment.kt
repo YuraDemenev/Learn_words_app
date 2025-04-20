@@ -96,7 +96,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
         runBlocking {
             myScope.launch {
                 pair = presenter.getWordsForLearn(
-                    thisContext,
                     db,
                     flowLevelsModel,
                     user.countLearningWords - user.countLearnedWordsToday
@@ -206,7 +205,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
             //В этой функции также обновляем слово, которое знаем
             myScope.launch {
                 presenter.getOneWordForLearn(
-                    thisContext,
                     db,
                     flowLevelsModel,
                     listOfWords[indexWord].id,
