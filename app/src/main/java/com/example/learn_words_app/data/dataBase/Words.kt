@@ -20,7 +20,6 @@ import androidx.room.PrimaryKey
         )
     ]
 )
-//TODO добавить Pronunciation _id, и поменять transcription_id на просто transcription (String)
 data class Words(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
