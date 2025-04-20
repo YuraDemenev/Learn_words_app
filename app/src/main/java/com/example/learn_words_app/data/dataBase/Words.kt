@@ -29,10 +29,12 @@ data class Words(
     val englishWord: String,
     @ColumnInfo(name = "russian_translation")
     val russianTranslation: String,
-    @ColumnInfo(name = "transcription_id")
-    val transcriptionId: Int,
+    @ColumnInfo(name = "transcription")
+    val transcriptionId: String,
     @ColumnInfo(name = "british_variable")
     val britishVariable: String,
     @ColumnInfo(name = "level_id", index = true)
     val levelId: Int,
+    @ColumnInfo(name = "pronunciation_id")
+    val pronunciationId: Int,
 )

@@ -470,9 +470,10 @@ class MainPageModel : MainPageContract.Model {
                                 null,
                                 wordsInString[0],
                                 wordsInString[1],
-                                0,
+                                "",
                                 britishVariable,
-                                levelId
+                                levelId,
+                                0
                             )
                         }
                         //Upsert request to DB
