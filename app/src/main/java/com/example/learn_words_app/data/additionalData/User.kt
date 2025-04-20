@@ -29,4 +29,3 @@ fun User.convertDateToTimestamp(): Timestamp {
         .setSeconds(this.lastTimeLearnedWords.epochSecond)
         .setNanos(this.lastTimeLearnedWords.nano).build()
 }
-//TODO добавить app verison?

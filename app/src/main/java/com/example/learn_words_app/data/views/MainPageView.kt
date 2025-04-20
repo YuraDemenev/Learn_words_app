@@ -143,7 +143,7 @@ class MainPageView : MainPageContract.View {
     }
 
     //Меняем на странице ui элементы для ситуации когда всё выучено
-    override fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding) {
+    override fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding, str: String) {
         //Удаляем элемент перевод
         var parent = binding.learnWordsTranslation.parent as ViewGroup
         parent.removeView(binding.learnWordsTranslation)
@@ -185,7 +185,7 @@ class MainPageView : MainPageContract.View {
         )
         constraintSet.applyTo(constraintLayout)
 
-        binding.learnWordsWord.text = "Вы выучили все слова на сегодня"
+        binding.learnWordsWord.text = str
     }
 
     override fun deleteExplanations(

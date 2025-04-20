@@ -84,7 +84,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
 
         //Если пользователь уже выучил все слова
         if (user.checkLearnedAllWordsToday) {
-            presenter.changePageToYouAllLearned(binding)
+            presenter.changePageToYouAllLearned(binding, "Вы выучили все слова на сегодня")
             val progressBar = binding.progressBar
             progressBar.progress = 100
             return
@@ -136,6 +136,15 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
         binding.learnWordsIDontKnowThisWordText.setOnClickListener {
             if (user.countLearnedWordsToday < countLearningWords - 1) {
                 indexWord++
+                if (indexWord == listOfWords.size) {
+                    presenter.changePageToYouAllLearned(
+                        binding,
+                        "Вы выучили все слова в выбранных темах, выберите другие темы"
+                    )
+                    val progressBar = binding.progressBar
+                    progressBar.progress = 100
+                    return@setOnClickListener
+                }
                 user.countLearnedWordsToday++
                 userViewModel.updateCountLearnedWordsToday(user.countLearnedWordsToday)
 
@@ -153,7 +162,6 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                     countWordsForLearn
                 )
                 countLearnedWordsInSession++
-
                 val progressBar = binding.progressBar
                 progressBar.progress =
                     (countLearnedWordsInSession / (countWordsForLearn - countLearnedWords).toFloat() * 100).toInt()
@@ -176,7 +184,7 @@ class LearnWordsFragment : Fragment(R.layout.fragment_learn_words) {
                 presenter.changeLevelName(binding, hashMap, listOfWords, indexWord)
 
                 //Меняем на странице ui элементы для ситуации когда всё выучено
-                presenter.changePageToYouAllLearned(binding)
+                presenter.changePageToYouAllLearned(binding, "Вы выучили все слова на сегодня")
 
                 //Меняем данные в пользователе
                 user.checkLearnedAllWordsToday = true

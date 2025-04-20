@@ -52,9 +52,7 @@ interface MainPageContract {
             indexWord: Int
         )
 
-        fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding)
-
-//        fun addExplanation(binding: FragmentLearnWordsBinding, word: Words, thisContext: Context)
+        fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding, string: String)
     }
 
     //Управляет данными приложения.
@@ -144,7 +142,7 @@ interface MainPageContract {
             indexWord: Int
         )
 
-        fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding)
+        fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding, str: String)
 
         //Model
 //-----------------------------------------------------------------------------------------------------------------------------------------------------

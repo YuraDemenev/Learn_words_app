@@ -81,8 +81,8 @@ class MainPagePresenter(
         mainView.changeLevelName(binding, hashMap, listOfWords, indexWord)
     }
 
-    override fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding) {
-        mainView.changePageToYouAllLearned(binding)
+    override fun changePageToYouAllLearned(binding: FragmentLearnWordsBinding, str: String) {
+        mainView.changePageToYouAllLearned(binding, str)
     }
 
     override suspend fun checkUserData(
