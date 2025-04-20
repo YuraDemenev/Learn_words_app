@@ -31,6 +31,7 @@ import kotlinx.coroutines.runBlocking
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.Date
+import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 
 class MainPageModel : MainPageContract.Model {
@@ -206,8 +207,8 @@ class MainPageModel : MainPageContract.Model {
             }
 
             try {
-                //TODO поменять user id
-                val user = User(userId = "test", countLearningWords = 10)
+                val userId = UUID.randomUUID().toString()
+                val user = User(userId = userId, countLearningWords = 10)
                 val emptyListOfIds: List<Int> = listOf()
                 setUserProtoData(
                     context,
