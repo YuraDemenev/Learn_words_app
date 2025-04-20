@@ -229,7 +229,17 @@ class MainPageModel : MainPageContract.Model {
         }
 
         //Добавляем в flow levels model уровни
-        val listOfLevels = checkUser.listOfLevels
+        var listOfLevels = checkUser.listOfLevels
+        //Проверка в случае если, количество уровней == 0
+        if (listOfLevels.size == 0) {
+            //Создаем Scope для запуска корутин
+            val myScope = CoroutineScope(Dispatchers.IO)
+            //Получаем уровни для данных в карточках на странице выбора уровней
+            myScope.launch {
+                listOfLevels = db.getDao().getBaseLevels("a1", "a2", "b1").toMutableList()
+            }.join()
+        }
+
         listOfLevels.forEach { locLevel ->
             if (locLevel.id != null) {
                 flowLevels.add(locLevel.name)
@@ -404,14 +414,6 @@ class MainPageModel : MainPageContract.Model {
 
                 // Разделяем файл по строкам
                 val strings = myOutput.split("\r\n")
-
-                //Для того чтобы отловить exception в корутине
-//                val exceptionHandler = CoroutineExceptionHandler { _, exception ->
-//                    Log.e(
-//                        "try to handle word and add in db",
-//                        "in file:$fileName exception: $exception"
-//                    )
-//                }
 
                 //Запускаем корутину в которой проходим по строкам и добавляем их в БД
                 myScope.launch {

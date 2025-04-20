@@ -18,6 +18,13 @@ class MainPagePresenter(
     private val model: MainPageContract.Model,
     private var mainView: MainPageContract.View
 ) : MainPageContract.Presenter {
+    override fun createAlertLevels(
+        thisContext: Context,
+        inflater: LayoutInflater
+    ) {
+        return mainView.createAlertLevels(thisContext, inflater)
+    }
+
     override suspend fun getWordsForRepeat(db: MainDB): Array<Int> {
         return model.getWordsForRepeat(db)
     }
@@ -33,9 +40,8 @@ class MainPagePresenter(
         userViewModel: UserViewModel,
         thisContext: Context,
         inflater: LayoutInflater,
-        presenter: MainPagePresenter,
     ) {
-        mainView.createAlertChoseCountLearningWords(userViewModel, thisContext, inflater, presenter)
+        mainView.createAlertChoseCountLearningWords(userViewModel, thisContext, inflater)
     }
 
     override fun nextWord(

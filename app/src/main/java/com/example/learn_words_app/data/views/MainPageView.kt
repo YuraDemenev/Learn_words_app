@@ -23,6 +23,7 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
@@ -32,12 +33,12 @@ import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.Words
 import com.example.learn_words_app.data.interfaces.MainPageContract
-import com.example.learn_words_app.data.presenters.MainPagePresenter
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import com.google.android.material.card.MaterialCardView
 
 
 class MainPageView : MainPageContract.View {
+
     @SuppressLint("SetTextI18n")
     override fun nextWord(
         binding: FragmentLearnWordsBinding,
@@ -225,11 +226,31 @@ class MainPageView : MainPageContract.View {
         }
     }
 
+    override fun createAlertLevels(
+        thisContext: Context,
+        inflater: LayoutInflater
+    ) {
+        val builder = AlertDialog.Builder(thisContext)
+        val dialogView = inflater.inflate(R.layout.alert_levels, null)
+
+        builder.setView(dialogView)
+        // Create and show the dialog
+        val dialog: AlertDialog = builder.create()
+        //Чтобы alert был без заднего фона
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialog.show()
+
+        dialog.findViewById<CardView>(R.id.alertLevelOkButton).setOnClickListener {
+            dialog.dismiss()
+        }
+
+    }
+
     override fun createAlertChoseCountLearningWords(
         userViewModel: UserViewModel,
         thisContext: Context,
         inflater: LayoutInflater,
-        presenter: MainPagePresenter,
     ) {
         val user = userViewModel.getUser()
 

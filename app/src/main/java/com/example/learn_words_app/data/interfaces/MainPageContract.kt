@@ -9,18 +9,21 @@ import com.example.learn_words_app.data.additionalData.User
 import com.example.learn_words_app.data.additionalData.UserViewModel
 import com.example.learn_words_app.data.dataBase.MainDB
 import com.example.learn_words_app.data.dataBase.Words
-import com.example.learn_words_app.data.presenters.MainPagePresenter
 import com.example.learn_words_app.databinding.FragmentLearnWordsBinding
 import com.google.protobuf.Timestamp
 
 interface MainPageContract {
     //View концентрируется только на UI и пользовательском взаимодействии, а логика работы с данными вынесена в другие компоненты.
     interface View {
+        fun createAlertLevels(
+            thisContext: Context,
+            inflater: LayoutInflater
+        )
+
         fun createAlertChoseCountLearningWords(
             userViewModel: UserViewModel,
             thisContext: Context,
             inflater: LayoutInflater,
-            presenter: MainPagePresenter,
         )
 
         fun deleteExplanations(
@@ -111,11 +114,15 @@ interface MainPageContract {
     interface Presenter {
         //Views
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+        fun createAlertLevels(
+            thisContext: Context,
+            inflater: LayoutInflater
+        )
+
         fun createAlertChoseCountLearningWords(
             userViewModel: UserViewModel,
             thisContext: Context,
             inflater: LayoutInflater,
-            presenter: MainPagePresenter,
         )
 
         fun nextWord(

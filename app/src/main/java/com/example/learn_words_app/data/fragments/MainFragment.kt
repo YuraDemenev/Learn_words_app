@@ -134,7 +134,6 @@ class MainFragment : Fragment() {
                 userViewModel,
                 thisContext,
                 inflater,
-                presenter
             )
         }
 

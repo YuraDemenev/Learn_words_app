@@ -60,7 +60,6 @@ class LevelsFragment : Fragment(R.layout.fragment_levels) {
         //Переименовываем с Your_Words на Ваши слова
         arrayOfLevelsData[0].levelName = "Your words"
 
-        //TODO Убрать костыль в виде пустой карточки (Почему -то последний элемент не отображается)
         //TODO Переделать порядок уровней в recycler view
         //TODO Сделать изменение в FlowLevels при выборе тем
         //Для создание списка из card_view_for_levels
@@ -73,8 +72,11 @@ class LevelsFragment : Fragment(R.layout.fragment_levels) {
 
         //Для возвращения в главное меню
         binding.backToMainMenuContainer.setOnClickListener {
-            //TODO Сделать alert если выбрано 0 категорий
-            (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
+            if (flowLevelsModel.getData().size == 0) {
+                presenter.createAlertLevels(thisContext, layoutInflater)
+            } else {
+                (requireActivity() as MainActivity).loadFragment(FragmentsNames.MAIN)
+            }
         }
     }
 }
