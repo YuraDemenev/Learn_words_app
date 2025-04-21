@@ -107,18 +107,18 @@ class MainPageModel : MainPageContract.Model {
         lateinit var listOfLevels: List<Levels>
 
         //Получаем уровни
-        myScope.launch {
-            val hashSet = flowLevelsModel.data.value
-            if (hashSet != null) {
-                if (hashSet.size == 0) {
-                    Log.e("Main page model get words for learn.", "hash set size is zero")
-                    throw Exception()
-                }
-                listOfLevels = db.getDao().getLevelsByNamesMultipleQueries(hashSet)
-            } else {
-                Log.e("Main page model", "getWordsForLearn, hash set is null")
+
+        val hashSet = flowLevelsModel.data.value
+        if (hashSet != null) {
+            if (hashSet.size == 0) {
+                Log.e("Main page model get words for learn.", "hash set size is zero")
+                throw Exception()
             }
-        }.join()
+            listOfLevels = db.getDao().getLevelsByNamesMultipleQueries(hashSet)
+        } else {
+            Log.e("Main page model", "getWordsForLearn, hash set is null")
+        }
+
 
         //Получаем из list levels ids чтобы их использовать в следующем запросе
         val arrayLevelsIds: Array<Int> = Array(listOfLevels.size) { 0 }
@@ -129,11 +129,8 @@ class MainPageModel : MainPageContract.Model {
         }
 
         //Получаем случайный список слов с levels_id
-        lateinit var words: List<Words>
-        myScope.launch {
-            words =
-                db.getDao().getWordsByLevelsIdsMultiplyQueries(arrayLevelsIds, countLearningWords)
-        }.join()
+        val words =
+            db.getDao().getWordsByLevelsIdsMultiplyQueries(arrayLevelsIds, countLearningWords)
 
         //Создаем hash map, чтобы хранить названия уровней по ids
         val hashMap = HashMap<Int, String>()
@@ -450,7 +447,7 @@ class MainPageModel : MainPageContract.Model {
                             }
 
                             //GetValue кидает исключение если ключа нет
-                            val levelId = levelsMap.getValue(nameInMap)
+//                            val levelId = levelsMap.getValue(nameInMap)
                             //Для проверки имеет ли слово британский вариант
                             var britishVariable = ""
 
